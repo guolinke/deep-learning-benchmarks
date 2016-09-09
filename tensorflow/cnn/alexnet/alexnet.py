@@ -1,31 +1,45 @@
-from builtins import range
 from datetime import datetime
 import math
 import time
 
-import tensorflow.python.platform
 import tensorflow as tf
+import argparse
+import os
 
 FLAGS = tf.app.flags.FLAGS
 
-tf.app.flags.DEFINE_integer('batch_size', 128,
-                            """Batch size.""")
-tf.app.flags.DEFINE_integer('num_batches', 100,
-                            """Number of batches to run.""")
-tf.app.flags.DEFINE_boolean('forward_only', False,
-                            """Only run the forward pass.""")
-tf.app.flags.DEFINE_boolean('forward_backward_only', False,
-                            """Only run the forward-forward pass.""")
-tf.app.flags.DEFINE_string('data_format', 'NCHW',
-                           """The data format for Convnet operations.
-                           Can be either NHWC or NCHW.
-                           """)
-
 parameters = []
+device_str = ''
 
 conv_counter = 1
 pool_counter = 1
 affine_counter = 1
+
+def set_parameters(epochs, minibatch, iterations, device_id):
+  """
+  iterations means the number of iterations in each epoch
+  """
+  tf.app.flags.DEFINE_integer('batch_size', minibatch,
+                              """Batch size.""")
+  #tf.app.flags.DEFINE_integer('num_batches', 500,
+  tf.app.flags.DEFINE_integer('num_batches', iterations*epochs,
+                              """Number of batches to run.""")
+  #tf.app.flags.DEFINE_boolean('forward_only', False,
+  tf.app.flags.DEFINE_boolean('forward_only', False,
+                              """Only run the forward pass.""")
+  tf.app.flags.DEFINE_boolean('forward_backward_only', True,
+                              """Only run the forward-forward pass.""")
+  tf.app.flags.DEFINE_string('data_format', 'NHWC',
+                             """The data format for Convnet operations.
+                             Can be either NHWC or NCHW.
+                             """)
+  global device_str
+  if int(device_id) >= 0:
+      device_str = '/gpu:%d'%int(device_id)
+  else:
+      # cpus
+      device_str = '/cpu:0'
+
 
 def _conv(inpOp, nIn, nOut, kH, kW, dH, dW, padType):
     global conv_counter
@@ -98,11 +112,11 @@ def loss(logits, labels):
     return loss
 
 def inference(images):
-    conv1 = _conv (images, 3, 64, 11, 11, 4, 4, 'VALID')
+    conv1 = _conv (images, 3, 96, 11, 11, 4, 4, 'VALID')
     pool1 = _mpool(conv1,  3, 3, 2, 2)
-    conv2 = _conv (pool1,  64, 192, 5, 5, 1, 1, 'SAME')
+    conv2 = _conv (pool1,  96, 256, 5, 5, 1, 1, 'SAME')
     pool2 = _mpool(conv2,  3, 3, 2, 2)
-    conv3 = _conv (pool2,  192, 384, 3, 3, 1, 1, 'SAME')
+    conv3 = _conv (pool2,  256, 384, 3, 3, 1, 1, 'SAME')
     conv4 = _conv (conv3,  384, 256, 3, 3, 1, 1, 'SAME')
     conv5 = _conv (conv4,  256, 256, 3, 3, 1, 1, 'SAME')
     pool5 = _mpool(conv5,  3, 3, 2, 2)
@@ -115,13 +129,14 @@ def inference(images):
 
 
 def time_tensorflow_run(session, target, info_string):
-  num_steps_burn_in = 10
+  #num_steps_burn_in = 10
+  num_steps_burn_in = 0
   total_duration = 0.0
   total_duration_squared = 0.0
   if not isinstance(target, list):
     target = [target]
   target_op = tf.group(*target)
-  for i in range(FLAGS.num_batches + num_steps_burn_in):
+  for i in xrange(FLAGS.num_batches + num_steps_burn_in):
     start_time = time.time()
     _ = session.run(target_op)
     duration = time.time() - start_time
@@ -134,12 +149,17 @@ def time_tensorflow_run(session, target, info_string):
   mn = total_duration / FLAGS.num_batches
   vr = total_duration_squared / FLAGS.num_batches - mn * mn
   sd = math.sqrt(vr)
-  print ('%s: %s across %d steps, %.3f +/- %.3f sec / batch' %
+  print ('fake %s: %s across %d steps, %.3f +/- %.3f sec / batch' %
          (datetime.now(), info_string, FLAGS.num_batches, mn, sd))
 
 def run_benchmark():
   global parameters
-  with tf.Graph().as_default():
+  config = tf.ConfigProto(allow_soft_placement=True)
+  if device_str.find('cpu') >= 0: # cpu version
+    num_threads = os.getenv('OMP_NUM_THREADS', 1)
+    print 'num_threads: ', num_threads
+    config = tf.ConfigProto(allow_soft_placement=True, intra_op_parallelism_threads=int(num_threads))
+  with tf.Graph().as_default(), tf.device(device_str):
     # Generate some dummy images.
     image_size = 224
     # Note that our padding definition is slightly different the cuda-convnet.
@@ -149,11 +169,12 @@ def run_benchmark():
       image_shape = [FLAGS.batch_size, 3, image_size + 3, image_size + 3]
     else:
       image_shape = [FLAGS.batch_size, image_size + 3, image_size + 3, 3]
-    images = tf.Variable(tf.random_normal(image_shape,
+    with tf.device('/cpu:0'):
+        images = tf.Variable(tf.random_normal(image_shape,
                                           dtype=tf.float32,
                                           stddev=1e-1))
 
-    labels = tf.Variable(tf.ones([FLAGS.batch_size],
+        labels = tf.Variable(tf.ones([FLAGS.batch_size],
                                  dtype=tf.int32))
 
     # Build a Graph that computes the logits predictions from the
@@ -164,7 +185,7 @@ def run_benchmark():
     init = tf.initialize_all_variables()
 
     # Start running operations on the Graph.
-    sess = tf.Session('')
+    sess = tf.Session(config=config)
     sess.run(init)
 
     run_forward = True
@@ -191,8 +212,24 @@ def run_benchmark():
 
 
 def main(_):
+  program_start_time = time.time()
   run_benchmark()
+  program_end_time = time.time()
+  #print('Program finished, Total seconds: %s' % (program_end_time - program_start_time))
 
 
 if __name__ == '__main__':
+  parser = argparse.ArgumentParser()
+  parser.add_argument("-e", "--epochs", help="the number of epochs", type=int, default=4)
+  parser.add_argument("-b", "--minibatch", help="minibatch size", type=int, default=16)
+  parser.add_argument("-i", "--iterations", help="iterations", type=int, default=2)
+  parser.add_argument("-d", "--deviceid", help="specified device id", type=int, default=0)
+  args = parser.parse_args()
+
+  epochs = args.epochs
+  minibatch = args.minibatch
+  iterations = args.iterations
+  device_id = args.deviceid
+  set_parameters(epochs, minibatch, iterations, device_id)
+
   tf.app.run()

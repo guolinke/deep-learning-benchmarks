@@ -201,8 +201,8 @@ class PTBModel(object):
     self._initial_state = cell.zero_state(batch_size, data_type())
 
 
-    embedding = tf.get_variable(
-        "embedding", [vocab_size, size], dtype=data_type())
+    #with tf.device("/cpu:0"):
+    embedding = tf.get_variable("embedding", [vocab_size, size])
     inputs = tf.nn.embedding_lookup(embedding, self._input_data)
 
     if is_training and config.keep_prob < 1:
@@ -298,6 +298,7 @@ class TestConfig(object):
   lr_decay = 0.5
   batch_size = 20
   vocab_size = 10000
+  device = 0
 
 
 
@@ -347,6 +348,7 @@ def get_config():
   config.hidden_size = FLAGS.hiddensize
   config.num_layers = FLAGS.numlayer
   config.num_steps = FLAGS.seqlen
+  config.device = FLAGS.device
   return config
 
 
@@ -358,8 +360,8 @@ def main(_):
   train_data, valid_data, test_data, _ = raw_data
 
   config = get_config()
-
-  with tf.Graph().as_default(), tf.Session() as session:
+  tf_dev = '/gpu:' + config.device
+  with tf.Graph().as_default(), tf.device(tf_dev), tf.Session() as session:
     initializer = tf.random_uniform_initializer(-config.init_scale,
                                                 config.init_scale)
     with tf.variable_scope("model", reuse=None, initializer=initializer):

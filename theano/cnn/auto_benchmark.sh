@@ -77,7 +77,7 @@ run_benchmark () {
     done
 }
 
-run_benchmark alexnet googlenet vgg
+run_benchmark alexnet 
 
 
 # grep the result
