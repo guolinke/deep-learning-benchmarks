@@ -1,0 +1,16 @@
+*~
+
+deepcl/DeepCL/
+caffe/caffe/
+greentea/caffe/
+ccv/ccv/
+ccv/cwc-bench
+ccv/cwc-bench-runtime.o
+ccv/cwc-bench.o
+cxxnet/cxxnet/
+glconv/libglconv/
+nervana/maxas/
+nervana/nervanagpu/
+theano/Theano/
+theano/pylearn2/
+theano/scikits.cuda/
