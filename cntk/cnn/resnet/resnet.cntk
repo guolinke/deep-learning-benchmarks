@@ -1,0 +1,78 @@
+RootDir = "."
+
+ConfigDir = "$RootDir$"
+DataDir=".."
+OutputDir = "$RootDir$/Output"
+ModelDir = "$OutputDir$/Models"
+
+ndlMacros="$ConfigDir$/Macros.ndl"
+
+precision="float"
+
+deviceId=0
+minibatchSize=16
+epochSize=2560
+maxEpochs=2
+
+shareNodeValueMatrices=true
+maxTempMemSizeInSamplesForCNN=1
+
+command=Train
+
+parallelTrain="false"
+
+traceLevel=1
+initOnCPUOnly=true
+
+# Strides for increasing layers. Defaults (paper) are 2 for 1x1 and 1 for 3x3.
+stride1x1=1
+stride3x3=2
+
+
+Train=[
+    action="train"
+    modelPath="$ModelDir$/ResNet_50"
+
+     NDLNetworkBuilder=[
+        networkDescription="$ConfigDir$/ResNet_50.ndl"
+    ]
+    
+    SGD=[
+        epochSize=$epochSize$
+        #minibatchSize=256
+        minibatchSize=$minibatchSize$
+        # Note that learning rates are 10x more than in the paper due to a different
+        # momentum update rule in CNTK: v{t + 1} = lr*(1 - momentum)*g{t + 1} + momentum*v{t}
+        learningRatesPerMB=1.0*30:0.1*30:0.01*30:0.001
+        momentumPerMB=0.9
+        maxEpochs=$maxEpochs$
+        gradUpdateType="None"
+        L2RegWeight=0.0001
+        dropoutRate=0
+	    numMBsToShowResult=10
+        
+        ParallelTrain=[
+            parallelizationMethod="DataParallelSGD"
+            distributedMBReading="true"
+            parallelizationStartEpoch=1
+            DataParallelSGD=[
+                gradientBits=32
+            ]
+        ]
+    ]
+    reader=[
+        readerType=UCIFastReader
+        file=$DataDir$/imagenet_data.txt
+        randomize=None
+        features=[
+            dim=154587
+            start=1
+        ]
+        labels=[
+            dim=1
+            start=0
+    	labelDim=1000
+    	labelMappingFile=$DataDir$/labelmap.txt
+        ]
+    ]
+]
