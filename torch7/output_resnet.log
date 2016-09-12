@@ -1,47 +1,35 @@
-=> Creating model from file: models/resnet.lua	
- | ResNet-50 ImageNet	
-=> Training epoch # 1	
- | Epoch: [1][32/320]    Time 9.951  Data 0.001  Err 7.1370  top1 100.000  top5 100.000	
- | Epoch: [1][64/320]    Time 1.254  Data 0.000  Err 3.5074  top1  96.875  top5  81.250	
- | Epoch: [1][96/320]    Time 1.268  Data 0.000  Err 7.0359  top1  96.875  top5  84.375	
- | Epoch: [1][128/320]    Time 1.252  Data 0.000  Err 15.8650  top1 100.000  top5  84.375	
- | Epoch: [1][160/320]    Time 1.243  Data 0.000  Err 28.6063  top1  96.875  top5  84.375	
- | Epoch: [1][192/320]    Time 1.255  Data 0.000  Err 39.1548  top1  96.875  top5  84.375	
- | Epoch: [1][224/320]    Time 1.260  Data 0.000  Err 37.1896  top1  96.875  top5  84.375	
- | Epoch: [1][256/320]    Time 1.260  Data 0.000  Err 18.8587  top1  96.875  top5  81.250	
- | Epoch: [1][288/320]    Time 1.230  Data 0.000  Err 10.1944  top1  93.750  top5  81.250	
- | Epoch: [1][320/320]    Time 1.237  Data 0.000  Err 6.9805  top1  93.750  top5  81.250	
-=> Training epoch # 2	
- | Epoch: [2][32/320]    Time 1.231  Data 0.001  Err 5.7921  top1  93.750  top5  81.250	
- | Epoch: [2][64/320]    Time 1.032  Data 0.000  Err 5.8865  top1  93.750  top5  81.250	
- | Epoch: [2][96/320]    Time 1.051  Data 0.000  Err 5.9671  top1  93.750  top5  78.125	
- | Epoch: [2][128/320]    Time 1.251  Data 0.000  Err 5.8907  top1  93.750  top5  78.125	
- | Epoch: [2][160/320]    Time 1.264  Data 0.000  Err 5.8501  top1  93.750  top5  78.125	
- | Epoch: [2][192/320]    Time 1.263  Data 0.000  Err 5.7591  top1  93.750  top5  78.125	
- | Epoch: [2][224/320]    Time 1.220  Data 0.000  Err 5.6556  top1  93.750  top5  75.000	
- | Epoch: [2][256/320]    Time 1.231  Data 0.000  Err 5.5883  top1  93.750  top5  71.875	
- | Epoch: [2][288/320]    Time 1.253  Data 0.000  Err 5.5421  top1  93.750  top5  75.000	
- | Epoch: [2][320/320]    Time 1.233  Data 0.000  Err 5.4976  top1  93.750  top5  75.000	
-=> Training epoch # 3	
- | Epoch: [3][32/320]    Time 1.256  Data 0.000  Err 5.4471  top1  93.750  top5  75.000	
- | Epoch: [3][64/320]    Time 1.276  Data 0.000  Err 5.3904  top1  93.750  top5  75.000	
- | Epoch: [3][96/320]    Time 1.243  Data 0.000  Err 5.3269  top1  96.875  top5  75.000	
- | Epoch: [3][128/320]    Time 1.262  Data 0.000  Err 5.2579  top1  93.750  top5  78.125	
- | Epoch: [3][160/320]    Time 1.252  Data 0.000  Err 5.1864  top1  93.750  top5  78.125	
- | Epoch: [3][192/320]    Time 1.258  Data 0.000  Err 5.1101  top1  93.750  top5  81.250	
- | Epoch: [3][224/320]    Time 1.243  Data 0.000  Err 5.0330  top1  93.750  top5  78.125	
- | Epoch: [3][256/320]    Time 1.260  Data 0.000  Err 4.9507  top1  93.750  top5  78.125	
- | Epoch: [3][288/320]    Time 1.258  Data 0.000  Err 4.8703  top1  90.625  top5  75.000	
- | Epoch: [3][320/320]    Time 1.276  Data 0.000  Err 4.7806  top1  93.750  top5  71.875	
-=> Training epoch # 4	
- | Epoch: [4][32/320]    Time 1.289  Data 0.001  Err 4.6929  top1  90.625  top5  75.000	
- | Epoch: [4][64/320]    Time 1.253  Data 0.000  Err 4.6026  top1  87.500  top5  71.875	
- | Epoch: [4][96/320]    Time 1.260  Data 0.000  Err 4.5061  top1  90.625  top5  68.750	
- | Epoch: [4][128/320]    Time 1.253  Data 0.000  Err 4.4041  top1  90.625  top5  68.750	
- | Epoch: [4][160/320]    Time 1.264  Data 0.000  Err 4.2964  top1  90.625  top5  68.750	
- | Epoch: [4][192/320]    Time 1.247  Data 0.000  Err 4.1878  top1  84.375  top5  65.625	
- | Epoch: [4][224/320]    Time 1.237  Data 0.000  Err 4.0750  top1  81.250  top5  62.500	
- | Epoch: [4][256/320]    Time 1.184  Data 0.000  Err 3.9585  top1  81.250  top5  59.375	
- | Epoch: [4][288/320]    Time 0.786  Data 0.000  Err 3.8355  top1  71.875  top5  59.375	
- | Epoch: [4][320/320]    Time 1.282  Data 0.000  Err 3.7098  top1  75.000  top5  53.125	
- * Finished top1:    inf  top5:    inf	
+	
+error: missing ImageNet data directory	
+Usage: [options] 
+
+Torch-7 ResNet Training script
+
+Options:
+  -data            Path to dataset []
+  -dataset         Options: imagenet | cifar10 [imagenet]
+  -manualSeed      Manually set RNG seed [0]
+  -nGPU            Number of GPUs to use by default [1]
+  -deviceId        Specify GPU id [1]
+  -nIterations     Number of iterations for each epoch [2]
+  -backend         Options: cudnn | cunn [cudnn]
+  -cudnn           Options: fastest | default | deterministic [fastest]
+  -gen             Path to save generated files [gen]
+  -nThreads        number of data loading threads [2]
+  -nEpochs         Number of total epochs to run [0]
+  -epochNumber     Manual epoch number (useful on restarts) [1]
+  -batchSize       mini-batch size (1 = pure stochastic) [32]
+  -testOnly        Run on validation set only [false]
+  -tenCrop         Ten-crop testing [false]
+  -resume          Path to directory containing checkpoint [none]
+  -LR              initial learning rate [0.1]
+  -momentum        momentum [0.9]
+  -weightDecay     weight decay [0.0001]
+  -netType         Options: resnet | preresnet [resnet]
+  -depth           ResNet depth: 18 | 34 | 50 | 101 | ... [34]
+  -shortcutType    Options: A | B | C []
+  -retrain         Path to model to retrain with [none]
+  -optimState      Path to an optimState to reload from [none]
+  -shareGradInput  Share gradInput tensors to reduce memory usage [false]
+  -resetClassifier Reset the fully connected layer for fine-tuning [false]
+  -nClasses        Number of classes in the dataset [0]
+
