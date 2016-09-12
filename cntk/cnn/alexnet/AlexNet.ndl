@@ -2,12 +2,12 @@ load=ndlMacros
 run=DNN
 
 ndlMacros = [
-    ImageW = 227
-    ImageH = 227
+    ImageW = 224
+    ImageH = 224
     ImageC = 3
     LabelDim = 1000
 
-    features = ImageInput(ImageW, ImageH, ImageC, tag = feature, imageLayout = "cudnn")
+    features = ImageInput(ImageW, ImageH, ImageC, tag = feature, imageLayout=$imageLayout$)
     labels = Input(LabelDim, tag = label)
     
     conv1WScale = 0.95
@@ -36,39 +36,39 @@ DNN=[
     hStride1 = 4
     vStride1 = 4
     # weight[cMap1, kW1 * kH1 * ImageC]
-    conv1 = ConvReLULayerValid(features, cMap1, 363, kW1, kH1, hStride1, vStride1, conv1WScale, conv1BValue)
+    conv1_act = ConvReLULayer(features, cMap1, 363, kW1, kH1, hStride1, vStride1, conv1WScale, conv1BValue)
     
     # pool1
     pool1W = 3
     pool1H = 3
     pool1hStride = 2
     pool1vStride = 2
-    pool1 = MaxPooling(conv1, pool1W, pool1H, pool1hStride, pool1vStride, imageLayout = "cudnn")
+    pool1 = MaxPooling(conv1_act, pool1W, pool1H, pool1hStride, pool1vStride, imageLayout=$imageLayout$)
 
     # conv2
     kW2 = 5
     kH2 = 5
-    cMap2 = 96
+    cMap2 = 256
     hStride2 = 1
     vStride2 = 1
     # weight[cMap2, kW2 * kH2 * cMap1]
-    conv2 = ConvReLULayer(pool1, cMap2, 2400, kW2, kH2, hStride2, vStride2, conv2WScale, conv2BValue)
+    conv2_act = ConvReLULayer(pool1, cMap2, 2400, kW2, kH2, hStride2, vStride2, conv2WScale, conv2BValue)
 
     # pool2
     pool2W = 3
     pool2H = 3
     pool2hStride = 2
     pool2vStride = 2
-    pool2 = MaxPooling(conv2, pool2W, pool2H, pool2hStride, pool2vStride, imageLayout = "cudnn")
+    pool2 = MaxPooling(conv2_act, pool2W, pool2H, pool2hStride, pool2vStride, imageLayout=$imageLayout$)
 
     # conv3
     kW3 = 3
     kH3 = 3
-    cMap3 = 256
+    cMap3 = 384
     hStride3 = 1
     vStride3 = 1
     # weight[cMap3, kW3 * kH3 * cMap2]
-    conv3 = ConvReLULayer(pool2, cMap3, 864, kW3, kH3, hStride3, vStride3, conv3WScale, conv3BValue)
+    conv3_act = ConvReLULayer(pool2, cMap3, 2304, kW3, kH3, hStride3, vStride3, conv3WScale, conv3BValue)
     
     # conv4
     kW4 = 3
@@ -77,7 +77,7 @@ DNN=[
     hStride4 = 1
     vStride4 = 1
     # weight[cMap4, kW4 * kH4 * cMap3]
-    conv4 = ConvReLULayer(conv3, cMap4, 2304, kW4, kH4, hStride4, vStride4, conv4WScale, conv4BValue)
+    conv4_act = ConvReLULayer(conv3_act, cMap4, 3456, kW4, kH4, hStride4, vStride4, conv4WScale, conv4BValue)
 
     # conv5
     kW5 = 3
@@ -86,21 +86,23 @@ DNN=[
     hStride5 = 1
     vStride5 = 1
     # weight[cMap5, kW5 * kH5 * cMap4]
-    conv5 = ConvReLULayer(conv4, cMap5, 3456, kW5, kH5, hStride5, vStride5, conv5WScale, conv5BValue)
+    conv5_act = ConvReLULayer(conv4_act, cMap5, 3456, kW5, kH5, hStride5, vStride5, conv5WScale, conv5BValue)
     
     # pool3
     pool3W = 3
     pool3H = 3
     pool3hStride = 2
     pool3vStride = 2
-    pool3 = MaxPooling(conv5, pool3W, pool3H, pool3hStride, pool3vStride, imageLayout = "cudnn")
+    pool3 = MaxPooling(conv5_act, pool3W, pool3H, pool3hStride, pool3vStride, imageLayout=$imageLayout$)
 
     hiddenDim = 4096
-    h1 = DNNImageReLULayer(6, 6, 256, hiddenDim, pool3, fc1WScale, fc1BValue)
+    h1 = DNNReLULayer(9216, hiddenDim, pool3, fc1WScale, fc1BValue)
+    #h1_d = Dropout(h1)
     h2 = DNNReLULayer(hiddenDim, hiddenDim, h1, fc2WScale, fc2BValue)
+    #h2_d = Dropout(h2)
     ol = DNNLastLayer(hiddenDim, labelDim, h2, fc3WScale, fc3BValue)
     
     CE = CrossEntropyWithSoftmax(labels, ol, tag = Criteria)
-    Err = ClassificationError(labels, ol, tag = Eval)
+    Err = ErrorPrediction(labels, ol, tag = Eval)
     OutputNodes = ol
 ]

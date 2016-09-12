@@ -2,8 +2,8 @@ load=ndlMacros
 run=DNN
 
 ndlMacros = [
-    ImageW = 227
-    ImageH = 227
+    ImageW = 224
+    ImageH = 224
     ImageC = 3
     LabelDim = 1000
 
@@ -68,8 +68,8 @@ DNN=[
     rn4_3 = ResNetNode3A(rn4_2, cMap6, cMap4, cMap6, 4608, convWScale, convBValue, scValue, bnTimeConst)
 
     # Global average pooling
-    pool2W = 8
-    pool2H = 8
+    pool2W = 7
+    pool2H = 7
     pool2hs = 1
     pool2vs = 1
     pool2 = AveragePooling(rn4_3, pool2W, pool2H, pool2hs, pool2vs, imageLayout = "cudnn")
