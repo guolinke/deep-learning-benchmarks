@@ -60,11 +60,15 @@ def main():
     loss = T.nnet.categorical_crossentropy(
         T.nnet.softmax(output), labels_var).mean(
         dtype=theano.config.floatX)
+    params = lasagne.layers.get_all_params(layer, trainable=True)
+    updates = lasagne.updates.momentum(
+        loss, params, learning_rate=0.1, momentum=0.9)
+
     gradient = T.grad(loss, get_all_params(layer), disconnected_inputs="warn")
 
     print('Compiling theano functions...')
     forward_func = theano.function([input_var], output)
-    full_func = theano.function([input_var, labels_var], gradient)
+    full_func = theano.function([input_var, labels_var], gradient, updates=updates)
     print('Functions are compiled')
 
     inputs= np.random.rand(batch_size, 3, *featureDim).astype(np.float32)
