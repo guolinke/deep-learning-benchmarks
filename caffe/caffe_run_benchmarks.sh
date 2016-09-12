@@ -1,5 +1,5 @@
 
-BASEDIR=$(dirname "$0")
+BASEDIR=$(pwd)
 
 export PYTHONPATH=$PYTHONPATH:$BASEDIR/caffe/python
 
