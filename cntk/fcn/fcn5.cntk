@@ -1,6 +1,6 @@
 WorkDir=.
 ModelDir=$WorkDir$/Output/$ConfigName$
-#stderr=$WorkDir$/logs/$ConfigName$/out
+stderr=$WorkDir$/Output/$ConfigName$-log
 DataDir=/home/dl/data/cntk
 precision=float
 
@@ -23,13 +23,13 @@ prefetch=true
 
 Train=[
     action=train
-    modelPath=$ModelDir$/fc26752l6
+    modelPath=$ModelDir$/fc26752
     #deviceId=1
     traceLevel=1
 
     SimpleNetworkBuilder=[
         #layerSizes=$featureDim$:$hiddenDim$:$hiddenDim$:$hiddenDim$:$hiddenDim$:$labelDim$
-        layerSizes=$featureDim$:$hiddenDim$:$hiddenDim$:$hiddenDim$:$hiddenDim$:$hiddenDim$:$hiddenDim$:$labelDim$
+        layerSizes=$featureDim$:$hiddenDim$:$hiddenDim$:$hiddenDim$:$labelDim$
         initOnCPUOnly=true
         trainingCriterion=CrossEntropyWithSoftmax
         evalCriterion=ErrorPrediction
@@ -45,7 +45,7 @@ Train=[
         minibatchSize=$minibatchSize$
         maxEpochs=$maxEpochs$
         learningRatesPerMB=0.01
-        numMBsToShowResult=4
+        numMBsToShowResult=1
         momentumPerSample=0
         dropoutRate=0.0
 
