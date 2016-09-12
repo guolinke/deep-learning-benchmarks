@@ -1,0 +1,4 @@
+*.log
+*.txt
+Output/
+!output*.log
