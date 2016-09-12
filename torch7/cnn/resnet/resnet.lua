@@ -23,6 +23,7 @@ local opt = opts.parse(arg)
 torch.manualSeed(opt.manualSeed)
 
 if opt.deviceId >=0 then
+    require 'cutorch'
    cutorch.manualSeedAll(opt.manualSeed)
    cutorch.setDevice(opt.deviceId)
 end
