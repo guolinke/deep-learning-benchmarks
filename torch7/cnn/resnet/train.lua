@@ -17,6 +17,7 @@ local bsize = 16
 local tsize = bsize * 2 
 local osize = 1000
 local inputCPU = nil -- torch.randn(torch.LongStorage({bsize,3,224,224})):type('torch.FloatTensor')
+local targetCPU = nil 
 
 function Trainer:__init(model, criterion, opt, optimState)
    self.model = model
@@ -33,6 +34,7 @@ function Trainer:__init(model, criterion, opt, optimState)
    self.params, self.gradParams = model:getParameters()
    bsize = self.opt.batchSize
    inputCPU = torch.randn(torch.LongStorage({bsize,3,224,224})):type('torch.FloatTensor')
+   targetCPU = torch.IntTensor(bsize):random(1,osize)
 end
 
 function Trainer:train(epoch, dataloader, iter)
@@ -175,10 +177,10 @@ function Trainer:copyInputs(sample)
    if self.opt.deviceId < 0 then
        print 'not use cuda'
        self.input = inputCPU 
-       self.target = torch.IntTensor(bsize):random(1,osize)
+       self.target = targetCPU -- torch.IntTensor(bsize):random(1,osize)
    else
-       self.input = torch.CudaTensor(inputCPU:size())
-       self.target = torch.IntTensor(bsize):random(1,osize):cuda()
+       self.input = inputCPU:cuda() -- torch.CudaTensor(inputCPU:size())
+       self.target = targetCPU:cuda() -- torch.IntTensor(bsize):random(1,osize):cuda()
    end
 end
 
