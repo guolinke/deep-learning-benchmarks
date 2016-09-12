@@ -1,0 +1,104 @@
+{
+   batchsize : 256
+   bn : false
+   cuda : true
+   cutoff : 5
+   device : 1
+   dropout : 0
+   earlystop : 50
+   gru : false
+   hiddensize : {256,256}
+   id : ""
+   inputsize : 256
+   iters : 100
+   lstm : true
+   maxepoch : 1
+   maxnormout : -1
+   minlr : 1e-05
+   momentum : 0.9
+   progress : false
+   saturate : 400
+   savepath : "/home/xiangli/save/rnnlm"
+   seqlen : 64
+   silent : false
+   startlr : 1
+   trainsize : -1
+   uniform : 0.1
+   validsize : -1
+}	
+Vocabulary size : 10000	
+Train set split into 256 sequences of length 3630	
+Language Model:	
+nn.Sequential {
+  [input -> (1) -> (2) -> (3) -> output]
+  (1): nn.LookupTable
+  (2): nn.SplitTable
+  (3): nn.Sequencer @ nn.Recursor @ nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> (4) -> output]
+    (1): nn.FastLSTM(256 -> 256)
+    (2): nn.FastLSTM(256 -> 256)
+    (3): nn.Linear(256 -> 10000)
+    (4): nn.LogSoftMax
+  }
+}
+	
+Epoch #1 :	
+64	
+128	
+192	
+256	
+320	
+384	
+448	
+512	
+576	
+640	
+704	
+768	
+832	
+896	
+960	
+1024	
+1088	
+1152	
+1216	
+1280	
+1344	
+1408	
+1472	
+1536	
+1600	
+1664	
+1728	
+1792	
+1856	
+1920	
+1984	
+2048	
+2112	
+2176	
+2240	
+2304	
+2368	
+2432	
+2496	
+2560	
+2624	
+2688	
+2752	
+2816	
+2880	
+2944	
+3008	
+3072	
+3136	
+3200	
+3264	
+3328	
+3392	
+3456	
+3520	
+3584	
+3630	
+Time elapsed for 100 iters: 55.928066015244 seconds	
+Evaluate model using : 	

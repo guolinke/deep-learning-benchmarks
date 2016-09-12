@@ -1,0 +1,10 @@
+Running on device: Tesla K40m	
+ModelType: AlexNet	Kernels: cudnn	Input shape: 32x3x224x224	
+cudnn                                   :updateOutput():      27.05	
+cudnn                                :updateGradInput():      23.56	
+cudnn                              :accGradParameters():      29.64	
+cudnn                                          :Forward:      27.05	
+cudnn                                         :Backward:      53.19	
+cudnn                                            :TOTAL:      80.25ms	
+ | Epoch: [][]    Time   0.080245	
+	
