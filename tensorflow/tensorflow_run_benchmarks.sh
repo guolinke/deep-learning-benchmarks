@@ -60,5 +60,6 @@ python cnn/alexnet/alexnetbm.py  -e 4 -b ${CMBS} -i ${CNB} -d 0  2>&1 | tee outp
 python cnn/resnet/resnetbm.py -e 4 -b ${CMBS} -i ${CNB} -d 0 2>&1 | tee output_resnet.log
 python fcn/ffn26752bm.py -e 4 -b ${FMBS} -i ${FNB} -d 0 2>&1 | tee output_fcn5.log
 python fcn/ffn26752l6bm.py -e 4 -b ${FMBS} -i ${FNB} -d 0 2>&1 | tee output_fcn8.log
-python rnn/lstm/lstm.py --mini_batch_size ${RMBS} --num_batches ${RNB} --seqlen 32 --numlayer 2 --hiddensize 256 --device 0 --data_path ../cntk/rnn/PennTreebank/Data 2>&1 | tee output_lstm32.log
-python rnn/lstm/lstm.py --mini_batch_size ${RMBS} --num_batches ${RNB} --seqlen 64 --numlayer 2 --hiddensize 256 --device 0 --data_path ../cntk/rnn/PennTreebank/Data 2>&1 | tee output_lstm64.log
+python rnn/lstm/lstm.py --batchsize ${RMBS} --iters ${RNB} --seqlen 32 --numlayer 2 --hiddensize 256 --device 0 --data_path ../cntk/rnn/PennTreebank/Data 2>&1 | tee output_lstm32.log
+python rnn/lstm/lstm.py --batchsize ${RMBS} --iters ${RNB} --seqlen 64 --numlayer 2 --hiddensize 256 --device 0 --data_path ../cntk/rnn/PennTreebank/Data 2>&1 | tee output_lstm64.log
+ 
