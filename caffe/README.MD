@@ -1,4 +1,4 @@
-## Tersorflow Benchmark results
+## Caffe Benchmark results
 
 
 | Date      | FCN-5 | FCN-8 | AlexNet | ResNet | LSTM-32 | LSTM-64 |
