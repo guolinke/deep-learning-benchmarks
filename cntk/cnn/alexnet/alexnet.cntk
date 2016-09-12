@@ -1,8 +1,9 @@
 WorkDir=.
 ModelDir=$WorkDir$/Output/$ConfigName$
+stderr=$WorkDir$/output_$ConfigName$
 DataDir=/home/dl/data/cntk
 
-ndlMacros=$WorkDir$/Macros.ndl
+ndlMacros=$ConfigDir$/Macros.ndl
 
 precision=float
 deviceId=1
@@ -25,7 +26,7 @@ Train=[
     modelPath=$ModelDir$/AlexNet
 
     NDLNetworkBuilder=[
-        networkDescription=$WorkDir$/AlexNet.ndl
+        networkDescription=$ConfigDir$/AlexNet.ndl
     ]
     
     SGD=[

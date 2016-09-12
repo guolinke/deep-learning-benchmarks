@@ -4,6 +4,7 @@ ConfigDir = "$RootDir$"
 #DataDir = "$RootDir$"
 DataDir=/home/dl/data/cntk
 OutputDir = "$RootDir$/Output"
+stderr = "$RootDir$/output_$ConfigName$"
 ModelDir = "$OutputDir$/Models"
 
 ndlMacros="$ConfigDir$/Macros.ndl"

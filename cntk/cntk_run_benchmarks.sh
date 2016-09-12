@@ -51,8 +51,8 @@ case $i in
 esac
 done
 
-sudo rm -f output_alexnet.log
-sudo rm -f output_resnet.log
+sudo rm -f output_alexnet_Train.log
+sudo rm -f output_resnet_Train.log
 sudo rm -f output_fcn5_Train.log
 sudo rm -f output_fcn8_Train.log
 sudo rm -f output_lstm32.log
@@ -60,3 +60,5 @@ sudo rm -f output_lstm64.log
 
 ${CNTK_HOME}/build/bin/cntk configFile=fcn/fcn5.cntk configName=fcn5 minibatchSize=${FMBS} epochSize=$((${FMBS}*${FNB})) DataDir=fcn
 ${CNTK_HOME}/build/bin/cntk configFile=fcn/fcn8.cntk configName=fcn8 minibatchSize=${FMBS} epochSize=$((${FMBS}*${FNB})) DataDir=fcn
+${CNTK_HOME}/build/bin/cntk configFile=cnn/alexnet/alexnet.cntk configName=alexnet deviceId="auto" minibatchSize=${CMBS} epochSize=$((${CMBS}*${CNB})) DataDir=cnn ConfigDir=cnn/alexnet
+${CNTK_HOME}/build/bin/cntk configFile=cnn/resnet/resnet.cntk configName=resnet deviceId="auto" minibatchSize=${CMBS} epochSize=$((${CMBS}*${CNB})) DataDir=cnn ConfigDir=cnn/resnet
