@@ -9,7 +9,7 @@ major: 5 minor: 2 memoryClockRate (GHz) 1.076
 pciBusID 0000:05:00.0
 Total memory: 11.92GiB
 Free memory: 11.81GiB
-W tensorflow/stream_executor/cuda/cuda_driver.cc:572] creating context when one is currently active; existing: 0x3b06ee0
+W tensorflow/stream_executor/cuda/cuda_driver.cc:572] creating context when one is currently active; existing: 0x2e8f450
 I tensorflow/core/common_runtime/gpu/gpu_device.cc:951] Found device 1 with properties: 
 name: GeForce GTX TITAN X
 major: 5 minor: 2 memoryClockRate (GHz) 1.076
@@ -21,15 +21,19 @@ I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] 0:   Y Y
 I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] 1:   Y Y 
 I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Creating TensorFlow device (/gpu:0) -> (device: 0, name: GeForce GTX TITAN X, pci bus id: 0000:05:00.0)
 I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Creating TensorFlow device (/gpu:1) -> (device: 1, name: GeForce GTX TITAN X, pci bus id: 0000:08:00.0)
+/gpu:0
+batch_size:  128
+num_steps:  64
+hidden_size:  256
+num_layers:  2
 Epoch: 1 Learning rate: 1.000
-2016-09-12 12:14:54.686867: step 10, duration = 0.113
-2016-09-12 12:14:55.814787: step 20, duration = 0.113
-2016-09-12 12:14:56.942792: step 30, duration = 0.113
-2016-09-12 12:14:58.071540: step 40, duration = 0.113
-2016-09-12 12:14:59.200464: step 50, duration = 0.113
-2016-09-12 12:15:00.329731: step 60, duration = 0.113
-2016-09-12 12:15:01.457080: step 70, duration = 0.113
-2016-09-12 12:15:02.586965: step 80, duration = 0.113
-2016-09-12 12:15:03.716059: step 90, duration = 0.113
-2016-09-12 12:15:04.843939: step 100, duration = 0.112
-2016-09-12 12:15:04.844028: LSTM across 100 steps, 0.113 +/- 0.000 sec / batch
+0.088 perplexity: 4620.764 speed: 31279 wps
+0.186 perplexity: 2995.653 speed: 42779 wps
+0.283 perplexity: 2333.574 speed: 48763 wps
+0.381 perplexity: 2038.316 speed: 52344 wps
+0.478 perplexity: 1816.752 speed: 54891 wps
+0.575 perplexity: 1644.477 speed: 56769 wps
+0.673 perplexity: 1515.796 speed: 58146 wps
+0.770 perplexity: 1418.760 speed: 59206 wps
+0.867 perplexity: 1330.168 speed: 60062 wps
+Time for 100 iterations 13.7432 seconds. 0.13743 seconds for one mini batch

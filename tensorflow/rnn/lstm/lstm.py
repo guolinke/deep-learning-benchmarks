@@ -202,7 +202,7 @@ class SmallConfig(object):
   keep_prob = 1.0
   lr_decay = 0.5
   batch_size = 20
-  vocab_size = 10001 # 10000 will overflow
+  vocab_size = 10010 # 10000 will overflow
   device = 0
   iters = 1000
 
@@ -233,8 +233,8 @@ def run_epoch(session, m, data, eval_op, ITERS, verbose=False):
     if step > ITERS - 1:
       break
 
-  print("Time for %d iterations %.4f seconds. %.f seconds for one mini batch" %
-            (ITERS, time.time() - start_time, (time.time() - start_time) / ITERS)
+  print("Time for %d iterations %.4f seconds. %.5f seconds for one mini batch" %
+            (ITERS, time.time() - start_time, (time.time() - start_time) / ITERS) )
    
   return np.exp(costs / iters)
 

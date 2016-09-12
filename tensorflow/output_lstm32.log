@@ -9,7 +9,7 @@ major: 5 minor: 2 memoryClockRate (GHz) 1.076
 pciBusID 0000:05:00.0
 Total memory: 11.92GiB
 Free memory: 11.81GiB
-W tensorflow/stream_executor/cuda/cuda_driver.cc:572] creating context when one is currently active; existing: 0x2ea9ee0
+W tensorflow/stream_executor/cuda/cuda_driver.cc:572] creating context when one is currently active; existing: 0x3891730
 I tensorflow/core/common_runtime/gpu/gpu_device.cc:951] Found device 1 with properties: 
 name: GeForce GTX TITAN X
 major: 5 minor: 2 memoryClockRate (GHz) 1.076
@@ -21,15 +21,15 @@ I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] 0:   Y Y
 I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] 1:   Y Y 
 I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Creating TensorFlow device (/gpu:0) -> (device: 0, name: GeForce GTX TITAN X, pci bus id: 0000:05:00.0)
 I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Creating TensorFlow device (/gpu:1) -> (device: 1, name: GeForce GTX TITAN X, pci bus id: 0000:08:00.0)
+/gpu:0
+batch_size:  128
+num_steps:  32
+hidden_size:  256
+num_layers:  2
 Epoch: 1 Learning rate: 1.000
-2016-09-12 12:14:33.350743: step 10, duration = 0.057
-2016-09-12 12:14:33.928678: step 20, duration = 0.058
-2016-09-12 12:14:34.509979: step 30, duration = 0.060
-2016-09-12 12:14:35.086890: step 40, duration = 0.058
-2016-09-12 12:14:35.665777: step 50, duration = 0.057
-2016-09-12 12:14:36.245632: step 60, duration = 0.058
-2016-09-12 12:14:36.824918: step 70, duration = 0.058
-2016-09-12 12:14:37.404697: step 80, duration = 0.058
-2016-09-12 12:14:37.981651: step 90, duration = 0.058
-2016-09-12 12:14:38.560710: step 100, duration = 0.058
-2016-09-12 12:14:38.560788: LSTM across 100 steps, 0.058 +/- 0.000 sec / batch
+0.044 perplexity: 5005.793 speed: 21971 wps
+0.142 perplexity: 2383.847 speed: 39204 wps
+0.239 perplexity: 1784.782 speed: 46330 wps
+0.336 perplexity: 1500.156 speed: 50279 wps
+0.434 perplexity: 1325.782 speed: 52707 wps
+Time for 100 iterations 7.8208 seconds. 0.07821 seconds for one mini batch
