@@ -1,13 +1,14 @@
 #!/bin/bash
 
-CMBS=32
+CMBS=16
 CNB=100
 
-RMBS=256
+RMBS=128
 RNB=100
 
-FMBS=32
+FMBS=64
 FNB=100
+
 for i in "$@"
 do
 case $i in
