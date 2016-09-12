@@ -9,7 +9,7 @@ major: 5 minor: 2 memoryClockRate (GHz) 1.076
 pciBusID 0000:05:00.0
 Total memory: 11.92GiB
 Free memory: 11.81GiB
-W tensorflow/stream_executor/cuda/cuda_driver.cc:572] creating context when one is currently active; existing: 0x338f830
+W tensorflow/stream_executor/cuda/cuda_driver.cc:572] creating context when one is currently active; existing: 0x3097830
 I tensorflow/core/common_runtime/gpu/gpu_device.cc:951] Found device 1 with properties: 
 name: GeForce GTX TITAN X
 major: 5 minor: 2 memoryClockRate (GHz) 1.076
@@ -22,7 +22,7 @@ I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] 1:   Y Y
 I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Creating TensorFlow device (/gpu:0) -> (device: 0, name: GeForce GTX TITAN X, pci bus id: 0000:05:00.0)
 I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Creating TensorFlow device (/gpu:1) -> (device: 1, name: GeForce GTX TITAN X, pci bus id: 0000:08:00.0)
 *****************************Training on 1 GPUs***************************************
-MinibatchSize=32, NumMinibatches=100.
-Training speed (samples/sec): Average=759, Median=799, Max=887
+MinibatchSize=64, NumMinibatches=100.
+Training speed (samples/sec): Average=1123, Median=1157, Max=1346
 *************************************************************************************
-fake 2016-09-12 11:36:07.951808: fc across 100 steps, 0.042140 sec / batch
+fake 2016-09-12 12:14:23.560575: fc across 100 steps, 0.056990 sec / batch
