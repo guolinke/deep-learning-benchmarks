@@ -1,0 +1,46 @@
+[global]
+device = gpu
+floatX = float32
+optimizer_including = unsafe
+
+[cuda]
+root = /usr/local/cuda-7.5/
+
+[lib]
+cnmem = 0.45
+
+[dnn.conv]
+algo_fwd = time_once
+algo_bwd_filter = time_once
+algo_bwd_data = time_once
+Using gpu device 0: GeForce GTX TITAN X (CNMeM is enabled with initial size: 45.0% of memory, cuDNN 5103)
+/usr/local/lib/python2.7/dist-packages/theano/gradient.py:536: UserWarning: grad method was asked to compute the gradient with respect to a variable that is not part of the computational graph of the cost, or is used only by a non-differentiable operator: mean
+  handle_disconnected(elem)
+/usr/local/lib/python2.7/dist-packages/theano/gradient.py:536: UserWarning: grad method was asked to compute the gradient with respect to a variable that is not part of the computational graph of the cost, or is used only by a non-differentiable operator: inv_std
+  handle_disconnected(elem)
+/usr/local/lib/python2.7/dist-packages/theano/gradient.py:562: UserWarning: grad method was asked to compute the gradient with respect to a variable that is not part of the computational graph of the cost, or is used only by a non-differentiable operator: <DisconnectedType>
+  handle_disconnected(rval[i])
+Building model...
+number of parameters in model: 820152
+Compiling theano functions...
+Functions are compiled
+2016-09-12 23:00:00.613551: step 10, duration = 0.199
+2016-09-12 23:00:02.605875: step 20, duration = 0.199
+2016-09-12 23:00:04.598244: step 30, duration = 0.199
+2016-09-12 23:00:06.591297: step 40, duration = 0.200
+2016-09-12 23:00:08.584443: step 50, duration = 0.199
+2016-09-12 23:00:10.577256: step 60, duration = 0.199
+2016-09-12 23:00:12.570608: step 70, duration = 0.199
+2016-09-12 23:00:14.564657: step 80, duration = 0.199
+2016-09-12 23:00:16.576117: step 90, duration = 0.202
+2016-09-12 23:00:18.387731: Forward across 100 steps, 0.200 +/- 0.001 sec / batch
+2016-09-12 23:00:36.767015: step 10, duration = 0.737
+2016-09-12 23:00:44.140050: step 20, duration = 0.738
+2016-09-12 23:00:51.514615: step 30, duration = 0.737
+2016-09-12 23:00:58.892412: step 40, duration = 0.737
+2016-09-12 23:01:06.269860: step 50, duration = 0.738
+2016-09-12 23:01:13.649275: step 60, duration = 0.738
+2016-09-12 23:01:21.027815: step 70, duration = 0.738
+2016-09-12 23:01:28.407497: step 80, duration = 0.738
+2016-09-12 23:01:35.809095: step 90, duration = 0.743
+2016-09-12 23:01:42.497138: Forward-Backward across 100 steps, 0.738 +/- 0.002 sec / batch
