@@ -13,3 +13,8 @@ GPU: GTX Titan X(Maxwell), Driver version: 367.27, CUDA 7.5, cuDNN v4
 
 
 
+## Reference
+
+https://github.com/n17s/hkbu-benchmark
+
+https://github.com/FreemanX/hkbu-benchmark
