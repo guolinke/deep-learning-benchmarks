@@ -1,4 +1,4 @@
-from resnet_model import * 
+from resnet import * 
 import tensorflow as tf
 import os
 

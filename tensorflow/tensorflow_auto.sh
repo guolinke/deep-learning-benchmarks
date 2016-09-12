@@ -50,4 +50,4 @@ done
 
 
 sudo ./tensorflow_build.sh
-sudo ./tensorflow_run_benchmarks.sh --cnn_mini_batch_size ${CMBS} --cnn_num_batch ${CNB} --rnn_mini_batch_size ${RMBS} --rnn_num_batch ${RNB} --fcn_mini_batch_size ${FMBS} --fcn_num_batch ${FNB}
+./tensorflow_run_benchmarks.sh --cnn_mini_batch_size ${CMBS} --cnn_num_batch ${CNB} --rnn_mini_batch_size ${RMBS} --rnn_num_batch ${RNB} --fcn_mini_batch_size ${FMBS} --fcn_num_batch ${FNB}

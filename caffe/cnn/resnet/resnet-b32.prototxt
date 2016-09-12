@@ -8,13 +8,6 @@ layer {
   include {
     phase: TRAIN
   }
-  transform_param {
-    mirror: true
-    crop_size: 224
-    mean_value: 104
-    mean_value: 117
-    mean_value: 123
-  }
   data_param {
     source: "/home/dl/data/caffe/fake_image_net.lmdb"
     batch_size: 32 
@@ -30,7 +23,6 @@ layer {
 	convolution_param {
 		num_output: 64
 		kernel_size: 7
-		pad: 3
 		stride: 2
 	}
 }

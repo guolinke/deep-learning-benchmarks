@@ -1,132 +1,334 @@
 import skimage.io  # bug. need to import this before tensorflow
 import skimage.transform  # bug. need to import this before tensorflow
-from resnet_train  import train, set_parameters, get_device_str
-from resnet_model import *
 import tensorflow as tf
-import time
-import os
-import sys
-import re
+from tensorflow.python.ops import control_flow_ops
+from tensorflow.python.training import moving_averages
+
+from config import Config
+
+import datetime
 import numpy as np
+import os
+import time
 
-from synset import *
-import argparse
-from image_processing import image_preprocessing
+MOVING_AVERAGE_DECAY = 0.9997
+BN_DECAY = MOVING_AVERAGE_DECAY
+BN_EPSILON = 0.001
+CONV_WEIGHT_DECAY = 0.00004
+CONV_WEIGHT_STDDEV = 0.1
+FC_WEIGHT_DECAY = 0.00004
+FC_WEIGHT_STDDEV = 0.01
+RESNET_VARIABLES = 'resnet_variables'
+UPDATE_OPS_COLLECTION = 'resnet_update_ops'  # must be grouped with training op
+IMAGENET_MEAN_BGR = [103.062623801, 115.902882574, 123.151630838, ]
 
-FLAGS = tf.app.flags.FLAGS
-tf.app.flags.DEFINE_string('data_dir', '/home/ryan/data/ILSVRC2012/ILSVRC2012_img_train',
-                           'imagenet dir')
-
-
-def file_list(data_dir):
-    dir_txt = data_dir + ".txt"
-    filenames = []
-    with open(dir_txt, 'r') as f:
-        for line in f:
-            if line[0] == '.': continue
-            line = line.rstrip()
-            fn = os.path.join(data_dir, line)
-            filenames.append(fn)
-    return filenames
+tf.app.flags.DEFINE_integer('input_size', 224, "input image size")
 
 
-def load_data(data_dir):
-    data = []
-    i = 0
-
-    print "listing files in", data_dir
-    start_time = time.time()
-    files = file_list(data_dir)
-    duration = time.time() - start_time
-    print "took %f sec" % duration
-
-    for img_fn in files:
-        ext = os.path.splitext(img_fn)[1]
-        if ext != '.JPEG': continue
-
-        label_name = re.search(r'(n\d+)', img_fn).group(1)
-        fn = os.path.join(data_dir, img_fn)
-
-        label_index = synset_map[label_name]["index"]
-
-        data.append({
-            "filename": fn,
-            "label_name": label_name,
-            "label_index": label_index,
-            "desc": synset[label_index],
-        })
-
-    return data
+activation = tf.nn.relu
 
 
-def distorted_inputs():
-    data = load_data(FLAGS.data_dir)
+def inference(x, is_training,
+              num_classes=1000,
+              num_blocks=[3, 4, 6, 3],  # defaults to 50-layer network
+              use_bias=False, # defaults to using batch norm
+              bottleneck=True):
+    c = Config()
+    c['bottleneck'] = bottleneck
+    c['is_training'] = tf.convert_to_tensor(is_training,
+                                            dtype='bool',
+                                            name='is_training')
+    c['ksize'] = 3
+    c['stride'] = 1
+    c['use_bias'] = use_bias
+    c['fc_units_out'] = num_classes
+    c['num_blocks'] = num_blocks
+    c['stack_stride'] = 2
 
-    filenames = [ d['filename'] for d in data ]
-    label_indexes = [ d['label_index'] for d in data ]
+    with tf.variable_scope('scale1'):
+        c['conv_filters_out'] = 64
+        c['ksize'] = 7
+        c['stride'] = 2
+        x = conv(x, c)
+        x = bn(x, c)
+        x = activation(x)
 
-    filename, label_index = tf.train.slice_input_producer([filenames, label_indexes], shuffle=True)
+    with tf.variable_scope('scale2'):
+        x = _max_pool(x, ksize=3, stride=2)
+        c['num_blocks'] = num_blocks[0]
+        c['stack_stride'] = 1
+        c['block_filters_internal'] = 64
+        x = stack(x, c)
 
-    num_preprocess_threads = 4
-    images_and_labels = []
-    for thread_id in range(num_preprocess_threads):
-        image_buffer = tf.read_file(filename)
+    with tf.variable_scope('scale3'):
+        c['num_blocks'] = num_blocks[1]
+        c['block_filters_internal'] = 128
+        assert c['stack_stride'] == 2
+        x = stack(x, c)
 
-        bbox = []
-        train = True
-        image = image_preprocessing(image_buffer, bbox, train, thread_id)
-        images_and_labels.append([image, label_index])
+    with tf.variable_scope('scale4'):
+        c['num_blocks'] = num_blocks[2]
+        c['block_filters_internal'] = 256
+        x = stack(x, c)
 
-    images, label_index_batch = tf.train.batch_join(
-        images_and_labels,
-        batch_size=FLAGS.batch_size,
-        capacity=2 * num_preprocess_threads * FLAGS.batch_size)
+    with tf.variable_scope('scale5'):
+        c['num_blocks'] = num_blocks[3]
+        c['block_filters_internal'] = 512
+        x = stack(x, c)
 
-    height = FLAGS.input_size
-    width = FLAGS.input_size
-    depth = 3
+    # post-net
+    x = tf.reduce_mean(x, reduction_indices=[1, 2], name="avg_pool")
 
-    images = tf.cast(images, tf.float32)
-    images = tf.reshape(images, shape=[FLAGS.batch_size, height, width, depth])
+    if num_classes != None:
+        with tf.variable_scope('fc'):
+            x = fc(x, c)
 
-    return images, tf.reshape(label_index_batch, [FLAGS.batch_size])
-
-
-def main(_):
-
-    print '-----with device: %s'%get_device_str()
-    with tf.Graph().as_default(), tf.device(get_device_str()):
-        image_size = 224
-        image_shape = [FLAGS.batch_size, image_size + 3, image_size + 3, 3]
-        with tf.device('/cpu:0'):
-            labels = tf.Variable(tf.ones([FLAGS.batch_size],
-                                     dtype=tf.int32))
-            images = tf.Variable(tf.random_normal(image_shape,
-                                              dtype=tf.float32,
-                                              stddev=1e-1))
-        #images, labels = distorted_inputs()
-
-        logits = inference(images,
-                           num_classes=1000,
-                           is_training=True,
-                           bottleneck=False) # use default: resnet-50
-                           #num_blocks=[2, 2, 2, 2])
-
-        train(True, logits, images, labels)
-
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-e", "--epochs", help="the number of epochs", type=int, default=4)
-    parser.add_argument("-b", "--minibatch", help="minibatch size", type=int, default=16)
-    parser.add_argument("-i", "--iterations", help="iterations", type=int, default=2)
-    parser.add_argument("-d", "--deviceid", help="specified device id", type=int, default=0)
-    args = parser.parse_args()
-
-    epochs = args.epochs
-    minibatch = args.minibatch
-    iterations = args.iterations
-    device_id = args.deviceid
-    set_parameters(epochs, minibatch, iterations, device_id)
-    tf.app.run()
+    return x
 
 
+# This is what they use for CIFAR-10 and 100.
+# See Section 4.2 in http://arxiv.org/abs/1512.03385
+def inference_small(x,
+                    is_training,
+                    num_blocks=3, # 6n+2 total weight layers will be used.
+                    use_bias=False, # defaults to using batch norm
+                    num_classes=10):
+    c = Config()
+    c['is_training'] = tf.convert_to_tensor(is_training,
+                                            dtype='bool',
+                                            name='is_training')
+    c['use_bias'] = use_bias
+    c['fc_units_out'] = num_classes
+    c['num_blocks'] = num_blocks
+    c['num_classes'] = num_classes
+    inference_small_config(x, c)
+
+def inference_small_config(x, c):
+    c['bottleneck'] = False
+    c['ksize'] = 3
+    c['stride'] = 1
+    with tf.variable_scope('scale1'):
+        c['conv_filters_out'] = 16
+        c['block_filters_internal'] = 16
+        c['stack_stride'] = 1
+        x = conv(x, c)
+        x = bn(x, c)
+        x = activation(x)
+        x = stack(x, c)
+
+    with tf.variable_scope('scale2'):
+        c['block_filters_internal'] = 32
+        c['stack_stride'] = 2
+        x = stack(x, c)
+
+    with tf.variable_scope('scale3'):
+        c['block_filters_internal'] = 64
+        c['stack_stride'] = 2
+        x = stack(x, c)
+
+    # post-net
+    x = tf.reduce_mean(x, reduction_indices=[1, 2], name="avg_pool")
+
+    if c['num_classes'] != None:
+        with tf.variable_scope('fc'):
+            x = fc(x, c)
+
+    return x
+
+
+def _imagenet_preprocess(rgb):
+    """Changes RGB [0,1] valued image to BGR [0,255] with mean subtracted."""
+    red, green, blue = tf.split(3, 3, rgb * 255.0)
+    bgr = tf.concat(3, [blue, green, red])
+    bgr -= IMAGENET_MEAN_BGR
+    return bgr
+
+
+def loss(logits, labels):
+    cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(logits, labels)
+    cross_entropy_mean = tf.reduce_mean(cross_entropy)
+ 
+    regularization_losses = tf.get_collection(tf.GraphKeys.REGULARIZATION_LOSSES)
+
+    loss_ = tf.add_n([cross_entropy_mean] + regularization_losses)
+    tf.scalar_summary('loss', loss_)
+
+    return loss_
+
+
+def stack(x, c):
+    for n in range(c['num_blocks']):
+        s = c['stack_stride'] if n == 0 else 1
+        c['block_stride'] = s
+        with tf.variable_scope('block%d' % (n + 1)):
+            x = block(x, c)
+    return x
+
+
+def block(x, c):
+    filters_in = x.get_shape()[-1]
+
+    # Note: filters_out isn't how many filters are outputed. 
+    # That is the case when bottleneck=False but when bottleneck is 
+    # True, filters_internal*4 filters are outputted. filters_internal is how many filters
+    # the 3x3 convs output internally.
+    m = 4 if c['bottleneck'] else 1
+    filters_out = m * c['block_filters_internal']
+
+    shortcut = x  # branch 1
+
+    c['conv_filters_out'] = c['block_filters_internal']
+
+    if c['bottleneck']:
+        with tf.variable_scope('a'):
+            c['ksize'] = 1
+            c['stride'] = c['block_stride']
+            x = conv(x, c)
+            x = bn(x, c)
+            x = activation(x)
+
+        with tf.variable_scope('b'):
+            c['ksize'] = 3 
+            x = conv(x, c)
+            x = bn(x, c)
+            x = activation(x)
+
+        with tf.variable_scope('c'):
+            c['conv_filters_out'] = filters_out
+            c['ksize'] = 1
+            assert c['stride'] == 1
+            x = conv(x, c)
+            x = bn(x, c)
+    else:
+        with tf.variable_scope('A'):
+            c['stride'] = c['block_stride']
+            assert c['ksize'] == 3
+            x = conv(x, c)
+            x = bn(x, c)
+            x = activation(x)
+
+        with tf.variable_scope('B'):
+            c['conv_filters_out'] = filters_out
+            assert c['ksize'] == 3
+            assert c['stride'] == 1
+            x = conv(x, c)
+            x = bn(x, c)
+
+    with tf.variable_scope('shortcut'):
+        if filters_out != filters_in or c['block_stride'] != 1:
+            c['ksize'] = 1
+            c['stride'] = c['block_stride']
+            c['conv_filters_out'] = filters_out
+            shortcut = conv(shortcut, c)
+            shortcut = bn(shortcut, c)
+
+    return activation(x + shortcut)
+
+
+def bn(x, c):
+    x_shape = x.get_shape()
+    params_shape = x_shape[-1:]
+
+    if c['use_bias']:
+        bias = _get_variable('bias', params_shape,
+                             initializer=tf.zeros_initializer)
+        return x + bias
+
+
+    axis = list(range(len(x_shape) - 1))
+
+    beta = _get_variable('beta',
+                         params_shape,
+                         initializer=tf.zeros_initializer)
+    gamma = _get_variable('gamma',
+                          params_shape,
+                          initializer=tf.ones_initializer)
+
+    moving_mean = _get_variable('moving_mean',
+                                params_shape,
+                                initializer=tf.zeros_initializer,
+                                trainable=False)
+    moving_variance = _get_variable('moving_variance',
+                                    params_shape,
+                                    initializer=tf.ones_initializer,
+                                    trainable=False)
+
+    # These ops will only be preformed when training.
+    mean, variance = tf.nn.moments(x, axis)
+    update_moving_mean = moving_averages.assign_moving_average(moving_mean,
+                                                               mean, BN_DECAY)
+    update_moving_variance = moving_averages.assign_moving_average(
+        moving_variance, variance, BN_DECAY)
+    tf.add_to_collection(UPDATE_OPS_COLLECTION, update_moving_mean)
+    tf.add_to_collection(UPDATE_OPS_COLLECTION, update_moving_variance)
+
+    mean, variance = control_flow_ops.cond(
+        c['is_training'], lambda: (mean, variance),
+        lambda: (moving_mean, moving_variance))
+
+    x = tf.nn.batch_normalization(x, mean, variance, beta, gamma, BN_EPSILON)
+    #x.set_shape(inputs.get_shape()) ??
+
+    return x
+
+
+def fc(x, c):
+    num_units_in = x.get_shape()[1]
+    num_units_out = c['fc_units_out']
+    weights_initializer = tf.truncated_normal_initializer(
+        stddev=FC_WEIGHT_STDDEV)
+
+    weights = _get_variable('weights',
+                            shape=[num_units_in, num_units_out],
+                            initializer=weights_initializer,
+                            weight_decay=FC_WEIGHT_STDDEV)
+    biases = _get_variable('biases',
+                           shape=[num_units_out],
+                           initializer=tf.zeros_initializer)
+    x = tf.nn.xw_plus_b(x, weights, biases)
+    return x
+
+
+def _get_variable(name,
+                  shape,
+                  initializer,
+                  weight_decay=0.0,
+                  dtype='float',
+                  trainable=True):
+    "A little wrapper around tf.get_variable to do weight decay and add to"
+    "resnet collection"
+    if weight_decay > 0:
+        regularizer = tf.contrib.layers.l2_regularizer(weight_decay)
+    else:
+        regularizer = None
+    collections = [tf.GraphKeys.VARIABLES, RESNET_VARIABLES]
+    return tf.get_variable(name,
+                           shape=shape,
+                           initializer=initializer,
+                           dtype=dtype,
+                           regularizer=regularizer,
+                           collections=collections,
+                           trainable=trainable)
+
+
+def conv(x, c):
+    ksize = c['ksize']
+    stride = c['stride']
+    filters_out = c['conv_filters_out']
+
+    filters_in = x.get_shape()[-1]
+    shape = [ksize, ksize, filters_in, filters_out]
+    initializer = tf.truncated_normal_initializer(stddev=CONV_WEIGHT_STDDEV)
+    weights = _get_variable('weights',
+                            shape=shape,
+                            dtype='float',
+                            initializer=initializer,
+                            weight_decay=CONV_WEIGHT_DECAY)
+    return tf.nn.conv2d(x, weights, [1, stride, stride, 1], padding='SAME')
+
+
+def _max_pool(x, ksize=3, stride=2):
+    return tf.nn.max_pool(x,
+                          ksize=[1, ksize, ksize, 1],
+                          strides=[1, stride, stride, 1],
+                          padding='SAME')

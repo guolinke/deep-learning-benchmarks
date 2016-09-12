@@ -6,10 +6,18 @@ require 'cutorch'
 local opts = require 'opts'
 local opt = opts.parse(arg)
 
+-- require 'fbcunn'
+-- require 'nnbhwd' -- not compiling anymore, file an issue
 local nets = {}
 nets[#nets+1] = require 'alexnet'
+-- nets[#nets+1] = require 'overfeat'
+-- nets[#nets+1] = require 'vgg_a'
+--nets[#nets+1] = require 'googlenet'
 
 local libs = {}
+-- libs[#libs+1] = {fbnn.SpatialConvolution, cudnn.SpatialMaxPooling, cudnn.ReLU, 'BDHW', 'fbnn'}
+-- libs[#libs+1] = {nn.SpatialConvolutionMM, nn.SpatialMaxPooling, nn.ReLU, 'BDHW', 'nn'}
+-- libs[#libs+1] = {nn.SpatialConvolutionBHWD, nn.SpatialMaxPoolingBHWD, nn.ReLU, 'BHWD', 'nnBHWD'}
 
 if opt.deviceId >= 0 then
    require 'cunn'
