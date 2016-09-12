@@ -72,4 +72,4 @@ run_benchmark fcn8 $FMBS $FNB
 
 
 # grep the result
-grep 'Forward across\|Forward-Backward' log/*.log  >  log/result
+# sh produce_result.sh > result.txt
