@@ -96,11 +96,11 @@ class PTBModel(object):
     # Slightly better results can be obtained with forget gate biases
     # initialized to 1 but the hyperparameters of the model would need to be
     # different than reported in the paper.
-    lstm_cell = tf.nn.rnn_cell.BasicLSTMCell(size, forget_bias=0.0)
+    lstm_cell = tf.nn.rnn_cell.BasicLSTMCell(size, forget_bias=0.0, state_is_tuple=True)
     if is_training and config.keep_prob < 1:
       lstm_cell = tf.nn.rnn_cell.DropoutWrapper(
           lstm_cell, output_keep_prob=config.keep_prob)
-    cell = tf.nn.rnn_cell.MultiRNNCell([lstm_cell] * config.num_layers)
+    cell = tf.nn.rnn_cell.MultiRNNCell([lstm_cell] * config.num_layers, state_is_tuple=True)
     
     # print config
     print("batch_size: ", config.batch_size)
@@ -202,63 +202,10 @@ class SmallConfig(object):
   keep_prob = 1.0
   lr_decay = 0.5
   batch_size = 20
-  vocab_size = 10000
+  vocab_size = 10001 # 10000 will overflow
   device = 0
   iters = 1000
 
-
-class MediumConfig(object):
-  """Medium config."""
-  init_scale = 0.05
-  learning_rate = 1.0
-  max_grad_norm = 5
-  num_layers = 2
-  num_steps = 35
-  hidden_size = 650
-  max_epoch = 1
-  max_max_epoch = 1
-  keep_prob = 0.5
-  lr_decay = 0.8
-  batch_size = 20
-  vocab_size = 10000
-  device = 0
-  iters = 1000
-
-
-class LargeConfig(object):
-  """Large config."""
-  init_scale = 0.04
-  learning_rate = 1.0
-  max_grad_norm = 10
-  num_layers = 2
-  num_steps = 35
-  hidden_size = 1500
-  max_epoch = 14
-  max_max_epoch = 55
-  keep_prob = 0.35
-  lr_decay = 1 / 1.15
-  batch_size = 20
-  vocab_size = 10000
-  device = 0
-  iters = 1000
-
-
-class TestConfig(object):
-  """Tiny config, for testing."""
-  init_scale = 0.1
-  learning_rate = 1.0
-  max_grad_norm = 1
-  num_layers = 1
-  num_steps = 2
-  hidden_size = 2
-  max_epoch = 1
-  max_max_epoch = 1
-  keep_prob = 1.0
-  lr_decay = 0.5
-  batch_size = 20
-  vocab_size = 10000
-  device = 0
-  iters = 1000
 
 
 def run_epoch(session, m, data, eval_op, ITERS, verbose=False):
@@ -267,7 +214,7 @@ def run_epoch(session, m, data, eval_op, ITERS, verbose=False):
   start_time = time.time()
   costs = 0.0
   iters = 0
-  state = m.initial_state.eval()
+  state = session.run(m.initial_state)
   for step, (x, y) in enumerate(reader.ptb_iterator(data, m.batch_size,
                                                     m.num_steps)):
     cost, state, _ = session.run([m.cost, m.final_state, eval_op],
@@ -286,8 +233,8 @@ def run_epoch(session, m, data, eval_op, ITERS, verbose=False):
     if step > ITERS - 1:
       break
 
-  print("Time for %d iterations %.4f seconds" %
-            (ITERS, time.time() - start_time))
+  print("Time for %d iterations %.4f seconds. %.f seconds for one mini batch" %
+            (ITERS, time.time() - start_time, (time.time() - start_time) / ITERS)
    
   return np.exp(costs / iters)
 
