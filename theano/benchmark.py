@@ -27,6 +27,10 @@ elif args.arch == 'fcn5':
     from models.fcn5 import build_model, featureDim, labelDim
 elif args.arch == 'fcn8':
     from models.fcn8 import build_model, featureDim, labelDim
+elif args.arch == 'lstm32':
+    from models.lstm import build_model32 as build_model, featureDim32 as featureDim, labelDim32 as labelDim
+elif args.arch == 'lstm64':
+    from models.lstm import build_model64 as build_model, featureDim64 as featureDim, labelDim64 as labelDim
 else:
     raise ValueError('Invalid architecture name')
 
@@ -64,14 +68,15 @@ def main():
     updates = lasagne.updates.momentum(
         loss, params, learning_rate=0.1, momentum=0.9)
 
-    gradient = T.grad(loss, get_all_params(layer), disconnected_inputs="warn")
+    # gradient = T.grad(loss, get_all_params(layer), disconnected_inputs="warn")
+    # We add update, so we don't have to calc the gradient now.
 
     print('Compiling theano functions...')
     forward_func = theano.function([input_var], output)
-    full_func = theano.function([input_var, labels_var], gradient, updates=updates)
+    full_func = theano.function([input_var, labels_var], output, updates=updates)
     print('Functions are compiled')
 
-    inputs= np.random.rand(batch_size, 3, *featureDim).astype(np.float32)
+    inputs= np.random.rand(batch_size, *featureDim).astype(np.float32)
     labels = np.random.randint(0, labelDim, size=batch_size).astype(np.int32)
 
     time_theano_run(forward_func, [inputs], 'Forward')
