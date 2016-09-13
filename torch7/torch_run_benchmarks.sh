@@ -80,10 +80,3 @@ pushd ./rnn/lstm/
 th  lstm.lua --seqlen 32 --batchsize ${RMBS} --iters ${RNB} --hiddensize '{256,256}' --cuda --lstm --startlr 1 --cutoff 5 --maxepoch 1 --device 1 2>&1 | tee ../../output_lstm32.log
 th  lstm.lua --seqlen 64 --batchsize ${RMBS} --iters ${RNB} --hiddensize '{256,256}' --cuda --lstm --startlr 1 --cutoff 5 --maxepoch 1 --device 1 2>&1 | tee ../../output_lstm64.log
 popd
-
-#python cnn/alexnet/alexnet.py  -e 4 -b ${CMBS} -i ${CNB} -d 0  2>&1 | tee output_alexnet.log
-#python cnn/resnet/resnet.py -e 4 -b ${CMBS} -i ${CNB} -d 0 2>&1 | tee output_resnet.log
-#python fcn/fcn5/fcn5.py -e 4 -b ${FMBS} -i ${FNB} -d 0 2>&1 | tee output_fcn5.log
-#python fcn/fcn8/fcn8.py -e 4 -b ${FMBS} -i ${FNB} -d 0 2>&1 | tee output_fcn8.log
-#python rnn/lstm/lstm.py --mini_batch_size ${RMBS} --num_batches ${RNB} --seqlen 32 --numlayer 2 --hiddensize 256 --device 0 --data_path ../data 2>&1 | tee output_lstm32.log
-#python rnn/lstm/lstm.py --mini_batch_size ${RMBS} --num_batches ${RNB} --seqlen 64 --numlayer 2 --hiddensize 256 --device 0 --data_path ../data 2>&1 | tee output_lstm64.log
