@@ -2,6 +2,7 @@ WorkDir=.
 ModelDir=$WorkDir$/Output/$ConfigName$
 DataDir=/home/dl/data/cntk
 precision=float
+stderr  = "./output_$ConfigName$"
 
 deviceId=0
 minibatchSize=1024

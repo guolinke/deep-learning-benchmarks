@@ -5,11 +5,10 @@
 RootDir = "."
 
 ConfigDir = "$RootDir$"
-#DataDir   = "../../data"
 DataDir   = "$RootDir$/Data"
 OutputDir = "$RootDir$/Output"
 ModelDir  = "$OutputDir$/$ConfigName$"
-stderr  = "$OutputDir$/output_$ConfigName$"
+stderr  = "./output_$ConfigName$"
 
 # deviceId=-1 for CPU, >=0 for GPU devices, "auto" chooses the best GPU, or CPU if no usable GPU is available
 epochSize=40960

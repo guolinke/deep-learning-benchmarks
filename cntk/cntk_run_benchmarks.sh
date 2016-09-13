@@ -66,12 +66,12 @@ sudo rm -f output_alexnet_Train.log
 sudo rm -f output_resnet_Train.log
 sudo rm -f output_fcn5_Train.log
 sudo rm -f output_fcn8_Train.log
-sudo rm -f output_lstm32.log
-sudo rm -f output_lstm64.log
+sudo rm -f output_lstm32_Train.log
+sudo rm -f output_lstm64_Train.log
 
-${CNTK_HOME}/cntk configFile=fcn/fcn5.cntk configName=fcn5 minibatchSize=${FMBS} epochSize=$((${FMBS}*${FNB})) DataDir=fcn 2>&1 | tee output_fcn5.log
-${CNTK_HOME}/cntk configFile=fcn/fcn8.cntk configName=fcn8 minibatchSize=${FMBS} epochSize=$((${FMBS}*${FNB})) DataDir=fcn 2>&1 | tee output_fcn8.log
-${CNTK_HOME}/cntk configFile=cnn/alexnet/alexnet.cntk configName=alexnet deviceId=0 minibatchSize=${CMBS} epochSize=$((${CMBS}*${CNB})) DataDir=cnn ConfigDir=cnn/alexnet 2>&1 | tee output_alexnet.log
-${CNTK_HOME}/cntk configFile=cnn/resnet/resnet.cntk configName=resnet deviceId=0 minibatchSize=${CMBS} epochSize=$((${CMBS}*${CNB})) DataDir=cnn ConfigDir=cnn/resnet 2>&1 | tee output_resnet.log
-${CNTK_HOME}/cntk configFile=rnn/PennTreebank/Config/rnn.cntk configName=lstm32 deviceId=0 minibatchSize=${RMBS} epochSize=$((${RMBS}*${RNB})) DataDir=rnn/PennTreebank/Data ConfigDir=rnn/PennTreebank/Config trainFile=ptb.train.32.ctf 2>&1 | tee output_lstm32.log
-${CNTK_HOME}/cntk configFile=rnn/PennTreebank/Config/rnn.cntk configName=lstm64 deviceId=0 minibatchSize=${RMBS} epochSize=$((${RMBS}*${RNB})) DataDir=rnn/PennTreebank/Data ConfigDir=rnn/PennTreebank/Config trainFile=ptb.train.64.ctf 2>&1 | tee output_lstm64.log
+${CNTK_HOME}/cntk configFile=fcn/fcn5.cntk configName=fcn5 minibatchSize=${FMBS} epochSize=$((${FMBS}*${FNB})) DataDir=fcn 
+${CNTK_HOME}/cntk configFile=fcn/fcn8.cntk configName=fcn8 minibatchSize=${FMBS} epochSize=$((${FMBS}*${FNB})) DataDir=fcn 
+${CNTK_HOME}/cntk configFile=cnn/alexnet/alexnet.cntk configName=alexnet deviceId=0 minibatchSize=${CMBS} epochSize=$((${CMBS}*${CNB})) DataDir=cnn ConfigDir=cnn/alexnet
+${CNTK_HOME}/cntk configFile=cnn/resnet/resnet.cntk configName=resnet deviceId=0 minibatchSize=${CMBS} epochSize=$((${CMBS}*${CNB})) DataDir=cnn ConfigDir=cnn/resnet 
+${CNTK_HOME}/cntk configFile=rnn/PennTreebank/Config/rnn.cntk configName=lstm32 deviceId=0 minibatchSize=${RMBS} epochSize=$((${RMBS}*${RNB})) DataDir=rnn/PennTreebank/Data ConfigDir=rnn/PennTreebank/Config trainFile=ptb.train.32.ctf 
+${CNTK_HOME}/cntk configFile=rnn/PennTreebank/Config/rnn.cntk configName=lstm64 deviceId=0 minibatchSize=${RMBS} epochSize=$((${RMBS}*${RNB})) DataDir=rnn/PennTreebank/Data ConfigDir=rnn/PennTreebank/Config trainFile=ptb.train.64.ctf 
