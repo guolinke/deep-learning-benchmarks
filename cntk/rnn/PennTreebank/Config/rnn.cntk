@@ -13,7 +13,7 @@ ModelDir  = "$OutputDir$/$ConfigName$"
 # deviceId=-1 for CPU, >=0 for GPU devices, "auto" chooses the best GPU, or CPU if no usable GPU is available
 epochSize=40960
 deviceId=0 
-minibatch=4096
+minibatchSize=4096
 maxEpochs = 3 
 
 command = train
@@ -99,7 +99,7 @@ train = [
     SGD = [
         #minibatchSize = 128:256:512
         epochSize=$epochSize$
-        minibatchSize = $minibatch$ 
+        minibatchSize = $minibatchSize$ 
         learningRatesPerSample = 0.0001
         momentumPerMB = 0
         gradientClippingWithTruncation = true
