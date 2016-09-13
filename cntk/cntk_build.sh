@@ -1,10 +1,10 @@
 #!/bin/bash
 sudo rm -rf cntk
-git clone https://github.com/Microsoft/cntk
+git clone --recursive https://github.com/Microsoft/cntk/
 cd cntk
 mkdir build -p
 cd build
-../configure
+../configure --1bitsgd=yes
 make -j all
 
 cd ..
