@@ -2,13 +2,13 @@ import theano.tensor as T
 from lasagne.layers import InputLayer, DenseLayer, Conv2DLayer,\
     MaxPool2DLayer
 
-featureDim = (227, 227)
+featureDim = (3, 227, 227)
 labelDim = 1000
 
 
 def build_model(batch_size=128):
     x = T.tensor4('input')
-    layer = InputLayer((batch_size, 3) + featureDim, input_var=x)
+    layer = InputLayer((batch_size,) + featureDim, input_var=x)
 
     layer = Conv2DLayer(layer, 64, 11, stride=4, pad='valid')
     layer = MaxPool2DLayer(layer, 3, stride=2)

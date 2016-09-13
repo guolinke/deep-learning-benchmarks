@@ -1,86 +1,187 @@
-
-# ##################### Build the neural network model #######################
-
-import lasagne
-from lasagne.layers import Conv2DLayer as ConvLayer
-#from lasagne.layers.dnn import Conv2DDNNLayer as ConvLayer
-from lasagne.layers import ElemwiseSumLayer
-from lasagne.layers import InputLayer
-from lasagne.layers import DenseLayer
-from lasagne.layers import GlobalPoolLayer
-from lasagne.layers import PadLayer
-from lasagne.layers import ExpressionLayer
-from lasagne.layers import NonlinearityLayer
-from lasagne.nonlinearities import softmax, rectify
-from lasagne.layers import batch_norm
-import theano.tensor as T
-
-
-n = 8 # When n equals 8, we get a 50 layers resnet
+# ResNet-50, network from the paper:
+# "Deep Residual Learning for Image Recognition"
+# http://arxiv.org/pdf/1512.03385v1.pdf
+# License: see https://github.com/KaimingHe/deep-residual-networks/blob/master/LICENSE
 
 image_sz = 224
-featureDim = (image_sz, image_sz)
+featureDim = (3, image_sz, image_sz)
 labelDim = 1000
+
+import theano.tensor as T
+import lasagne
+from lasagne.layers import InputLayer
+from lasagne.layers import Conv2DLayer as ConvLayer
+from lasagne.layers import BatchNormLayer
+from lasagne.layers import Pool2DLayer as PoolLayer
+from lasagne.layers import NonlinearityLayer
+from lasagne.layers import ElemwiseSumLayer
+from lasagne.layers import DenseLayer
+from lasagne.nonlinearities import rectify, softmax
+
+
+def build_simple_block(incoming_layer, names,
+                       num_filters, filter_size, stride, pad,
+                       use_bias=False, nonlin=rectify):
+    """Creates stacked Lasagne layers ConvLayer -> BN -> (ReLu)
+    Parameters:
+    ----------
+    incoming_layer : instance of Lasagne layer
+        Parent layer
+    names : list of string
+        Names of the layers in block
+    num_filters : int
+        Number of filters in convolution layer
+    filter_size : int
+        Size of filters in convolution layer
+    stride : int
+        Stride of convolution layer
+    pad : int
+        Padding of convolution layer
+    use_bias : bool
+        Whether to use bias in conlovution layer
+    nonlin : function
+        Nonlinearity type of Nonlinearity layer
+    Returns
+    -------
+    tuple: (net, last_layer_name)
+        net : dict
+            Dictionary with stacked layers
+        last_layer_name : string
+            Last layer name
+    """
+    net = []
+    net.append((
+            names[0],
+            ConvLayer(incoming_layer, num_filters, filter_size, pad, stride,
+                      flip_filters=False, nonlinearity=None) if use_bias
+            else ConvLayer(incoming_layer, num_filters, filter_size, stride, pad, b=None,
+                           flip_filters=False, nonlinearity=None)
+        ))
+
+    net.append((
+            names[1],
+            BatchNormLayer(net[-1][1])
+        ))
+    if nonlin is not None:
+        net.append((
+            names[2],
+            NonlinearityLayer(net[-1][1], nonlinearity=nonlin)
+        ))
+
+    return dict(net), net[-1][0]
+
+
+def build_residual_block(incoming_layer, ratio_n_filter=1.0, ratio_size=1.0, has_left_branch=False,
+                         upscale_factor=4, ix=''):
+    """Creates two-branch residual block
+    Parameters:
+    ----------
+    incoming_layer : instance of Lasagne layer
+        Parent layer
+    ratio_n_filter : float
+        Scale factor of filter bank at the input of residual block
+    ratio_size : float
+        Scale factor of filter size
+    has_left_branch : bool
+        if True, then left branch contains simple block
+    upscale_factor : float
+        Scale factor of filter bank at the output of residual block
+    ix : int
+        Id of residual block
+    Returns
+    -------
+    tuple: (net, last_layer_name)
+        net : dict
+            Dictionary with stacked layers
+        last_layer_name : string
+            Last layer name
+    """
+    simple_block_name_pattern = ['res%s_branch%i%s', 'bn%s_branch%i%s', 'res%s_branch%i%s_relu']
+
+    net = {}
+
+    # right branch
+    net_tmp, last_layer_name = build_simple_block(
+        incoming_layer, map(lambda s: s % (ix, 2, 'a'), simple_block_name_pattern),
+        int(lasagne.layers.get_output_shape(incoming_layer)[1]*ratio_n_filter), 1, int(1.0/ratio_size), 0)
+    net.update(net_tmp)
+
+    net_tmp, last_layer_name = build_simple_block(
+        net[last_layer_name], map(lambda s: s % (ix, 2, 'b'), simple_block_name_pattern),
+        lasagne.layers.get_output_shape(net[last_layer_name])[1], 3, 1, 1)
+    net.update(net_tmp)
+
+    net_tmp, last_layer_name = build_simple_block(
+        net[last_layer_name], map(lambda s: s % (ix, 2, 'c'), simple_block_name_pattern),
+        lasagne.layers.get_output_shape(net[last_layer_name])[1]*upscale_factor, 1, 1, 0,
+        nonlin=None)
+    net.update(net_tmp)
+
+    right_tail = net[last_layer_name]
+    left_tail = incoming_layer
+
+    # left branch
+    if has_left_branch:
+        net_tmp, last_layer_name = build_simple_block(
+            incoming_layer, map(lambda s: s % (ix, 1, ''), simple_block_name_pattern),
+            int(lasagne.layers.get_output_shape(incoming_layer)[1]*4*ratio_n_filter), 1, int(1.0/ratio_size), 0,
+            nonlin=None)
+        net.update(net_tmp)
+        left_tail = net[last_layer_name]
+
+    net['res%s' % ix] = ElemwiseSumLayer([left_tail, right_tail], coeffs=1)
+    net['res%s_relu' % ix] = NonlinearityLayer(net['res%s' % ix], nonlinearity=rectify)
+
+    return net, 'res%s_relu' % ix
+
 
 def build_model(batch_size=128):
     x = T.tensor4('input')
-
-    # create a residual learning building block with two stacked 3x3 convlayers as in paper
-    def residual_block(l, increase_dim=False, projection=False):
-        input_num_filters = l.output_shape[1]
-        if increase_dim:
-            first_stride = (2,2)
-            out_num_filters = input_num_filters*2
+    net = {}
+    net['input'] = InputLayer((None,) + featureDim, input_var=x)
+    sub_net, parent_layer_name = build_simple_block(
+        net['input'], ['conv1', 'bn_conv1', 'conv1_relu'],
+        64, 7, 3, 2, use_bias=True)
+    net.update(sub_net)
+    net['pool1'] = PoolLayer(net[parent_layer_name], pool_size=3, stride=2, pad=0, mode='max', ignore_border=False)
+    block_size = list('abc')
+    parent_layer_name = 'pool1'
+    for c in block_size:
+        if c == 'a':
+            sub_net, parent_layer_name = build_residual_block(net[parent_layer_name], 1, 1, True, 4, ix='2%s' % c)
         else:
-            first_stride = (1,1)
-            out_num_filters = input_num_filters
+            sub_net, parent_layer_name = build_residual_block(net[parent_layer_name], 1.0/4, 1, False, 4, ix='2%s' % c)
+        net.update(sub_net)
 
-        stack_1 = batch_norm(ConvLayer(l, num_filters=out_num_filters, filter_size=(3,3), stride=first_stride, nonlinearity=rectify, pad='same', W=lasagne.init.HeNormal(gain='relu'), flip_filters=False))
-        stack_2 = batch_norm(ConvLayer(stack_1, num_filters=out_num_filters, filter_size=(3,3), stride=(1,1), nonlinearity=None, pad='same', W=lasagne.init.HeNormal(gain='relu'), flip_filters=False))
-
-        # add shortcut connections
-        if increase_dim:
-            if projection:
-                # projection shortcut, as option B in paper
-                projection = batch_norm(ConvLayer(l, num_filters=out_num_filters, filter_size=(1,1), stride=(2,2), nonlinearity=None, pad='same', b=None, flip_filters=False))
-                block = NonlinearityLayer(ElemwiseSumLayer([stack_2, projection]),nonlinearity=rectify)
-            else:
-                # identity shortcut, as option A in paper
-                identity = ExpressionLayer(l, lambda X: X[:, :, ::2, ::2], lambda s: (s[0], s[1], s[2]//2, s[3]//2))
-                padding = PadLayer(identity, [out_num_filters//4,0,0], batch_ndim=1)
-                block = NonlinearityLayer(ElemwiseSumLayer([stack_2, padding]),nonlinearity=rectify)
+    block_size = list('abcd')
+    for c in block_size:
+        if c == 'a':
+            sub_net, parent_layer_name = build_residual_block(
+                net[parent_layer_name], 1.0/2, 1.0/2, True, 4, ix='3%s' % c)
         else:
-            block = NonlinearityLayer(ElemwiseSumLayer([stack_2, l]),nonlinearity=rectify)
+            sub_net, parent_layer_name = build_residual_block(net[parent_layer_name], 1.0/4, 1, False, 4, ix='3%s' % c)
+        net.update(sub_net)
 
-        return block
+    block_size = list('abcdef')
+    for c in block_size:
+        if c == 'a':
+            sub_net, parent_layer_name = build_residual_block(
+                net[parent_layer_name], 1.0/2, 1.0/2, True, 4, ix='4%s' % c)
+        else:
+            sub_net, parent_layer_name = build_residual_block(net[parent_layer_name], 1.0/4, 1, False, 4, ix='4%s' % c)
+        net.update(sub_net)
 
-    # Building the network
-    l_in = InputLayer(shape=(batch_size, 3,) + featureDim, input_var=x)
+    block_size = list('abc')
+    for c in block_size:
+        if c == 'a':
+            sub_net, parent_layer_name = build_residual_block(
+                net[parent_layer_name], 1.0/2, 1.0/2, True, 4, ix='5%s' % c)
+        else:
+            sub_net, parent_layer_name = build_residual_block(net[parent_layer_name], 1.0/4, 1, False, 4, ix='5%s' % c)
+        net.update(sub_net)
+    net['pool5'] = PoolLayer(net[parent_layer_name], pool_size=7, stride=1, pad=0,
+                             mode='average_exc_pad', ignore_border=False)
+    net['fc1000'] = DenseLayer(net['pool5'], num_units=labelDim, nonlinearity=None)
+    net['prob'] = NonlinearityLayer(net['fc1000'], nonlinearity=softmax)
 
-    # first layer, output is 16 x 32 x 32
-    l = batch_norm(ConvLayer(l_in, num_filters=16, filter_size=(3,3), stride=(1,1), nonlinearity=rectify, pad='same', W=lasagne.init.HeNormal(gain='relu'), flip_filters=False))
-
-    # first stack of residual blocks, output is 16 x 32 x 32
-    for _ in range(n):
-        l = residual_block(l)
-
-    # second stack of residual blocks, output is 32 x 16 x 16
-    l = residual_block(l, increase_dim=True)
-    for _ in range(1,n):
-        l = residual_block(l)
-
-    # third stack of residual blocks, output is 64 x 8 x 8
-    l = residual_block(l, increase_dim=True)
-    for _ in range(1,n):
-        l = residual_block(l)
-
-    # average pooling
-    l = GlobalPoolLayer(l)
-
-    # fully connected layer
-    network = DenseLayer(
-            l, num_units=labelDim,
-            W=lasagne.init.HeNormal(),
-            nonlinearity=softmax)
-
-    return network, x
+    return net['prob'], x
