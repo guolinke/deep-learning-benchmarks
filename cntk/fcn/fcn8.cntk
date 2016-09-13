@@ -74,7 +74,7 @@ Train=[
 
 reader=[
     readerType=UCIFastReader
-    file=$DataDir$/data26752_4k.txt
+    file=$DataDir$/data26752.txt
     features=[
         dim=$featureDim$
         start=1

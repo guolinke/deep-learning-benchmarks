@@ -65,8 +65,7 @@ Train=[
     ]
     reader=[
         readerType=UCIFastReader
-        #file=$DataDir$/imagenet_data2K.txt
-        file=$DataDir$/imagenet_data0.5K.txt
+        file=$DataDir$/imagenet_data.txt
         randomize=None
         features=[
             dim=150528
