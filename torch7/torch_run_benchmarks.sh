@@ -66,7 +66,7 @@ popd
 
 pushd ./cnn/resnet/
 #th resnet.lua -depth 50 -deviceId 1 -batchSize ${CMBS} -nEpochs 4 -nIterations ${CNB} -dataset imagenet -data /home/data/ILSVRC2015/Data/CLS-LOC/ 2>&1 | tee ../../output_resnet.log
-th resnet.lua -depth 50 -deviceId 1 -batchSize ${CMBS} -nEpochs 4 -nIterations 10 -dataset imagenet -data /home/data/ILSVRC2015/Data/CLS-LOC/ 2>&1 | tee ../../output_resnet.log
+th resnet.lua -depth 50 -deviceId 1 -batchSize ${CMBS} -nEpochs 4 -nIterations 10 -dataset imagenet 2>&1 | tee ../../output_resnet.log
 popd
 
 pushd ./fcn/
