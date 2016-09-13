@@ -1,6 +1,5 @@
 WorkDir=.
 ModelDir=$WorkDir$/Output/$ConfigName$
-stderr=$WorkDir$/output_$ConfigName$
 DataDir=/home/dl/data/cntk
 
 ndlMacros=$ConfigDir$/Macros.ndl

@@ -9,7 +9,7 @@ RNB=100
 FMBS=64
 FNB=100
 
-CNTK_HOME=/home/qiwye/git/CNTK
+CNTK_HOME=cntk/build/bin
 
 for i in "$@"
 do
@@ -51,15 +51,15 @@ case $i in
 esac
 done
 
-# cd fcn
-# python createDataForCNTKFCN.py
-# python createLabelMapForCNTKFCN.py
-# cd ..
+cd fcn
+python createDataForCNTKFCN.py
+python createLabelMapForCNTKFCN.py
+cd ..
 
-# cd cnn
-# python createFakeImageNetDataForCNTKCNN.py
-# python createLabelMapForCNTKCNN.py
-# cd ..
+cd cnn
+python createFakeImageNetDataForCNTKCNN.py
+python createLabelMapForCNTKCNN.py
+cd ..
 
 
 sudo rm -f output_alexnet_Train.log

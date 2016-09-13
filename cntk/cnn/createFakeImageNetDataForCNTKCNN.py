@@ -11,5 +11,5 @@ def createFakeData(count):
 
 f, l = createFakeData(totalCount)
 
-np.savetxt(r'./imagenet_data0.5K.txt', np.hstack((l, f)), fmt='%d' + ' %f4' * featDim)
+np.savetxt(r'./imagenet_data.txt', np.hstack((l, f)), fmt='%d' + ' %f4' * featDim)
 
