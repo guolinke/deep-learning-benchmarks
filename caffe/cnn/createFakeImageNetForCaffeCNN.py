@@ -2,8 +2,8 @@ import numpy as np
 import lmdb
 import caffe as c
 
-mbSize = 256
-totalCount = mbSize * 8
+mbSize = 16
+totalCount = mbSize * 100
 
 features = np.random.randn(totalCount, 3, 224, 224)
 labels = np.random.randint(0, 1000, size=(totalCount,))

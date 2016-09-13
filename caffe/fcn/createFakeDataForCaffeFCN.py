@@ -4,8 +4,8 @@ import caffe as c
 
 featDim = 26752 
 labDim = 26752 
-mbSize = 8192
-totalCount = mbSize * 16
+mbSize = 64
+totalCount = mbSize * 100
 
 features = np.random.randn(totalCount, 1, 1, featDim)
 labels = np.random.randint(0, labDim, size=(totalCount,))
