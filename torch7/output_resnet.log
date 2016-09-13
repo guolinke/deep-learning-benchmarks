@@ -1,35 +1,47 @@
-	
-error: missing ImageNet data directory	
-Usage: [options] 
-
-Torch-7 ResNet Training script
-
-Options:
-  -data            Path to dataset []
-  -dataset         Options: imagenet | cifar10 [imagenet]
-  -manualSeed      Manually set RNG seed [0]
-  -nGPU            Number of GPUs to use by default [1]
-  -deviceId        Specify GPU id [1]
-  -nIterations     Number of iterations for each epoch [2]
-  -backend         Options: cudnn | cunn [cudnn]
-  -cudnn           Options: fastest | default | deterministic [fastest]
-  -gen             Path to save generated files [gen]
-  -nThreads        number of data loading threads [2]
-  -nEpochs         Number of total epochs to run [0]
-  -epochNumber     Manual epoch number (useful on restarts) [1]
-  -batchSize       mini-batch size (1 = pure stochastic) [32]
-  -testOnly        Run on validation set only [false]
-  -tenCrop         Ten-crop testing [false]
-  -resume          Path to directory containing checkpoint [none]
-  -LR              initial learning rate [0.1]
-  -momentum        momentum [0.9]
-  -weightDecay     weight decay [0.0001]
-  -netType         Options: resnet | preresnet [resnet]
-  -depth           ResNet depth: 18 | 34 | 50 | 101 | ... [34]
-  -shortcutType    Options: A | B | C []
-  -retrain         Path to model to retrain with [none]
-  -optimState      Path to an optimState to reload from [none]
-  -shareGradInput  Share gradInput tensors to reduce memory usage [false]
-  -resetClassifier Reset the fully connected layer for fine-tuning [false]
-  -nClasses        Number of classes in the dataset [0]
-
+=> Creating model from file: models/resnet.lua	
+ | ResNet-50 ImageNet	
+=> Training epoch # 1	
+ | Epoch: [1][16/160]    Time 4.060  Data 0.001  Err 7.2293  top1 100.000  top5 100.000	
+ | Epoch: [1][32/160]    Time 0.420  Data 0.000  Err 2.8638  top1  93.750  top5  75.000	
+ | Epoch: [1][48/160]    Time 0.420  Data 0.000  Err 14.1220  top1  93.750  top5  68.750	
+ | Epoch: [1][64/160]    Time 0.425  Data 0.000  Err 35.2464  top1  93.750  top5  68.750	
+ | Epoch: [1][80/160]    Time 0.420  Data 0.000  Err 36.9697  top1  87.500  top5  68.750	
+ | Epoch: [1][96/160]    Time 0.419  Data 0.000  Err 21.8982  top1  93.750  top5  68.750	
+ | Epoch: [1][112/160]    Time 0.419  Data 0.000  Err 26.8902  top1  93.750  top5  68.750	
+ | Epoch: [1][128/160]    Time 0.419  Data 0.000  Err 13.5491  top1  87.500  top5  62.500	
+ | Epoch: [1][144/160]    Time 0.421  Data 0.000  Err 5.3042  top1  87.500  top5  62.500	
+ | Epoch: [1][160/160]    Time 0.420  Data 0.000  Err 5.2023  top1  87.500  top5  62.500	
+=> Training epoch # 2	
+ | Epoch: [2][16/160]    Time 0.420  Data 0.000  Err 5.0522  top1  87.500  top5  62.500	
+ | Epoch: [2][32/160]    Time 0.421  Data 0.000  Err 4.9135  top1  87.500  top5  68.750	
+ | Epoch: [2][48/160]    Time 0.419  Data 0.000  Err 4.7993  top1  87.500  top5  68.750	
+ | Epoch: [2][64/160]    Time 0.420  Data 0.000  Err 4.6769  top1  87.500  top5  62.500	
+ | Epoch: [2][80/160]    Time 0.426  Data 0.000  Err 4.5485  top1  87.500  top5  56.250	
+ | Epoch: [2][96/160]    Time 0.420  Data 0.000  Err 4.4003  top1  87.500  top5  56.250	
+ | Epoch: [2][112/160]    Time 0.420  Data 0.000  Err 4.2510  top1  93.750  top5  56.250	
+ | Epoch: [2][128/160]    Time 0.422  Data 0.000  Err 4.1328  top1  87.500  top5  56.250	
+ | Epoch: [2][144/160]    Time 0.420  Data 0.000  Err 4.0340  top1  87.500  top5  56.250	
+ | Epoch: [2][160/160]    Time 0.420  Data 0.000  Err 3.8909  top1  87.500  top5  56.250	
+=> Training epoch # 3	
+ | Epoch: [3][16/160]    Time 0.420  Data 0.000  Err 3.7185  top1  81.250  top5  56.250	
+ | Epoch: [3][32/160]    Time 0.421  Data 0.000  Err 3.5328  top1  81.250  top5  56.250	
+ | Epoch: [3][48/160]    Time 0.420  Data 0.000  Err 3.3861  top1  81.250  top5  56.250	
+ | Epoch: [3][64/160]    Time 0.420  Data 0.000  Err 3.2640  top1  75.000  top5  56.250	
+ | Epoch: [3][80/160]    Time 0.421  Data 0.000  Err 3.1544  top1  75.000  top5  50.000	
+ | Epoch: [3][96/160]    Time 0.420  Data 0.000  Err 3.0249  top1  56.250  top5  50.000	
+ | Epoch: [3][112/160]    Time 0.421  Data 0.000  Err 2.8866  top1  62.500  top5  43.750	
+ | Epoch: [3][128/160]    Time 0.420  Data 0.000  Err 2.7366  top1  62.500  top5  18.750	
+ | Epoch: [3][144/160]    Time 0.420  Data 0.000  Err 2.5770  top1  68.750  top5  18.750	
+ | Epoch: [3][160/160]    Time 0.421  Data 0.000  Err 2.4012  top1  62.500  top5  18.750	
+=> Training epoch # 4	
+ | Epoch: [4][16/160]    Time 0.424  Data 0.001  Err 2.2104  top1  50.000  top5  18.750	
+ | Epoch: [4][32/160]    Time 0.425  Data 0.000  Err 2.0109  top1  43.750  top5  12.500	
+ | Epoch: [4][48/160]    Time 0.421  Data 0.000  Err 1.8170  top1  31.250  top5  12.500	
+ | Epoch: [4][64/160]    Time 0.421  Data 0.000  Err 1.6380  top1  31.250  top5   6.250	
+ | Epoch: [4][80/160]    Time 0.423  Data 0.000  Err 1.4821  top1  31.250  top5   6.250	
+ | Epoch: [4][96/160]    Time 0.420  Data 0.000  Err 1.3607  top1  25.000  top5   6.250	
+ | Epoch: [4][112/160]    Time 0.421  Data 0.000  Err 1.2710  top1  25.000  top5   6.250	
+ | Epoch: [4][128/160]    Time 0.421  Data 0.000  Err 1.1957  top1  18.750  top5   0.000	
+ | Epoch: [4][144/160]    Time 0.420  Data 0.000  Err 1.3212  top1  43.750  top5   6.250	
+ | Epoch: [4][160/160]    Time 0.420  Data 0.000  Err 1.1085  top1  18.750  top5   0.000	
+ * Finished top1:    inf  top5:    inf	
