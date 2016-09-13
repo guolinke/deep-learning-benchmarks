@@ -1,0 +1,863 @@
+-------------------------------------------------------------------
+Build info: 
+
+		Built time: Sep 13 2016 19:37:10
+		Last modified date: Tue Sep 13 19:36:50 2016
+		Build type: release
+		Build target: GPU
+		With 1bit-SGD: yes
+		Math lib: mkl
+		CUDA_PATH: /usr/local/cuda-7.5
+		CUB_PATH: /usr/local/cub-1.4.1
+		CUDNN_PATH: /usr/local
+		Build Branch: master
+		Build SHA1: cac191c8c3c08e546c9af25236d368c0ed2812c2
+		Built by guolin on MSRAML-GPU04
+		Build Path: /home/guolin/deep-learning-benchmarks/cntk/cntk
+-------------------------------------------------------------------
+-------------------------------------------------------------------
+GPU info:
+
+		Device[0]: cores = 4608; computeCapability = 5.2; type = "GeForce GTX TITAN X"; memory = 12204 MB
+		Device[1]: cores = 4608; computeCapability = 5.2; type = "GeForce GTX TITAN X"; memory = 12206 MB
+-------------------------------------------------------------------
+
+Running on localhost at 2016/09/13 19:58:18
+Command line: 
+cntk/build/bin/cntk  configFile=rnn/PennTreebank/Config/rnn.cntk  configName=lstm32  deviceId=0  minibatchSize=128  epochSize=12800  DataDir=rnn/PennTreebank/Data  ConfigDir=rnn/PennTreebank/Config  trainFile=ptb.train.32.ctf
+
+
+Configuration After Processing and Variable Resolution:
+
+configparameters: rnn.cntk:command=train
+configparameters: rnn.cntk:ConfigDir=rnn/PennTreebank/Config
+configparameters: rnn.cntk:configName=lstm32
+configparameters: rnn.cntk:confVocabSize=10000
+configparameters: rnn.cntk:DataDir=rnn/PennTreebank/Data
+configparameters: rnn.cntk:deviceId=0
+configparameters: rnn.cntk:epochSize=12800
+configparameters: rnn.cntk:maxEpochs=3
+configparameters: rnn.cntk:maxTempMemSizeInSamplesForCNN=1
+configparameters: rnn.cntk:minibatchSize=128
+configparameters: rnn.cntk:ModelDir=./Output/lstm32
+configparameters: rnn.cntk:modelPath=./Output/lstm32/lstm32.dnn
+configparameters: rnn.cntk:OutputDir=./Output
+configparameters: rnn.cntk:precision=float
+configparameters: rnn.cntk:RootDir=.
+configparameters: rnn.cntk:shareNodeValueMatrices=true
+configparameters: rnn.cntk:stderr=./output_lstm32
+configparameters: rnn.cntk:traceLevel=1
+configparameters: rnn.cntk:train=[
+    action = "train"
+    traceLevel = 1
+epochSize = 0               
+    BrainScriptNetworkBuilder = [
+        inputDim = 10000
+        labelDim = 10000
+        embedDim = 256
+        hiddenDim = (256:256)
+        model(x) = [
+            E = ParameterTensor (embedDim:inputDim)
+            e = E * x
+            h = BS.RNNs.RecurrentLSTMPStack (hiddenDim, cellDims=hiddenDim, e, inputDim=embedDim)[1].h
+            W = ParameterTensor (labelDim:hiddenDim[1]) 
+            b = ParameterTensor (labelDim,init='fixedValue',value=0);
+            z = W * h + b
+        ].z
+        words  = if deviceId >= 0 then SparseInput (inputDim) else Input (inputDim)
+        labels = Input (inputDim)
+        z = model(words)
+        crossEntropy = CrossEntropyWithSoftmax(labels, z)
+        featureNodes    = (words)
+        labelNodes      = (labels)
+        criterionNodes  = (crossEntropy)
+        evaluationNodes = (crossEntropy)
+        outputNodes     = (z)
+    ]
+    reader = [
+        readerType = "CNTKTextFormatReader"
+        file = "rnn/PennTreebank/Data/ptb.train.32.ctf"
+        randomize = false
+        traceLevel = 0
+        input = [
+            words  = [ alias = "S0"; dim = 10000; format = "sparse" ]
+            labels = [ alias = "S1"; dim = 10000; format = "sparse" ]
+        ]
+    ]
+    SGD = [
+        epochSize=12800
+        minibatchSize = 128 
+        learningRatesPerSample = 0.0001
+        momentumPerMB = 0
+        gradientClippingWithTruncation = true
+        clippingThresholdPerSample = 15.0
+        maxEpochs = 3 
+        numMBsToShowResult = 1
+        gradUpdateType = "none"
+        loadBestModel = true
+        dropoutRate = 0.0
+        AutoAdjust = [
+            autoAdjustLR = "adjustAfterEpoch"
+            reduceLearnRateIfImproveLessThan = 0.001
+            continueReduce = false
+            increaseLearnRateIfImproveMoreThan = 1000000000
+            learnRateDecreaseFactor = 0.5
+            learnRateIncreaseFactor = 1.382
+            numMiniBatch4LRSearch = 100
+            numPrevLearnRates = 5
+            numBestSearchEpoch = 1
+        ]
+    ]
+]
+
+configparameters: rnn.cntk:trainFile=ptb.train.32.ctf
+Commands: train
+Precision = "float"
+CNTKModelPath: ./Output/lstm32/lstm32.dnn
+CNTKCommandTrainInfo: train : 3
+CNTKCommandTrainInfo: CNTKNoMoreCommands_Total : 3
+
+##############################################################################
+#                                                                            #
+# Action "train"                                                             #
+#                                                                            #
+##############################################################################
+
+CNTKCommandTrainBegin: train
+
+Creating virgin network.
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[10000 x 256] <- 0.000000.
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[10000 x 256] <- uniform(seed=1, init dims=[10000 x 256], range=0.050000*1.000000, onCPU=true).
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256] <- 0.000000.
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256] <- 0.000000.
+Node '<placeholder>' (LearnableParameter operation): Initializating Parameter[256 x 0] as uniform later when dimensions are fully known.
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256] <- 0.000000.
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256] <- 0.000000.
+Node '<placeholder>' (LearnableParameter operation): Initializating Parameter[256 x 0] as uniform later when dimensions are fully known.
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256 x 10000] <- 0.000000.
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256 x 10000] <- uniform(seed=2, init dims=[256 x 10000], range=0.050000*1.000000, onCPU=true).
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256 x 256] <- 0.000000.
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256 x 256] <- uniform(seed=1, init dims=[256 x 256], range=0.050000*1.000000, onCPU=true).
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256] <- 0.000000.
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256] <- uniform(seed=1, init dims=[256 x 1], range=0.050000*1.000000, onCPU=true).
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256] <- 0.000000.
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256] <- 0.000000.
+Node '<placeholder>' (LearnableParameter operation): Initializating Parameter[256 x 0] as uniform later when dimensions are fully known.
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256 x 256] <- 0.000000.
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256 x 256] <- uniform(seed=1, init dims=[256 x 256], range=0.050000*1.000000, onCPU=true).
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256] <- 0.000000.
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256] <- uniform(seed=1, init dims=[256 x 1], range=0.050000*1.000000, onCPU=true).
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256] <- 0.000000.
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256] <- 0.000000.
+Node '<placeholder>' (LearnableParameter operation): Initializating Parameter[256 x 0] as uniform later when dimensions are fully known.
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256 x 256] <- 0.000000.
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256 x 256] <- uniform(seed=1, init dims=[256 x 256], range=0.050000*1.000000, onCPU=true).
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256] <- 0.000000.
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256] <- uniform(seed=1, init dims=[256 x 1], range=0.050000*1.000000, onCPU=true).
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256] <- 0.000000.
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256] <- 0.000000.
+Node '<placeholder>' (LearnableParameter operation): Initializating Parameter[256 x 0] as uniform later when dimensions are fully known.
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256 x 256] <- 0.000000.
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256 x 256] <- uniform(seed=1, init dims=[256 x 256], range=0.050000*1.000000, onCPU=true).
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256 x 256] <- 0.000000.
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256 x 256] <- uniform(seed=1, init dims=[256 x 256], range=0.050000*1.000000, onCPU=true).
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256] <- 0.000000.
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256] <- uniform(seed=1, init dims=[256 x 1], range=0.050000*1.000000, onCPU=true).
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256] <- 0.000000.
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256] <- 0.000000.
+Node '<placeholder>' (LearnableParameter operation): Initializating Parameter[256 x 0] as uniform later when dimensions are fully known.
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256 x 256] <- 0.000000.
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256 x 256] <- uniform(seed=1, init dims=[256 x 256], range=0.050000*1.000000, onCPU=true).
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256] <- 0.000000.
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256] <- uniform(seed=1, init dims=[256 x 1], range=0.050000*1.000000, onCPU=true).
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256] <- 0.000000.
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256] <- 0.000000.
+Node '<placeholder>' (LearnableParameter operation): Initializating Parameter[256 x 0] as uniform later when dimensions are fully known.
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256 x 256] <- 0.000000.
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256 x 256] <- uniform(seed=1, init dims=[256 x 256], range=0.050000*1.000000, onCPU=true).
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256] <- 0.000000.
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256] <- uniform(seed=1, init dims=[256 x 1], range=0.050000*1.000000, onCPU=true).
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256] <- 0.000000.
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256] <- 0.000000.
+Node '<placeholder>' (LearnableParameter operation): Initializating Parameter[256 x 0] as uniform later when dimensions are fully known.
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256 x 256] <- 0.000000.
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[256 x 256] <- uniform(seed=1, init dims=[256 x 256], range=0.050000*1.000000, onCPU=true).
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[10000] <- 0.000000.
+Node '<placeholder>' (LearnableParameter operation): Initializing Parameter[10000] <- 0.000000.
+
+Post-processing network...
+
+2 roots:
+	crossEntropy = CrossEntropyWithSoftmax()
+	z = Plus()
+
+Loop[0] --> Loop_z.h._vector.layers[0].lstmState._.ht -> 25 nodes
+
+	z.h._vector.layers[0].prevState.h	z.h._vector.layers[0].lstmState._.ot._.PlusArgs[0].PlusArgs[1]	z.h._vector.layers[0].lstmState._.ot._.PlusArgs[0]
+	z.h._vector.layers[0].lstmState._.ft._.PlusArgs[0].PlusArgs[1]	z.h._vector.layers[0].lstmState._.ft._.PlusArgs[0]	z.h._vector.layers[0].prevState.c
+	z.h._vector.layers[0].lstmState._.ft._.PlusArgs[1]	z.h._vector.layers[0].lstmState._.ft._	z.h._vector.layers[0].lstmState._.ft
+	z.h._vector.layers[0].lstmState._.bft	z.h._vector.layers[0].lstmState._.it._.PlusArgs[0].PlusArgs[1]	z.h._vector.layers[0].lstmState._.it._.PlusArgs[0]
+	z.h._vector.layers[0].lstmState._.it._.PlusArgs[1]	z.h._vector.layers[0].lstmState._.it._	z.h._vector.layers[0].lstmState._.it
+	z.h._vector.layers[0].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[1]	z.h._vector.layers[0].lstmState._.bit.ElementTimesArgs[1].z	z.h._vector.layers[0].lstmState._.bit.ElementTimesArgs[1]
+	z.h._vector.layers[0].lstmState._.bit	z.h._vector.layers[0].lstmState._.ct	z.h._vector.layers[0].lstmState._.ot._.PlusArgs[1]
+	z.h._vector.layers[0].lstmState._.ot._	z.h._vector.layers[0].lstmState._.ot	z.h._vector.layers[0].lstmState._.ht.ElementTimesArgs[1]
+	z.h._vector.layers[0].lstmState._.ht
+
+Loop[1] --> Loop_z.h._vector.layers[1].lstmState._.ht -> 25 nodes
+
+	z.h._vector.layers[1].prevState.h	z.h._vector.layers[1].lstmState._.ot._.PlusArgs[0].PlusArgs[1]	z.h._vector.layers[1].lstmState._.ot._.PlusArgs[0]
+	z.h._vector.layers[1].lstmState._.ft._.PlusArgs[0].PlusArgs[1]	z.h._vector.layers[1].lstmState._.ft._.PlusArgs[0]	z.h._vector.layers[1].prevState.c
+	z.h._vector.layers[1].lstmState._.ft._.PlusArgs[1]	z.h._vector.layers[1].lstmState._.ft._	z.h._vector.layers[1].lstmState._.ft
+	z.h._vector.layers[1].lstmState._.bft	z.h._vector.layers[1].lstmState._.it._.PlusArgs[0].PlusArgs[1]	z.h._vector.layers[1].lstmState._.it._.PlusArgs[0]
+	z.h._vector.layers[1].lstmState._.it._.PlusArgs[1]	z.h._vector.layers[1].lstmState._.it._	z.h._vector.layers[1].lstmState._.it
+	z.h._vector.layers[1].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[1]	z.h._vector.layers[1].lstmState._.bit.ElementTimesArgs[1].z	z.h._vector.layers[1].lstmState._.bit.ElementTimesArgs[1]
+	z.h._vector.layers[1].lstmState._.bit	z.h._vector.layers[1].lstmState._.ct	z.h._vector.layers[1].lstmState._.ot._.PlusArgs[1]
+	z.h._vector.layers[1].lstmState._.ot._	z.h._vector.layers[1].lstmState._.ot	z.h._vector.layers[1].lstmState._.ht.ElementTimesArgs[1]
+	z.h._vector.layers[1].lstmState._.ht
+
+Validating network. 105 nodes to process in pass 1.
+
+Validating --> labels = InputValue() :  -> [10000 x *]
+Validating --> z.W = LearnableParameter() :  -> [10000 x 256]
+Validating --> z.h._vector.layers[1].lstmState._.ot._.PlusArgs[0].PlusArgs[0].PlusArgs[0] = LearnableParameter() :  -> [256]
+Validating --> z.h._vector.layers[1].lstmState._.ot._.PlusArgs[0].PlusArgs[0].PlusArgs[1].TimesArgs[0] = LearnableParameter() :  -> [256 x 0]
+Validating --> z.h._vector.layers[0].lstmState._.ot._.PlusArgs[0].PlusArgs[0].PlusArgs[0] = LearnableParameter() :  -> [256]
+Validating --> z.h._vector.layers[0].lstmState._.ot._.PlusArgs[0].PlusArgs[0].PlusArgs[1].TimesArgs[0] = LearnableParameter() :  -> [256 x 0]
+Validating --> _z.E = LearnableParameter() :  -> [256 x 10000]
+Validating --> words = SparseInputValue() :  -> [10000 x *]
+Validating --> z.e = Times (_z.E, words) : [256 x 10000], [10000 x *] -> [256 x *]
+Node 'z.h._vector.layers[0].lstmState._.ot._.PlusArgs[0].PlusArgs[0].PlusArgs[1].TimesArgs[0]' (LearnableParameter operation) operation: Tensor shape was inferred as [256 x 256].
+Node 'z.h._vector.layers[0].lstmState._.ot._.PlusArgs[0].PlusArgs[0].PlusArgs[1].TimesArgs[0]' (LearnableParameter operation): Initializing Parameter[256 x 256] <- uniform(seed=1, init dims=[256 x 256], range=0.050000*1.000000, onCPU=true).
+Validating --> z.h._vector.layers[0].lstmState._.ot._.PlusArgs[0].PlusArgs[0].PlusArgs[1] = Times (z.h._vector.layers[0].lstmState._.ot._.PlusArgs[0].PlusArgs[0].PlusArgs[1].TimesArgs[0], z.e) : [256 x 256], [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[0].lstmState._.ot._.PlusArgs[0].PlusArgs[0] = Plus (z.h._vector.layers[0].lstmState._.ot._.PlusArgs[0].PlusArgs[0].PlusArgs[0], z.h._vector.layers[0].lstmState._.ot._.PlusArgs[0].PlusArgs[0].PlusArgs[1]) : [256], [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[0].lstmState._.ot._.PlusArgs[0].PlusArgs[1].TimesArgs[0] = LearnableParameter() :  -> [256 x 256]
+Validating --> z.h._vector.layers[0].lstmState._.ot._.PlusArgs[1].ElementTimesArgs[0] = LearnableParameter() :  -> [256]
+Validating --> z.h._vector.layers[0].lstmState._.ft._.PlusArgs[0].PlusArgs[0].PlusArgs[0] = LearnableParameter() :  -> [256]
+Validating --> z.h._vector.layers[0].lstmState._.ft._.PlusArgs[0].PlusArgs[0].PlusArgs[1].TimesArgs[0] = LearnableParameter() :  -> [256 x 0]
+Node 'z.h._vector.layers[0].lstmState._.ft._.PlusArgs[0].PlusArgs[0].PlusArgs[1].TimesArgs[0]' (LearnableParameter operation) operation: Tensor shape was inferred as [256 x 256].
+Node 'z.h._vector.layers[0].lstmState._.ft._.PlusArgs[0].PlusArgs[0].PlusArgs[1].TimesArgs[0]' (LearnableParameter operation): Initializing Parameter[256 x 256] <- uniform(seed=1, init dims=[256 x 256], range=0.050000*1.000000, onCPU=true).
+Validating --> z.h._vector.layers[0].lstmState._.ft._.PlusArgs[0].PlusArgs[0].PlusArgs[1] = Times (z.h._vector.layers[0].lstmState._.ft._.PlusArgs[0].PlusArgs[0].PlusArgs[1].TimesArgs[0], z.e) : [256 x 256], [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[0].lstmState._.ft._.PlusArgs[0].PlusArgs[0] = Plus (z.h._vector.layers[0].lstmState._.ft._.PlusArgs[0].PlusArgs[0].PlusArgs[0], z.h._vector.layers[0].lstmState._.ft._.PlusArgs[0].PlusArgs[0].PlusArgs[1]) : [256], [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[0].lstmState._.ft._.PlusArgs[0].PlusArgs[1].TimesArgs[0] = LearnableParameter() :  -> [256 x 256]
+Validating --> z.h._vector.layers[0].lstmState._.ft._.PlusArgs[1].ElementTimesArgs[0] = LearnableParameter() :  -> [256]
+Validating --> z.h._vector.layers[0].lstmState._.it._.PlusArgs[0].PlusArgs[0].PlusArgs[0] = LearnableParameter() :  -> [256]
+Validating --> z.h._vector.layers[0].lstmState._.it._.PlusArgs[0].PlusArgs[0].PlusArgs[1].TimesArgs[0] = LearnableParameter() :  -> [256 x 0]
+Node 'z.h._vector.layers[0].lstmState._.it._.PlusArgs[0].PlusArgs[0].PlusArgs[1].TimesArgs[0]' (LearnableParameter operation) operation: Tensor shape was inferred as [256 x 256].
+Node 'z.h._vector.layers[0].lstmState._.it._.PlusArgs[0].PlusArgs[0].PlusArgs[1].TimesArgs[0]' (LearnableParameter operation): Initializing Parameter[256 x 256] <- uniform(seed=1, init dims=[256 x 256], range=0.050000*1.000000, onCPU=true).
+Validating --> z.h._vector.layers[0].lstmState._.it._.PlusArgs[0].PlusArgs[0].PlusArgs[1] = Times (z.h._vector.layers[0].lstmState._.it._.PlusArgs[0].PlusArgs[0].PlusArgs[1].TimesArgs[0], z.e) : [256 x 256], [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[0].lstmState._.it._.PlusArgs[0].PlusArgs[0] = Plus (z.h._vector.layers[0].lstmState._.it._.PlusArgs[0].PlusArgs[0].PlusArgs[0], z.h._vector.layers[0].lstmState._.it._.PlusArgs[0].PlusArgs[0].PlusArgs[1]) : [256], [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[0].lstmState._.it._.PlusArgs[0].PlusArgs[1].TimesArgs[0] = LearnableParameter() :  -> [256 x 256]
+Validating --> z.h._vector.layers[0].lstmState._.it._.PlusArgs[1].ElementTimesArgs[0] = LearnableParameter() :  -> [256]
+Validating --> z.h._vector.layers[0].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[0].PlusArgs[0] = LearnableParameter() :  -> [256]
+Validating --> z.h._vector.layers[0].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[0].PlusArgs[1].TimesArgs[0] = LearnableParameter() :  -> [256 x 0]
+Node 'z.h._vector.layers[0].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[0].PlusArgs[1].TimesArgs[0]' (LearnableParameter operation) operation: Tensor shape was inferred as [256 x 256].
+Node 'z.h._vector.layers[0].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[0].PlusArgs[1].TimesArgs[0]' (LearnableParameter operation): Initializing Parameter[256 x 256] <- uniform(seed=1, init dims=[256 x 256], range=0.050000*1.000000, onCPU=true).
+Validating --> z.h._vector.layers[0].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[0].PlusArgs[1] = Times (z.h._vector.layers[0].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[0].PlusArgs[1].TimesArgs[0], z.e) : [256 x 256], [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[0].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[0] = Plus (z.h._vector.layers[0].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[0].PlusArgs[0], z.h._vector.layers[0].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[0].PlusArgs[1]) : [256], [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[0].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[1].TimesArgs[0] = LearnableParameter() :  -> [256 x 256]
+Validating --> z.h._vector.layers[0].lstmState._.ot._.PlusArgs[0].PlusArgs[1] = Times (z.h._vector.layers[0].lstmState._.ot._.PlusArgs[0].PlusArgs[1].TimesArgs[0], z.h._vector.layers[0].prevState.h) : [256 x 256], [0] -> [256]
+Validating --> z.h._vector.layers[0].lstmState._.ot._.PlusArgs[0] = Plus (z.h._vector.layers[0].lstmState._.ot._.PlusArgs[0].PlusArgs[0], z.h._vector.layers[0].lstmState._.ot._.PlusArgs[0].PlusArgs[1]) : [256 x *], [256] -> [256 x *]
+Validating --> z.h._vector.layers[0].lstmState._.ft._.PlusArgs[0].PlusArgs[1] = Times (z.h._vector.layers[0].lstmState._.ft._.PlusArgs[0].PlusArgs[1].TimesArgs[0], z.h._vector.layers[0].prevState.h) : [256 x 256], [0] -> [256]
+Validating --> z.h._vector.layers[0].lstmState._.ft._.PlusArgs[0] = Plus (z.h._vector.layers[0].lstmState._.ft._.PlusArgs[0].PlusArgs[0], z.h._vector.layers[0].lstmState._.ft._.PlusArgs[0].PlusArgs[1]) : [256 x *], [256] -> [256 x *]
+Validating --> z.h._vector.layers[0].lstmState._.ft._.PlusArgs[1] = ElementTimes (z.h._vector.layers[0].lstmState._.ft._.PlusArgs[1].ElementTimesArgs[0], z.h._vector.layers[0].prevState.c) : [256], [0] -> [256]
+Validating --> z.h._vector.layers[0].lstmState._.ft._ = Plus (z.h._vector.layers[0].lstmState._.ft._.PlusArgs[0], z.h._vector.layers[0].lstmState._.ft._.PlusArgs[1]) : [256 x *], [256] -> [256 x *]
+Validating --> z.h._vector.layers[0].lstmState._.ft = Sigmoid (z.h._vector.layers[0].lstmState._.ft._) : [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[0].lstmState._.bft = ElementTimes (z.h._vector.layers[0].lstmState._.ft, z.h._vector.layers[0].prevState.c) : [256 x *], [0] -> [256 x *]
+Validating --> z.h._vector.layers[0].lstmState._.it._.PlusArgs[0].PlusArgs[1] = Times (z.h._vector.layers[0].lstmState._.it._.PlusArgs[0].PlusArgs[1].TimesArgs[0], z.h._vector.layers[0].prevState.h) : [256 x 256], [0] -> [256]
+Validating --> z.h._vector.layers[0].lstmState._.it._.PlusArgs[0] = Plus (z.h._vector.layers[0].lstmState._.it._.PlusArgs[0].PlusArgs[0], z.h._vector.layers[0].lstmState._.it._.PlusArgs[0].PlusArgs[1]) : [256 x *], [256] -> [256 x *]
+Validating --> z.h._vector.layers[0].lstmState._.it._.PlusArgs[1] = ElementTimes (z.h._vector.layers[0].lstmState._.it._.PlusArgs[1].ElementTimesArgs[0], z.h._vector.layers[0].prevState.c) : [256], [0] -> [256]
+Validating --> z.h._vector.layers[0].lstmState._.it._ = Plus (z.h._vector.layers[0].lstmState._.it._.PlusArgs[0], z.h._vector.layers[0].lstmState._.it._.PlusArgs[1]) : [256 x *], [256] -> [256 x *]
+Validating --> z.h._vector.layers[0].lstmState._.it = Sigmoid (z.h._vector.layers[0].lstmState._.it._) : [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[0].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[1] = Times (z.h._vector.layers[0].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[1].TimesArgs[0], z.h._vector.layers[0].prevState.h) : [256 x 256], [0] -> [256]
+Validating --> z.h._vector.layers[0].lstmState._.bit.ElementTimesArgs[1].z = Plus (z.h._vector.layers[0].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[0], z.h._vector.layers[0].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[1]) : [256 x *], [256] -> [256 x *]
+Validating --> z.h._vector.layers[0].lstmState._.bit.ElementTimesArgs[1] = Tanh (z.h._vector.layers[0].lstmState._.bit.ElementTimesArgs[1].z) : [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[0].lstmState._.bit = ElementTimes (z.h._vector.layers[0].lstmState._.it, z.h._vector.layers[0].lstmState._.bit.ElementTimesArgs[1]) : [256 x *], [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[0].lstmState._.ct = Plus (z.h._vector.layers[0].lstmState._.bft, z.h._vector.layers[0].lstmState._.bit) : [256 x *], [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[0].lstmState._.ot._.PlusArgs[1] = ElementTimes (z.h._vector.layers[0].lstmState._.ot._.PlusArgs[1].ElementTimesArgs[0], z.h._vector.layers[0].lstmState._.ct) : [256], [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[0].lstmState._.ot._ = Plus (z.h._vector.layers[0].lstmState._.ot._.PlusArgs[0], z.h._vector.layers[0].lstmState._.ot._.PlusArgs[1]) : [256 x *], [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[0].lstmState._.ot = Sigmoid (z.h._vector.layers[0].lstmState._.ot._) : [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[0].lstmState._.ht.ElementTimesArgs[1] = Tanh (z.h._vector.layers[0].lstmState._.ct) : [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[0].lstmState._.ht = ElementTimes (z.h._vector.layers[0].lstmState._.ot, z.h._vector.layers[0].lstmState._.ht.ElementTimesArgs[1]) : [256 x *], [256 x *] -> [256 x *]
+Node 'z.h._vector.layers[1].lstmState._.ot._.PlusArgs[0].PlusArgs[0].PlusArgs[1].TimesArgs[0]' (LearnableParameter operation) operation: Tensor shape was inferred as [256 x 256].
+Node 'z.h._vector.layers[1].lstmState._.ot._.PlusArgs[0].PlusArgs[0].PlusArgs[1].TimesArgs[0]' (LearnableParameter operation): Initializing Parameter[256 x 256] <- uniform(seed=1, init dims=[256 x 256], range=0.050000*1.000000, onCPU=true).
+Validating --> z.h._vector.layers[1].lstmState._.ot._.PlusArgs[0].PlusArgs[0].PlusArgs[1] = Times (z.h._vector.layers[1].lstmState._.ot._.PlusArgs[0].PlusArgs[0].PlusArgs[1].TimesArgs[0], z.h._vector.layers[0].lstmState._.ht) : [256 x 256], [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[1].lstmState._.ot._.PlusArgs[0].PlusArgs[0] = Plus (z.h._vector.layers[1].lstmState._.ot._.PlusArgs[0].PlusArgs[0].PlusArgs[0], z.h._vector.layers[1].lstmState._.ot._.PlusArgs[0].PlusArgs[0].PlusArgs[1]) : [256], [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[1].lstmState._.ot._.PlusArgs[0].PlusArgs[1].TimesArgs[0] = LearnableParameter() :  -> [256 x 256]
+Validating --> z.h._vector.layers[1].lstmState._.ot._.PlusArgs[1].ElementTimesArgs[0] = LearnableParameter() :  -> [256]
+Validating --> z.h._vector.layers[1].lstmState._.ft._.PlusArgs[0].PlusArgs[0].PlusArgs[0] = LearnableParameter() :  -> [256]
+Validating --> z.h._vector.layers[1].lstmState._.ft._.PlusArgs[0].PlusArgs[0].PlusArgs[1].TimesArgs[0] = LearnableParameter() :  -> [256 x 0]
+Node 'z.h._vector.layers[1].lstmState._.ft._.PlusArgs[0].PlusArgs[0].PlusArgs[1].TimesArgs[0]' (LearnableParameter operation) operation: Tensor shape was inferred as [256 x 256].
+Node 'z.h._vector.layers[1].lstmState._.ft._.PlusArgs[0].PlusArgs[0].PlusArgs[1].TimesArgs[0]' (LearnableParameter operation): Initializing Parameter[256 x 256] <- uniform(seed=1, init dims=[256 x 256], range=0.050000*1.000000, onCPU=true).
+Validating --> z.h._vector.layers[1].lstmState._.ft._.PlusArgs[0].PlusArgs[0].PlusArgs[1] = Times (z.h._vector.layers[1].lstmState._.ft._.PlusArgs[0].PlusArgs[0].PlusArgs[1].TimesArgs[0], z.h._vector.layers[0].lstmState._.ht) : [256 x 256], [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[1].lstmState._.ft._.PlusArgs[0].PlusArgs[0] = Plus (z.h._vector.layers[1].lstmState._.ft._.PlusArgs[0].PlusArgs[0].PlusArgs[0], z.h._vector.layers[1].lstmState._.ft._.PlusArgs[0].PlusArgs[0].PlusArgs[1]) : [256], [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[1].lstmState._.ft._.PlusArgs[0].PlusArgs[1].TimesArgs[0] = LearnableParameter() :  -> [256 x 256]
+Validating --> z.h._vector.layers[1].lstmState._.ft._.PlusArgs[1].ElementTimesArgs[0] = LearnableParameter() :  -> [256]
+Validating --> z.h._vector.layers[1].lstmState._.it._.PlusArgs[0].PlusArgs[0].PlusArgs[0] = LearnableParameter() :  -> [256]
+Validating --> z.h._vector.layers[1].lstmState._.it._.PlusArgs[0].PlusArgs[0].PlusArgs[1].TimesArgs[0] = LearnableParameter() :  -> [256 x 0]
+Node 'z.h._vector.layers[1].lstmState._.it._.PlusArgs[0].PlusArgs[0].PlusArgs[1].TimesArgs[0]' (LearnableParameter operation) operation: Tensor shape was inferred as [256 x 256].
+Node 'z.h._vector.layers[1].lstmState._.it._.PlusArgs[0].PlusArgs[0].PlusArgs[1].TimesArgs[0]' (LearnableParameter operation): Initializing Parameter[256 x 256] <- uniform(seed=1, init dims=[256 x 256], range=0.050000*1.000000, onCPU=true).
+Validating --> z.h._vector.layers[1].lstmState._.it._.PlusArgs[0].PlusArgs[0].PlusArgs[1] = Times (z.h._vector.layers[1].lstmState._.it._.PlusArgs[0].PlusArgs[0].PlusArgs[1].TimesArgs[0], z.h._vector.layers[0].lstmState._.ht) : [256 x 256], [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[1].lstmState._.it._.PlusArgs[0].PlusArgs[0] = Plus (z.h._vector.layers[1].lstmState._.it._.PlusArgs[0].PlusArgs[0].PlusArgs[0], z.h._vector.layers[1].lstmState._.it._.PlusArgs[0].PlusArgs[0].PlusArgs[1]) : [256], [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[1].lstmState._.it._.PlusArgs[0].PlusArgs[1].TimesArgs[0] = LearnableParameter() :  -> [256 x 256]
+Validating --> z.h._vector.layers[1].lstmState._.it._.PlusArgs[1].ElementTimesArgs[0] = LearnableParameter() :  -> [256]
+Validating --> z.h._vector.layers[1].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[0].PlusArgs[0] = LearnableParameter() :  -> [256]
+Validating --> z.h._vector.layers[1].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[0].PlusArgs[1].TimesArgs[0] = LearnableParameter() :  -> [256 x 0]
+Node 'z.h._vector.layers[1].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[0].PlusArgs[1].TimesArgs[0]' (LearnableParameter operation) operation: Tensor shape was inferred as [256 x 256].
+Node 'z.h._vector.layers[1].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[0].PlusArgs[1].TimesArgs[0]' (LearnableParameter operation): Initializing Parameter[256 x 256] <- uniform(seed=1, init dims=[256 x 256], range=0.050000*1.000000, onCPU=true).
+Validating --> z.h._vector.layers[1].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[0].PlusArgs[1] = Times (z.h._vector.layers[1].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[0].PlusArgs[1].TimesArgs[0], z.h._vector.layers[0].lstmState._.ht) : [256 x 256], [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[1].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[0] = Plus (z.h._vector.layers[1].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[0].PlusArgs[0], z.h._vector.layers[1].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[0].PlusArgs[1]) : [256], [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[1].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[1].TimesArgs[0] = LearnableParameter() :  -> [256 x 256]
+Validating --> z.h._vector.layers[1].lstmState._.ot._.PlusArgs[0].PlusArgs[1] = Times (z.h._vector.layers[1].lstmState._.ot._.PlusArgs[0].PlusArgs[1].TimesArgs[0], z.h._vector.layers[1].prevState.h) : [256 x 256], [0] -> [256]
+Validating --> z.h._vector.layers[1].lstmState._.ot._.PlusArgs[0] = Plus (z.h._vector.layers[1].lstmState._.ot._.PlusArgs[0].PlusArgs[0], z.h._vector.layers[1].lstmState._.ot._.PlusArgs[0].PlusArgs[1]) : [256 x *], [256] -> [256 x *]
+Validating --> z.h._vector.layers[1].lstmState._.ft._.PlusArgs[0].PlusArgs[1] = Times (z.h._vector.layers[1].lstmState._.ft._.PlusArgs[0].PlusArgs[1].TimesArgs[0], z.h._vector.layers[1].prevState.h) : [256 x 256], [0] -> [256]
+Validating --> z.h._vector.layers[1].lstmState._.ft._.PlusArgs[0] = Plus (z.h._vector.layers[1].lstmState._.ft._.PlusArgs[0].PlusArgs[0], z.h._vector.layers[1].lstmState._.ft._.PlusArgs[0].PlusArgs[1]) : [256 x *], [256] -> [256 x *]
+Validating --> z.h._vector.layers[1].lstmState._.ft._.PlusArgs[1] = ElementTimes (z.h._vector.layers[1].lstmState._.ft._.PlusArgs[1].ElementTimesArgs[0], z.h._vector.layers[1].prevState.c) : [256], [0] -> [256]
+Validating --> z.h._vector.layers[1].lstmState._.ft._ = Plus (z.h._vector.layers[1].lstmState._.ft._.PlusArgs[0], z.h._vector.layers[1].lstmState._.ft._.PlusArgs[1]) : [256 x *], [256] -> [256 x *]
+Validating --> z.h._vector.layers[1].lstmState._.ft = Sigmoid (z.h._vector.layers[1].lstmState._.ft._) : [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[1].lstmState._.bft = ElementTimes (z.h._vector.layers[1].lstmState._.ft, z.h._vector.layers[1].prevState.c) : [256 x *], [0] -> [256 x *]
+Validating --> z.h._vector.layers[1].lstmState._.it._.PlusArgs[0].PlusArgs[1] = Times (z.h._vector.layers[1].lstmState._.it._.PlusArgs[0].PlusArgs[1].TimesArgs[0], z.h._vector.layers[1].prevState.h) : [256 x 256], [0] -> [256]
+Validating --> z.h._vector.layers[1].lstmState._.it._.PlusArgs[0] = Plus (z.h._vector.layers[1].lstmState._.it._.PlusArgs[0].PlusArgs[0], z.h._vector.layers[1].lstmState._.it._.PlusArgs[0].PlusArgs[1]) : [256 x *], [256] -> [256 x *]
+Validating --> z.h._vector.layers[1].lstmState._.it._.PlusArgs[1] = ElementTimes (z.h._vector.layers[1].lstmState._.it._.PlusArgs[1].ElementTimesArgs[0], z.h._vector.layers[1].prevState.c) : [256], [0] -> [256]
+Validating --> z.h._vector.layers[1].lstmState._.it._ = Plus (z.h._vector.layers[1].lstmState._.it._.PlusArgs[0], z.h._vector.layers[1].lstmState._.it._.PlusArgs[1]) : [256 x *], [256] -> [256 x *]
+Validating --> z.h._vector.layers[1].lstmState._.it = Sigmoid (z.h._vector.layers[1].lstmState._.it._) : [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[1].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[1] = Times (z.h._vector.layers[1].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[1].TimesArgs[0], z.h._vector.layers[1].prevState.h) : [256 x 256], [0] -> [256]
+Validating --> z.h._vector.layers[1].lstmState._.bit.ElementTimesArgs[1].z = Plus (z.h._vector.layers[1].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[0], z.h._vector.layers[1].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[1]) : [256 x *], [256] -> [256 x *]
+Validating --> z.h._vector.layers[1].lstmState._.bit.ElementTimesArgs[1] = Tanh (z.h._vector.layers[1].lstmState._.bit.ElementTimesArgs[1].z) : [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[1].lstmState._.bit = ElementTimes (z.h._vector.layers[1].lstmState._.it, z.h._vector.layers[1].lstmState._.bit.ElementTimesArgs[1]) : [256 x *], [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[1].lstmState._.ct = Plus (z.h._vector.layers[1].lstmState._.bft, z.h._vector.layers[1].lstmState._.bit) : [256 x *], [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[1].lstmState._.ot._.PlusArgs[1] = ElementTimes (z.h._vector.layers[1].lstmState._.ot._.PlusArgs[1].ElementTimesArgs[0], z.h._vector.layers[1].lstmState._.ct) : [256], [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[1].lstmState._.ot._ = Plus (z.h._vector.layers[1].lstmState._.ot._.PlusArgs[0], z.h._vector.layers[1].lstmState._.ot._.PlusArgs[1]) : [256 x *], [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[1].lstmState._.ot = Sigmoid (z.h._vector.layers[1].lstmState._.ot._) : [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[1].lstmState._.ht.ElementTimesArgs[1] = Tanh (z.h._vector.layers[1].lstmState._.ct) : [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[1].lstmState._.ht = ElementTimes (z.h._vector.layers[1].lstmState._.ot, z.h._vector.layers[1].lstmState._.ht.ElementTimesArgs[1]) : [256 x *], [256 x *] -> [256 x *]
+Validating --> z.z.PlusArgs[0] = Times (z.W, z.h._vector.layers[1].lstmState._.ht) : [10000 x 256], [256 x *] -> [10000 x *]
+Validating --> z.b = LearnableParameter() :  -> [10000]
+Validating --> z = Plus (z.z.PlusArgs[0], z.b) : [10000 x *], [10000] -> [10000 x *]
+Validating --> crossEntropy = CrossEntropyWithSoftmax (labels, z) : [10000 x *], [10000 x *] -> [1]
+
+Validating network. 70 nodes to process in pass 2.
+
+Validating --> z.h._vector.layers[0].prevState.h = PastValue (z.h._vector.layers[0].lstmState._.ht) : [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[0].lstmState._.ot._.PlusArgs[0].PlusArgs[1] = Times (z.h._vector.layers[0].lstmState._.ot._.PlusArgs[0].PlusArgs[1].TimesArgs[0], z.h._vector.layers[0].prevState.h) : [256 x 256], [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[0].lstmState._.ft._.PlusArgs[0].PlusArgs[1] = Times (z.h._vector.layers[0].lstmState._.ft._.PlusArgs[0].PlusArgs[1].TimesArgs[0], z.h._vector.layers[0].prevState.h) : [256 x 256], [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[0].prevState.c = PastValue (z.h._vector.layers[0].lstmState._.ct) : [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[0].lstmState._.ft._.PlusArgs[1] = ElementTimes (z.h._vector.layers[0].lstmState._.ft._.PlusArgs[1].ElementTimesArgs[0], z.h._vector.layers[0].prevState.c) : [256], [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[0].lstmState._.it._.PlusArgs[0].PlusArgs[1] = Times (z.h._vector.layers[0].lstmState._.it._.PlusArgs[0].PlusArgs[1].TimesArgs[0], z.h._vector.layers[0].prevState.h) : [256 x 256], [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[0].lstmState._.it._.PlusArgs[1] = ElementTimes (z.h._vector.layers[0].lstmState._.it._.PlusArgs[1].ElementTimesArgs[0], z.h._vector.layers[0].prevState.c) : [256], [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[0].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[1] = Times (z.h._vector.layers[0].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[1].TimesArgs[0], z.h._vector.layers[0].prevState.h) : [256 x 256], [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[1].prevState.h = PastValue (z.h._vector.layers[1].lstmState._.ht) : [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[1].lstmState._.ot._.PlusArgs[0].PlusArgs[1] = Times (z.h._vector.layers[1].lstmState._.ot._.PlusArgs[0].PlusArgs[1].TimesArgs[0], z.h._vector.layers[1].prevState.h) : [256 x 256], [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[1].lstmState._.ft._.PlusArgs[0].PlusArgs[1] = Times (z.h._vector.layers[1].lstmState._.ft._.PlusArgs[0].PlusArgs[1].TimesArgs[0], z.h._vector.layers[1].prevState.h) : [256 x 256], [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[1].prevState.c = PastValue (z.h._vector.layers[1].lstmState._.ct) : [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[1].lstmState._.ft._.PlusArgs[1] = ElementTimes (z.h._vector.layers[1].lstmState._.ft._.PlusArgs[1].ElementTimesArgs[0], z.h._vector.layers[1].prevState.c) : [256], [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[1].lstmState._.it._.PlusArgs[0].PlusArgs[1] = Times (z.h._vector.layers[1].lstmState._.it._.PlusArgs[0].PlusArgs[1].TimesArgs[0], z.h._vector.layers[1].prevState.h) : [256 x 256], [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[1].lstmState._.it._.PlusArgs[1] = ElementTimes (z.h._vector.layers[1].lstmState._.it._.PlusArgs[1].ElementTimesArgs[0], z.h._vector.layers[1].prevState.c) : [256], [256 x *] -> [256 x *]
+Validating --> z.h._vector.layers[1].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[1] = Times (z.h._vector.layers[1].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[1].TimesArgs[0], z.h._vector.layers[1].prevState.h) : [256 x 256], [256 x *] -> [256 x *]
+
+Validating network. 16 nodes to process in pass 3.
+
+
+Validating network, final pass.
+
+
+
+34 out of 105 nodes do not share the minibatch layout with the input data.
+
+Post-processing network complete.
+
+Created model with 105 nodes on GPU 0.
+
+Training criterion node(s):
+	crossEntropy = CrossEntropyWithSoftmax
+
+
+Allocating matrices for forward and/or backward propagation.
+
+Memory Sharing: Out of 208 matrices, 121 are shared as 49, and 87 are not shared.
+
+	{ z.h._vector.layers[0].lstmState._.ht.ElementTimesArgs[1] : [256 x *] (gradient)
+	  z.h._vector.layers[1].prevState.c : [256 x *] }
+	{ z.h._vector.layers[1].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[0].PlusArgs[0] : [256] (gradient)
+	  z.h._vector.layers[1].prevState.h : [256 x *] }
+	{ z.h._vector.layers[0].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[0].PlusArgs[0] : [256] (gradient)
+	  z.h._vector.layers[0].prevState.h : [256 x *] }
+	{ z.h._vector.layers[0].lstmState._.ot._.PlusArgs[0].PlusArgs[0] : [256 x *]
+	  z.h._vector.layers[1].lstmState._.it._.PlusArgs[0].PlusArgs[0] : [256 x *] }
+	{ z.h._vector.layers[0].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[0].PlusArgs[1] : [256 x *]
+	  z.h._vector.layers[0].lstmState._.ft._.PlusArgs[0].PlusArgs[0].PlusArgs[1] : [256 x *]
+	  z.h._vector.layers[0].lstmState._.it._.PlusArgs[0].PlusArgs[0].PlusArgs[1] : [256 x *]
+	  z.h._vector.layers[0].lstmState._.ot._.PlusArgs[0].PlusArgs[0].PlusArgs[1] : [256 x *]
+	  z.h._vector.layers[0].lstmState._.ot._.PlusArgs[0].PlusArgs[1] : [256 x *] }
+	{ z.h._vector.layers[0].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[0] : [256 x *]
+	  z.h._vector.layers[1].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[0].PlusArgs[1] : [256 x *]
+	  z.h._vector.layers[1].lstmState._.ft._.PlusArgs[0].PlusArgs[0].PlusArgs[1] : [256 x *]
+	  z.h._vector.layers[1].lstmState._.it._.PlusArgs[0].PlusArgs[0].PlusArgs[1] : [256 x *]
+	  z.h._vector.layers[1].lstmState._.ot._.PlusArgs[0].PlusArgs[0].PlusArgs[1] : [256 x *]
+	  z.h._vector.layers[1].lstmState._.ot._.PlusArgs[0].PlusArgs[1] : [256 x *] }
+	{ crossEntropy : [1] (gradient)
+	  z.h._vector.layers[0].lstmState._.ft._.PlusArgs[0].PlusArgs[0] : [256 x *]
+	  z.h._vector.layers[1].lstmState._.ft._.PlusArgs[0].PlusArgs[0] : [256 x *] }
+	{ z : [10000 x *] (gradient)
+	  z.W : [10000 x 256] (gradient)
+	  z.h._vector.layers[0].lstmState._.it._.PlusArgs[0].PlusArgs[0] : [256 x *]
+	  z.h._vector.layers[1].lstmState._.ot._.PlusArgs[0].PlusArgs[0] : [256 x *] }
+	{ z.h._vector.layers[1].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[0] : [256 x *]
+	  z.z.PlusArgs[0] : [10000 x *] }
+	{ z.h._vector.layers[0].lstmState._.ot._.PlusArgs[1] : [256 x *] (gradient)
+	  z.h._vector.layers[1].lstmState._.ft : [256 x *] }
+	{ z.h._vector.layers[0].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[0] : [256 x *] (gradient)
+	  z.h._vector.layers[0].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[0].PlusArgs[1].TimesArgs[0] : [256 x 256] (gradient)
+	  z.h._vector.layers[1].lstmState._.it : [256 x *] }
+	{ z.h._vector.layers[0].lstmState._.it._ : [256 x *] (gradient)
+	  z.h._vector.layers[1].lstmState._.bit.ElementTimesArgs[1] : [256 x *] }
+	{ z.h._vector.layers[0].lstmState._.it._.PlusArgs[1].ElementTimesArgs[0] : [256] (gradient)
+	  z.h._vector.layers[1].lstmState._.ct : [256 x *] }
+	{ z.h._vector.layers[0].lstmState._.it._.PlusArgs[0].PlusArgs[1].TimesArgs[0] : [256 x 256] (gradient)
+	  z.h._vector.layers[1].lstmState._.ot : [256 x *] }
+	{ z.h._vector.layers[0].lstmState._.ft._ : [256 x *] (gradient)
+	  z.h._vector.layers[1].lstmState._.ht.ElementTimesArgs[1] : [256 x *] }
+	{ z.h._vector.layers[0].lstmState._.ft._.PlusArgs[1] : [256 x *] (gradient)
+	  z.h._vector.layers[1].lstmState._.ht : [256 x *] }
+	{ z.h._vector.layers[0].lstmState._.ft : [256 x *] (gradient)
+	  z.h._vector.layers[1].lstmState._.ot : [256 x *] (gradient)
+	  z.z.PlusArgs[0] : [10000 x *] (gradient) }
+	{ z.h._vector.layers[0].lstmState._.ft._.PlusArgs[1].ElementTimesArgs[0] : [256] (gradient)
+	  z.h._vector.layers[1].lstmState._.ht : [256 x *] (gradient) }
+	{ z.h._vector.layers[0].lstmState._.ft._.PlusArgs[0] : [256 x *] (gradient)
+	  z.h._vector.layers[0].lstmState._.ot._.PlusArgs[0].PlusArgs[0].PlusArgs[1] : [256 x *] (gradient)
+	  z.h._vector.layers[1].lstmState._.ht.ElementTimesArgs[1] : [256 x *] (gradient) }
+	{ z.h._vector.layers[0].prevState.c : [256 x *] (gradient)
+	  z.h._vector.layers[1].lstmState._.ct : [256 x *] (gradient) }
+	{ z.h._vector.layers[0].lstmState._.it._.PlusArgs[0].PlusArgs[1] : [256 x *] (gradient)
+	  z.h._vector.layers[1].lstmState._.ot._ : [256 x *] (gradient) }
+	{ z.h._vector.layers[1].lstmState._.ft._.PlusArgs[0].PlusArgs[0].PlusArgs[0] : [256] (gradient)
+	  z.h._vector.layers[1].lstmState._.it._.PlusArgs[0].PlusArgs[0].PlusArgs[1] : [256 x *] (gradient)
+	  z.h._vector.layers[1].lstmState._.ot._.PlusArgs[0] : [256 x *] (gradient) }
+	{ z.h._vector.layers[0].lstmState._.it._.PlusArgs[0].PlusArgs[0] : [256 x *] (gradient)
+	  z.h._vector.layers[0].lstmState._.it._.PlusArgs[0].PlusArgs[0].PlusArgs[1].TimesArgs[0] : [256 x 256] (gradient)
+	  z.h._vector.layers[1].lstmState._.ot._.PlusArgs[1] : [256 x *] (gradient) }
+	{ z.h._vector.layers[0].lstmState._.bft : [256 x *] (gradient)
+	  z.h._vector.layers[1].lstmState._.bft : [256 x *] (gradient) }
+	{ z.h._vector.layers[0].lstmState._.it._.PlusArgs[1] : [256 x *] (gradient)
+	  z.h._vector.layers[1].lstmState._.bit : [256 x *] (gradient) }
+	{ z.h._vector.layers[0].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[1] : [256 x *] (gradient)
+	  z.h._vector.layers[1].lstmState._.it : [256 x *] (gradient) }
+	{ z.h._vector.layers[0].lstmState._.it._.PlusArgs[0] : [256 x *] (gradient)
+	  z.h._vector.layers[1].lstmState._.bit.ElementTimesArgs[1] : [256 x *] (gradient) }
+	{ z.h._vector.layers[0].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[0].PlusArgs[1] : [256 x *] (gradient)
+	  z.h._vector.layers[0].lstmState._.it._.PlusArgs[0].PlusArgs[0].PlusArgs[0] : [256] (gradient)
+	  z.h._vector.layers[0].prevState.h : [256 x *] (gradient)
+	  z.h._vector.layers[1].lstmState._.bit.ElementTimesArgs[1].z : [256 x *] (gradient) }
+	{ z.h._vector.layers[1].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[0] : [256 x *] (gradient)
+	  z.h._vector.layers[1].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[0].PlusArgs[1].TimesArgs[0] : [256 x 256] (gradient) }
+	{ z.h._vector.layers[0].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[1].TimesArgs[0] : [256 x 256] (gradient)
+	  z.h._vector.layers[1].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[1] : [256 x *] (gradient) }
+	{ z.h._vector.layers[1].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[0].PlusArgs[1] : [256 x *] (gradient)
+	  z.h._vector.layers[1].lstmState._.it._.PlusArgs[0].PlusArgs[0].PlusArgs[0] : [256] (gradient)
+	  z.h._vector.layers[1].prevState.h : [256 x *] (gradient) }
+	{ z.h._vector.layers[0].lstmState._.bit.ElementTimesArgs[1].z : [256 x *] (gradient)
+	  z.h._vector.layers[1].lstmState._.it._ : [256 x *] (gradient) }
+	{ z.h._vector.layers[0].lstmState._.it : [256 x *] (gradient)
+	  z.h._vector.layers[1].lstmState._.it._.PlusArgs[0] : [256 x *] (gradient) }
+	{ z.h._vector.layers[0].lstmState._.bit.ElementTimesArgs[1] : [256 x *] (gradient)
+	  z.h._vector.layers[1].lstmState._.it._.PlusArgs[1] : [256 x *] (gradient) }
+	{ z.h._vector.layers[0].lstmState._.ct : [256 x *] (gradient)
+	  z.h._vector.layers[1].prevState.c : [256 x *] (gradient) }
+	{ z.h._vector.layers[1].lstmState._.it._.PlusArgs[0].PlusArgs[0] : [256 x *] (gradient)
+	  z.h._vector.layers[1].lstmState._.it._.PlusArgs[0].PlusArgs[0].PlusArgs[1].TimesArgs[0] : [256 x 256] (gradient) }
+	{ z.h._vector.layers[0].lstmState._.bit : [256 x *] (gradient)
+	  z.h._vector.layers[1].lstmState._.it._.PlusArgs[0].PlusArgs[1] : [256 x *] (gradient) }
+	{ z.h._vector.layers[0].lstmState._.ot._.PlusArgs[1].ElementTimesArgs[0] : [256] (gradient)
+	  z.h._vector.layers[1].lstmState._.ft : [256 x *] (gradient) }
+	{ z.h._vector.layers[0].lstmState._.ft._.PlusArgs[0].PlusArgs[0].PlusArgs[0] : [256] (gradient)
+	  z.h._vector.layers[0].lstmState._.it._.PlusArgs[0].PlusArgs[0].PlusArgs[1] : [256 x *] (gradient)
+	  z.h._vector.layers[0].lstmState._.ot._.PlusArgs[0] : [256 x *] (gradient)
+	  z.h._vector.layers[1].lstmState._.ft._ : [256 x *] (gradient) }
+	{ z.h._vector.layers[0].lstmState._.ot : [256 x *] (gradient)
+	  z.h._vector.layers[1].lstmState._.ft._.PlusArgs[0] : [256 x *] (gradient)
+	  z.h._vector.layers[1].lstmState._.ot._.PlusArgs[0].PlusArgs[0].PlusArgs[1] : [256 x *] (gradient) }
+	{ z.h._vector.layers[0].lstmState._.ot._ : [256 x *] (gradient)
+	  z.h._vector.layers[1].lstmState._.ft._.PlusArgs[1] : [256 x *] (gradient) }
+	{ z.h._vector.layers[1].lstmState._.ft._.PlusArgs[0].PlusArgs[0] : [256 x *] (gradient)
+	  z.h._vector.layers[1].lstmState._.ft._.PlusArgs[0].PlusArgs[0].PlusArgs[1].TimesArgs[0] : [256 x 256] (gradient) }
+	{ z.h._vector.layers[1].lstmState._.ft._.PlusArgs[0].PlusArgs[0].PlusArgs[1] : [256 x *] (gradient)
+	  z.h._vector.layers[1].lstmState._.ft._.PlusArgs[0].PlusArgs[1] : [256 x *] (gradient)
+	  z.h._vector.layers[1].lstmState._.ot._.PlusArgs[0].PlusArgs[0].PlusArgs[0] : [256] (gradient) }
+	{ z.h._vector.layers[1].lstmState._.ot._.PlusArgs[0].PlusArgs[0] : [256 x *] (gradient)
+	  z.h._vector.layers[1].lstmState._.ot._.PlusArgs[0].PlusArgs[0].PlusArgs[1].TimesArgs[0] : [256 x 256] (gradient) }
+	{ z.h._vector.layers[0].lstmState._.ht : [256 x *] (gradient)
+	  z.h._vector.layers[1].lstmState._.ot._.PlusArgs[0].PlusArgs[1] : [256 x *] (gradient) }
+	{ z.h._vector.layers[0].lstmState._.ft._.PlusArgs[0].PlusArgs[0] : [256 x *] (gradient)
+	  z.h._vector.layers[0].lstmState._.ft._.PlusArgs[0].PlusArgs[0].PlusArgs[1].TimesArgs[0] : [256 x 256] (gradient) }
+	{ z.h._vector.layers[0].lstmState._.ft._.PlusArgs[0].PlusArgs[0].PlusArgs[1] : [256 x *] (gradient)
+	  z.h._vector.layers[0].lstmState._.ft._.PlusArgs[0].PlusArgs[1] : [256 x *] (gradient)
+	  z.h._vector.layers[0].lstmState._.ot._.PlusArgs[0].PlusArgs[0].PlusArgs[0] : [256] (gradient) }
+	{ z.h._vector.layers[0].lstmState._.ot._.PlusArgs[0].PlusArgs[0] : [256 x *] (gradient)
+	  z.h._vector.layers[0].lstmState._.ot._.PlusArgs[0].PlusArgs[0].PlusArgs[1].TimesArgs[0] : [256 x 256] (gradient) }
+	{ z.e : [256 x *] (gradient)
+	  z.h._vector.layers[0].lstmState._.ot._.PlusArgs[0].PlusArgs[1] : [256 x *] (gradient) }
+
+
+Training 6182160 parameters in 33 out of 33 parameter tensors and 103 nodes with gradient:
+
+	Node '_z.E' (LearnableParameter operation) : [256 x 10000]
+	Node 'z.W' (LearnableParameter operation) : [10000 x 256]
+	Node 'z.b' (LearnableParameter operation) : [10000]
+	Node 'z.h._vector.layers[0].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[0].PlusArgs[0]' (LearnableParameter operation) : [256]
+	Node 'z.h._vector.layers[0].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[0].PlusArgs[1].TimesArgs[0]' (LearnableParameter operation) : [256 x 256]
+	Node 'z.h._vector.layers[0].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[1].TimesArgs[0]' (LearnableParameter operation) : [256 x 256]
+	Node 'z.h._vector.layers[0].lstmState._.ft._.PlusArgs[0].PlusArgs[0].PlusArgs[0]' (LearnableParameter operation) : [256]
+	Node 'z.h._vector.layers[0].lstmState._.ft._.PlusArgs[0].PlusArgs[0].PlusArgs[1].TimesArgs[0]' (LearnableParameter operation) : [256 x 256]
+	Node 'z.h._vector.layers[0].lstmState._.ft._.PlusArgs[0].PlusArgs[1].TimesArgs[0]' (LearnableParameter operation) : [256 x 256]
+	Node 'z.h._vector.layers[0].lstmState._.ft._.PlusArgs[1].ElementTimesArgs[0]' (LearnableParameter operation) : [256]
+	Node 'z.h._vector.layers[0].lstmState._.it._.PlusArgs[0].PlusArgs[0].PlusArgs[0]' (LearnableParameter operation) : [256]
+	Node 'z.h._vector.layers[0].lstmState._.it._.PlusArgs[0].PlusArgs[0].PlusArgs[1].TimesArgs[0]' (LearnableParameter operation) : [256 x 256]
+	Node 'z.h._vector.layers[0].lstmState._.it._.PlusArgs[0].PlusArgs[1].TimesArgs[0]' (LearnableParameter operation) : [256 x 256]
+	Node 'z.h._vector.layers[0].lstmState._.it._.PlusArgs[1].ElementTimesArgs[0]' (LearnableParameter operation) : [256]
+	Node 'z.h._vector.layers[0].lstmState._.ot._.PlusArgs[0].PlusArgs[0].PlusArgs[0]' (LearnableParameter operation) : [256]
+	Node 'z.h._vector.layers[0].lstmState._.ot._.PlusArgs[0].PlusArgs[0].PlusArgs[1].TimesArgs[0]' (LearnableParameter operation) : [256 x 256]
+	Node 'z.h._vector.layers[0].lstmState._.ot._.PlusArgs[0].PlusArgs[1].TimesArgs[0]' (LearnableParameter operation) : [256 x 256]
+	Node 'z.h._vector.layers[0].lstmState._.ot._.PlusArgs[1].ElementTimesArgs[0]' (LearnableParameter operation) : [256]
+	Node 'z.h._vector.layers[1].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[0].PlusArgs[0]' (LearnableParameter operation) : [256]
+	Node 'z.h._vector.layers[1].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[0].PlusArgs[1].TimesArgs[0]' (LearnableParameter operation) : [256 x 256]
+	Node 'z.h._vector.layers[1].lstmState._.bit.ElementTimesArgs[1].z.PlusArgs[1].TimesArgs[0]' (LearnableParameter operation) : [256 x 256]
+	Node 'z.h._vector.layers[1].lstmState._.ft._.PlusArgs[0].PlusArgs[0].PlusArgs[0]' (LearnableParameter operation) : [256]
+	Node 'z.h._vector.layers[1].lstmState._.ft._.PlusArgs[0].PlusArgs[0].PlusArgs[1].TimesArgs[0]' (LearnableParameter operation) : [256 x 256]
+	Node 'z.h._vector.layers[1].lstmState._.ft._.PlusArgs[0].PlusArgs[1].TimesArgs[0]' (LearnableParameter operation) : [256 x 256]
+	Node 'z.h._vector.layers[1].lstmState._.ft._.PlusArgs[1].ElementTimesArgs[0]' (LearnableParameter operation) : [256]
+	Node 'z.h._vector.layers[1].lstmState._.it._.PlusArgs[0].PlusArgs[0].PlusArgs[0]' (LearnableParameter operation) : [256]
+	Node 'z.h._vector.layers[1].lstmState._.it._.PlusArgs[0].PlusArgs[0].PlusArgs[1].TimesArgs[0]' (LearnableParameter operation) : [256 x 256]
+	Node 'z.h._vector.layers[1].lstmState._.it._.PlusArgs[0].PlusArgs[1].TimesArgs[0]' (LearnableParameter operation) : [256 x 256]
+	Node 'z.h._vector.layers[1].lstmState._.it._.PlusArgs[1].ElementTimesArgs[0]' (LearnableParameter operation) : [256]
+	Node 'z.h._vector.layers[1].lstmState._.ot._.PlusArgs[0].PlusArgs[0].PlusArgs[0]' (LearnableParameter operation) : [256]
+	Node 'z.h._vector.layers[1].lstmState._.ot._.PlusArgs[0].PlusArgs[0].PlusArgs[1].TimesArgs[0]' (LearnableParameter operation) : [256 x 256]
+	Node 'z.h._vector.layers[1].lstmState._.ot._.PlusArgs[0].PlusArgs[1].TimesArgs[0]' (LearnableParameter operation) : [256 x 256]
+	Node 'z.h._vector.layers[1].lstmState._.ot._.PlusArgs[1].ElementTimesArgs[0]' (LearnableParameter operation) : [256]
+
+No PreCompute nodes found, or all already computed. Skipping pre-computation step.
+Setting max temp memory size for Convolution operations to 1 samples.
+WARNING: No Convolution operation found.
+
+Starting Epoch 1: learning rate per sample = 0.000100  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+
+Starting minibatch loop.
+ Epoch[ 1 of 3]-Minibatch[   1-   1, 1.00%]: crossEntropy = 9.21028390 * 127; time = 1.4488s; samplesPerSecond = 87.7
+ Epoch[ 1 of 3]-Minibatch[   2-   2, 2.00%]: crossEntropy = 9.21064377 * 128; time = 0.0377s; samplesPerSecond = 3398.7
+ Epoch[ 1 of 3]-Minibatch[   3-   3, 3.00%]: crossEntropy = 9.21022034 * 128; time = 0.0379s; samplesPerSecond = 3376.3
+ Epoch[ 1 of 3]-Minibatch[   4-   4, 4.00%]: crossEntropy = 9.20940781 * 128; time = 0.0356s; samplesPerSecond = 3596.9
+ Epoch[ 1 of 3]-Minibatch[   5-   5, 5.00%]: crossEntropy = 9.20968246 * 128; time = 0.0349s; samplesPerSecond = 3666.2
+ Epoch[ 1 of 3]-Minibatch[   6-   6, 6.00%]: crossEntropy = 9.20947266 * 128; time = 0.0349s; samplesPerSecond = 3665.9
+ Epoch[ 1 of 3]-Minibatch[   7-   7, 7.00%]: crossEntropy = 9.20978928 * 128; time = 0.0349s; samplesPerSecond = 3670.1
+ Epoch[ 1 of 3]-Minibatch[   8-   8, 8.00%]: crossEntropy = 9.20963287 * 128; time = 0.0358s; samplesPerSecond = 3575.8
+ Epoch[ 1 of 3]-Minibatch[   9-   9, 9.00%]: crossEntropy = 9.20880890 * 128; time = 0.0332s; samplesPerSecond = 3850.6
+ Epoch[ 1 of 3]-Minibatch[  10-  10, 10.00%]: crossEntropy = 9.20915222 * 128; time = 0.0333s; samplesPerSecond = 3848.0
+ Epoch[ 1 of 3]-Minibatch[  11-  11, 11.00%]: crossEntropy = 9.20858002 * 128; time = 0.0332s; samplesPerSecond = 3852.6
+ Epoch[ 1 of 3]-Minibatch[  12-  12, 12.00%]: crossEntropy = 9.20848083 * 128; time = 0.0332s; samplesPerSecond = 3854.6
+ Epoch[ 1 of 3]-Minibatch[  13-  13, 13.00%]: crossEntropy = 9.20809174 * 128; time = 0.0333s; samplesPerSecond = 3843.6
+ Epoch[ 1 of 3]-Minibatch[  14-  14, 14.00%]: crossEntropy = 9.20755768 * 128; time = 0.0332s; samplesPerSecond = 3858.3
+ Epoch[ 1 of 3]-Minibatch[  15-  15, 15.00%]: crossEntropy = 9.20614624 * 128; time = 0.0332s; samplesPerSecond = 3853.8
+ Epoch[ 1 of 3]-Minibatch[  16-  16, 16.00%]: crossEntropy = 9.20776367 * 128; time = 0.0332s; samplesPerSecond = 3854.3
+ Epoch[ 1 of 3]-Minibatch[  17-  17, 17.00%]: crossEntropy = 9.20791626 * 128; time = 0.0333s; samplesPerSecond = 3847.7
+ Epoch[ 1 of 3]-Minibatch[  18-  18, 18.00%]: crossEntropy = 9.20777893 * 128; time = 0.0333s; samplesPerSecond = 3848.7
+ Epoch[ 1 of 3]-Minibatch[  19-  19, 19.00%]: crossEntropy = 9.20681763 * 128; time = 0.0333s; samplesPerSecond = 3849.2
+ Epoch[ 1 of 3]-Minibatch[  20-  20, 20.00%]: crossEntropy = 9.20733643 * 128; time = 0.0333s; samplesPerSecond = 3849.6
+ Epoch[ 1 of 3]-Minibatch[  21-  21, 21.00%]: crossEntropy = 9.20751953 * 128; time = 0.0333s; samplesPerSecond = 3839.6
+ Epoch[ 1 of 3]-Minibatch[  22-  22, 22.00%]: crossEntropy = 9.20658875 * 128; time = 0.0329s; samplesPerSecond = 3885.1
+ Epoch[ 1 of 3]-Minibatch[  23-  23, 23.00%]: crossEntropy = 9.20748901 * 128; time = 0.0333s; samplesPerSecond = 3844.9
+ Epoch[ 1 of 3]-Minibatch[  24-  24, 24.00%]: crossEntropy = 9.20710754 * 128; time = 0.0333s; samplesPerSecond = 3838.5
+ Epoch[ 1 of 3]-Minibatch[  25-  25, 25.00%]: crossEntropy = 9.20678711 * 128; time = 0.0333s; samplesPerSecond = 3845.2
+ Epoch[ 1 of 3]-Minibatch[  26-  26, 26.00%]: crossEntropy = 9.20584106 * 128; time = 0.0333s; samplesPerSecond = 3840.0
+ Epoch[ 1 of 3]-Minibatch[  27-  27, 27.00%]: crossEntropy = 9.20477295 * 128; time = 0.0333s; samplesPerSecond = 3848.8
+ Epoch[ 1 of 3]-Minibatch[  28-  28, 28.00%]: crossEntropy = 9.20573425 * 128; time = 0.0330s; samplesPerSecond = 3884.7
+ Epoch[ 1 of 3]-Minibatch[  29-  29, 29.00%]: crossEntropy = 9.20477295 * 128; time = 0.0333s; samplesPerSecond = 3848.1
+ Epoch[ 1 of 3]-Minibatch[  30-  30, 30.00%]: crossEntropy = 9.20590210 * 128; time = 0.0332s; samplesPerSecond = 3851.5
+ Epoch[ 1 of 3]-Minibatch[  31-  31, 31.00%]: crossEntropy = 9.20635986 * 128; time = 0.0332s; samplesPerSecond = 3851.4
+ Epoch[ 1 of 3]-Minibatch[  32-  32, 32.00%]: crossEntropy = 9.20541382 * 128; time = 0.0332s; samplesPerSecond = 3854.3
+ Epoch[ 1 of 3]-Minibatch[  33-  33, 33.00%]: crossEntropy = 9.20562744 * 128; time = 0.0333s; samplesPerSecond = 3846.6
+ Epoch[ 1 of 3]-Minibatch[  34-  34, 34.00%]: crossEntropy = 9.20565796 * 128; time = 0.0333s; samplesPerSecond = 3847.3
+ Epoch[ 1 of 3]-Minibatch[  35-  35, 35.00%]: crossEntropy = 9.20520020 * 128; time = 0.0333s; samplesPerSecond = 3846.4
+ Epoch[ 1 of 3]-Minibatch[  36-  36, 36.00%]: crossEntropy = 9.20480347 * 128; time = 0.0329s; samplesPerSecond = 3887.4
+ Epoch[ 1 of 3]-Minibatch[  37-  37, 37.00%]: crossEntropy = 9.20486450 * 128; time = 0.0332s; samplesPerSecond = 3851.6
+ Epoch[ 1 of 3]-Minibatch[  38-  38, 38.00%]: crossEntropy = 9.20513916 * 128; time = 0.0332s; samplesPerSecond = 3855.1
+ Epoch[ 1 of 3]-Minibatch[  39-  39, 39.00%]: crossEntropy = 9.20520020 * 128; time = 0.0333s; samplesPerSecond = 3843.7
+ Epoch[ 1 of 3]-Minibatch[  40-  40, 40.00%]: crossEntropy = 9.20526123 * 128; time = 0.0333s; samplesPerSecond = 3846.8
+ Epoch[ 1 of 3]-Minibatch[  41-  41, 41.00%]: crossEntropy = 9.20477295 * 128; time = 0.0333s; samplesPerSecond = 3847.9
+ Epoch[ 1 of 3]-Minibatch[  42-  42, 42.00%]: crossEntropy = 9.20205688 * 128; time = 0.0333s; samplesPerSecond = 3846.2
+ Epoch[ 1 of 3]-Minibatch[  43-  43, 43.00%]: crossEntropy = 9.20330811 * 128; time = 0.0332s; samplesPerSecond = 3855.1
+ Epoch[ 1 of 3]-Minibatch[  44-  44, 44.00%]: crossEntropy = 9.20306396 * 128; time = 0.0332s; samplesPerSecond = 3850.7
+ Epoch[ 1 of 3]-Minibatch[  45-  45, 45.00%]: crossEntropy = 9.20312500 * 128; time = 0.0333s; samplesPerSecond = 3845.0
+ Epoch[ 1 of 3]-Minibatch[  46-  46, 46.00%]: crossEntropy = 9.20123291 * 128; time = 0.0333s; samplesPerSecond = 3843.5
+ Epoch[ 1 of 3]-Minibatch[  47-  47, 47.00%]: crossEntropy = 9.20065308 * 128; time = 0.0329s; samplesPerSecond = 3885.4
+ Epoch[ 1 of 3]-Minibatch[  48-  48, 48.00%]: crossEntropy = 9.20120239 * 128; time = 0.0333s; samplesPerSecond = 3847.1
+ Epoch[ 1 of 3]-Minibatch[  49-  49, 49.00%]: crossEntropy = 9.20175171 * 128; time = 0.0332s; samplesPerSecond = 3854.0
+ Epoch[ 1 of 3]-Minibatch[  50-  50, 50.00%]: crossEntropy = 9.20327759 * 128; time = 0.0332s; samplesPerSecond = 3849.7
+ Epoch[ 1 of 3]-Minibatch[  51-  51, 51.00%]: crossEntropy = 9.20169067 * 128; time = 0.0332s; samplesPerSecond = 3850.9
+ Epoch[ 1 of 3]-Minibatch[  52-  52, 52.00%]: crossEntropy = 9.20272827 * 128; time = 0.0332s; samplesPerSecond = 3850.1
+ Epoch[ 1 of 3]-Minibatch[  53-  53, 53.00%]: crossEntropy = 9.20382690 * 128; time = 0.0329s; samplesPerSecond = 3889.4
+ Epoch[ 1 of 3]-Minibatch[  54-  54, 54.00%]: crossEntropy = 9.20233154 * 128; time = 0.0330s; samplesPerSecond = 3883.7
+ Epoch[ 1 of 3]-Minibatch[  55-  55, 55.00%]: crossEntropy = 9.20166016 * 128; time = 0.0333s; samplesPerSecond = 3842.9
+ Epoch[ 1 of 3]-Minibatch[  56-  56, 56.00%]: crossEntropy = 9.20062256 * 128; time = 0.0333s; samplesPerSecond = 3846.3
+ Epoch[ 1 of 3]-Minibatch[  57-  57, 57.00%]: crossEntropy = 9.20068359 * 128; time = 0.0329s; samplesPerSecond = 3888.7
+ Epoch[ 1 of 3]-Minibatch[  58-  58, 58.00%]: crossEntropy = 9.20196533 * 128; time = 0.0333s; samplesPerSecond = 3848.1
+ Epoch[ 1 of 3]-Minibatch[  59-  59, 59.00%]: crossEntropy = 9.20153809 * 128; time = 0.0332s; samplesPerSecond = 3849.6
+ Epoch[ 1 of 3]-Minibatch[  60-  60, 60.00%]: crossEntropy = 9.20025635 * 128; time = 0.0333s; samplesPerSecond = 3842.9
+ Epoch[ 1 of 3]-Minibatch[  61-  61, 61.00%]: crossEntropy = 9.20397949 * 128; time = 0.0329s; samplesPerSecond = 3885.5
+ Epoch[ 1 of 3]-Minibatch[  62-  62, 62.00%]: crossEntropy = 9.20190430 * 128; time = 0.0333s; samplesPerSecond = 3845.9
+ Epoch[ 1 of 3]-Minibatch[  63-  63, 63.00%]: crossEntropy = 9.19989014 * 128; time = 0.0333s; samplesPerSecond = 3844.9
+ Epoch[ 1 of 3]-Minibatch[  64-  64, 64.00%]: crossEntropy = 9.19952393 * 128; time = 0.0333s; samplesPerSecond = 3847.4
+ Epoch[ 1 of 3]-Minibatch[  65-  65, 65.00%]: crossEntropy = 9.19946289 * 128; time = 0.0332s; samplesPerSecond = 3851.8
+ Epoch[ 1 of 3]-Minibatch[  66-  66, 66.00%]: crossEntropy = 9.19989014 * 128; time = 0.0329s; samplesPerSecond = 3887.5
+ Epoch[ 1 of 3]-Minibatch[  67-  67, 67.00%]: crossEntropy = 9.20050049 * 128; time = 0.0333s; samplesPerSecond = 3846.8
+ Epoch[ 1 of 3]-Minibatch[  68-  68, 68.00%]: crossEntropy = 9.19879150 * 128; time = 0.0330s; samplesPerSecond = 3878.3
+ Epoch[ 1 of 3]-Minibatch[  69-  69, 69.00%]: crossEntropy = 9.19909668 * 128; time = 0.0330s; samplesPerSecond = 3878.7
+ Epoch[ 1 of 3]-Minibatch[  70-  70, 70.00%]: crossEntropy = 9.19952393 * 128; time = 0.0333s; samplesPerSecond = 3843.4
+ Epoch[ 1 of 3]-Minibatch[  71-  71, 71.00%]: crossEntropy = 9.19842529 * 128; time = 0.0333s; samplesPerSecond = 3845.3
+ Epoch[ 1 of 3]-Minibatch[  72-  72, 72.00%]: crossEntropy = 9.19824219 * 128; time = 0.0332s; samplesPerSecond = 3854.0
+ Epoch[ 1 of 3]-Minibatch[  73-  73, 73.00%]: crossEntropy = 9.19866943 * 128; time = 0.0329s; samplesPerSecond = 3890.1
+ Epoch[ 1 of 3]-Minibatch[  74-  74, 74.00%]: crossEntropy = 9.19824219 * 128; time = 0.0333s; samplesPerSecond = 3840.7
+ Epoch[ 1 of 3]-Minibatch[  75-  75, 75.00%]: crossEntropy = 9.19586182 * 128; time = 0.0334s; samplesPerSecond = 3832.9
+ Epoch[ 1 of 3]-Minibatch[  76-  76, 76.00%]: crossEntropy = 9.19403076 * 128; time = 0.0334s; samplesPerSecond = 3832.8
+ Epoch[ 1 of 3]-Minibatch[  77-  77, 77.00%]: crossEntropy = 9.19421387 * 128; time = 0.0334s; samplesPerSecond = 3831.3
+ Epoch[ 1 of 3]-Minibatch[  78-  78, 78.00%]: crossEntropy = 9.19458008 * 128; time = 0.0330s; samplesPerSecond = 3874.3
+ Epoch[ 1 of 3]-Minibatch[  79-  79, 79.00%]: crossEntropy = 9.19494629 * 128; time = 0.0330s; samplesPerSecond = 3879.6
+ Epoch[ 1 of 3]-Minibatch[  80-  80, 80.00%]: crossEntropy = 9.19354248 * 128; time = 0.0333s; samplesPerSecond = 3840.2
+ Epoch[ 1 of 3]-Minibatch[  81-  81, 81.00%]: crossEntropy = 9.19769287 * 128; time = 0.0334s; samplesPerSecond = 3835.3
+ Epoch[ 1 of 3]-Minibatch[  82-  82, 82.00%]: crossEntropy = 9.19580078 * 128; time = 0.0331s; samplesPerSecond = 3871.2
+ Epoch[ 1 of 3]-Minibatch[  83-  83, 83.00%]: crossEntropy = 9.19750977 * 128; time = 0.0333s; samplesPerSecond = 3839.3
+ Epoch[ 1 of 3]-Minibatch[  84-  84, 84.00%]: crossEntropy = 9.19470215 * 128; time = 0.0334s; samplesPerSecond = 3837.5
+ Epoch[ 1 of 3]-Minibatch[  85-  85, 85.00%]: crossEntropy = 9.19653320 * 128; time = 0.0333s; samplesPerSecond = 3848.2
+ Epoch[ 1 of 3]-Minibatch[  86-  86, 86.00%]: crossEntropy = 9.19580078 * 128; time = 0.0333s; samplesPerSecond = 3841.1
+ Epoch[ 1 of 3]-Minibatch[  87-  87, 87.00%]: crossEntropy = 9.19213867 * 128; time = 0.0334s; samplesPerSecond = 3836.0
+ Epoch[ 1 of 3]-Minibatch[  88-  88, 88.00%]: crossEntropy = 9.19140625 * 128; time = 0.0333s; samplesPerSecond = 3843.8
+ Epoch[ 1 of 3]-Minibatch[  89-  89, 89.00%]: crossEntropy = 9.19281006 * 128; time = 0.0333s; samplesPerSecond = 3844.5
+ Epoch[ 1 of 3]-Minibatch[  90-  90, 90.00%]: crossEntropy = 9.19610596 * 128; time = 0.0333s; samplesPerSecond = 3840.2
+ Epoch[ 1 of 3]-Minibatch[  91-  91, 91.00%]: crossEntropy = 9.19158936 * 128; time = 0.0333s; samplesPerSecond = 3841.4
+ Epoch[ 1 of 3]-Minibatch[  92-  92, 92.00%]: crossEntropy = 9.19012451 * 128; time = 0.0332s; samplesPerSecond = 3851.8
+ Epoch[ 1 of 3]-Minibatch[  93-  93, 93.00%]: crossEntropy = 9.19476318 * 128; time = 0.0332s; samplesPerSecond = 3853.7
+ Epoch[ 1 of 3]-Minibatch[  94-  94, 94.00%]: crossEntropy = 9.18518066 * 128; time = 0.0333s; samplesPerSecond = 3842.0
+ Epoch[ 1 of 3]-Minibatch[  95-  95, 95.00%]: crossEntropy = 9.19238281 * 128; time = 0.0332s; samplesPerSecond = 3851.2
+ Epoch[ 1 of 3]-Minibatch[  96-  96, 96.00%]: crossEntropy = 9.19415283 * 128; time = 0.0333s; samplesPerSecond = 3845.8
+ Epoch[ 1 of 3]-Minibatch[  97-  97, 97.00%]: crossEntropy = 9.19030762 * 128; time = 0.0332s; samplesPerSecond = 3851.8
+ Epoch[ 1 of 3]-Minibatch[  98-  98, 98.00%]: crossEntropy = 9.19232178 * 128; time = 0.0331s; samplesPerSecond = 3862.2
+ Epoch[ 1 of 3]-Minibatch[  99-  99, 99.00%]: crossEntropy = 9.19561768 * 128; time = 0.0332s; samplesPerSecond = 3855.2
+ Epoch[ 1 of 3]-Minibatch[ 100- 100, 100.00%]: crossEntropy = 9.19177246 * 128; time = 0.0333s; samplesPerSecond = 3847.5
+ Epoch[ 1 of 3]-Minibatch[ 101- 101, 101.00%]: crossEntropy = 9.19732666 * 128; time = 0.0333s; samplesPerSecond = 3848.1
+Finished Epoch[ 1 of 3]: [Training] crossEntropy = 9.20159054 * 12927; totalSamplesSeen = 12927; learningRatePerSample = 9.9999997e-05; epochTime=4.7932s
+SGD: Saving checkpoint model './Output/lstm32/lstm32.dnn.1'
+
+Starting Epoch 2: learning rate per sample = 0.000100  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+
+Starting minibatch loop.
+ Epoch[ 2 of 3]-Minibatch[   1-   1, 1.00%]: crossEntropy = 9.19704628 * 128; time = 0.0335s; samplesPerSecond = 3820.0
+ Epoch[ 2 of 3]-Minibatch[   2-   2, 2.00%]: crossEntropy = 9.19601059 * 128; time = 0.0330s; samplesPerSecond = 3880.6
+ Epoch[ 2 of 3]-Minibatch[   3-   3, 3.00%]: crossEntropy = 9.19140244 * 128; time = 0.0333s; samplesPerSecond = 3846.7
+ Epoch[ 2 of 3]-Minibatch[   4-   4, 4.00%]: crossEntropy = 9.19082451 * 128; time = 0.0333s; samplesPerSecond = 3841.9
+ Epoch[ 2 of 3]-Minibatch[   5-   5, 5.00%]: crossEntropy = 9.19234467 * 128; time = 0.0332s; samplesPerSecond = 3851.0
+ Epoch[ 2 of 3]-Minibatch[   6-   6, 6.00%]: crossEntropy = 9.19130325 * 128; time = 0.0330s; samplesPerSecond = 3881.7
+ Epoch[ 2 of 3]-Minibatch[   7-   7, 7.00%]: crossEntropy = 9.19270706 * 128; time = 0.0333s; samplesPerSecond = 3842.1
+ Epoch[ 2 of 3]-Minibatch[   8-   8, 8.00%]: crossEntropy = 9.19141388 * 128; time = 0.0332s; samplesPerSecond = 3850.6
+ Epoch[ 2 of 3]-Minibatch[   9-   9, 9.00%]: crossEntropy = 9.19252777 * 128; time = 0.0332s; samplesPerSecond = 3850.4
+ Epoch[ 2 of 3]-Minibatch[  10-  10, 10.00%]: crossEntropy = 9.19472504 * 128; time = 0.0332s; samplesPerSecond = 3851.2
+ Epoch[ 2 of 3]-Minibatch[  11-  11, 11.00%]: crossEntropy = 9.19169617 * 128; time = 0.0333s; samplesPerSecond = 3845.3
+ Epoch[ 2 of 3]-Minibatch[  12-  12, 12.00%]: crossEntropy = 9.19367218 * 128; time = 0.0333s; samplesPerSecond = 3847.1
+ Epoch[ 2 of 3]-Minibatch[  13-  13, 13.00%]: crossEntropy = 9.19189453 * 128; time = 0.0333s; samplesPerSecond = 3846.6
+ Epoch[ 2 of 3]-Minibatch[  14-  14, 14.00%]: crossEntropy = 9.19186401 * 128; time = 0.0333s; samplesPerSecond = 3845.9
+ Epoch[ 2 of 3]-Minibatch[  15-  15, 15.00%]: crossEntropy = 9.19018555 * 128; time = 0.0333s; samplesPerSecond = 3841.5
+ Epoch[ 2 of 3]-Minibatch[  16-  16, 16.00%]: crossEntropy = 9.18736267 * 128; time = 0.0330s; samplesPerSecond = 3881.4
+ Epoch[ 2 of 3]-Minibatch[  17-  17, 17.00%]: crossEntropy = 9.18617249 * 128; time = 0.0333s; samplesPerSecond = 3845.2
+ Epoch[ 2 of 3]-Minibatch[  18-  18, 18.00%]: crossEntropy = 9.19123840 * 128; time = 0.0330s; samplesPerSecond = 3877.3
+ Epoch[ 2 of 3]-Minibatch[  19-  19, 19.00%]: crossEntropy = 9.18862915 * 128; time = 0.0333s; samplesPerSecond = 3844.2
+ Epoch[ 2 of 3]-Minibatch[  20-  20, 20.00%]: crossEntropy = 9.19122314 * 128; time = 0.0333s; samplesPerSecond = 3844.7
+ Epoch[ 2 of 3]-Minibatch[  21-  21, 21.00%]: crossEntropy = 9.19477844 * 128; time = 0.0330s; samplesPerSecond = 3882.0
+ Epoch[ 2 of 3]-Minibatch[  22-  22, 22.00%]: crossEntropy = 9.19342041 * 128; time = 0.0333s; samplesPerSecond = 3845.8
+ Epoch[ 2 of 3]-Minibatch[  23-  23, 23.00%]: crossEntropy = 9.19039917 * 128; time = 0.0333s; samplesPerSecond = 3847.1
+ Epoch[ 2 of 3]-Minibatch[  24-  24, 24.00%]: crossEntropy = 9.18778992 * 128; time = 0.0333s; samplesPerSecond = 3848.5
+ Epoch[ 2 of 3]-Minibatch[  25-  25, 25.00%]: crossEntropy = 9.18786621 * 128; time = 0.0333s; samplesPerSecond = 3849.4
+ Epoch[ 2 of 3]-Minibatch[  26-  26, 26.00%]: crossEntropy = 9.19041443 * 128; time = 0.0333s; samplesPerSecond = 3846.4
+ Epoch[ 2 of 3]-Minibatch[  27-  27, 27.00%]: crossEntropy = 9.18710327 * 128; time = 0.0333s; samplesPerSecond = 3842.3
+ Epoch[ 2 of 3]-Minibatch[  28-  28, 28.00%]: crossEntropy = 9.18933105 * 128; time = 0.0332s; samplesPerSecond = 3850.1
+ Epoch[ 2 of 3]-Minibatch[  29-  29, 29.00%]: crossEntropy = 9.19308472 * 128; time = 0.0333s; samplesPerSecond = 3847.4
+ Epoch[ 2 of 3]-Minibatch[  30-  30, 30.00%]: crossEntropy = 9.19442749 * 128; time = 0.0332s; samplesPerSecond = 3850.1
+ Epoch[ 2 of 3]-Minibatch[  31-  31, 31.00%]: crossEntropy = 9.19216919 * 128; time = 0.0332s; samplesPerSecond = 3850.6
+ Epoch[ 2 of 3]-Minibatch[  32-  32, 32.00%]: crossEntropy = 9.19058228 * 128; time = 0.0333s; samplesPerSecond = 3846.8
+ Epoch[ 2 of 3]-Minibatch[  33-  33, 33.00%]: crossEntropy = 9.19155884 * 128; time = 0.0333s; samplesPerSecond = 3849.5
+ Epoch[ 2 of 3]-Minibatch[  34-  34, 34.00%]: crossEntropy = 9.18450928 * 128; time = 0.0332s; samplesPerSecond = 3850.4
+ Epoch[ 2 of 3]-Minibatch[  35-  35, 35.00%]: crossEntropy = 9.18508911 * 128; time = 0.0332s; samplesPerSecond = 3852.8
+ Epoch[ 2 of 3]-Minibatch[  36-  36, 36.00%]: crossEntropy = 9.18365479 * 128; time = 0.0333s; samplesPerSecond = 3843.6
+ Epoch[ 2 of 3]-Minibatch[  37-  37, 37.00%]: crossEntropy = 9.18841553 * 128; time = 0.0332s; samplesPerSecond = 3852.6
+ Epoch[ 2 of 3]-Minibatch[  38-  38, 38.00%]: crossEntropy = 9.18325806 * 128; time = 0.0332s; samplesPerSecond = 3854.6
+ Epoch[ 2 of 3]-Minibatch[  39-  39, 39.00%]: crossEntropy = 9.18988037 * 128; time = 0.0333s; samplesPerSecond = 3845.5
+ Epoch[ 2 of 3]-Minibatch[  40-  40, 40.00%]: crossEntropy = 9.18832397 * 128; time = 0.0333s; samplesPerSecond = 3845.3
+ Epoch[ 2 of 3]-Minibatch[  41-  41, 41.00%]: crossEntropy = 9.18386841 * 128; time = 0.0333s; samplesPerSecond = 3844.7
+ Epoch[ 2 of 3]-Minibatch[  42-  42, 42.00%]: crossEntropy = 9.17565918 * 128; time = 0.0333s; samplesPerSecond = 3843.4
+ Epoch[ 2 of 3]-Minibatch[  43-  43, 43.00%]: crossEntropy = 9.18637085 * 128; time = 0.0329s; samplesPerSecond = 3885.3
+ Epoch[ 2 of 3]-Minibatch[  44-  44, 44.00%]: crossEntropy = 9.18142700 * 128; time = 0.0329s; samplesPerSecond = 3886.6
+ Epoch[ 2 of 3]-Minibatch[  45-  45, 45.00%]: crossEntropy = 9.18576050 * 128; time = 0.0332s; samplesPerSecond = 3851.1
+ Epoch[ 2 of 3]-Minibatch[  46-  46, 46.00%]: crossEntropy = 9.18362427 * 128; time = 0.0334s; samplesPerSecond = 3837.0
+ Epoch[ 2 of 3]-Minibatch[  47-  47, 47.00%]: crossEntropy = 9.19049072 * 128; time = 0.0334s; samplesPerSecond = 3835.1
+ Epoch[ 2 of 3]-Minibatch[  48-  48, 48.00%]: crossEntropy = 9.18386841 * 128; time = 0.0334s; samplesPerSecond = 3838.0
+ Epoch[ 2 of 3]-Minibatch[  49-  49, 49.00%]: crossEntropy = 9.18353271 * 128; time = 0.0331s; samplesPerSecond = 3871.2
+ Epoch[ 2 of 3]-Minibatch[  50-  50, 50.00%]: crossEntropy = 9.18280029 * 128; time = 0.0334s; samplesPerSecond = 3837.4
+ Epoch[ 2 of 3]-Minibatch[  51-  51, 51.00%]: crossEntropy = 9.19067383 * 128; time = 0.0330s; samplesPerSecond = 3874.3
+ Epoch[ 2 of 3]-Minibatch[  52-  52, 52.00%]: crossEntropy = 9.18746948 * 128; time = 0.0333s; samplesPerSecond = 3841.4
+ Epoch[ 2 of 3]-Minibatch[  53-  53, 53.00%]: crossEntropy = 9.18075562 * 128; time = 0.0334s; samplesPerSecond = 3835.9
+ Epoch[ 2 of 3]-Minibatch[  54-  54, 54.00%]: crossEntropy = 9.18435669 * 128; time = 0.0334s; samplesPerSecond = 3836.7
+ Epoch[ 2 of 3]-Minibatch[  55-  55, 55.00%]: crossEntropy = 9.19204712 * 128; time = 0.0334s; samplesPerSecond = 3831.3
+ Epoch[ 2 of 3]-Minibatch[  56-  56, 56.00%]: crossEntropy = 9.18817139 * 128; time = 0.0334s; samplesPerSecond = 3834.6
+ Epoch[ 2 of 3]-Minibatch[  57-  57, 57.00%]: crossEntropy = 9.18853760 * 128; time = 0.0334s; samplesPerSecond = 3837.3
+ Epoch[ 2 of 3]-Minibatch[  58-  58, 58.00%]: crossEntropy = 9.18450928 * 128; time = 0.0334s; samplesPerSecond = 3836.1
+ Epoch[ 2 of 3]-Minibatch[  59-  59, 59.00%]: crossEntropy = 9.18902588 * 128; time = 0.0333s; samplesPerSecond = 3840.5
+ Epoch[ 2 of 3]-Minibatch[  60-  60, 60.00%]: crossEntropy = 9.18731689 * 128; time = 0.0334s; samplesPerSecond = 3836.9
+ Epoch[ 2 of 3]-Minibatch[  61-  61, 61.00%]: crossEntropy = 9.18719482 * 128; time = 0.0334s; samplesPerSecond = 3836.0
+ Epoch[ 2 of 3]-Minibatch[  62-  62, 62.00%]: crossEntropy = 9.18402100 * 128; time = 0.0333s; samplesPerSecond = 3839.3
+ Epoch[ 2 of 3]-Minibatch[  63-  63, 63.00%]: crossEntropy = 9.18652344 * 128; time = 0.0333s; samplesPerSecond = 3842.2
+ Epoch[ 2 of 3]-Minibatch[  64-  64, 64.00%]: crossEntropy = 9.18359375 * 128; time = 0.0333s; samplesPerSecond = 3841.2
+ Epoch[ 2 of 3]-Minibatch[  65-  65, 65.00%]: crossEntropy = 9.17437744 * 128; time = 0.0333s; samplesPerSecond = 3848.2
+ Epoch[ 2 of 3]-Minibatch[  66-  66, 66.00%]: crossEntropy = 9.17938232 * 128; time = 0.0334s; samplesPerSecond = 3834.7
+ Epoch[ 2 of 3]-Minibatch[  67-  67, 67.00%]: crossEntropy = 9.18054199 * 128; time = 0.0333s; samplesPerSecond = 3844.0
+ Epoch[ 2 of 3]-Minibatch[  68-  68, 68.00%]: crossEntropy = 9.18829346 * 128; time = 0.0333s; samplesPerSecond = 3847.2
+ Epoch[ 2 of 3]-Minibatch[  69-  69, 69.00%]: crossEntropy = 9.17932129 * 128; time = 0.0329s; samplesPerSecond = 3885.3
+ Epoch[ 2 of 3]-Minibatch[  70-  70, 70.00%]: crossEntropy = 9.17333984 * 128; time = 0.0333s; samplesPerSecond = 3849.0
+ Epoch[ 2 of 3]-Minibatch[  71-  71, 71.00%]: crossEntropy = 9.18066406 * 128; time = 0.0332s; samplesPerSecond = 3850.8
+ Epoch[ 2 of 3]-Minibatch[  72-  72, 72.00%]: crossEntropy = 9.18255615 * 128; time = 0.0333s; samplesPerSecond = 3845.7
+ Epoch[ 2 of 3]-Minibatch[  73-  73, 73.00%]: crossEntropy = 9.18493652 * 128; time = 0.0330s; samplesPerSecond = 3873.5
+ Epoch[ 2 of 3]-Minibatch[  74-  74, 74.00%]: crossEntropy = 9.18518066 * 128; time = 0.0330s; samplesPerSecond = 3881.8
+ Epoch[ 2 of 3]-Minibatch[  75-  75, 75.00%]: crossEntropy = 9.18005371 * 128; time = 0.0329s; samplesPerSecond = 3893.8
+ Epoch[ 2 of 3]-Minibatch[  76-  76, 76.00%]: crossEntropy = 9.18005371 * 128; time = 0.0333s; samplesPerSecond = 3843.8
+ Epoch[ 2 of 3]-Minibatch[  77-  77, 77.00%]: crossEntropy = 9.17810059 * 128; time = 0.0333s; samplesPerSecond = 3843.8
+ Epoch[ 2 of 3]-Minibatch[  78-  78, 78.00%]: crossEntropy = 9.17718506 * 128; time = 0.0333s; samplesPerSecond = 3846.3
+ Epoch[ 2 of 3]-Minibatch[  79-  79, 79.00%]: crossEntropy = 9.18188477 * 128; time = 0.0332s; samplesPerSecond = 3850.2
+ Epoch[ 2 of 3]-Minibatch[  80-  80, 80.00%]: crossEntropy = 9.18243408 * 128; time = 0.0333s; samplesPerSecond = 3838.8
+ Epoch[ 2 of 3]-Minibatch[  81-  81, 81.00%]: crossEntropy = 9.17791748 * 128; time = 0.0333s; samplesPerSecond = 3838.5
+ Epoch[ 2 of 3]-Minibatch[  82-  82, 82.00%]: crossEntropy = 9.18463135 * 128; time = 0.0333s; samplesPerSecond = 3841.4
+ Epoch[ 2 of 3]-Minibatch[  83-  83, 83.00%]: crossEntropy = 9.18487549 * 128; time = 0.0333s; samplesPerSecond = 3842.1
+ Epoch[ 2 of 3]-Minibatch[  84-  84, 84.00%]: crossEntropy = 9.18524170 * 128; time = 0.0332s; samplesPerSecond = 3850.2
+ Epoch[ 2 of 3]-Minibatch[  85-  85, 85.00%]: crossEntropy = 9.18084717 * 128; time = 0.0333s; samplesPerSecond = 3847.5
+ Epoch[ 2 of 3]-Minibatch[  86-  86, 86.00%]: crossEntropy = 9.18054199 * 128; time = 0.0332s; samplesPerSecond = 3851.2
+ Epoch[ 2 of 3]-Minibatch[  87-  87, 87.00%]: crossEntropy = 9.18078613 * 128; time = 0.0333s; samplesPerSecond = 3845.1
+ Epoch[ 2 of 3]-Minibatch[  88-  88, 88.00%]: crossEntropy = 9.18353271 * 128; time = 0.0333s; samplesPerSecond = 3839.8
+ Epoch[ 2 of 3]-Minibatch[  89-  89, 89.00%]: crossEntropy = 9.18444824 * 128; time = 0.0333s; samplesPerSecond = 3846.5
+ Epoch[ 2 of 3]-Minibatch[  90-  90, 90.00%]: crossEntropy = 9.18072510 * 128; time = 0.0333s; samplesPerSecond = 3847.9
+ Epoch[ 2 of 3]-Minibatch[  91-  91, 91.00%]: crossEntropy = 9.17681885 * 128; time = 0.0333s; samplesPerSecond = 3845.7
+ Epoch[ 2 of 3]-Minibatch[  92-  92, 92.00%]: crossEntropy = 9.16967773 * 128; time = 0.0332s; samplesPerSecond = 3850.9
+ Epoch[ 2 of 3]-Minibatch[  93-  93, 93.00%]: crossEntropy = 9.17108154 * 128; time = 0.0330s; samplesPerSecond = 3878.1
+ Epoch[ 2 of 3]-Minibatch[  94-  94, 94.00%]: crossEntropy = 9.17224121 * 128; time = 0.0333s; samplesPerSecond = 3840.6
+ Epoch[ 2 of 3]-Minibatch[  95-  95, 95.00%]: crossEntropy = 9.18261719 * 128; time = 0.0333s; samplesPerSecond = 3847.7
+ Epoch[ 2 of 3]-Minibatch[  96-  96, 96.00%]: crossEntropy = 9.18078613 * 128; time = 0.0332s; samplesPerSecond = 3849.9
+ Epoch[ 2 of 3]-Minibatch[  97-  97, 97.00%]: crossEntropy = 9.18548584 * 128; time = 0.0333s; samplesPerSecond = 3843.4
+ Epoch[ 2 of 3]-Minibatch[  98-  98, 98.00%]: crossEntropy = 9.17736816 * 128; time = 0.0333s; samplesPerSecond = 3842.3
+ Epoch[ 2 of 3]-Minibatch[  99-  99, 99.00%]: crossEntropy = 9.17395020 * 128; time = 0.0333s; samplesPerSecond = 3849.5
+ Epoch[ 2 of 3]-Minibatch[ 100- 100, 100.00%]: crossEntropy = 9.17974854 * 128; time = 0.0333s; samplesPerSecond = 3842.7
+Finished Epoch[ 2 of 3]: [Training] crossEntropy = 9.18553528 * 12800; totalSamplesSeen = 25727; learningRatePerSample = 9.9999997e-05; epochTime=3.32779s
+SGD: Saving checkpoint model './Output/lstm32/lstm32.dnn.2'
+
+Starting Epoch 3: learning rate per sample = 0.000100  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+
+Starting minibatch loop.
+ Epoch[ 3 of 3]-Minibatch[   1-   1, 1.00%]: crossEntropy = 9.17873287 * 128; time = 0.0365s; samplesPerSecond = 3507.9
+ Epoch[ 3 of 3]-Minibatch[   2-   2, 2.00%]: crossEntropy = 9.18475819 * 128; time = 0.0431s; samplesPerSecond = 2968.6
+ Epoch[ 3 of 3]-Minibatch[   3-   3, 3.00%]: crossEntropy = 9.18126297 * 128; time = 0.0364s; samplesPerSecond = 3514.5
+ Epoch[ 3 of 3]-Minibatch[   4-   4, 4.00%]: crossEntropy = 9.17870331 * 128; time = 0.0333s; samplesPerSecond = 3843.2
+ Epoch[ 3 of 3]-Minibatch[   5-   5, 5.00%]: crossEntropy = 9.18326569 * 128; time = 0.0325s; samplesPerSecond = 3939.4
+ Epoch[ 3 of 3]-Minibatch[   6-   6, 6.00%]: crossEntropy = 9.16937256 * 128; time = 0.0327s; samplesPerSecond = 3919.6
+ Epoch[ 3 of 3]-Minibatch[   7-   7, 7.00%]: crossEntropy = 9.16342926 * 128; time = 0.0329s; samplesPerSecond = 3891.2
+ Epoch[ 3 of 3]-Minibatch[   8-   8, 8.00%]: crossEntropy = 9.17295074 * 128; time = 0.0330s; samplesPerSecond = 3874.8
+ Epoch[ 3 of 3]-Minibatch[   9-   9, 9.00%]: crossEntropy = 9.18444824 * 128; time = 0.0330s; samplesPerSecond = 3879.3
+ Epoch[ 3 of 3]-Minibatch[  10-  10, 10.00%]: crossEntropy = 9.18059540 * 128; time = 0.0330s; samplesPerSecond = 3879.6
+ Epoch[ 3 of 3]-Minibatch[  11-  11, 11.00%]: crossEntropy = 9.17124176 * 128; time = 0.0330s; samplesPerSecond = 3876.6
+ Epoch[ 3 of 3]-Minibatch[  12-  12, 12.00%]: crossEntropy = 9.18061066 * 128; time = 0.0331s; samplesPerSecond = 3872.0
+ Epoch[ 3 of 3]-Minibatch[  13-  13, 13.00%]: crossEntropy = 9.17240143 * 128; time = 0.0327s; samplesPerSecond = 3916.6
+ Epoch[ 3 of 3]-Minibatch[  14-  14, 14.00%]: crossEntropy = 9.15345764 * 128; time = 0.0330s; samplesPerSecond = 3878.7
+ Epoch[ 3 of 3]-Minibatch[  15-  15, 15.00%]: crossEntropy = 9.16410828 * 128; time = 0.0330s; samplesPerSecond = 3875.3
+ Epoch[ 3 of 3]-Minibatch[  16-  16, 16.00%]: crossEntropy = 9.14875793 * 128; time = 0.0330s; samplesPerSecond = 3878.4
+ Epoch[ 3 of 3]-Minibatch[  17-  17, 17.00%]: crossEntropy = 9.14831543 * 128; time = 0.0330s; samplesPerSecond = 3879.4
+ Epoch[ 3 of 3]-Minibatch[  18-  18, 18.00%]: crossEntropy = 9.17431641 * 128; time = 0.0330s; samplesPerSecond = 3876.4
+ Epoch[ 3 of 3]-Minibatch[  19-  19, 19.00%]: crossEntropy = 9.17253113 * 128; time = 0.0330s; samplesPerSecond = 3880.3
+ Epoch[ 3 of 3]-Minibatch[  20-  20, 20.00%]: crossEntropy = 9.17471313 * 128; time = 0.0331s; samplesPerSecond = 3872.6
+ Epoch[ 3 of 3]-Minibatch[  21-  21, 21.00%]: crossEntropy = 9.17669678 * 128; time = 0.0328s; samplesPerSecond = 3903.9
+ Epoch[ 3 of 3]-Minibatch[  22-  22, 22.00%]: crossEntropy = 9.17127991 * 128; time = 0.0331s; samplesPerSecond = 3864.0
+ Epoch[ 3 of 3]-Minibatch[  23-  23, 23.00%]: crossEntropy = 9.15914917 * 128; time = 0.0331s; samplesPerSecond = 3872.6
+ Epoch[ 3 of 3]-Minibatch[  24-  24, 24.00%]: crossEntropy = 9.17996216 * 128; time = 0.0331s; samplesPerSecond = 3869.3
+ Epoch[ 3 of 3]-Minibatch[  25-  25, 25.00%]: crossEntropy = 9.17655945 * 128; time = 0.0331s; samplesPerSecond = 3868.8
+ Epoch[ 3 of 3]-Minibatch[  26-  26, 26.00%]: crossEntropy = 9.18168640 * 128; time = 0.0330s; samplesPerSecond = 3876.9
+ Epoch[ 3 of 3]-Minibatch[  27-  27, 27.00%]: crossEntropy = 9.18222046 * 128; time = 0.0331s; samplesPerSecond = 3867.1
+ Epoch[ 3 of 3]-Minibatch[  28-  28, 28.00%]: crossEntropy = 9.16766357 * 128; time = 0.0330s; samplesPerSecond = 3876.0
+ Epoch[ 3 of 3]-Minibatch[  29-  29, 29.00%]: crossEntropy = 9.16921997 * 128; time = 0.0331s; samplesPerSecond = 3871.3
+ Epoch[ 3 of 3]-Minibatch[  30-  30, 30.00%]: crossEntropy = 9.17919922 * 128; time = 0.0331s; samplesPerSecond = 3864.4
+ Epoch[ 3 of 3]-Minibatch[  31-  31, 31.00%]: crossEntropy = 9.16830444 * 128; time = 0.0330s; samplesPerSecond = 3879.1
+ Epoch[ 3 of 3]-Minibatch[  32-  32, 32.00%]: crossEntropy = 9.17224121 * 128; time = 0.0334s; samplesPerSecond = 3837.9
+ Epoch[ 3 of 3]-Minibatch[  33-  33, 33.00%]: crossEntropy = 9.17098999 * 128; time = 0.0333s; samplesPerSecond = 3843.7
+ Epoch[ 3 of 3]-Minibatch[  34-  34, 34.00%]: crossEntropy = 9.17953491 * 128; time = 0.0333s; samplesPerSecond = 3848.1
+ Epoch[ 3 of 3]-Minibatch[  35-  35, 35.00%]: crossEntropy = 9.16650391 * 128; time = 0.0330s; samplesPerSecond = 3883.8
+ Epoch[ 3 of 3]-Minibatch[  36-  36, 36.00%]: crossEntropy = 9.18331909 * 128; time = 0.0330s; samplesPerSecond = 3875.4
+ Epoch[ 3 of 3]-Minibatch[  37-  37, 37.00%]: crossEntropy = 9.18606567 * 128; time = 0.0333s; samplesPerSecond = 3840.7
+ Epoch[ 3 of 3]-Minibatch[  38-  38, 38.00%]: crossEntropy = 9.17483521 * 128; time = 0.0330s; samplesPerSecond = 3880.9
+ Epoch[ 3 of 3]-Minibatch[  39-  39, 39.00%]: crossEntropy = 9.17718506 * 128; time = 0.0333s; samplesPerSecond = 3844.1
+ Epoch[ 3 of 3]-Minibatch[  40-  40, 40.00%]: crossEntropy = 9.18933105 * 128; time = 0.0333s; samplesPerSecond = 3844.9
+ Epoch[ 3 of 3]-Minibatch[  41-  41, 41.00%]: crossEntropy = 9.17257690 * 128; time = 0.0333s; samplesPerSecond = 3848.5
+ Epoch[ 3 of 3]-Minibatch[  42-  42, 42.00%]: crossEntropy = 9.16372681 * 128; time = 0.0333s; samplesPerSecond = 3840.2
+ Epoch[ 3 of 3]-Minibatch[  43-  43, 43.00%]: crossEntropy = 9.16485596 * 128; time = 0.0330s; samplesPerSecond = 3874.3
+ Epoch[ 3 of 3]-Minibatch[  44-  44, 44.00%]: crossEntropy = 9.17181396 * 128; time = 0.0333s; samplesPerSecond = 3845.5
+ Epoch[ 3 of 3]-Minibatch[  45-  45, 45.00%]: crossEntropy = 9.16748047 * 128; time = 0.0333s; samplesPerSecond = 3848.5
+ Epoch[ 3 of 3]-Minibatch[  46-  46, 46.00%]: crossEntropy = 9.16909790 * 128; time = 0.0333s; samplesPerSecond = 3848.5
+ Epoch[ 3 of 3]-Minibatch[  47-  47, 47.00%]: crossEntropy = 9.17349243 * 128; time = 0.0333s; samplesPerSecond = 3846.0
+ Epoch[ 3 of 3]-Minibatch[  48-  48, 48.00%]: crossEntropy = 9.17535400 * 128; time = 0.0330s; samplesPerSecond = 3880.1
+ Epoch[ 3 of 3]-Minibatch[  49-  49, 49.00%]: crossEntropy = 9.17025757 * 128; time = 0.0333s; samplesPerSecond = 3843.2
+ Epoch[ 3 of 3]-Minibatch[  50-  50, 50.00%]: crossEntropy = 9.17791748 * 128; time = 0.0333s; samplesPerSecond = 3839.9
+ Epoch[ 3 of 3]-Minibatch[  51-  51, 51.00%]: crossEntropy = 9.17706299 * 128; time = 0.0334s; samplesPerSecond = 3835.7
+ Epoch[ 3 of 3]-Minibatch[  52-  52, 52.00%]: crossEntropy = 9.17507935 * 128; time = 0.0333s; samplesPerSecond = 3841.2
+ Epoch[ 3 of 3]-Minibatch[  53-  53, 53.00%]: crossEntropy = 9.16918945 * 128; time = 0.0333s; samplesPerSecond = 3844.9
+ Epoch[ 3 of 3]-Minibatch[  54-  54, 54.00%]: crossEntropy = 9.16333008 * 128; time = 0.0330s; samplesPerSecond = 3880.1
+ Epoch[ 3 of 3]-Minibatch[  55-  55, 55.00%]: crossEntropy = 9.16754150 * 128; time = 0.0330s; samplesPerSecond = 3878.4
+ Epoch[ 3 of 3]-Minibatch[  56-  56, 56.00%]: crossEntropy = 9.16873169 * 128; time = 0.0332s; samplesPerSecond = 3850.8
+ Epoch[ 3 of 3]-Minibatch[  57-  57, 57.00%]: crossEntropy = 9.16839600 * 128; time = 0.0333s; samplesPerSecond = 3842.7
+ Epoch[ 3 of 3]-Minibatch[  58-  58, 58.00%]: crossEntropy = 9.17645264 * 128; time = 0.0332s; samplesPerSecond = 3850.0
+ Epoch[ 3 of 3]-Minibatch[  59-  59, 59.00%]: crossEntropy = 9.17456055 * 128; time = 0.0332s; samplesPerSecond = 3851.8
+ Epoch[ 3 of 3]-Minibatch[  60-  60, 60.00%]: crossEntropy = 9.17163086 * 128; time = 0.0332s; samplesPerSecond = 3853.1
+ Epoch[ 3 of 3]-Minibatch[  61-  61, 61.00%]: crossEntropy = 9.16998291 * 128; time = 0.0333s; samplesPerSecond = 3847.7
+ Epoch[ 3 of 3]-Minibatch[  62-  62, 62.00%]: crossEntropy = 9.16705322 * 128; time = 0.0332s; samplesPerSecond = 3851.1
+ Epoch[ 3 of 3]-Minibatch[  63-  63, 63.00%]: crossEntropy = 9.17242432 * 128; time = 0.0332s; samplesPerSecond = 3850.6
+ Epoch[ 3 of 3]-Minibatch[  64-  64, 64.00%]: crossEntropy = 9.17150879 * 128; time = 0.0332s; samplesPerSecond = 3856.2
+ Epoch[ 3 of 3]-Minibatch[  65-  65, 65.00%]: crossEntropy = 9.17095947 * 128; time = 0.0332s; samplesPerSecond = 3857.4
+ Epoch[ 3 of 3]-Minibatch[  66-  66, 66.00%]: crossEntropy = 9.17169189 * 128; time = 0.0329s; samplesPerSecond = 3893.3
+ Epoch[ 3 of 3]-Minibatch[  67-  67, 67.00%]: crossEntropy = 9.16265869 * 128; time = 0.0332s; samplesPerSecond = 3855.7
+ Epoch[ 3 of 3]-Minibatch[  68-  68, 68.00%]: crossEntropy = 9.16845703 * 128; time = 0.0332s; samplesPerSecond = 3855.8
+ Epoch[ 3 of 3]-Minibatch[  69-  69, 69.00%]: crossEntropy = 9.17205811 * 128; time = 0.0332s; samplesPerSecond = 3857.9
+ Epoch[ 3 of 3]-Minibatch[  70-  70, 70.00%]: crossEntropy = 9.17340088 * 128; time = 0.0332s; samplesPerSecond = 3853.7
+ Epoch[ 3 of 3]-Minibatch[  71-  71, 71.00%]: crossEntropy = 9.16998291 * 128; time = 0.0329s; samplesPerSecond = 3889.0
+ Epoch[ 3 of 3]-Minibatch[  72-  72, 72.00%]: crossEntropy = 9.15240479 * 128; time = 0.0332s; samplesPerSecond = 3851.6
+ Epoch[ 3 of 3]-Minibatch[  73-  73, 73.00%]: crossEntropy = 9.15747070 * 128; time = 0.0332s; samplesPerSecond = 3853.0
+ Epoch[ 3 of 3]-Minibatch[  74-  74, 74.00%]: crossEntropy = 9.17413330 * 128; time = 0.0332s; samplesPerSecond = 3858.0
+ Epoch[ 3 of 3]-Minibatch[  75-  75, 75.00%]: crossEntropy = 9.17956543 * 128; time = 0.0333s; samplesPerSecond = 3849.6
+ Epoch[ 3 of 3]-Minibatch[  76-  76, 76.00%]: crossEntropy = 9.16784668 * 128; time = 0.0333s; samplesPerSecond = 3848.9
+ Epoch[ 3 of 3]-Minibatch[  77-  77, 77.00%]: crossEntropy = 9.13684082 * 128; time = 0.0333s; samplesPerSecond = 3848.1
+ Epoch[ 3 of 3]-Minibatch[  78-  78, 78.00%]: crossEntropy = 9.15740967 * 128; time = 0.0330s; samplesPerSecond = 3881.6
+ Epoch[ 3 of 3]-Minibatch[  79-  79, 79.00%]: crossEntropy = 9.15051270 * 128; time = 0.0332s; samplesPerSecond = 3855.7
+ Epoch[ 3 of 3]-Minibatch[  80-  80, 80.00%]: crossEntropy = 9.14764404 * 128; time = 0.0332s; samplesPerSecond = 3852.3
+ Epoch[ 3 of 3]-Minibatch[  81-  81, 81.00%]: crossEntropy = 9.14807129 * 128; time = 0.0332s; samplesPerSecond = 3853.3
+ Epoch[ 3 of 3]-Minibatch[  82-  82, 82.00%]: crossEntropy = 9.14636230 * 128; time = 0.0332s; samplesPerSecond = 3853.2
+ Epoch[ 3 of 3]-Minibatch[  83-  83, 83.00%]: crossEntropy = 9.14941406 * 128; time = 0.0333s; samplesPerSecond = 3847.8
+ Epoch[ 3 of 3]-Minibatch[  84-  84, 84.00%]: crossEntropy = 9.15124512 * 128; time = 0.0332s; samplesPerSecond = 3856.8
+ Epoch[ 3 of 3]-Minibatch[  85-  85, 85.00%]: crossEntropy = 9.15869141 * 128; time = 0.0332s; samplesPerSecond = 3853.1
+ Epoch[ 3 of 3]-Minibatch[  86-  86, 86.00%]: crossEntropy = 9.16778564 * 128; time = 0.0332s; samplesPerSecond = 3850.7
+ Epoch[ 3 of 3]-Minibatch[  87-  87, 87.00%]: crossEntropy = 9.14904785 * 128; time = 0.0332s; samplesPerSecond = 3857.0
+ Epoch[ 3 of 3]-Minibatch[  88-  88, 88.00%]: crossEntropy = 9.14984131 * 128; time = 0.0329s; samplesPerSecond = 3885.7
+ Epoch[ 3 of 3]-Minibatch[  89-  89, 89.00%]: crossEntropy = 9.17047119 * 128; time = 0.0333s; samplesPerSecond = 3848.5
+ Epoch[ 3 of 3]-Minibatch[  90-  90, 90.00%]: crossEntropy = 9.16558838 * 128; time = 0.0332s; samplesPerSecond = 3857.7
+ Epoch[ 3 of 3]-Minibatch[  91-  91, 91.00%]: crossEntropy = 9.17211914 * 128; time = 0.0329s; samplesPerSecond = 3890.0
+ Epoch[ 3 of 3]-Minibatch[  92-  92, 92.00%]: crossEntropy = 9.15484619 * 128; time = 0.0332s; samplesPerSecond = 3854.1
+ Epoch[ 3 of 3]-Minibatch[  93-  93, 93.00%]: crossEntropy = 9.16143799 * 128; time = 0.0332s; samplesPerSecond = 3854.1
+ Epoch[ 3 of 3]-Minibatch[  94-  94, 94.00%]: crossEntropy = 9.16729736 * 128; time = 0.0332s; samplesPerSecond = 3849.9
+ Epoch[ 3 of 3]-Minibatch[  95-  95, 95.00%]: crossEntropy = 9.15600586 * 128; time = 0.0332s; samplesPerSecond = 3851.5
+ Epoch[ 3 of 3]-Minibatch[  96-  96, 96.00%]: crossEntropy = 9.16430664 * 128; time = 0.0332s; samplesPerSecond = 3852.4
+ Epoch[ 3 of 3]-Minibatch[  97-  97, 97.00%]: crossEntropy = 9.17138672 * 128; time = 0.0329s; samplesPerSecond = 3888.7
+ Epoch[ 3 of 3]-Minibatch[  98-  98, 98.00%]: crossEntropy = 9.16595459 * 128; time = 0.0333s; samplesPerSecond = 3847.7
+ Epoch[ 3 of 3]-Minibatch[  99-  99, 99.00%]: crossEntropy = 9.15985107 * 128; time = 0.0332s; samplesPerSecond = 3851.1
+ Epoch[ 3 of 3]-Minibatch[ 100- 100, 100.00%]: crossEntropy = 9.16644287 * 128; time = 0.0332s; samplesPerSecond = 3850.4
+Finished Epoch[ 3 of 3]: [Training] crossEntropy = 9.16858643 * 12800; totalSamplesSeen = 38527; learningRatePerSample = 9.9999997e-05; epochTime=3.33305s
+SGD: Saving checkpoint model './Output/lstm32/lstm32.dnn'
+CNTKCommandTrainEnd: train
+
+Action "train" complete.
+
+__COMPLETED__
