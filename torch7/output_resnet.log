@@ -1,47 +1,47 @@
 => Creating model from file: models/resnet.lua	
  | ResNet-50 ImageNet	
 => Training epoch # 1	
- | Epoch: [1][16/160]    Time 4.060  Data 0.001  Err 7.2293  top1 100.000  top5 100.000	
- | Epoch: [1][32/160]    Time 0.420  Data 0.000  Err 2.8638  top1  93.750  top5  75.000	
- | Epoch: [1][48/160]    Time 0.420  Data 0.000  Err 14.1220  top1  93.750  top5  68.750	
- | Epoch: [1][64/160]    Time 0.425  Data 0.000  Err 35.2464  top1  93.750  top5  68.750	
- | Epoch: [1][80/160]    Time 0.420  Data 0.000  Err 36.9697  top1  87.500  top5  68.750	
- | Epoch: [1][96/160]    Time 0.419  Data 0.000  Err 21.8982  top1  93.750  top5  68.750	
- | Epoch: [1][112/160]    Time 0.419  Data 0.000  Err 26.8902  top1  93.750  top5  68.750	
- | Epoch: [1][128/160]    Time 0.419  Data 0.000  Err 13.5491  top1  87.500  top5  62.500	
- | Epoch: [1][144/160]    Time 0.421  Data 0.000  Err 5.3042  top1  87.500  top5  62.500	
- | Epoch: [1][160/160]    Time 0.420  Data 0.000  Err 5.2023  top1  87.500  top5  62.500	
+ | Epoch: [1][16/160]    Time 2.038  Data 0.001  Err 7.2293  top1 100.000  top5 100.000	
+ | Epoch: [1][32/160]    Time 0.161  Data 0.000  Err 2.8622  top1  93.750  top5  62.500	
+ | Epoch: [1][48/160]    Time 0.159  Data 0.000  Err 14.0848  top1  93.750  top5  68.750	
+ | Epoch: [1][64/160]    Time 0.159  Data 0.000  Err 35.6349  top1  93.750  top5  68.750	
+ | Epoch: [1][80/160]    Time 0.159  Data 0.000  Err 42.8194  top1  87.500  top5  68.750	
+ | Epoch: [1][96/160]    Time 0.159  Data 0.000  Err 25.5571  top1  87.500  top5  75.000	
+ | Epoch: [1][112/160]    Time 0.159  Data 0.000  Err 8.7826  top1  93.750  top5  56.250	
+ | Epoch: [1][128/160]    Time 0.159  Data 0.000  Err 5.6642  top1  87.500  top5  62.500	
+ | Epoch: [1][144/160]    Time 0.159  Data 0.000  Err 5.4979  top1  87.500  top5  62.500	
+ | Epoch: [1][160/160]    Time 0.159  Data 0.000  Err 5.4896  top1  87.500  top5  62.500	
 => Training epoch # 2	
- | Epoch: [2][16/160]    Time 0.420  Data 0.000  Err 5.0522  top1  87.500  top5  62.500	
- | Epoch: [2][32/160]    Time 0.421  Data 0.000  Err 4.9135  top1  87.500  top5  68.750	
- | Epoch: [2][48/160]    Time 0.419  Data 0.000  Err 4.7993  top1  87.500  top5  68.750	
- | Epoch: [2][64/160]    Time 0.420  Data 0.000  Err 4.6769  top1  87.500  top5  62.500	
- | Epoch: [2][80/160]    Time 0.426  Data 0.000  Err 4.5485  top1  87.500  top5  56.250	
- | Epoch: [2][96/160]    Time 0.420  Data 0.000  Err 4.4003  top1  87.500  top5  56.250	
- | Epoch: [2][112/160]    Time 0.420  Data 0.000  Err 4.2510  top1  93.750  top5  56.250	
- | Epoch: [2][128/160]    Time 0.422  Data 0.000  Err 4.1328  top1  87.500  top5  56.250	
- | Epoch: [2][144/160]    Time 0.420  Data 0.000  Err 4.0340  top1  87.500  top5  56.250	
- | Epoch: [2][160/160]    Time 0.420  Data 0.000  Err 3.8909  top1  87.500  top5  56.250	
+ | Epoch: [2][16/160]    Time 0.159  Data 0.000  Err 5.4633  top1  87.500  top5  62.500	
+ | Epoch: [2][32/160]    Time 0.158  Data 0.000  Err 5.4107  top1  87.500  top5  62.500	
+ | Epoch: [2][48/160]    Time 0.159  Data 0.000  Err 5.3420  top1  87.500  top5  56.250	
+ | Epoch: [2][64/160]    Time 0.159  Data 0.000  Err 5.2577  top1  93.750  top5  56.250	
+ | Epoch: [2][80/160]    Time 0.159  Data 0.000  Err 5.1814  top1  93.750  top5  56.250	
+ | Epoch: [2][96/160]    Time 0.159  Data 0.000  Err 5.0867  top1  93.750  top5  56.250	
+ | Epoch: [2][112/160]    Time 0.159  Data 0.000  Err 4.9824  top1  93.750  top5  56.250	
+ | Epoch: [2][128/160]    Time 0.159  Data 0.000  Err 4.8937  top1  93.750  top5  56.250	
+ | Epoch: [2][144/160]    Time 0.159  Data 0.000  Err 4.8048  top1  87.500  top5  62.500	
+ | Epoch: [2][160/160]    Time 0.159  Data 0.000  Err 4.7216  top1  87.500  top5  56.250	
 => Training epoch # 3	
- | Epoch: [3][16/160]    Time 0.420  Data 0.000  Err 3.7185  top1  81.250  top5  56.250	
- | Epoch: [3][32/160]    Time 0.421  Data 0.000  Err 3.5328  top1  81.250  top5  56.250	
- | Epoch: [3][48/160]    Time 0.420  Data 0.000  Err 3.3861  top1  81.250  top5  56.250	
- | Epoch: [3][64/160]    Time 0.420  Data 0.000  Err 3.2640  top1  75.000  top5  56.250	
- | Epoch: [3][80/160]    Time 0.421  Data 0.000  Err 3.1544  top1  75.000  top5  50.000	
- | Epoch: [3][96/160]    Time 0.420  Data 0.000  Err 3.0249  top1  56.250  top5  50.000	
- | Epoch: [3][112/160]    Time 0.421  Data 0.000  Err 2.8866  top1  62.500  top5  43.750	
- | Epoch: [3][128/160]    Time 0.420  Data 0.000  Err 2.7366  top1  62.500  top5  18.750	
- | Epoch: [3][144/160]    Time 0.420  Data 0.000  Err 2.5770  top1  68.750  top5  18.750	
- | Epoch: [3][160/160]    Time 0.421  Data 0.000  Err 2.4012  top1  62.500  top5  18.750	
+ | Epoch: [3][16/160]    Time 0.159  Data 0.000  Err 4.6388  top1  87.500  top5  56.250	
+ | Epoch: [3][32/160]    Time 0.159  Data 0.000  Err 4.5336  top1  87.500  top5  56.250	
+ | Epoch: [3][48/160]    Time 0.159  Data 0.000  Err 4.4451  top1  87.500  top5  56.250	
+ | Epoch: [3][64/160]    Time 0.159  Data 0.000  Err 4.3449  top1  87.500  top5  56.250	
+ | Epoch: [3][80/160]    Time 0.159  Data 0.000  Err 4.2484  top1  87.500  top5  56.250	
+ | Epoch: [3][96/160]    Time 0.159  Data 0.000  Err 4.1313  top1  87.500  top5  56.250	
+ | Epoch: [3][112/160]    Time 0.159  Data 0.000  Err 4.0091  top1  87.500  top5  50.000	
+ | Epoch: [3][128/160]    Time 0.159  Data 0.000  Err 3.8753  top1  87.500  top5  50.000	
+ | Epoch: [3][144/160]    Time 0.159  Data 0.000  Err 3.7360  top1  87.500  top5  50.000	
+ | Epoch: [3][160/160]    Time 0.158  Data 0.000  Err 3.5808  top1  87.500  top5  50.000	
 => Training epoch # 4	
- | Epoch: [4][16/160]    Time 0.424  Data 0.001  Err 2.2104  top1  50.000  top5  18.750	
- | Epoch: [4][32/160]    Time 0.425  Data 0.000  Err 2.0109  top1  43.750  top5  12.500	
- | Epoch: [4][48/160]    Time 0.421  Data 0.000  Err 1.8170  top1  31.250  top5  12.500	
- | Epoch: [4][64/160]    Time 0.421  Data 0.000  Err 1.6380  top1  31.250  top5   6.250	
- | Epoch: [4][80/160]    Time 0.423  Data 0.000  Err 1.4821  top1  31.250  top5   6.250	
- | Epoch: [4][96/160]    Time 0.420  Data 0.000  Err 1.3607  top1  25.000  top5   6.250	
- | Epoch: [4][112/160]    Time 0.421  Data 0.000  Err 1.2710  top1  25.000  top5   6.250	
- | Epoch: [4][128/160]    Time 0.421  Data 0.000  Err 1.1957  top1  18.750  top5   0.000	
- | Epoch: [4][144/160]    Time 0.420  Data 0.000  Err 1.3212  top1  43.750  top5   6.250	
- | Epoch: [4][160/160]    Time 0.420  Data 0.000  Err 1.1085  top1  18.750  top5   0.000	
+ | Epoch: [4][16/160]    Time 0.161  Data 0.001  Err 3.4372  top1  87.500  top5  37.500	
+ | Epoch: [4][32/160]    Time 0.159  Data 0.000  Err 3.2926  top1  87.500  top5  31.250	
+ | Epoch: [4][48/160]    Time 0.159  Data 0.000  Err 3.1451  top1  75.000  top5  18.750	
+ | Epoch: [4][64/160]    Time 0.160  Data 0.000  Err 2.9931  top1  68.750  top5  18.750	
+ | Epoch: [4][80/160]    Time 0.159  Data 0.000  Err 2.8378  top1  62.500  top5  18.750	
+ | Epoch: [4][96/160]    Time 0.159  Data 0.000  Err 2.6873  top1  62.500  top5  18.750	
+ | Epoch: [4][112/160]    Time 0.159  Data 0.000  Err 2.5308  top1  43.750  top5  18.750	
+ | Epoch: [4][128/160]    Time 0.158  Data 0.000  Err 2.3683  top1  37.500  top5  18.750	
+ | Epoch: [4][144/160]    Time 0.159  Data 0.000  Err 2.2137  top1  37.500  top5  12.500	
+ | Epoch: [4][160/160]    Time 0.159  Data 0.000  Err 2.0533  top1  37.500  top5  12.500	
  * Finished top1:    inf  top5:    inf	

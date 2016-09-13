@@ -18,7 +18,7 @@
    momentum : 0.9
    progress : false
    saturate : 400
-   savepath : "/home/xiangli/save/rnnlm"
+   savepath : "/home/guolin/save/rnnlm"
    seqlen : 32
    silent : false
    startlr : 1
@@ -143,5 +143,5 @@ Epoch #1 :
 3136	
 3168	
 3200	
-Time elapsed for 100 iters: 18.655199050903 seconds	
+Time elapsed for 100 iters: 10.325704813004 seconds	
 Evaluate model using : 	
