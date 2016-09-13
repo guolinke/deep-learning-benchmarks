@@ -10,6 +10,8 @@ Memory: DDR4, 8 * 16GB @ 2133MHZ
 
 GPU: GTX Titan X(Maxwell), Driver version: 367.27, CUDA 7.5, cuDNN v5.1
 
+Hard Drive: 256GB SSD
+
 
 ### Benchmark Results
 
