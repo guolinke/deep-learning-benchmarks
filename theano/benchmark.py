@@ -19,6 +19,8 @@ parser.add_argument('--num_batches', '-n', type=int, default=100,
 
 args = parser.parse_args()
 
+input_generator = None
+
 if args.arch == 'alexnet':
     from models.alexnet import build_model, featureDim, labelDim
 elif args.arch == 'resnet':
@@ -28,9 +30,9 @@ elif args.arch == 'fcn5':
 elif args.arch == 'fcn8':
     from models.fcn8 import build_model, featureDim, labelDim
 elif args.arch == 'lstm32':
-    from models.lstm import build_model32 as build_model, featureDim32 as featureDim, labelDim32 as labelDim
+    from models.lstm import build_model32 as build_model, featureDim32 as featureDim, labelDim32 as labelDim, input_generator32 as input_generator
 elif args.arch == 'lstm64':
-    from models.lstm import build_model64 as build_model, featureDim64 as featureDim, labelDim64 as labelDim
+    from models.lstm import build_model64 as build_model, featureDim64 as featureDim, labelDim64 as labelDim, input_generator64 as input_generator
 else:
     raise ValueError('Invalid architecture name')
 
@@ -76,7 +78,10 @@ def main():
     full_func = theano.function([input_var, labels_var], output, updates=updates)
     print('Functions are compiled')
 
-    inputs= np.random.rand(batch_size, *featureDim).astype(np.float32)
+    if input_generator is None:
+        inputs = np.random.rand(batch_size, *featureDim).astype(np.float32)
+    else:
+        inputs = input_generator(batch_size, *featureDim)
     labels = np.random.randint(0, labelDim, size=batch_size).astype(np.int32)
 
     time_theano_run(forward_func, [inputs], 'Forward')
