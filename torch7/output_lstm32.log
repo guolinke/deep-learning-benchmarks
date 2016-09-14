@@ -1,0 +1,158 @@
+{
+   batchsize : 128
+   bn : false
+   cuda : true
+   cutoff : 5
+   device : 1
+   dropout : 0
+   earlystop : 50
+   gru : false
+   hiddensize : {256,256}
+   id : ""
+   inputsize : 256
+   iters : 100
+   lstm : true
+   maxepoch : 1
+   maxnormout : -1
+   minlr : 1e-05
+   momentum : 0.9
+   progress : false
+   saturate : 400
+   savepath : "/home/guolin/save/rnnlm"
+   seqlen : 32
+   silent : false
+   startlr : 1
+   trainsize : -1
+   uniform : 0.1
+   validsize : -1
+}	
+Vocabulary size : 10000	
+Train set split into 128 sequences of length 7261	
+Language Model:	
+nn.Sequential {
+  [input -> (1) -> (2) -> (3) -> output]
+  (1): nn.LookupTable
+  (2): nn.SplitTable
+  (3): nn.Sequencer @ nn.Recursor @ nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> (4) -> output]
+    (1): nn.FastLSTM(256 -> 256)
+    (2): nn.FastLSTM(256 -> 256)
+    (3): nn.Linear(256 -> 10000)
+    (4): nn.LogSoftMax
+  }
+}
+	
+Epoch #1 :	
+32	
+64	
+96	
+128	
+160	
+192	
+224	
+256	
+288	
+320	
+352	
+384	
+416	
+448	
+480	
+512	
+544	
+576	
+608	
+640	
+672	
+704	
+736	
+768	
+800	
+832	
+864	
+896	
+928	
+960	
+992	
+1024	
+1056	
+1088	
+1120	
+1152	
+1184	
+1216	
+1248	
+1280	
+1312	
+1344	
+1376	
+1408	
+1440	
+1472	
+1504	
+1536	
+1568	
+1600	
+1632	
+1664	
+1696	
+1728	
+1760	
+1792	
+1824	
+1856	
+1888	
+1920	
+1952	
+1984	
+2016	
+2048	
+2080	
+2112	
+2144	
+2176	
+2208	
+2240	
+2272	
+2304	
+2336	
+2368	
+2400	
+2432	
+2464	
+2496	
+2528	
+2560	
+2592	
+2624	
+2656	
+2688	
+2720	
+2752	
+2784	
+2816	
+2848	
+2880	
+2912	
+2944	
+2976	
+3008	
+3040	
+3072	
+3104	
+3136	
+3168	
+3200	
+Time elapsed for 100 iters: 10.376094102859 seconds	
+Model parameters: 	6180624	
+All shape: 	{
+  1 : CudaTensor - size: 10000x256
+  2 : CudaTensor - size: 1024x256
+  3 : CudaTensor - size: 1024
+  4 : CudaTensor - size: 1024x256
+  5 : CudaTensor - size: 1024x256
+  6 : CudaTensor - size: 1024
+  7 : CudaTensor - size: 1024x256
+  8 : CudaTensor - size: 10000x256
+  9 : CudaTensor - size: 10000
+}

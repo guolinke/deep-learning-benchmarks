@@ -1,0 +1,29 @@
+Running on device: GeForce GTX TITAN X	
+Model Parameters: 	62378344	
+All shape: 	{
+  1 : DoubleTensor - size: 96x3x11x11
+  2 : DoubleTensor - size: 96
+  3 : DoubleTensor - size: 256x96x5x5
+  4 : DoubleTensor - size: 256
+  5 : DoubleTensor - size: 384x256x3x3
+  6 : DoubleTensor - size: 384
+  7 : DoubleTensor - size: 384x384x3x3
+  8 : DoubleTensor - size: 384
+  9 : DoubleTensor - size: 256x384x3x3
+  10 : DoubleTensor - size: 256
+  11 : DoubleTensor - size: 4096x9216
+  12 : DoubleTensor - size: 4096
+  13 : DoubleTensor - size: 4096x4096
+  14 : DoubleTensor - size: 4096
+  15 : DoubleTensor - size: 1000x4096
+  16 : DoubleTensor - size: 1000
+}
+ModelType: AlexNet	Kernels: cudnn	Input shape: 16x3x224x224	
+cudnn                                   :updateOutput():       8.32	
+cudnn                                :updateGradInput():       7.52	
+cudnn                              :accGradParameters():       7.89	
+cudnn                                          :Forward:       8.32	
+cudnn                                         :Backward:      15.41	
+cudnn                                            :TOTAL:      23.73ms	
+ | Epoch: [][]    Time   0.023727	
+	

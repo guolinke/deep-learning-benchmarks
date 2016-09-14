@@ -1,0 +1,211 @@
+=> Creating model from file: models/resnet.lua	
+ | ResNet-50 ImageNet	
+=> Training epoch # 1	
+ | Epoch: [1][16/160]    Time 2.062  Data 0.000  Err 7.2293  top1 100.000  top5 100.000	
+ | Epoch: [1][32/160]    Time 0.160  Data 0.000  Err 2.8622  top1  93.750  top5  62.500	
+ | Epoch: [1][48/160]    Time 0.160  Data 0.000  Err 14.1181  top1  93.750  top5  68.750	
+ | Epoch: [1][64/160]    Time 0.160  Data 0.000  Err 36.0788  top1  93.750  top5  68.750	
+ | Epoch: [1][80/160]    Time 0.160  Data 0.000  Err 64.9687  top1  93.750  top5  68.750	
+ | Epoch: [1][96/160]    Time 0.160  Data 0.000  Err 48.5209  top1  93.750  top5  68.750	
+ | Epoch: [1][112/160]    Time 0.160  Data 0.000  Err 39.4284  top1  93.750  top5  68.750	
+ | Epoch: [1][128/160]    Time 0.159  Data 0.000  Err 26.9979  top1  87.500  top5  68.750	
+ | Epoch: [1][144/160]    Time 0.159  Data 0.000  Err 17.5296  top1  93.750  top5  68.750	
+ | Epoch: [1][160/160]    Time 0.159  Data 0.000  Err 6.1696  top1  93.750  top5  62.500	
+=> Training epoch # 2	
+ | Epoch: [2][16/160]    Time 0.160  Data 0.000  Err 5.5959  top1  87.500  top5  62.500	
+ | Epoch: [2][32/160]    Time 0.159  Data 0.000  Err 5.5853  top1  87.500  top5  68.750	
+ | Epoch: [2][48/160]    Time 0.159  Data 0.000  Err 5.4651  top1  87.500  top5  62.500	
+ | Epoch: [2][64/160]    Time 0.159  Data 0.000  Err 5.3462  top1  87.500  top5  62.500	
+ | Epoch: [2][80/160]    Time 0.159  Data 0.000  Err 5.2996  top1  87.500  top5  68.750	
+ | Epoch: [2][96/160]    Time 0.159  Data 0.000  Err 5.1692  top1  87.500  top5  62.500	
+ | Epoch: [2][112/160]    Time 0.159  Data 0.000  Err 5.0394  top1  87.500  top5  62.500	
+ | Epoch: [2][128/160]    Time 0.159  Data 0.000  Err 4.9146  top1  81.250  top5  62.500	
+ | Epoch: [2][144/160]    Time 0.159  Data 0.000  Err 4.7704  top1  75.000  top5  62.500	
+ | Epoch: [2][160/160]    Time 0.159  Data 0.000  Err 4.6502  top1  81.250  top5  68.750	
+=> Training epoch # 3	
+ | Epoch: [3][16/160]    Time 0.159  Data 0.000  Err 4.5293  top1  81.250  top5  68.750	
+ | Epoch: [3][32/160]    Time 0.159  Data 0.000  Err 4.4082  top1  87.500  top5  68.750	
+ | Epoch: [3][48/160]    Time 0.159  Data 0.000  Err 4.2932  top1  93.750  top5  68.750	
+ | Epoch: [3][64/160]    Time 0.159  Data 0.000  Err 4.1635  top1  87.500  top5  68.750	
+ | Epoch: [3][80/160]    Time 0.158  Data 0.000  Err 4.0435  top1  87.500  top5  62.500	
+ | Epoch: [3][96/160]    Time 0.159  Data 0.000  Err 3.9515  top1  87.500  top5  56.250	
+ | Epoch: [3][112/160]    Time 0.159  Data 0.000  Err 3.8633  top1  87.500  top5  56.250	
+ | Epoch: [3][128/160]    Time 0.159  Data 0.000  Err 3.7750  top1  87.500  top5  62.500	
+ | Epoch: [3][144/160]    Time 0.159  Data 0.000  Err 3.6802  top1  87.500  top5  62.500	
+ | Epoch: [3][160/160]    Time 0.160  Data 0.000  Err 3.5935  top1  87.500  top5  62.500	
+=> Training epoch # 4	
+ | Epoch: [4][16/160]    Time 0.160  Data 0.000  Err 3.4951  top1  87.500  top5  50.000	
+ | Epoch: [4][32/160]    Time 0.159  Data 0.000  Err 3.4028  top1  87.500  top5  50.000	
+ | Epoch: [4][48/160]    Time 0.159  Data 0.000  Err 3.2954  top1  81.250  top5  43.750	
+ | Epoch: [4][64/160]    Time 0.159  Data 0.000  Err 3.1876  top1  81.250  top5  43.750	
+ | Epoch: [4][80/160]    Time 0.160  Data 0.000  Err 3.0908  top1  75.000  top5  37.500	
+ | Epoch: [4][96/160]    Time 0.159  Data 0.000  Err 3.0000  top1  75.000  top5  37.500	
+ | Epoch: [4][112/160]    Time 0.159  Data 0.000  Err 2.9176  top1  68.750  top5  37.500	
+ | Epoch: [4][128/160]    Time 0.159  Data 0.000  Err 2.8432  top1  68.750  top5  37.500	
+ | Epoch: [4][144/160]    Time 0.159  Data 0.000  Err 2.7652  top1  68.750  top5  37.500	
+ | Epoch: [4][160/160]    Time 0.159  Data 0.000  Err 2.6845  top1  68.750  top5  31.250	
+Model parameters: 	25557032	
+All shape: 	{
+  1 : CudaTensor - size: 64x3x7x7
+  2 : CudaTensor - size: 64
+  3 : CudaTensor - size: 64
+  4 : CudaTensor - size: 64x64x1x1
+  5 : CudaTensor - size: 64
+  6 : CudaTensor - size: 64
+  7 : CudaTensor - size: 64x64x3x3
+  8 : CudaTensor - size: 64
+  9 : CudaTensor - size: 64
+  10 : CudaTensor - size: 256x64x1x1
+  11 : CudaTensor - size: 256
+  12 : CudaTensor - size: 256
+  13 : CudaTensor - size: 256x64x1x1
+  14 : CudaTensor - size: 256
+  15 : CudaTensor - size: 256
+  16 : CudaTensor - size: 64x256x1x1
+  17 : CudaTensor - size: 64
+  18 : CudaTensor - size: 64
+  19 : CudaTensor - size: 64x64x3x3
+  20 : CudaTensor - size: 64
+  21 : CudaTensor - size: 64
+  22 : CudaTensor - size: 256x64x1x1
+  23 : CudaTensor - size: 256
+  24 : CudaTensor - size: 256
+  25 : CudaTensor - size: 64x256x1x1
+  26 : CudaTensor - size: 64
+  27 : CudaTensor - size: 64
+  28 : CudaTensor - size: 64x64x3x3
+  29 : CudaTensor - size: 64
+  30 : CudaTensor - size: 64
+  31 : CudaTensor - size: 256x64x1x1
+  32 : CudaTensor - size: 256
+  33 : CudaTensor - size: 256
+  34 : CudaTensor - size: 128x256x1x1
+  35 : CudaTensor - size: 128
+  36 : CudaTensor - size: 128
+  37 : CudaTensor - size: 128x128x3x3
+  38 : CudaTensor - size: 128
+  39 : CudaTensor - size: 128
+  40 : CudaTensor - size: 512x128x1x1
+  41 : CudaTensor - size: 512
+  42 : CudaTensor - size: 512
+  43 : CudaTensor - size: 512x256x1x1
+  44 : CudaTensor - size: 512
+  45 : CudaTensor - size: 512
+  46 : CudaTensor - size: 128x512x1x1
+  47 : CudaTensor - size: 128
+  48 : CudaTensor - size: 128
+  49 : CudaTensor - size: 128x128x3x3
+  50 : CudaTensor - size: 128
+  51 : CudaTensor - size: 128
+  52 : CudaTensor - size: 512x128x1x1
+  53 : CudaTensor - size: 512
+  54 : CudaTensor - size: 512
+  55 : CudaTensor - size: 128x512x1x1
+  56 : CudaTensor - size: 128
+  57 : CudaTensor - size: 128
+  58 : CudaTensor - size: 128x128x3x3
+  59 : CudaTensor - size: 128
+  60 : CudaTensor - size: 128
+  61 : CudaTensor - size: 512x128x1x1
+  62 : CudaTensor - size: 512
+  63 : CudaTensor - size: 512
+  64 : CudaTensor - size: 128x512x1x1
+  65 : CudaTensor - size: 128
+  66 : CudaTensor - size: 128
+  67 : CudaTensor - size: 128x128x3x3
+  68 : CudaTensor - size: 128
+  69 : CudaTensor - size: 128
+  70 : CudaTensor - size: 512x128x1x1
+  71 : CudaTensor - size: 512
+  72 : CudaTensor - size: 512
+  73 : CudaTensor - size: 256x512x1x1
+  74 : CudaTensor - size: 256
+  75 : CudaTensor - size: 256
+  76 : CudaTensor - size: 256x256x3x3
+  77 : CudaTensor - size: 256
+  78 : CudaTensor - size: 256
+  79 : CudaTensor - size: 1024x256x1x1
+  80 : CudaTensor - size: 1024
+  81 : CudaTensor - size: 1024
+  82 : CudaTensor - size: 1024x512x1x1
+  83 : CudaTensor - size: 1024
+  84 : CudaTensor - size: 1024
+  85 : CudaTensor - size: 256x1024x1x1
+  86 : CudaTensor - size: 256
+  87 : CudaTensor - size: 256
+  88 : CudaTensor - size: 256x256x3x3
+  89 : CudaTensor - size: 256
+  90 : CudaTensor - size: 256
+  91 : CudaTensor - size: 1024x256x1x1
+  92 : CudaTensor - size: 1024
+  93 : CudaTensor - size: 1024
+  94 : CudaTensor - size: 256x1024x1x1
+  95 : CudaTensor - size: 256
+  96 : CudaTensor - size: 256
+  97 : CudaTensor - size: 256x256x3x3
+  98 : CudaTensor - size: 256
+  99 : CudaTensor - size: 256
+  100 : CudaTensor - size: 1024x256x1x1
+  101 : CudaTensor - size: 1024
+  102 : CudaTensor - size: 1024
+  103 : CudaTensor - size: 256x1024x1x1
+  104 : CudaTensor - size: 256
+  105 : CudaTensor - size: 256
+  106 : CudaTensor - size: 256x256x3x3
+  107 : CudaTensor - size: 256
+  108 : CudaTensor - size: 256
+  109 : CudaTensor - size: 1024x256x1x1
+  110 : CudaTensor - size: 1024
+  111 : CudaTensor - size: 1024
+  112 : CudaTensor - size: 256x1024x1x1
+  113 : CudaTensor - size: 256
+  114 : CudaTensor - size: 256
+  115 : CudaTensor - size: 256x256x3x3
+  116 : CudaTensor - size: 256
+  117 : CudaTensor - size: 256
+  118 : CudaTensor - size: 1024x256x1x1
+  119 : CudaTensor - size: 1024
+  120 : CudaTensor - size: 1024
+  121 : CudaTensor - size: 256x1024x1x1
+  122 : CudaTensor - size: 256
+  123 : CudaTensor - size: 256
+  124 : CudaTensor - size: 256x256x3x3
+  125 : CudaTensor - size: 256
+  126 : CudaTensor - size: 256
+  127 : CudaTensor - size: 1024x256x1x1
+  128 : CudaTensor - size: 1024
+  129 : CudaTensor - size: 1024
+  130 : CudaTensor - size: 512x1024x1x1
+  131 : CudaTensor - size: 512
+  132 : CudaTensor - size: 512
+  133 : CudaTensor - size: 512x512x3x3
+  134 : CudaTensor - size: 512
+  135 : CudaTensor - size: 512
+  136 : CudaTensor - size: 2048x512x1x1
+  137 : CudaTensor - size: 2048
+  138 : CudaTensor - size: 2048
+  139 : CudaTensor - size: 2048x1024x1x1
+  140 : CudaTensor - size: 2048
+  141 : CudaTensor - size: 2048
+  142 : CudaTensor - size: 512x2048x1x1
+  143 : CudaTensor - size: 512
+  144 : CudaTensor - size: 512
+  145 : CudaTensor - size: 512x512x3x3
+  146 : CudaTensor - size: 512
+  147 : CudaTensor - size: 512
+  148 : CudaTensor - size: 2048x512x1x1
+  149 : CudaTensor - size: 2048
+  150 : CudaTensor - size: 2048
+  151 : CudaTensor - size: 512x2048x1x1
+  152 : CudaTensor - size: 512
+  153 : CudaTensor - size: 512
+  154 : CudaTensor - size: 512x512x3x3
+  155 : CudaTensor - size: 512
+  156 : CudaTensor - size: 512
+  157 : CudaTensor - size: 2048x512x1x1
+  158 : CudaTensor - size: 2048
+  159 : CudaTensor - size: 2048
+  160 : CudaTensor - size: 1000x2048
+  161 : CudaTensor - size: 1000
+}
+ * Finished top1:    inf  top5:    inf	
