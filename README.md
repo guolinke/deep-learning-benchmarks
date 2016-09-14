@@ -1,6 +1,6 @@
 # deep-learning-benchmarks
 
-### Hardware Config:
+### Hardware Config
 
 | Name | Value |
 |------|-------|
@@ -9,7 +9,7 @@
 | Memory |	DDR4, 8 * 16GB @ 2133MHZ |
 | Hard Drive |	256GB SSD | 
 
-### Software Config:
+### Software Config
 
 | Name | Value |
 |------|-------|
@@ -19,7 +19,7 @@
 |cuDNN |	V5.1 |
 
 
-### Benchmark Network Config:
+### Benchmark Network Config
 
 |Name | Input | Output | Layers | #Parameters |
 |---|------|------|------|------|
