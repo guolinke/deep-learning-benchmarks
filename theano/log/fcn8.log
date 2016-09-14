@@ -15,26 +15,26 @@ algo_bwd_filter = time_once
 algo_bwd_data = time_once
 Using gpu device 0: GeForce GTX TITAN X (CNMeM is enabled with initial size: 45.0% of memory, cuDNN 5103)
 Building model...
-number of parameters in model: 240162944
+number of parameters in model: 130586752
 Compiling theano functions...
 Functions are compiled
-2016-09-13 11:35:18.515425: step 10, duration = 0.015
-2016-09-13 11:35:18.666668: step 20, duration = 0.015
-2016-09-13 11:35:18.818071: step 30, duration = 0.015
-2016-09-13 11:35:18.969593: step 40, duration = 0.015
-2016-09-13 11:35:19.121092: step 50, duration = 0.015
-2016-09-13 11:35:19.272516: step 60, duration = 0.015
-2016-09-13 11:35:19.423734: step 70, duration = 0.015
-2016-09-13 11:35:19.574904: step 80, duration = 0.015
-2016-09-13 11:35:19.726622: step 90, duration = 0.015
-2016-09-13 11:35:19.862877: Forward across 100 steps, 0.015 +/- 0.000 sec / batch
-2016-09-13 11:35:21.409057: step 10, duration = 0.076
-2016-09-13 11:35:22.169262: step 20, duration = 0.076
-2016-09-13 11:35:22.930042: step 30, duration = 0.076
-2016-09-13 11:35:23.690478: step 40, duration = 0.076
-2016-09-13 11:35:24.450656: step 50, duration = 0.076
-2016-09-13 11:35:25.211137: step 60, duration = 0.076
-2016-09-13 11:35:25.971780: step 70, duration = 0.076
-2016-09-13 11:35:26.732540: step 80, duration = 0.076
-2016-09-13 11:35:27.493290: step 90, duration = 0.076
-2016-09-13 11:35:28.178221: Forward-Backward across 100 steps, 0.076 +/- 0.000 sec / batch
+2016-09-14 11:17:13.126638: step 10, duration = 0.007
+2016-09-14 11:17:13.199728: step 20, duration = 0.007
+2016-09-14 11:17:13.272360: step 30, duration = 0.007
+2016-09-14 11:17:13.345122: step 40, duration = 0.007
+2016-09-14 11:17:13.417485: step 50, duration = 0.007
+2016-09-14 11:17:13.489906: step 60, duration = 0.007
+2016-09-14 11:17:13.562418: step 70, duration = 0.007
+2016-09-14 11:17:13.635026: step 80, duration = 0.007
+2016-09-14 11:17:13.707635: step 90, duration = 0.007
+2016-09-14 11:17:13.772610: Forward across 100 steps, 0.007 +/- 0.000 sec / batch
+2016-09-14 11:17:14.642941: step 10, duration = 0.043
+2016-09-14 11:17:15.072391: step 20, duration = 0.043
+2016-09-14 11:17:15.502040: step 30, duration = 0.043
+2016-09-14 11:17:15.931725: step 40, duration = 0.043
+2016-09-14 11:17:16.361246: step 50, duration = 0.043
+2016-09-14 11:17:16.791141: step 60, duration = 0.043
+2016-09-14 11:17:17.220832: step 70, duration = 0.043
+2016-09-14 11:17:17.650615: step 80, duration = 0.043
+2016-09-14 11:17:18.080061: step 90, duration = 0.043
+2016-09-14 11:17:18.467006: Forward-Backward across 100 steps, 0.043 +/- 0.000 sec / batch
