@@ -122,8 +122,8 @@ def inference(images):
     #conv4 = _conv (conv3,  384, 256, 3, 3, 1, 1, 'SAME')
     #conv5 = _conv (conv4,  256, 256, 3, 3, 1, 1, 'SAME')
     pool5 = _mpool(conv5,  3, 3, 2, 2)
-    resh1 = tf.reshape(pool5, [-1, 256 * 7 * 7])
-    affn1 = _affine(resh1, 256 * 7 * 7, 4096)
+    resh1 = tf.reshape(pool5, [-1, 256 * 6 * 6])
+    affn1 = _affine(resh1, 256 * 6 * 6, 4096)
     affn2 = _affine(affn1, 4096, 4096)
     affn3 = _affine(affn2, 4096, 1000)
 
