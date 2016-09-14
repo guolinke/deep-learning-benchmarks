@@ -1,18 +1,23 @@
 import theano.tensor as T
 import lasagne
-from lasagne.layers import InputLayer, DenseLayer
+from lasagne.layers import InputLayer, DenseLayer, EmbeddingLayer
+import numpy as np
 
 
 
 
 def build_function(vocab_size=10000, seq=32, hiddenLayDim=256):
-    featureDim = (seq, vocab_size)
+    embedding_size = 256
+    featureDim = (seq, )
     labelDim = vocab_size
 
     def build_model(batch_size=128):
-        x = T.tensor3('input')
+        x = T.matrix('input', dtype='int32')
 
-        l_in = lasagne.layers.InputLayer(shape=(None, None, vocab_size), input_var=x)
+        l_in = lasagne.layers.InputLayer(shape=(None, None,), input_var=x)
+
+        W = np.random.rand(vocab_size, embedding_size).astype(np.float32)
+        ebd = EmbeddingLayer(l_in, input_size=vocab_size, output_size=embedding_size, W=W)
 
         # All gradients above this will be clipped
         GRAD_CLIP = 100
@@ -20,7 +25,7 @@ def build_function(vocab_size=10000, seq=32, hiddenLayDim=256):
         # We clip the gradients at GRAD_CLIP to prevent the problem of exploding gradients.
 
         l_forward_1 = lasagne.layers.LSTMLayer(
-            l_in, hiddenLayDim, grad_clipping=GRAD_CLIP,
+            ebd, hiddenLayDim, grad_clipping=GRAD_CLIP,
             nonlinearity=lasagne.nonlinearities.tanh)
 
         l_forward_2 = lasagne.layers.LSTMLayer(
@@ -33,8 +38,12 @@ def build_function(vocab_size=10000, seq=32, hiddenLayDim=256):
         # The output of this stage is (batch_size, vocab_size)
         l_out = lasagne.layers.DenseLayer(l_forward_2, num_units=vocab_size, W = lasagne.init.Normal(), nonlinearity=lasagne.nonlinearities.softmax)
         return l_out, x
-    return build_model, featureDim, labelDim
+
+    def input_generator(*dims):
+        return np.random.randint(vocab_size, size=dims).astype(np.int32)
+
+    return build_model, featureDim, labelDim, input_generator
 
 
-build_model32, featureDim32, labelDim32 = build_function(seq=32)
-build_model64, featureDim64, labelDim64 = build_function(seq=64)
+build_model32, featureDim32, labelDim32, input_generator32 = build_function(seq=32)
+build_model64, featureDim64, labelDim64, input_generator64 = build_function(seq=64)
