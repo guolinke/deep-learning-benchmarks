@@ -1,5 +1,5 @@
 I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcublas.so.7.5 locally
-I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcudnn.so locally
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcudnn.so.5 locally
 I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcufft.so.7.5 locally
 I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcuda.so.1 locally
 I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcurand.so.7.5 locally
@@ -9,7 +9,7 @@ major: 5 minor: 2 memoryClockRate (GHz) 1.076
 pciBusID 0000:05:00.0
 Total memory: 11.92GiB
 Free memory: 11.81GiB
-W tensorflow/stream_executor/cuda/cuda_driver.cc:572] creating context when one is currently active; existing: 0x1edc7b0
+W tensorflow/stream_executor/cuda/cuda_driver.cc:572] creating context when one is currently active; existing: 0x384b930
 I tensorflow/core/common_runtime/gpu/gpu_device.cc:951] Found device 1 with properties: 
 name: GeForce GTX TITAN X
 major: 5 minor: 2 memoryClockRate (GHz) 1.076
@@ -21,43 +21,62 @@ I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] 0:   Y Y
 I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] 1:   Y Y 
 I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Creating TensorFlow device (/gpu:0) -> (device: 0, name: GeForce GTX TITAN X, pci bus id: 0000:05:00.0)
 I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Creating TensorFlow device (/gpu:1) -> (device: 1, name: GeForce GTX TITAN X, pci bus id: 0000:08:00.0)
-2016-09-12 16:02:14.188932: step 10, duration = 0.031
-2016-09-12 16:02:14.502388: step 20, duration = 0.031
-2016-09-12 16:02:14.815803: step 30, duration = 0.031
-2016-09-12 16:02:15.129131: step 40, duration = 0.031
-2016-09-12 16:02:15.443186: step 50, duration = 0.031
-2016-09-12 16:02:15.757381: step 60, duration = 0.031
-2016-09-12 16:02:16.071263: step 70, duration = 0.032
-2016-09-12 16:02:16.385399: step 80, duration = 0.031
-2016-09-12 16:02:16.699543: step 90, duration = 0.031
-2016-09-12 16:02:17.012934: step 100, duration = 0.031
-2016-09-12 16:02:17.327902: step 110, duration = 0.032
-2016-09-12 16:02:17.644169: step 120, duration = 0.032
-2016-09-12 16:02:17.958422: step 130, duration = 0.031
-2016-09-12 16:02:18.272793: step 140, duration = 0.031
-2016-09-12 16:02:18.587301: step 150, duration = 0.031
-2016-09-12 16:02:18.901784: step 160, duration = 0.031
-2016-09-12 16:02:19.215810: step 170, duration = 0.031
-2016-09-12 16:02:19.530187: step 180, duration = 0.032
-2016-09-12 16:02:19.844886: step 190, duration = 0.031
-2016-09-12 16:02:20.159306: step 200, duration = 0.031
-2016-09-12 16:02:20.473234: step 210, duration = 0.031
-2016-09-12 16:02:20.787382: step 220, duration = 0.032
-2016-09-12 16:02:21.102468: step 230, duration = 0.031
-2016-09-12 16:02:21.417316: step 240, duration = 0.031
-2016-09-12 16:02:21.731527: step 250, duration = 0.031
-2016-09-12 16:02:22.045865: step 260, duration = 0.032
-2016-09-12 16:02:22.360062: step 270, duration = 0.032
-2016-09-12 16:02:22.674788: step 280, duration = 0.031
-2016-09-12 16:02:22.988907: step 290, duration = 0.031
-2016-09-12 16:02:23.302828: step 300, duration = 0.031
-2016-09-12 16:02:23.617180: step 310, duration = 0.031
-2016-09-12 16:02:23.931730: step 320, duration = 0.031
-2016-09-12 16:02:24.245742: step 330, duration = 0.031
-2016-09-12 16:02:24.559969: step 340, duration = 0.031
-2016-09-12 16:02:24.874573: step 350, duration = 0.031
-2016-09-12 16:02:25.189249: step 360, duration = 0.032
-2016-09-12 16:02:25.503641: step 370, duration = 0.031
-2016-09-12 16:02:25.818098: step 380, duration = 0.031
-2016-09-12 16:02:26.132928: step 390, duration = 0.031
-fake 2016-09-12 16:02:26.416197: Forward-backward across 400 steps, 0.031 +/- 0.002 sec / batch
+(16, 224, 224, 3)
+(16,)
+(11, 11, 3, 96)
+(96,)
+(5, 5, 96, 256)
+(256,)
+(3, 3, 256, 384)
+(384,)
+(3, 3, 384, 384)
+(384,)
+(3, 3, 384, 256)
+(256,)
+(12544, 4096)
+(4096,)
+(4096, 4096)
+(4096,)
+(4096, 1000)
+(1000,)
+Parameter Number:78418296
+2016-09-14 13:59:03.433284: step 10, duration = 0.031
+2016-09-14 13:59:03.747270: step 20, duration = 0.031
+2016-09-14 13:59:04.061029: step 30, duration = 0.031
+2016-09-14 13:59:04.374696: step 40, duration = 0.031
+2016-09-14 13:59:04.689353: step 50, duration = 0.031
+2016-09-14 13:59:05.004092: step 60, duration = 0.031
+2016-09-14 13:59:05.318526: step 70, duration = 0.031
+2016-09-14 13:59:05.632279: step 80, duration = 0.031
+2016-09-14 13:59:05.945612: step 90, duration = 0.031
+2016-09-14 13:59:06.260480: step 100, duration = 0.031
+2016-09-14 13:59:06.574266: step 110, duration = 0.032
+2016-09-14 13:59:06.888852: step 120, duration = 0.031
+2016-09-14 13:59:07.203759: step 130, duration = 0.031
+2016-09-14 13:59:07.518951: step 140, duration = 0.032
+2016-09-14 13:59:07.834198: step 150, duration = 0.032
+2016-09-14 13:59:08.148923: step 160, duration = 0.031
+2016-09-14 13:59:08.463912: step 170, duration = 0.032
+2016-09-14 13:59:08.779313: step 180, duration = 0.031
+2016-09-14 13:59:09.093650: step 190, duration = 0.031
+2016-09-14 13:59:09.406889: step 200, duration = 0.031
+2016-09-14 13:59:09.722015: step 210, duration = 0.032
+2016-09-14 13:59:10.036875: step 220, duration = 0.031
+2016-09-14 13:59:10.351874: step 230, duration = 0.031
+2016-09-14 13:59:10.666342: step 240, duration = 0.031
+2016-09-14 13:59:10.980744: step 250, duration = 0.031
+2016-09-14 13:59:11.295516: step 260, duration = 0.031
+2016-09-14 13:59:11.609400: step 270, duration = 0.031
+2016-09-14 13:59:11.924283: step 280, duration = 0.031
+2016-09-14 13:59:12.239217: step 290, duration = 0.032
+2016-09-14 13:59:12.554378: step 300, duration = 0.031
+2016-09-14 13:59:12.868874: step 310, duration = 0.031
+2016-09-14 13:59:13.182989: step 320, duration = 0.031
+2016-09-14 13:59:13.497273: step 330, duration = 0.031
+2016-09-14 13:59:13.811845: step 340, duration = 0.031
+2016-09-14 13:59:14.125752: step 350, duration = 0.031
+2016-09-14 13:59:14.440384: step 360, duration = 0.031
+2016-09-14 13:59:14.754656: step 370, duration = 0.031
+2016-09-14 13:59:15.069376: step 380, duration = 0.031
+2016-09-14 13:59:15.384057: step 390, duration = 0.031
+fake 2016-09-14 13:59:15.666808: Forward-backward across 400 steps, 0.031 +/- 0.002 sec / batch

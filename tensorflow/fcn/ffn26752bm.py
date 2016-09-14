@@ -9,6 +9,18 @@ from ffn26752 import *
 
 device_str = ''
 
+def PrintParameterCount():
+  total_parameters = 0
+  for variable in tf.trainable_variables():
+    # shape is an array of tf.Dimension
+    shape = variable.get_shape()
+    print(shape)
+    variable_parametes = 1
+    for dim in shape:
+      variable_parametes *= dim.value
+    total_parameters += variable_parametes
+  print "Parameter Number:" + str(total_parameters)
+
 def set_parameters(epochs, minibatch, iterations, device_id):
     """
     iterations means the number of iterations in each epoch
@@ -65,7 +77,7 @@ if __name__ == '__main__':
         sess = tf.Session(config=config)
         init = tf.initialize_all_variables()
         sess.run(init)
-        
+        PrintParameterCount()
         perMinibatchTime = []
         for i in range(numMinibatches):
           if (FLAGS.noInputFeed == False):

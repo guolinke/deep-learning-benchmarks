@@ -16,6 +16,18 @@ conv_counter = 1
 pool_counter = 1
 affine_counter = 1
 
+def PrintParameterCount():
+  total_parameters = 0
+  for variable in tf.trainable_variables():
+    # shape is an array of tf.Dimension
+    shape = variable.get_shape()
+    print(shape)
+    variable_parametes = 1
+    for dim in shape:
+      variable_parametes *= dim.value
+    total_parameters += variable_parametes
+  print "Parameter Number:" + str(total_parameters)
+
 def set_parameters(epochs, minibatch, iterations, device_id):
   """
   iterations means the number of iterations in each epoch
@@ -122,8 +134,8 @@ def inference(images):
     #conv4 = _conv (conv3,  384, 256, 3, 3, 1, 1, 'SAME')
     #conv5 = _conv (conv4,  256, 256, 3, 3, 1, 1, 'SAME')
     pool5 = _mpool(conv5,  3, 3, 2, 2)
-    resh1 = tf.reshape(pool5, [-1, 256 * 6 * 6])
-    affn1 = _affine(resh1, 256 * 6 * 6, 4096)
+    resh1 = tf.reshape(pool5, [-1, 256 * 7 * 7])
+    affn1 = _affine(resh1, 256 * 7 * 7, 4096)
     affn2 = _affine(affn1, 4096, 4096)
     affn3 = _affine(affn2, 4096, 1000)
 
@@ -185,7 +197,7 @@ def run_benchmark():
 
     # Build an initialization operation.
     init = tf.initialize_all_variables()
-
+    PrintParameterCount()
     # Start running operations on the Graph.
     sess = tf.Session(config=config)
     sess.run(init)

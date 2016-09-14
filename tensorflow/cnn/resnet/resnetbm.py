@@ -17,6 +17,17 @@ FLAGS = tf.app.flags.FLAGS
 tf.app.flags.DEFINE_string('data_dir', '/home/ryan/data/ILSVRC2012/ILSVRC2012_img_train',
                            'imagenet dir')
 
+def PrintParameterCount():
+  total_parameters = 0
+  for variable in tf.trainable_variables():
+    # shape is an array of tf.Dimension
+    shape = variable.get_shape()
+    print(shape)
+    variable_parametes = 1
+    for dim in shape:
+      variable_parametes *= dim.value
+    total_parameters += variable_parametes
+  print "Parameter Number:" + str(total_parameters)
 
 def file_list(data_dir):
     dir_txt = data_dir + ".txt"
@@ -113,7 +124,7 @@ def main(_):
                            is_training=True,
                            bottleneck=True) # use default: resnet-50
                            #num_blocks=[2, 2, 2, 2])
-
+        PrintParameterCount()
         train(True, logits, images, labels)
 
 if __name__ == '__main__':

@@ -1,5 +1,5 @@
 I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcublas.so.7.5 locally
-I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcudnn.so locally
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcudnn.so.5 locally
 I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcufft.so.7.5 locally
 I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcuda.so.1 locally
 I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcurand.so.7.5 locally
@@ -9,7 +9,7 @@ major: 5 minor: 2 memoryClockRate (GHz) 1.076
 pciBusID 0000:05:00.0
 Total memory: 11.92GiB
 Free memory: 11.81GiB
-W tensorflow/stream_executor/cuda/cuda_driver.cc:572] creating context when one is currently active; existing: 0x3891730
+W tensorflow/stream_executor/cuda/cuda_driver.cc:572] creating context when one is currently active; existing: 0x21f1aa0
 I tensorflow/core/common_runtime/gpu/gpu_device.cc:951] Found device 1 with properties: 
 name: GeForce GTX TITAN X
 major: 5 minor: 2 memoryClockRate (GHz) 1.076
@@ -27,9 +27,17 @@ num_steps:  32
 hidden_size:  256
 num_layers:  2
 Epoch: 1 Learning rate: 1.000
-0.044 perplexity: 5005.793 speed: 21971 wps
-0.142 perplexity: 2383.847 speed: 39204 wps
-0.239 perplexity: 1784.782 speed: 46330 wps
-0.336 perplexity: 1500.156 speed: 50279 wps
-0.434 perplexity: 1325.782 speed: 52707 wps
-Time for 100 iterations 7.8208 seconds. 0.07821 seconds for one mini batch
+(10000, 256)
+(512, 1024)
+(1024,)
+(512, 1024)
+(1024,)
+(256, 10000)
+(10000,)
+Parameter Number:6180624
+0.044 perplexity: 4774.589 speed: 23534 wps
+0.142 perplexity: 2262.749 speed: 40581 wps
+0.239 perplexity: 1731.612 speed: 47448 wps
+0.336 perplexity: 1475.847 speed: 51146 wps
+0.434 perplexity: 1296.408 speed: 53454 wps
+Time for 100 iterations 7.7134 seconds. 0.07713 seconds for one mini batch
