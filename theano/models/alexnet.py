@@ -2,7 +2,7 @@ import theano.tensor as T
 from lasagne.layers import InputLayer, DenseLayer, Conv2DLayer,\
     MaxPool2DLayer
 
-featureDim = (3, 227, 227)
+featureDim = (3, 224, 224)
 labelDim = 1000
 
 
