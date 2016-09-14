@@ -5,7 +5,7 @@ from lasagne.layers import InputLayer, DenseLayer
 
 
 
-def build_function(vocab_size=10010, seq=32, hiddenLayDim=256):
+def build_function(vocab_size=10000, seq=32, hiddenLayDim=256):
     featureDim = (seq, vocab_size)
     labelDim = vocab_size
 
