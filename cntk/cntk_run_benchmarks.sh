@@ -61,7 +61,7 @@ python createFakeImageNetDataForCNTKCNN.py
 python createLabelMapForCNTKCNN.py
 cd ..
 
-
+sudo rm -rf Output
 sudo rm -f output_alexnet_Train.log
 sudo rm -f output_resnet_Train.log
 sudo rm -f output_fcn5_Train.log
