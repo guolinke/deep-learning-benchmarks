@@ -101,5 +101,11 @@ local elapsed = sys.toc()
 
     print(string.format("%d GPUs: %0.0f samples per sec", nGPU, steps * bsize / elapsed))
     print(string.format(" | Epoch: [][]    Time %10.6f", elapsed/steps))
+
+local mpx, mpdx = model:getParameters()
+print('Model parameters: ', mpx:nElement()) 
+local ax, adx   = model:parameters()
+print('All shape: ', ax)
+
 -- end
 
