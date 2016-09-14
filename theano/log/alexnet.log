@@ -38,3 +38,43 @@ Functions are compiled
 2016-09-14 12:43:45.956021: step 80, duration = 0.039
 2016-09-14 12:43:46.332111: step 90, duration = 0.038
 2016-09-14 12:43:46.672146: Forward-Backward across 100 steps, 0.038 +/- 0.000 sec / batch
+[global]
+device = gpu
+floatX = float32
+optimizer_including = unsafe
+
+[cuda]
+root = /usr/local/cuda-7.5/
+
+[lib]
+cnmem = 0.45
+
+[dnn.conv]
+algo_fwd = time_once
+algo_bwd_filter = time_once
+algo_bwd_data = time_once
+Using gpu device 0: GeForce GTX TITAN X (CNMeM is enabled with initial size: 45.0% of memory, cuDNN 5103)
+Building model...
+number of parameters in model: 62378344
+Compiling theano functions...
+Functions are compiled
+2016-09-14 16:29:47.759802: step 10, duration = 0.009
+2016-09-14 16:29:47.853377: step 20, duration = 0.009
+2016-09-14 16:29:47.945161: step 30, duration = 0.009
+2016-09-14 16:29:48.036521: step 40, duration = 0.009
+2016-09-14 16:29:48.127884: step 50, duration = 0.009
+2016-09-14 16:29:48.219260: step 60, duration = 0.009
+2016-09-14 16:29:48.310521: step 70, duration = 0.009
+2016-09-14 16:29:48.401898: step 80, duration = 0.009
+2016-09-14 16:29:48.493411: step 90, duration = 0.009
+2016-09-14 16:29:48.575526: Forward across 100 steps, 0.009 +/- 0.000 sec / batch
+2016-09-14 16:29:49.590090: step 10, duration = 0.037
+2016-09-14 16:29:49.963625: step 20, duration = 0.037
+2016-09-14 16:29:50.335581: step 30, duration = 0.037
+2016-09-14 16:29:50.707573: step 40, duration = 0.037
+2016-09-14 16:29:51.079607: step 50, duration = 0.037
+2016-09-14 16:29:51.451764: step 60, duration = 0.037
+2016-09-14 16:29:51.824000: step 70, duration = 0.037
+2016-09-14 16:29:52.196536: step 80, duration = 0.037
+2016-09-14 16:29:52.568756: step 90, duration = 0.037
+2016-09-14 16:29:52.903753: Forward-Backward across 100 steps, 0.037 +/- 0.000 sec / batch
