@@ -64,11 +64,11 @@ run_benchmark () {
 }
 
 run_benchmark alexnet $CMBS $CNB
-run_benchmark resnet $CMBS $CNB
-run_benchmark fcn5 $FMBS $FNB
-run_benchmark fcn8 $FMBS $FNB
-run_benchmark lstm32 $RMBS $RNB
-run_benchmark lstm64 $RMBS $RNB
+# run_benchmark resnet $CMBS $CNB
+# run_benchmark fcn5 $FMBS $FNB
+# run_benchmark fcn8 $FMBS $FNB
+# run_benchmark lstm32 $RMBS $RNB
+# run_benchmark lstm64 $RMBS $RNB
 
 
 # grep the result
