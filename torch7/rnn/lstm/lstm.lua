@@ -230,8 +230,14 @@ while opt.maxepoch <= 0 or epoch <= opt.maxepoch do
 
    end
    print('Time elapsed for '.. opt.iters  .. ' iters: ' .. a:time().real .. ' seconds')
+
+local mpx, mpdx = lm:getParameters()
+print('Model parameters: ', mpx:nElement()) 
+local ax, adx   = lm:parameters()
+print('All shape: ', ax)
+
    collectgarbage()
    epoch = epoch + 1
 end
-print("Evaluate model using : ")
+-- print("Evaluate model using : ")
 -- print("th scripts/evaluate-rnnlm.lua --xplogpath "..paths.concat(opt.savepath, opt.id..'.t7')..(opt.cuda and ' --cuda' or ''))

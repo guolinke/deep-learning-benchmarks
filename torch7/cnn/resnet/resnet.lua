@@ -68,4 +68,9 @@ for epoch = startEpoch, opt.nEpochs do
    --checkpoints.save(epoch, model, trainer.optimState, bestModel)
 end
 
+local mpx, mpdx = model:getParameters()
+print('Model parameters: ', mpx:nElement()) 
+local ax, adx   = model:parameters()
+print('All shape: ', ax)
+
 print(string.format(' * Finished top1: %6.3f  top5: %6.3f', bestTop1, bestTop5))

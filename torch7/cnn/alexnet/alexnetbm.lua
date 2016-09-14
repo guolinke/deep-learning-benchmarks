@@ -52,6 +52,11 @@ for i=1,#nets do
    for j=1,#libs do
       collectgarbage()
       local model,model_name,size = nets[i](libs[j])
+      local paramx, paramdx = model:getParameters()
+      local ax, adx         = model:parameters()
+      print('Model Parameters: ', paramx:nElement())
+      print('All shape: ', ax)
+
       size[1] = opt.batchSize
       local input
       if opt.deviceId >= 0 then
