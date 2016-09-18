@@ -21,14 +21,14 @@
 
 ### Benchmark Network Config
 
-|Name | Input | Output | Layers | #Parameters |
-|---|------|------|------|------|
-| FCN-5 | 26752 | 26752 | 5 | ~118 millions |
-| FCN-8 | 26752 | 26752 | 8 | ~131 millions |
-| AlexNet | 150528 | 1000 | 4 | ~62 millions |
-| ResNet-50 | 150528 | 1000 | 50 | ~25 millions |
-| LSTM-32 | 10000 | 10000 | 2 | ~6 millions |
-| LSTM-64 | 10000 | 10000 | 2 | ~6 millions |
+|Name | Batch Size | Input | Output | Layers | #Parameters |
+|-----|------------|------|------|------|-------|
+| FCN-5 | 64 | 26752 | 26752 | 5 | ~118 millions |
+| FCN-8 | 64 | 26752 | 26752 | 8 | ~131 millions |
+| AlexNet | 16 | 150528 | 1000 | 4 | ~62 millions |
+| ResNet-50 | 16 | 150528 | 1000 | 50 | ~25 millions |
+| LSTM-32 | 128 | 10000 | 10000 | 2 | ~6 millions |
+| LSTM-64 | 128 | 10000 | 10000 | 2 | ~6 millions |
 
 ### Tool version
 
