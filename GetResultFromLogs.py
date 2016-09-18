@@ -1,0 +1,178 @@
+FCN_batch_size = 64
+CNN_batch_size = 16
+RNN_batch_size = 128
+
+def GetTimeFromCaffeLog(filename):
+	file_in = open(filename,"r")
+	batch_size = -1
+	for line in file_in.readlines():
+		if 'batch_size' in line:
+			batch_size = int(line.split(':')[1])
+		if 'Average Forward-Backward:' in line:
+			time = float(line.split(':')[-1].strip().split(' ')[0]) / 1000
+			sps = 1.0 / time * batch_size
+			return [time, sps]
+def GetCaffeResult():
+	return [GetTimeFromCaffeLog("caffe/output_fcn5.log"),
+	GetTimeFromCaffeLog("caffe/output_fcn8.log"),
+	GetTimeFromCaffeLog("caffe/output_alexnet.log"),
+	GetTimeFromCaffeLog("caffe/output_resnet.log"),
+	[0,0],[0,0]]
+
+def GetTimeFromCNTKLog(filename):
+	file_in = open(filename,"r")
+	epoch_size = -1
+	mini_batch_size = -1
+	for line in file_in.readlines():
+		# get num_batches
+		if 'epochSize' in line and len(line.split('=')) == 2:
+			epoch_size = int(line.split('=')[1])
+		if 'minibatchSize' in line and len(line.split('=')) == 2:
+			mini_batch_size = int(line.split('=')[1])
+		if 'Finished Epoch' in line:
+			epo_info = line.split(":")[0].split('[')[1].split(']')[0]
+			cur_epo = int(epo_info.split('of')[0])
+			max_epo = int(epo_info.split('of')[1])
+			if cur_epo == max_epo:
+				epo_time = float( line.split(';')[-1].split('=')[1].split('s')[0] )
+				num_batches =  epoch_size // mini_batch_size
+				return[epo_time / num_batches, epoch_size / epo_time]
+def GetCNTKResult():
+	return [GetTimeFromCNTKLog("cntk/output_fcn5_Train.log"),
+	GetTimeFromCNTKLog("cntk/output_fcn8_Train.log"),
+	GetTimeFromCNTKLog("cntk/output_alexnet_Train.log"),
+	GetTimeFromCNTKLog("cntk/output_resnet_Train.log"),
+	GetTimeFromCNTKLog("cntk/output_lstm32_Train.log"),
+	GetTimeFromCNTKLog("cntk/output_lstm64_Train.log")]
+
+def GetTimeFromTensorflowLog(filename):
+	file_in = open(filename,"r")
+	if 'fcn' in filename:
+		sps = -1
+		time = -1
+		for line in file_in.readlines():
+			if 'Training speed (samples/sec)' in line:
+				sps = int(line.split(':')[1].split(',')[0].split('=')[1])
+			if 'fc across' in line:
+				time = float( line.split(',')[-1].split('sec')[0])
+		return [time, sps]
+	elif 'lstm' in filename:
+		batch_size = -1
+		for line in file_in.readlines():
+			if 'batch_size:' in line:
+				batch_size = int(line.split(':')[-1])
+			if 'for one mini batch' in line:
+				time = float( line.split('seconds.')[-1].split('seconds ')[0])
+				return [time, 1.0 / time * batch_size]
+	elif 'resnet' in filename:
+		total_samples = 0
+		total_time = 0
+		num_batches = 0
+		for line in file_in.readlines():
+			if 'step' in line and not 'step 0' in line:
+				tokens = line.split('(')[-1].split(')')[0]
+				time_str = tokens.split(';')[1].strip()
+				sps_str = tokens.split(';')[0].strip()
+				num_batches += 1
+				time = float(time_str.split(' ')[0])
+				total_time += time
+				cur_samples = float(sps_str.split(' ')[0]) * time
+				total_samples += cur_samples
+		return [total_time / num_batches, total_samples / total_time]
+	else:
+		for line in file_in.readlines():
+			if 'Forward-backward across' in line:
+				time = float(line.split(',')[-1].split('+/-')[0])
+				return [time, CNN_batch_size * 1.0 / time]	
+def GetTersonflowResult():
+	return[GetTimeFromTensorflowLog('tensorflow/output_fcn5.log'),
+	GetTimeFromTensorflowLog('tensorflow/output_fcn8.log'),
+	GetTimeFromTensorflowLog('tensorflow/output_alexnet.log'),
+	GetTimeFromTensorflowLog('tensorflow/output_resnet.log'),
+	GetTimeFromTensorflowLog('tensorflow/output_lstm32.log'),
+	GetTimeFromTensorflowLog('tensorflow/output_lstm64.log')]
+
+
+def GetTimeFromTheanoLog(filename):
+	file_in = open(filename,"r")
+	batch_size = -1
+	if 'alexnet' in filename or 'resnet' in filename:
+		batch_size = CNN_batch_size
+	elif 'lstm' in filename:
+		batch_size = RNN_batch_size
+	else:
+		batch_size = FCN_batch_size
+	for line in file_in.readlines():
+		if 'Forward-Backward across' in line:
+			time = float(line.split(',')[-1].split('+/-')[0])
+			return [time, batch_size * 1.0 / time]
+def GetTheanoResult():
+	return [GetTimeFromTheanoLog('theano/log/fcn5.log'),
+	GetTimeFromTheanoLog('theano/log/fcn8.log'),
+	GetTimeFromTheanoLog('theano/log/alexnet.log'),
+	GetTimeFromTheanoLog('theano/log/resnet.log'),
+	GetTimeFromTheanoLog('theano/log/lstm32.log'),
+	GetTimeFromTheanoLog('theano/log/lstm64.log')]
+
+def GetTimeFromTorchLog(filename):
+	file_in = open(filename,"r")
+	batch_size = -1
+	if 'alexnet' in filename or 'resnet' in filename:
+		batch_size = CNN_batch_size
+	elif 'lstm' in filename:
+		batch_size = RNN_batch_size
+	else:
+		batch_size = FCN_batch_size
+	if 'lstm' in filename:
+		for line in file_in.readlines():
+			if 'Time elapsed for' in line:
+				it = int(line.split('iters:')[0].strip().split(' ')[-1])
+				time = float(line.split('iters:')[1].strip().split(' ')[0])
+				time = time / it
+				return [time, batch_size * 1.0 / time]
+	elif 'resnet' in filename:
+		total_time = 0
+		for line in file_in.readlines():
+			if 'Epoch:' in line:
+				time = float(line.split('Time')[-1].split('Data')[0])
+		return [time, batch_size * 1.0 / time]
+	else:	
+		for line in file_in.readlines():
+			if 'Epoch: [][]' in line:
+				time = float(line.split('Time')[-1])
+				return [time, batch_size * 1.0 / time]
+
+def GetTorchResult():
+	return[GetTimeFromTorchLog('torch7/output_fcn5.log'),
+	GetTimeFromTorchLog('torch7/output_fcn8.log'),
+	GetTimeFromTorchLog('torch7/output_alexnet.log'),
+	GetTimeFromTorchLog('torch7/output_resnet.log'),
+	GetTimeFromTorchLog('torch7/output_lstm32.log'),
+	GetTimeFromTorchLog('torch7/output_lstm64.log')]
+
+caffe_result = GetCaffeResult()
+cntk_result = GetCNTKResult()
+tf_result = GetTersonflowResult()
+th_result = GetTheanoResult()
+to_result = GetTorchResult()
+names = ['Caffe','CNTK','TensorFlow','Theano','Torch']
+result = [caffe_result, cntk_result, tf_result, th_result, to_result] 
+file_out = open('result.md','w')
+file_out.write('seconds/num_batches:\n\n')
+file_out.write('| Tool | FCN-5 | FCN-8 | AlexNet | ResNet | LSTM-32 | LSTM-64 |\n')
+file_out.write('|------|-------|-------|---------|--------|---------|---------|\n')
+for i in xrange(len(names)):
+	file_out.write('|' + names[i])
+	for x in result[i]:
+		file_out.write('| %.3f ' %(x[0]) )
+	file_out.write('|\n')
+
+file_out.write('\n\nsamples/second:\n\n')
+file_out.write('| Tool | FCN-5 | FCN-8 | AlexNet | ResNet | LSTM-32 | LSTM-64 |\n')
+file_out.write('|------|-------|-------|---------|--------|---------|---------|\n')
+for i in xrange(len(names)):
+	file_out.write('|' + names[i])
+	for x in result[i]:
+		file_out.write('| %d ' %(x[1]) )
+	file_out.write('|\n')
+file_out.close()
