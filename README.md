@@ -43,7 +43,7 @@
 ### Benchmark Results
 
 
-seconds/num_batches:
+seconds/num_batches (lower=better):
 
 | Tool | FCN-5 | FCN-8 | AlexNet | ResNet | LSTM-32 | LSTM-64 |
 |------|-------|-------|---------|--------|---------|---------|
@@ -52,7 +52,8 @@ seconds/num_batches:
 |TensorFlow| 0.055 | 0.057 | 0.031 | 0.251 | 0.077 | 0.138 |
 |Theano| 0.038 | 0.043 | 0.037 | 0.598 | 0.042 | 0.079 |
 |Torch| 0.026 | 0.028 | 0.024 | 0.159 | 0.104 | 0.206 |
-samples/second:
+
+samples/second(higher=better):
 
 | Tool | FCN-5 | FCN-8 | AlexNet | ResNet | LSTM-32 | LSTM-64 |
 |------|-------|-------|---------|--------|---------|---------|
