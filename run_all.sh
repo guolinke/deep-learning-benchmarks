@@ -14,7 +14,7 @@ cd theano
 ./theano_auto.sh
 cd ..
 
-cd torch
+cd torch7
 ./torch_auto.sh
 cd ..
 
