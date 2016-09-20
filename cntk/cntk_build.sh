@@ -12,6 +12,7 @@ sudo ./b2 -d0 -j"$(nproc)" install
 make -j all
 git clone --recursive https://github.com/Microsoft/cntk/
 cd cntk
+git reset --hard cac191c8c3c08e546c9af25236d368c0ed2812c2
 mkdir build -p
 cd build
 ../configure --1bitsgd=yes
