@@ -22,7 +22,6 @@ cd boost_1_60_0
 ./bootstrap.sh --prefix=/usr/local/boost-1.60.0
 sudo ./b2 -d0 -j"$(nproc)" install  
 
-make -j all
 git clone --recursive https://github.com/Microsoft/cntk/
 cd cntk
 git reset --hard cac191c8c3c08e546c9af25236d368c0ed2812c2
