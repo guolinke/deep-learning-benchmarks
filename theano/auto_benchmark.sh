@@ -59,7 +59,7 @@ cd $CUR_DIR
 
 run_benchmark () {
     mkdir -p log
-    cat ~/.theanorc >> log/${1}.log
+    cat ~/.theanorc > log/${1}.log
     python benchmark.py -a $1 -B $2 -n $3 >> log/${1}.log 2>&1
 }
 
