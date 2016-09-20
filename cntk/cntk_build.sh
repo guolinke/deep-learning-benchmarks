@@ -1,7 +1,7 @@
 #!/bin/bash
 sudo rm -rf cntk
 # remove old openmpi
-sudo apt-get remove --auto-remove libopenmpi-dev
+sudo apt-get -y remove --auto-remove libopenmpi-dev
 
 mpi_home=/opt/openmpi-1.10.3
 wget https://www.open-mpi.org/software/ompi/v1.10/downloads/openmpi-1.10.3.tar.gz
