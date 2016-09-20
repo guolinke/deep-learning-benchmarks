@@ -20,7 +20,8 @@ sudo apt-get install libbz2-dev
 wget -q -O - https://sourceforge.net/projects/boost/files/boost/1.60.0/boost_1_60_0.tar.gz/download | tar -xzf - 
 cd boost_1_60_0 
 ./bootstrap.sh --prefix=/usr/local/boost-1.60.0
-sudo ./b2 -d0 -j"$(nproc)" install  
+sudo ./b2 -d0 -j"$(nproc)" install
+cd ..
 
 git clone --recursive https://github.com/Microsoft/cntk/
 cd cntk
