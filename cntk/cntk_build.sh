@@ -15,7 +15,6 @@ cd ..
 export PATH=${mpi_home}/bin:$PATH
 export LD_LIBRARY_PATH=${mpi_home}/lib:$LD_LIBRARY_PATH
 
-sudo apt-get install libbz2-dev
 
 wget -q -O - https://sourceforge.net/projects/boost/files/boost/1.60.0/boost_1_60_0.tar.gz/download | tar -xzf - 
 cd boost_1_60_0 
