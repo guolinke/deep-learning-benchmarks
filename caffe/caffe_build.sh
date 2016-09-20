@@ -9,3 +9,5 @@ echo "USE_CUDNN := 1 " >> Makefile.config
 make all
 make pycaffe
 cd ..
+sudo pip install lmdb
+sudo pip install scikit-image
