@@ -5,9 +5,14 @@
 makeMode = true
 RootDir = "."
 
+configName = "ssgd"
+minibatchSize = 128
+epochSize = 5
+parallelizationMethod = "DataParallelSGD"
+
 ConfigDir = "$RootDir$"
 DataDir = "$RootDir$"
-OutputDir = "$RootDir$/Output-ssgd"
+OutputDir = "$RootDir$/Output-$configName$"
 ModelDir = "$OutputDir$/Models"
 
 ndlMacros = "$ConfigDir$/Macros.ndl"
@@ -16,8 +21,6 @@ precision = "float"
 deviceId = 0
 imageLayout = "cudnn"
 
-minibatch = 128
-epochsize = 5
 
 # override the above as follows when running on CPU:
 # deviceId = -1
@@ -60,12 +63,19 @@ Train = [
         numMBsToShowResult = 1
 
         ParallelTrain = [
-            parallelizationMethod = "DataParallelSGD"
+            parallelizationMethod = $parallelizationMethod$
             distributedMBReading = "true"
             parallelizationStartEpoch = 1
             DataParallelSGD = [
                 gradientBits = 32
-                # useBufferdAsyncGradientAggregation = true
+                useBufferdAsyncGradientAggregation = true
+            ]
+            ModelAveragingSGD = [
+                blockSizePerWorker = 128
+            ]
+            DataParallelASGD = [
+                syncPeriod = 128
+                usePipeline = true
             ]
         ]
     ]
