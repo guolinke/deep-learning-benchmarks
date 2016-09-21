@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo apt-get install python-numpy python-scipy python-dev python-pip python-nose g++ libopenblas-dev git
+sudo apt-get install -y python-numpy python-scipy python-dev python-pip python-nose g++ libopenblas-dev git
 sudo /usr/bin/yes | pip uninstall Theano
 # configure and install
 sudo pip install https://github.com/theano/Theano/archive/0.8.X.zip
