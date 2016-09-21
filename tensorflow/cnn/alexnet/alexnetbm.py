@@ -106,7 +106,7 @@ def _mpool(inpOp, kH, kW, dH, dW):
     return tf.nn.max_pool(inpOp,
                           ksize=ksize,
                           strides=strides,
-                          padding='SAME',
+                          padding='VALID',
                           data_format=FLAGS.data_format,
                           name=name)
 
@@ -124,18 +124,16 @@ def loss(logits, labels):
     return loss
 
 def inference(images):
-    conv1 = _conv (images, 3, 96, 11, 11, 4, 4, 'SAME')
+    conv1 = _conv (images, 3, 96, 11, 11, 4, 4, 'VALID')
     pool1 = _mpool(conv1,  3, 3, 2, 2)
     conv2 = _conv (pool1,  96, 256, 5, 5, 1, 1, 'SAME')
     pool2 = _mpool(conv2,  3, 3, 2, 2)
     conv3 = _conv (pool2,  256, 384, 3, 3, 1, 1, 'SAME')
-    conv4 = _conv (conv3,  384, 384, 3, 3, 1, 1, 'SAME')
-    conv5 = _conv (conv4,  384, 256, 3, 3, 1, 1, 'SAME')
-    #conv4 = _conv (conv3,  384, 256, 3, 3, 1, 1, 'SAME')
-    #conv5 = _conv (conv4,  256, 256, 3, 3, 1, 1, 'SAME')
+    conv4 = _conv (conv3,  384, 256, 3, 3, 1, 1, 'SAME')
+    conv5 = _conv (conv4,  256, 256, 3, 3, 1, 1, 'SAME')
     pool5 = _mpool(conv5,  3, 3, 2, 2)
-    resh1 = tf.reshape(pool5, [-1, 256 * 7 * 7])
-    affn1 = _affine(resh1, 256 * 7 * 7, 4096)
+    resh1 = tf.reshape(pool5, [-1, 256 * 6 * 6])
+    affn1 = _affine(resh1, 256 * 6 * 6, 4096)
     affn2 = _affine(affn1, 4096, 4096)
     affn3 = _affine(affn2, 4096, 1000)
 
@@ -180,9 +178,9 @@ def run_benchmark():
     # In order to force the model to start with the same activations sizes,
     # we add 3 to the image_size and employ VALID padding above.
     if FLAGS.data_format == 'NCHW':
-      image_shape = [FLAGS.batch_size, 3, image_size, image_size]
+      image_shape = [FLAGS.batch_size, 3, image_size + 3, image_size + 3]
     else:
-      image_shape = [FLAGS.batch_size, image_size, image_size, 3]
+      image_shape = [FLAGS.batch_size, image_size + 3, image_size + 3, 3]
     with tf.device('/cpu:0'):
       images = tf.Variable(tf.random_normal(image_shape,
                                             dtype=tf.float32,
