@@ -2,16 +2,48 @@ FCN_batch_size = 64
 CNN_batch_size = 16
 RNN_batch_size = 128
 
+def GetTimeStamp(line):
+	full_time = line.split(' ')[1]
+	mil =  float('0.'+full_time.split('.')[1])
+	tokens = full_time.split('.')[0].split(':')
+	hour = int(tokens[0])
+	minute = int(tokens[1])
+	second = int(tokens[2])
+	return mil + second + minute * 60 + hour * 60 * 60
+
 def GetTimeFromCaffeLog(filename):
 	file_in = open(filename,"r")
 	batch_size = -1
+	if 'fcn' in filename:
+		batch_size = FCN_batch_size
+	elif 'lstm' in filename:
+		batch_size = RNN_batch_size
+	else:
+		batch_size = CNN_batch_size
+
+	start_time = 0
+	start_iter = -1
+	end_time = 0
+	end_iter = 0
+
+	max_iter = -1
 	for line in file_in.readlines():
-		if 'batch_size' in line:
-			batch_size = int(line.split(':')[1])
-		if 'Average Forward-Backward:' in line:
-			time = float(line.split(':')[-1].strip().split(' ')[0]) / 1000
-			sps = 1.0 / time * batch_size
-			return [time, sps]
+		if 'max_iter' in line and max_iter == -1:
+			max_iter = int( line.split(':')[1] )
+		if 'sgd_solver.cpp' in line and 'Iteration' in line:
+			cur_iter = int(line.split('Iteration')[1].strip().split(',')[0])
+			if start_iter == -1 and cur_iter > 0:
+				start_iter = cur_iter
+				start_time = GetTimeStamp(line)
+			elif cur_iter > 0 and cur_iter < max_iter:
+				end_iter = cur_iter
+				end_time = GetTimeStamp(line)
+	delta_time = end_time - start_time
+	if delta_time < 0.0:
+		delta_time += 24 * 60 * 60.0
+	time = (end_time - start_time) / (end_iter - start_iter)
+	sps = 1.0 / time * batch_size
+	return [time, sps]
 def GetCaffeResult():
 	return [GetTimeFromCaffeLog("caffe/output_fcn5.log"),
 	GetTimeFromCaffeLog("caffe/output_fcn8.log"),
