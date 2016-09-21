@@ -1,0 +1,13 @@
+# The train/test net protocol buffer definition
+#net: "ffn26752-b64.prototxt"
+base_lr: 0.0001
+#lr_policy: "fixed"
+lr_policy: "inv"
+gamma: 0.0001
+power: 0.75
+max_iter: 200 
+momentum: 0.009
+display: 50
+#solver_mode: GPU
+net: "resnet-b16.prototxt"
+solver_mode: GPU

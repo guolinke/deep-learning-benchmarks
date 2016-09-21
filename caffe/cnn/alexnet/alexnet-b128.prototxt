@@ -8,7 +8,7 @@ layer {
     phase: TRAIN
   }
   data_param {
-    source: "cnn/fake_image_net.lmdb"
+    source: "/home/dl/data/caffe/fake_image_net.lmdb"
     batch_size: 128 
     backend: LMDB
   }

@@ -9,7 +9,7 @@ layer {
     phase: TRAIN
   }
   data_param {
-    source: "cnn/fake_image_net.lmdb"
+    source: "/home/dl/data/caffe/fake_image_net.lmdb"
     batch_size: 32 
     backend: LMDB
   }
@@ -2321,9 +2321,10 @@ layer {
 }
 
 layer {
+	name: "loss"
+	type: "SoftmaxWithLoss"
 	bottom: "fc1000"
-	top: "prob"
-	name: "prob"
-	type: "Softmax"
+    bottom: "label"
+	top: "loss"
 }
 
