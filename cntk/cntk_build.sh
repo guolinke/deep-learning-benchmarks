@@ -20,4 +20,4 @@ export LD_LIBRARY_PATH=${mpi_home}/lib:$LD_LIBRARY_PATH
 
 sudo rm -rf cntk
 wget https://cntk.ai/BinaryDrop/CNTK-1-7-Linux-64bit-GPU-1bit-SGD.tar.gz
-tar -zxf CNTK-1-7-Linux-64bit-GPU-1bit-SGD.tar.gz
+sudo tar -zxf CNTK-1-7-Linux-64bit-GPU-1bit-SGD.tar.gz
