@@ -59,7 +59,7 @@ train = [
 
         model = Sequential (
             EmbeddingLayer (embedDim) :
-            RecurrentLSTMLayerStack (hiddenDim, allowOptimizedEngine = false) : 
+            RecurrentLSTMLayerStack (hiddenDim, allowOptimizedEngine = true) : 
             DenseLayer (labelDim)
         )
 
