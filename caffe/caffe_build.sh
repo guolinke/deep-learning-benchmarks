@@ -6,8 +6,8 @@ git clone https://github.com/BVLC/caffe
 cd caffe
 cp Makefile.config.example Makefile.config
 echo "USE_CUDNN := 1 " >> Makefile.config
-make all
-make pycaffe
+make -j all
+make -j pycaffe
 cd ..
 sudo pip install lmdb
 sudo pip install scikit-image
