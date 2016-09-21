@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # configure and install
-sudo pip install https://github.com/theano/Theano/archive/master.zip
+sudo pip install https://github.com/theano/Theano/archive/0.8.X.zip
 sudo pip install https://github.com/Lasagne/Lasagne/archive/master.zip
 sudo chown -R $USER: ~/.theano/
 
