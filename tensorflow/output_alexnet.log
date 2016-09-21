@@ -1,27 +1,45 @@
-I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcublas.so.7.5 locally
-I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcudnn.so.5 locally
-I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcufft.so.7.5 locally
-I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcuda.so.1 locally
-I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcurand.so.7.5 locally
-I tensorflow/core/common_runtime/gpu/gpu_device.cc:951] Found device 0 with properties: 
+I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library libcublas.so locally
+I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library libcudnn.so locally
+I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library libcufft.so locally
+I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library libcuda.so.1 locally
+I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library libcurand.so locally
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:102] Found device 0 with properties: 
+name: GeForce GTX TITAN X
+major: 5 minor: 2 memoryClockRate (GHz) 1.076
+pciBusID 0000:04:00.0
+Total memory: 11.92GiB
+Free memory: 11.81GiB
+W tensorflow/stream_executor/cuda/cuda_driver.cc:572] creating context when one is currently active; existing: 0x3f69880
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:102] Found device 1 with properties: 
 name: GeForce GTX TITAN X
 major: 5 minor: 2 memoryClockRate (GHz) 1.076
 pciBusID 0000:05:00.0
 Total memory: 11.92GiB
 Free memory: 11.81GiB
-W tensorflow/stream_executor/cuda/cuda_driver.cc:572] creating context when one is currently active; existing: 0x384b930
-I tensorflow/core/common_runtime/gpu/gpu_device.cc:951] Found device 1 with properties: 
+W tensorflow/stream_executor/cuda/cuda_driver.cc:572] creating context when one is currently active; existing: 0x43f7b00
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:102] Found device 2 with properties: 
 name: GeForce GTX TITAN X
 major: 5 minor: 2 memoryClockRate (GHz) 1.076
 pciBusID 0000:08:00.0
 Total memory: 11.92GiB
 Free memory: 11.81GiB
-I tensorflow/core/common_runtime/gpu/gpu_device.cc:972] DMA: 0 1 
-I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] 0:   Y Y 
-I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] 1:   Y Y 
-I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Creating TensorFlow device (/gpu:0) -> (device: 0, name: GeForce GTX TITAN X, pci bus id: 0000:05:00.0)
-I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Creating TensorFlow device (/gpu:1) -> (device: 1, name: GeForce GTX TITAN X, pci bus id: 0000:08:00.0)
-(16, 224, 224, 3)
+W tensorflow/stream_executor/cuda/cuda_driver.cc:572] creating context when one is currently active; existing: 0x4884c30
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:102] Found device 3 with properties: 
+name: GeForce GTX TITAN X
+major: 5 minor: 2 memoryClockRate (GHz) 1.076
+pciBusID 0000:09:00.0
+Total memory: 11.92GiB
+Free memory: 11.81GiB
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:126] DMA: 0 1 2 3 
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:136] 0:   Y Y Y Y 
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:136] 1:   Y Y Y Y 
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:136] 2:   Y Y Y Y 
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:136] 3:   Y Y Y Y 
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:838] Creating TensorFlow device (/gpu:0) -> (device: 0, name: GeForce GTX TITAN X, pci bus id: 0000:04:00.0)
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:838] Creating TensorFlow device (/gpu:1) -> (device: 1, name: GeForce GTX TITAN X, pci bus id: 0000:05:00.0)
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:838] Creating TensorFlow device (/gpu:2) -> (device: 2, name: GeForce GTX TITAN X, pci bus id: 0000:08:00.0)
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:838] Creating TensorFlow device (/gpu:3) -> (device: 3, name: GeForce GTX TITAN X, pci bus id: 0000:09:00.0)
+(16, 227, 227, 3)
 (16,)
 (11, 11, 3, 96)
 (96,)
@@ -29,54 +47,54 @@ I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Creating TensorFlow dev
 (256,)
 (3, 3, 256, 384)
 (384,)
-(3, 3, 384, 384)
-(384,)
 (3, 3, 384, 256)
 (256,)
-(12544, 4096)
+(3, 3, 256, 256)
+(256,)
+(9216, 4096)
 (4096,)
 (4096, 4096)
 (4096,)
 (4096, 1000)
 (1000,)
-Parameter Number:78418296
-2016-09-14 13:59:03.433284: step 10, duration = 0.031
-2016-09-14 13:59:03.747270: step 20, duration = 0.031
-2016-09-14 13:59:04.061029: step 30, duration = 0.031
-2016-09-14 13:59:04.374696: step 40, duration = 0.031
-2016-09-14 13:59:04.689353: step 50, duration = 0.031
-2016-09-14 13:59:05.004092: step 60, duration = 0.031
-2016-09-14 13:59:05.318526: step 70, duration = 0.031
-2016-09-14 13:59:05.632279: step 80, duration = 0.031
-2016-09-14 13:59:05.945612: step 90, duration = 0.031
-2016-09-14 13:59:06.260480: step 100, duration = 0.031
-2016-09-14 13:59:06.574266: step 110, duration = 0.032
-2016-09-14 13:59:06.888852: step 120, duration = 0.031
-2016-09-14 13:59:07.203759: step 130, duration = 0.031
-2016-09-14 13:59:07.518951: step 140, duration = 0.032
-2016-09-14 13:59:07.834198: step 150, duration = 0.032
-2016-09-14 13:59:08.148923: step 160, duration = 0.031
-2016-09-14 13:59:08.463912: step 170, duration = 0.032
-2016-09-14 13:59:08.779313: step 180, duration = 0.031
-2016-09-14 13:59:09.093650: step 190, duration = 0.031
-2016-09-14 13:59:09.406889: step 200, duration = 0.031
-2016-09-14 13:59:09.722015: step 210, duration = 0.032
-2016-09-14 13:59:10.036875: step 220, duration = 0.031
-2016-09-14 13:59:10.351874: step 230, duration = 0.031
-2016-09-14 13:59:10.666342: step 240, duration = 0.031
-2016-09-14 13:59:10.980744: step 250, duration = 0.031
-2016-09-14 13:59:11.295516: step 260, duration = 0.031
-2016-09-14 13:59:11.609400: step 270, duration = 0.031
-2016-09-14 13:59:11.924283: step 280, duration = 0.031
-2016-09-14 13:59:12.239217: step 290, duration = 0.032
-2016-09-14 13:59:12.554378: step 300, duration = 0.031
-2016-09-14 13:59:12.868874: step 310, duration = 0.031
-2016-09-14 13:59:13.182989: step 320, duration = 0.031
-2016-09-14 13:59:13.497273: step 330, duration = 0.031
-2016-09-14 13:59:13.811845: step 340, duration = 0.031
-2016-09-14 13:59:14.125752: step 350, duration = 0.031
-2016-09-14 13:59:14.440384: step 360, duration = 0.031
-2016-09-14 13:59:14.754656: step 370, duration = 0.031
-2016-09-14 13:59:15.069376: step 380, duration = 0.031
-2016-09-14 13:59:15.384057: step 390, duration = 0.031
-fake 2016-09-14 13:59:15.666808: Forward-backward across 400 steps, 0.031 +/- 0.002 sec / batch
+Parameter Number:64114344
+2016-09-21 20:51:36.974879: step 10, duration = 0.034
+2016-09-21 20:51:37.310246: step 20, duration = 0.034
+2016-09-21 20:51:37.645933: step 30, duration = 0.033
+2016-09-21 20:51:37.981258: step 40, duration = 0.034
+2016-09-21 20:51:38.316486: step 50, duration = 0.034
+2016-09-21 20:51:38.652338: step 60, duration = 0.034
+2016-09-21 20:51:38.987787: step 70, duration = 0.033
+2016-09-21 20:51:39.323225: step 80, duration = 0.034
+2016-09-21 20:51:39.658839: step 90, duration = 0.033
+2016-09-21 20:51:39.994244: step 100, duration = 0.033
+2016-09-21 20:51:40.329560: step 110, duration = 0.033
+2016-09-21 20:51:40.664781: step 120, duration = 0.033
+2016-09-21 20:51:41.000277: step 130, duration = 0.034
+2016-09-21 20:51:41.335394: step 140, duration = 0.033
+2016-09-21 20:51:41.670912: step 150, duration = 0.034
+2016-09-21 20:51:42.006678: step 160, duration = 0.033
+2016-09-21 20:51:42.341688: step 170, duration = 0.033
+2016-09-21 20:51:42.677240: step 180, duration = 0.034
+2016-09-21 20:51:43.012725: step 190, duration = 0.033
+2016-09-21 20:51:43.348940: step 200, duration = 0.034
+2016-09-21 20:51:43.685105: step 210, duration = 0.034
+2016-09-21 20:51:44.020863: step 220, duration = 0.034
+2016-09-21 20:51:44.356418: step 230, duration = 0.034
+2016-09-21 20:51:44.692424: step 240, duration = 0.034
+2016-09-21 20:51:45.028671: step 250, duration = 0.034
+2016-09-21 20:51:45.364344: step 260, duration = 0.034
+2016-09-21 20:51:45.700139: step 270, duration = 0.034
+2016-09-21 20:51:46.035270: step 280, duration = 0.034
+2016-09-21 20:51:46.374304: step 290, duration = 0.033
+2016-09-21 20:51:46.710160: step 300, duration = 0.034
+2016-09-21 20:51:47.045396: step 310, duration = 0.033
+2016-09-21 20:51:47.381018: step 320, duration = 0.034
+2016-09-21 20:51:47.717045: step 330, duration = 0.034
+2016-09-21 20:51:48.052752: step 340, duration = 0.034
+2016-09-21 20:51:48.389997: step 350, duration = 0.034
+2016-09-21 20:51:48.726978: step 360, duration = 0.034
+2016-09-21 20:51:49.063783: step 370, duration = 0.034
+2016-09-21 20:51:49.401028: step 380, duration = 0.034
+2016-09-21 20:51:49.737825: step 390, duration = 0.034
+fake 2016-09-21 20:51:50.041739: Forward-backward across 400 steps, 0.033 +/- 0.002 sec / batch
