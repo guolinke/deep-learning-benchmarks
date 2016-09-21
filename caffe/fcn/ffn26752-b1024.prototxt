@@ -9,7 +9,7 @@ layer {
   }
   data_param: {
     batch_size: 1024 
-    source: "/home/dl/data/caffe/fake_data26752.lmdb"
+    source: "fake_data26752.lmdb"
     backend: LMDB
   }
 }
