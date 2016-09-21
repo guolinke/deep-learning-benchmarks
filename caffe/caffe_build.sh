@@ -4,7 +4,6 @@ sudo apt-get install -y libgflags-dev libgoogle-glog-dev liblmdb-dev
 sudo rm -rf caffe
 git clone https://github.com/BVLC/caffe
 cd caffe
-git reset --hard 7f8f9e146d90172e457678866961b86ae4218824
 cp Makefile.config.example Makefile.config
 echo "USE_CUDNN := 1 " >> Makefile.config
 make all
