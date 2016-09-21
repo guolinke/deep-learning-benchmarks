@@ -218,7 +218,8 @@ def run_benchmark():
       # Add a simple objective so we can calculate the backward pass.
       objective = loss(last_layer, labels)
       # Compute the gradient with respect to all the parameters.
-      grad = tf.gradients(objective, parameters)
+      # grad = tf.gradients(objective, parameters)
+      grad = tf.train.GradientDescentOptimizer(0.01).minimize(objective)
       # Run the backward benchmark.
       time_tensorflow_run(sess, grad, "Forward-backward")
 
