@@ -17,23 +17,7 @@ fi
 export PATH=${mpi_home}/bin:$PATH
 export LD_LIBRARY_PATH=${mpi_home}/lib:$LD_LIBRARY_PATH
 
-boost_home=/usr/local/boost-1.60.0
-
-if [ ! -d "$boost_home" ]; then
-sudo apt-get install libbz2-dev
-wget -q -O - https://sourceforge.net/projects/boost/files/boost/1.60.0/boost_1_60_0.tar.gz/download | tar -xzf - 
-cd boost_1_60_0 
-./bootstrap.sh --prefix=$boost_home
-sudo ./b2 -d0 -j"$(nproc)" install
-cd ..
-fi
 
 sudo rm -rf cntk
-git clone --recursive https://github.com/Microsoft/cntk/
-cd cntk
-mkdir build -p
-cd build
-../configure --1bitsgd=yes
-make -j all
-
-cd ..
+wget https://cntk.ai/BinaryDrop/CNTK-1-7-Linux-64bit-GPU-1bit-SGD.tar.gz
+tar -zxf CNTK-1-7-Linux-64bit-GPU-1bit-SGD.tar.gz
