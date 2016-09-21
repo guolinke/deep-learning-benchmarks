@@ -48,20 +48,20 @@ train = [
         embedDim = 256
         hiddenDim = (256:256)
         
-#        model(x) = [
-#            E = ParameterTensor (embedDim:inputDim)
-#            e = E * x
-#            h = BS.RNNs.RecurrentLSTMPStack (hiddenDim, cellDims=hiddenDim, e, inputDim=embedDim)[1].h
-#            W = ParameterTensor (labelDim:hiddenDim[1]) 
-#            b = ParameterTensor (labelDim,init='fixedValue',value=0);
-#            z = W * h + b
-#        ].z
+        model(x) = [
+            E = ParameterTensor (embedDim:inputDim)
+            e = E * x
+            h = RecurrentLSTMLayerStack (hiddenDim, cellShapes=hiddenDim)(e)
+            W = ParameterTensor (labelDim:hiddenDim[1]) 
+            b = ParameterTensor (labelDim,init='fixedValue',value=0);
+            z = W * h + b
+        ].z
 
-        model = Sequential (
-            EmbeddingLayer (embedDim) :
-            RecurrentLSTMLayerStack (hiddenDim, allowOptimizedEngine = true) : 
-            DenseLayer (labelDim)
-        )
+#        model = Sequential (
+#            EmbeddingLayer (embedDim) :
+#            RecurrentLSTMLayerStack (hiddenDim, allowOptimizedEngine = true) : 
+#            DenseLayer (labelDim)
+#        )
 
         words  = if deviceId >= 0 then SparseInput (inputDim) else Input (inputDim)
         labels = Input (inputDim)
