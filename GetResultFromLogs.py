@@ -95,7 +95,10 @@ def GetTimeFromTensorflowLog(filename):
 				batch_size = int(line.split(':')[-1])
 			if 'for one mini batch' in line:
 				time = float( line.split('seconds.')[-1].split('seconds ')[0])
-				return [time, 1.0 / time * batch_size]
+		if '32' in filename:
+			return [time, 32.0 / time * batch_size]
+		else:
+			return [time, 64.0 / time * batch_size]
 	elif 'resnet' in filename:
 		total_samples = 0
 		total_time = 0
@@ -137,7 +140,12 @@ def GetTimeFromTheanoLog(filename):
 	for line in file_in.readlines():
 		if 'Forward-Backward across' in line:
 			time = float(line.split(',')[-1].split('+/-')[0])
-			return [time, batch_size * 1.0 / time]
+	if 'lstm32' in filename:
+		return [time, batch_size * 32.0 / time]
+	elif 'lstm64' in filename:
+		return [time, batch_size * 64.0 / time]
+	else:
+		return [time, batch_size / time]
 def GetTheanoResult():
 	return [GetTimeFromTheanoLog('theano/log/fcn5.log'),
 	GetTimeFromTheanoLog('theano/log/fcn8.log'),
@@ -161,7 +169,10 @@ def GetTimeFromTorchLog(filename):
 				it = int(line.split('iters:')[0].strip().split(' ')[-1])
 				time = float(line.split('iters:')[1].strip().split(' ')[0])
 				time = time / it
-				return [time, batch_size * 1.0 / time]
+		if 'lstm32' in filename:
+			return [time, batch_size * 32.0 / time]
+		else:
+			return [time, batch_size * 64.0 / time]
 	elif 'resnet' in filename:
 		total_time = 0
 		for line in file_in.readlines():
