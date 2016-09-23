@@ -31,9 +31,9 @@ initOnCPUOnly=true
 prefetch = "true"
 parallelTrain = "false"
 
-command = Train:Test
+command = Train
 
-stderr = "$OutputDir$/03_ResNet-ssgd"
+stderr = "$OutputDir$/03_ResNet"
 traceLevel = 1
 
 Proj16to32Filename = "$ConfigDir$/16to32.txt"
