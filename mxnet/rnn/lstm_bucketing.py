@@ -55,7 +55,7 @@ if __name__ == '__main__':
 
     contexts = [mx.context.gpu(i) for i in range(1)]
 
-    vocab = default_build_vocab("./ptb.train.txt")
+    vocab = default_build_vocab(args.data_path+"/ptb.train.txt")
 
     def sym_gen(seq_len):
         return lstm_unroll(num_lstm_layer, seq_len, 10000,
