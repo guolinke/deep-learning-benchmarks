@@ -67,8 +67,7 @@ def main():
         T.nnet.softmax(output), labels_var).mean(
         dtype=theano.config.floatX)
     params = lasagne.layers.get_all_params(layer, trainable=True)
-    updates = lasagne.updates.momentum(
-        loss, params, learning_rate=0.1, momentum=0.9)
+    updates = lasagne.updates.sgd(loss, params, learning_rate=0.1)
 
     # gradient = T.grad(loss, get_all_params(layer), disconnected_inputs="warn")
     # We add update, so we don't have to calc the gradient now.

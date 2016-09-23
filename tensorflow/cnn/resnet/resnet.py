@@ -188,7 +188,7 @@ def block(x, c):
             x = activation(x)
 
         with tf.variable_scope('b'):
-            c['ksize'] = 3 
+            c['ksize'] = 3
             x = conv(x, c)
             x = bn(x, c)
             x = activation(x)

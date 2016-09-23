@@ -17,6 +17,7 @@ makeMode=false
 initOnCPUOnly=true
 
 imageLayout="cudnn"
+prefetch=true
 
 traceLevel=1
 

@@ -8,6 +8,7 @@ stderr  = "./output_$ConfigName$"
 ndlMacros="$ConfigDir$/Macros.ndl"
 
 precision="float"
+prefetch=true
 
 deviceId=0
 minibatchSize=16

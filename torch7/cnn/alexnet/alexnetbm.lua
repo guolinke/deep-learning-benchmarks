@@ -102,7 +102,7 @@ for i=1,#nets do
       sys.tic()
       local ok = 1
       for t = 1,steps do
-         ok = pcall(function() model:accGradParameters(input, output) end)
+         ok = pcall(function() model:accGradParameters(input, output) model:updateParameters(0.01) end)
       end
       cutorch.synchronize()
       tmbg = sys.toc()/steps

@@ -51,15 +51,15 @@ train = [
         model(x) = [
             E = ParameterTensor (embedDim:inputDim)
             e = E * x
-            h = BS.RNNs.RecurrentLSTMPStack (hiddenDim, cellDims=hiddenDim, e, inputDim=embedDim)[1].h
+            h = RecurrentLSTMLayerStack (hiddenDim, cellShapes=hiddenDim, allowOptimizedEngine = true)(e)
             W = ParameterTensor (labelDim:hiddenDim[1]) 
             b = ParameterTensor (labelDim,init='fixedValue',value=0);
             z = W * h + b
         ].z
 
-#        model_v17 = Sequential (
+#        model = Sequential (
 #            EmbeddingLayer (embedDim) :
-#            RecurrentLSTMLayerStack (hiddenDim, allowOptimizedEngine = false) : 
+#            RecurrentLSTMLayerStack (hiddenDim, allowOptimizedEngine = true) : 
 #            DenseLayer (labelDim)
 #        )
 

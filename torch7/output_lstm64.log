@@ -18,7 +18,7 @@
    momentum : 0.9
    progress : false
    saturate : 400
-   savepath : "/home/guolin/save/rnnlm"
+   savepath : "/home/glk/save/rnnlm"
    seqlen : 64
    silent : false
    startlr : 1
@@ -143,7 +143,7 @@ Epoch #1 :
 6272	
 6336	
 6400	
-Time elapsed for 100 iters: 20.6064889431 seconds	
+Time elapsed for 100 iters: 21.019054174423 seconds	
 Model parameters: 	6180624	
 All shape: 	{
   1 : CudaTensor - size: 10000x256
