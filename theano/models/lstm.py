@@ -36,7 +36,7 @@ def build_function(vocab_size=10000, seq=32, hiddenLayDim=256):
         # The output of l_forward_2 of shape (batch_size, hiddenLayDim) is then passed through the softmax nonlinearity to
         # create probability distribution of the prediction
         # The output of this stage is (batch_size, vocab_size)
-        l_out = lasagne.layers.DenseLayer(l_forward_2, num_units=vocab_size, W = lasagne.init.Normal(), nonlinearity=lasagne.nonlinearities.softmax)
+        l_out = lasagne.layers.DenseLayer(l_forward_2, num_units=vocab_size, W = lasagne.init.Normal(), nonlinearity=None)
         return l_out, x
 
     def input_generator(*dims):

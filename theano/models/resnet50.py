@@ -182,6 +182,6 @@ def build_model(batch_size=128):
     net['pool5'] = PoolLayer(net[parent_layer_name], pool_size=7, stride=1, pad=0,
                              mode='average_exc_pad', ignore_border=False)
     net['fc1000'] = DenseLayer(net['pool5'], num_units=labelDim, nonlinearity=None)
-    net['prob'] = NonlinearityLayer(net['fc1000'], nonlinearity=softmax)
+    net['prob'] = NonlinearityLayer(net['fc1000'], nonlinearity=None)
 
     return net['prob'], x

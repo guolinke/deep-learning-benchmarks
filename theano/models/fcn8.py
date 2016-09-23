@@ -17,5 +17,5 @@ def build_model(batch_size=128):
     layer = DenseLayer(layer, hiddenLayDim, nonlinearity=lasagne.nonlinearities.sigmoid)
     layer = DenseLayer(layer, hiddenLayDim, nonlinearity=lasagne.nonlinearities.sigmoid)
     layer = DenseLayer(layer, hiddenLayDim, nonlinearity=lasagne.nonlinearities.sigmoid)
-    layer = DenseLayer(layer, labelDim, nonlinearity=lasagne.nonlinearities.softmax)
+    layer = DenseLayer(layer, labelDim, nonlinearity=None)
     return layer, x
