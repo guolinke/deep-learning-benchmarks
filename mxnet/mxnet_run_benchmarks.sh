@@ -60,5 +60,5 @@ python cnn/cnn.py --batch-size ${CMBS} --num-batch ${CNB} --network alexnet 2>&1
 python cnn/cnn.py --batch-size ${CMBS} --num-batch ${CNB} --network resnet 2>&1 | tee output_resnet.log
 python fcn/fcn5.py --batch-size ${FMBS} --num-batch ${FNB} 2>&1 | tee output_fcn5.log
 python fcn/fcn8.py --batch-size ${FMBS} --num-batch ${FNB} 2>&1 | tee output_fcn8.log
-python rnn/lstm_bucketing.py --batch-size ${LMBS} --num-batch ${LNB} --seq-len 32 --data-path "..\cntk\rnn\PennTreebank\Data" 2>&1 | tee output_lstm32.log
-python rnn/lstm_bucketing.py --batch-size ${LMBS} --num-batch ${LNB} --seq-len 64 --data-path "..\cntk\rnn\PennTreebank\Data" 2>&1 | tee output_lstm64.log	
+python rnn/lstm_bucketing.py --batch-size ${LMBS} --num-batch ${LNB} --seq-len 32 --data-path "../cntk/rnn/PennTreebank/Data" 2>&1 | tee output_lstm32.log
+python rnn/lstm_bucketing.py --batch-size ${LMBS} --num-batch ${LNB} --seq-len 64 --data-path "../cntk/rnn/PennTreebank/Data" 2>&1 | tee output_lstm64.log	
