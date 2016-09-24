@@ -96,7 +96,7 @@ if __name__ == '__main__':
     else:
         symbol = sym_gen
     dshape = (batch_size, 10000)
-    net_exec = symbol.simple_bind(ctx=dev, grad_req='write', data=dshape)
+    net_exec = symbol.simple_bind(ctx=contexts, grad_req='write', data=dshape)
     arg_names = symbol.list_arguments()
     arg_map = dict(zip(arg_names, net_exec.arg_arrays))
     print 'Parameter Number: '+str(param_count(arg_names, arg_map))
