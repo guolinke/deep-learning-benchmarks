@@ -92,4 +92,4 @@ if __name__ == '__main__':
 
     model.fit(X=data_train, eval_data=None,
               eval_metric = mx.metric.np(Perplexity),
-              batch_end_callback=mx.callback.Speedometer(batch_size, 10))
+              batch_end_callback=mx.callback.Speedometer(batch_size*args.seq_len, 10))
