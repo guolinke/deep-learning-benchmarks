@@ -31,6 +31,7 @@ mlp:add(Linear(hsize,hsize)):add(Transfer(true)) -- hidden layer 2
 mlp:add(Linear(hsize,hsize)):add(Transfer(true)) -- hidden layer 3
 mlp:add(Linear(hsize,hsize)):add(Transfer(true)) -- hidden layer 4
 mlp:add(Linear(hsize,hsize)):add(Transfer(true)) -- hidden layer 5 
+mlp:add(Linear(hsize,hsize)):add(Transfer(true)) -- hidden layer 6 
 if opt.deviceId >= 0 then
     mlp:add(Linear(hsize,osize)):add(cudnn.LogSoftMax()) -- output layer
 else
