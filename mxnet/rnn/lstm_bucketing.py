@@ -99,5 +99,5 @@ if __name__ == '__main__':
     elasped_time = float(toc - tic)
     print '********************** Training on GPU() **********************'
     print 'Avg elasped time per mini-batch (sec/mini-batch): '+str(round(elasped_time/args.num_batch, 6))
-    print 'Avg samples per second (samples/sec): '+str(int(round((data_train.sample[args.seq_len])/elasped_time)))
+    print 'Avg samples per second (samples/sec): '+str(int(round(( args.num_batch * args.batch_size * args.seq_len )/elasped_time)))
     print '****************************************************************'
