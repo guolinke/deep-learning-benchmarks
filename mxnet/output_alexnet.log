@@ -1,0 +1,29 @@
+************** Config Message **************
+network: ALEXNET
+gpu: 0
+last_batch_handle: pad
+Mini_batch_size: 16
+Num_batch: 100
+********************************************
+alexnet shape checking:
+(96, 3, 11, 11)
+(96,)
+(256, 96, 5, 5)
+(256,)
+(384, 256, 3, 3)
+(384,)
+(384, 384, 3, 3)
+(384,)
+(256, 384, 3, 3)
+(256,)
+(4096, 6400)
+(4096,)
+(4096, 4096)
+(4096,)
+(1000, 4096)
+(1000,)
+Parameter Number: 50844008
+********************** Training on GPU(0) **********************
+Avg elasped time per mini-batch (sec/mini-batch): 0.02616
+Avg samples per second (samples/sec): 612
+****************************************************************
