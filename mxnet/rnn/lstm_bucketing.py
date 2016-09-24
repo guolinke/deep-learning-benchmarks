@@ -67,13 +67,10 @@ if __name__ == '__main__':
     init_states = init_c + init_h
 
     data_train = BucketSentenceIter(args.data_path+"/ptb.train.txt", vocab,
-                                    buckets, batch_size, init_states)
-    data_val = BucketSentenceIter(args.data_path+"/ptb.valid.txt", vocab,
-                                  buckets, batch_size, init_states)
+                                    buckets, batch_size, args.num_batch, init_states)
 
     if dummy_data:
         data_train = DummyIter(data_train)
-        data_val = DummyIter(data_val)
 
     if len(buckets) == 1:
         # only 1 bucket, disable bucketing
@@ -95,12 +92,12 @@ if __name__ == '__main__':
 
     import time
     tic = time.time()
-    model.fit(X=data_train, eval_data=data_val,
+    model.fit(X=data_train, eval_data=None,
               eval_metric = mx.metric.np(Perplexity),
               batch_end_callback=None)
     toc = time.time()
     elasped_time = float(toc - tic)
     print '********************** Training on GPU() **********************'
-    print 'Avg elasped time per mini-batch (sec/mini-batch): '+str(round(elasped_time/(float(data_train.sample[args.seq_len]) / (batch_size * 32)), 6))
+    print 'Avg elasped time per mini-batch (sec/mini-batch): '+str(round(elasped_time/args.num_batch, 6))
     print 'Avg samples per second (samples/sec): '+str(int(round((data_train.sample[args.seq_len])/elasped_time)))
     print '****************************************************************'
