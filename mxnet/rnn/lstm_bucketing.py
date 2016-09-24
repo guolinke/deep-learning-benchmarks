@@ -104,5 +104,3 @@ if __name__ == '__main__':
     print 'Avg elasped time per mini-batch (sec/mini-batch): '+str(round(elasped_time/(float(data_train.sample[args.seq_len]) / (batch_size * 32)), 6))
     print 'Avg samples per second (samples/sec): '+str(int(round((data_train.sample[args.seq_len])/elasped_time)))
     print '****************************************************************'
-    # Parameter counting
-    print 'Parameter Number: '+str(param_count(arg_names, arg_map))
