@@ -193,13 +193,44 @@ def GetTorchResult():
 	GetTimeFromTorchLog('torch7/output_lstm32.log'),
 	GetTimeFromTorchLog('torch7/output_lstm64.log')]
 
+def GetTimeFromMxnetLog(filename):
+	file_in = open(filename,"r")
+	batch_size = -1
+	if 'alexnet' in filename or 'resnet' in filename:
+		batch_size = CNN_batch_size
+	elif 'lstm' in filename:
+		batch_size = RNN_batch_size
+	else:
+		batch_size = FCN_batch_size
+	if 'lstm' in filename:
+		for line in file_in.readlines():
+			if 'Batch [50]' in line:
+				sps = float(line.split('Speed:')[1].split('samples/sec')[0])
+		if 'lstm32' in filename:
+			return [batch_size * 32.0 / sps, sps]
+		else:
+			return [batch_size * 64.0 / sps, sps]
+	else:	
+		for line in file_in.readlines():
+			if '(sec/mini-batch)' in line:
+				time = float(line.split(':')[-1])
+				return [time, batch_size * 1.0 / time]
+def GetMxnetResult():
+	return[GetTimeFromMxnetLog('mxnet/output_fcn5.log'),
+	GetTimeFromMxnetLog('mxnet/output_fcn8.log'),
+	GetTimeFromMxnetLog('mxnet/output_alexnet.log'),
+	GetTimeFromMxnetLog('mxnet/output_resnet.log'),
+	GetTimeFromMxnetLog('mxnet/output_lstm32.log'),
+	GetTimeFromMxnetLog('mxnet/output_lstm64.log')]
+
 caffe_result = GetCaffeResult()
 cntk_result = GetCNTKResult()
+mxnet_resutl = GetMxnetResult()
 tf_result = GetTersonflowResult()
 th_result = GetTheanoResult()
 to_result = GetTorchResult()
-names = ['Caffe','CNTK','TensorFlow','Theano','Torch']
-result = [caffe_result, cntk_result, tf_result, th_result, to_result] 
+names = ['Caffe','CNTK', 'MXNet' ,'TensorFlow','Theano','Torch']
+result = [caffe_result, cntk_result, mxnet_resutl, tf_result, th_result, to_result] 
 file_out = open('result.md','w')
 file_out.write('seconds/num_batches:\n\n')
 file_out.write('| Tool | FCN-5 | FCN-8 | AlexNet | ResNet | LSTM-32 | LSTM-64 |\n')
