@@ -90,14 +90,6 @@ if __name__ == '__main__':
     head = '%(asctime)-15s %(message)s'
     logging.basicConfig(level=logging.DEBUG, format=head)
 
-    import time
-    tic = time.time()
     model.fit(X=data_train, eval_data=None,
               eval_metric = mx.metric.np(Perplexity),
-              batch_end_callback=None)
-    toc = time.time()
-    elasped_time = float(toc - tic)
-    print '********************** Training on GPU() **********************'
-    print 'Avg elasped time per mini-batch (sec/mini-batch): '+str(round(elasped_time/args.num_batch, 6))
-    print 'Avg samples per second (samples/sec): '+str(int(round(( args.num_batch * args.batch_size * args.seq_len )/elasped_time)))
-    print '****************************************************************'
+              batch_end_callback=mx.callback.Speedometer(batch_size, 10))
