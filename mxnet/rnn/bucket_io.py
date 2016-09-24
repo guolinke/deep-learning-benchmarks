@@ -111,11 +111,11 @@ class DummyIter(mx.io.DataIter):
         return self.the_batch
 
 class BucketSentenceIter(mx.io.DataIter):
-    def __init__(self, path, vocab, buckets, batch_size,
+    def __init__(self, path, vocab, buckets, batch_size, max_iters, 
                  init_states, data_name='data', label_name='label',
                  seperate_char=' <eos> ', text2id=None, read_content=None, model_parallel=False):
         super(BucketSentenceIter, self).__init__()
-
+        self.max_iters = max_iters
         if text2id == None:
             self.text2id = default_text2id
         else:
@@ -216,8 +216,11 @@ class BucketSentenceIter(mx.io.DataIter):
                 self.data[i] = np.transpose(bucket_data)
 
     def __iter__(self):
-
+        cnt = 0
         for i_bucket in self.bucket_plan:
+            if cnt > self.max_iters:
+                break
+            cnt += 1
             data = self.data_buffer[i_bucket]
             i_idx = self.bucket_curr_idx[i_bucket]
             idx = self.bucket_idx_all[i_bucket][i_idx:i_idx+self.batch_size]
