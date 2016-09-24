@@ -97,7 +97,7 @@ if __name__ == '__main__':
     tic = time.time()
     model.fit(X=data_train, eval_data=data_val,
               eval_metric = mx.metric.np(Perplexity),
-              batch_end_callback=mx.callback.Speedometer(batch_size, 50),)
+              batch_end_callback=None)
     toc = time.time()
     elasped_time = float(toc - tic)
     print '********************** Training on GPU() **********************'
