@@ -7,6 +7,21 @@ import argparse
 from lstm import lstm_unroll
 from bucket_io import BucketSentenceIter, default_build_vocab
 
+def param_count(arg_names, arg_map):
+    print args.network + ' shape checking:'
+    total_para = 0
+    for i in range(len(arg_names)):
+        if i == 0:
+            continue
+        shape = arg_map[arg_names[i]].asnumpy().shape
+        print shape
+        tmp_para = 1
+        for dim in shape:
+            tmp_para *= dim
+        total_para += tmp_para
+        #print 'tmp para:'+str(tmp_para)
+    return total_para
+
 def Perplexity(label, pred):
     label = label.T.reshape((-1,))
     loss = 0.
@@ -80,7 +95,11 @@ if __name__ == '__main__':
         symbol = sym_gen(buckets[0])
     else:
         symbol = sym_gen
-
+    dshape = (batch_size, 10000)
+    net_exec = symbol.simple_bind(ctx=dev, grad_req='write', data=dshape)
+    arg_names = symbol.list_arguments()
+    arg_map = dict(zip(arg_names, net_exec.arg_arrays))
+    print 'Parameter Number: '+str(param_count(arg_names, arg_map))
     model = mx.model.FeedForward(ctx=contexts,
                                  symbol=symbol,
                                  num_epoch=num_epoch,
@@ -104,3 +123,5 @@ if __name__ == '__main__':
     print 'Avg elasped time per mini-batch (sec/mini-batch): '+str(round(elasped_time/(float(data_train.sample[args.seq_len]) / (batch_size * 32)), 6))
     print 'Avg samples per second (samples/sec): '+str(int(round((data_train.sample[args.seq_len])/elasped_time)))
     print '****************************************************************'
+    # Parameter counting
+    print 'Parameter Number: '+str(param_count(arg_names, arg_map))
