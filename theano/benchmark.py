@@ -28,10 +28,10 @@ elif args.arch == 'resnet':
     from models.resnet50 import build_model, featureDim, labelDim
 elif args.arch == 'fcn5':
     from models.fcn5 import build_model, featureDim, labelDim
-    use_onehot_label = True
+    #use_onehot_label = True
 elif args.arch == 'fcn8':
     from models.fcn8 import build_model, featureDim, labelDim
-    use_onehot_label = True
+    #use_onehot_label = True
 elif args.arch == 'lstm32':
     from models.lstm import build_model32 as build_model, featureDim32 as featureDim, labelDim32 as labelDim, input_generator32 as input_generator
 elif args.arch == 'lstm64':
