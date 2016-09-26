@@ -41,11 +41,12 @@ end
 -- Fake data
 local bsize = opt.batchSize
 local inputCPU = torch.randn(bsize,isize)
+local targetCPU = torch.IntTensor(bsize):random(1,osize)
 local input = nil 
 local target = nil
 if opt.deviceId >= 0 then
     input = torch.Tensor(inputCPU:size()):float():cuda() -- torch.CudaTensor(inputCPU:size())
-    target = torch.IntTensor(bsize):random(1,bsize):cuda()
+    target = torch.IntTensor(bsize):cuda()
 else
     input = torch.Tensor(inputCPU:size()):float()
     target = torch.IntTensor(bsize):random(1,bsize)
@@ -78,31 +79,36 @@ if opt.deviceId >= 0 then
 else
     criterion = nn.ClassNLLCriterion()
 end
-local parameters, gradParameters = model:getParameters()
-local optimState = { learningRate = 0.01 }
+
+nDryRuns = 20
+
+for t = 1, nDryRuns do
+    input:copy(inputCPU) -- transfer data to GPU memory
+    target:copy(targetCPU)
+    local preb = model:forward(input)
+    criterion:forward(preb, target)
+    model:zeroGradParameters()
+    model:backward(input, criterion:backward(preb, target))
+    model:updateParameters(0.01)
+end
+cutorch.synchronize()
 
 collectgarbage()
 sys.tic()
 for t = 1, steps do
     input:copy(inputCPU) -- transfer data to GPU memory
-    feval = function(x)
-        model:zeroGradParameters()
-        local output = model:forward(input)
-        local err = criterion:forward(output, target)
-        local gradOutput = criterion:backward(output, target)
-        local gradInput = model:backward(input, gradOutput)
-        return err, gradParameters
-    end
-    optim.sgd(feval, parameters, optimState)
-
-    -- DataParallelTable's syncParameters
-    model:apply(function(m) if m.syncParameters then m:syncParameters() end end)
-    cutorch.synchronize()
+    target:copy(targetCPU)
+    local preb = model:forward(input)
+    criterion:forward(preb, target)
+    model:zeroGradParameters()
+    model:backward(input, criterion:backward(preb, target))
+    model:updateParameters(0.01)
 end
+cutorch.synchronize()
 local elapsed = sys.toc()
 
-    print(string.format("%d GPUs: %0.0f samples per sec", nGPU, steps * bsize / elapsed))
-    print(string.format(" | Epoch: [][]    Time %10.6f", elapsed/steps))
+print(string.format("%d GPUs: %0.0f samples per sec", nGPU, steps * bsize / elapsed))
+print(string.format(" | Epoch: [][]    Time %10.6f", elapsed/steps))
 
 local mpx, mpdx = model:getParameters()
 print('Model parameters: ', mpx:nElement()) 

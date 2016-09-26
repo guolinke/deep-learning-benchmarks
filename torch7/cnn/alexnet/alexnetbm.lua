@@ -33,7 +33,7 @@ else
 end
 
 steps = opt.nIterations-- nb of steps in loop to average perf
-nDryRuns = opt.nEpochs 
+nDryRuns = 20
 
 function makeInput(config, size)
    local layout = config[4]
@@ -46,7 +46,7 @@ function makeInput(config, size)
       osize = {size[1], size[3], size[4], size[2]}
    end
    lsize = size[1]
-   return torch.randn(torch.LongStorage(osize)), torch.ones(lsize)
+   return torch.randn(torch.LongStorage(osize))
 end
 
 for i=1,#nets do
@@ -59,19 +59,20 @@ for i=1,#nets do
       print('All shape: ', ax)
 
       size[1] = opt.batchSize
-      local input, label
-      local inputData 
+      local inputCPU, labelCPU
       local criterion
 
       if opt.deviceId >= 0 then
           model = model:cuda()
-          inputData, label = makeInput(libs[j],size)
-          label = label:cuda()
-          input = torch.Tensor(inputData:size()):float():cuda()
+          inputCPU = makeInput(libs[j],size)
+          labelCPU = torch.IntTensor(opt.batchSize):random(1, 1000)
+          label = torch.IntTensor(opt.batchSize):cuda()
+          input = torch.Tensor(inputCPU:size()):float():cuda()
           criterion = nn.ClassNLLCriterion():cuda()
       else
-          inputData, label = makeInput(libs[j],size)
-          input = torch.Tensor(inputData:size()):float()
+          inputCPU = makeInput(libs[j],size)
+          label = torch.IntTensor(opt.batchSize):random(1, 1000)
+          input = torch.Tensor(inputCPU:size()):float()
           criterion = nn.ClassNLLCriterion()
       end
       local lib_name = libs[j][5]
@@ -81,78 +82,31 @@ for i=1,#nets do
 
       -- dry-run
       for i=1,nDryRuns do
+         input:copy(inputCPU)
+         label:copy(labelCPU)
+         local preb = model:forward(input)
+         criterion:forward(preb, label)
          model:zeroGradParameters()
-         input:copy(inputData)
-         local output = model:forward(input)
-         local err    = criterion:forward(output, label)
-         local gradOutput = criterion:backward(output, label)
-         local gradInput  = model:backward(input, gradOutput)
-
-         --local output = model:updateOutput(input)
-         --local gradInput = model:updateGradInput(input, output)
-         --model:accGradParameters(input, output)
-         paramx:add(paramdx:mul(-opt.LR))
-
-         cutorch.synchronize()
-         collectgarbage()
+         model:backward(input, criterion:backward(preb, label))
+         model:updateParameters(opt.LR)
       end
 
-      local tmf, tmbi, tmbg, tmcopy, tmzero
         
       collectgarbage()
       sys.tic()
       for t = 1, steps do
-          input:copy(inputData)
+         input:copy(inputCPU)
+         label:copy(labelCPU)
+         local preb = model:forward(input)
+         criterion:forward(preb, label)
+         model:zeroGradParameters()
+         model:backward(input, criterion:backward(preb, label))
+         model:updateParameters(opt.LR)
       end
       cutorch.synchronize()
-      tmcopy = sys.toc()/steps
-      print(string.format("%-30s %25s %10.2f", lib_name, ':Copy data:', tmcopy*1000))
 
-
-      collectgarbage()
-      sys.tic()
-      for t = 1,steps do
-         output = model:forward(input)
-         err    = criterion:forward(output, label)
-      end
-      cutorch.synchronize()
-      tmf = sys.toc()/steps
-      print(string.format("%-30s %25s %10.2f", lib_name, ':forward:', tmf*1000))
-
-
-      collectgarbage()
-      sys.tic()
-      for t = 1,steps do
-         gradOutput = criterion:backward(output, label)
-         gradInput  = model:backward(input, gradOutput)
-      end
-      cutorch.synchronize()
-      tmbi = sys.toc()/steps
-      print(string.format("%-30s %25s %10.2f", lib_name, ':backward:', tmbi*1000))
-
-      collectgarbage()
-      sys.tic()
-      for t = 1,steps do
-         --paramx:add(paramdx:mul(-opt.LR))
-         pcall(function() model:accGradParameters(input, output) model:updateParameters(opt.LR) end)
-      end
-      cutorch.synchronize()
-      tmbg = sys.toc()/steps
-      print(string.format("%-30s %25s %10.2f", lib_name, ':update:', tmbg*1000))
-
-
-      sys.tic()
-      for t = 1,steps do
-          model:zeroGradParameters()
-      end
-      cutorch.synchronize()
-      tmzero = sys.toc()/steps
-      print(string.format("%-30s %25s %10.2f", lib_name, ':Reset gradient:', tmzero*1000))
-
-
-
-      print(string.format("%-30s %25s %10.2fms", lib_name, ':TOTAL:', (tmcopy+tmf+tmbi+tmbg+tmzero)*1000))
-      print(string.format(" | Epoch: [][]    Time %10.6f", (tmcopy+tmf+tmbi+tmbg+tmzero)))
+      total_time = sys.toc()/steps
+      print(string.format(" | Epoch: [][]    Time %10.6f", (total_time)))
       print()
    end
 end

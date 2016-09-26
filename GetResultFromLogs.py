@@ -173,12 +173,6 @@ def GetTimeFromTorchLog(filename):
 			return [time, batch_size * 32.0 / time]
 		else:
 			return [time, batch_size * 64.0 / time]
-	elif 'resnet' in filename:
-		total_time = 0
-		for line in file_in.readlines():
-			if 'Epoch:' in line:
-				time = float(line.split('Time')[-1].split('Data')[0])
-		return [time, batch_size * 1.0 / time]
 	else:	
 		for line in file_in.readlines():
 			if 'Epoch: [][]' in line:

@@ -19,11 +19,5 @@ All shape: 	{
   16 : DoubleTensor - size: 1000
 }
 ModelType: AlexNet	Kernels: cudnn	Input shape: 16x3x224x224	
-cudnn                                   :updateOutput():       8.28	
-cudnn                                :updateGradInput():       7.46	
-cudnn                              :accGradParameters():      11.22	
-cudnn                                          :Forward:       8.28	
-cudnn                                         :Backward:      18.67	
-cudnn                                            :TOTAL:      26.96ms	
- | Epoch: [][]    Time   0.026957	
+ | Epoch: [][]    Time   0.028102	
 	

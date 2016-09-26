@@ -1,49 +1,7 @@
 => Creating model from file: models/resnet.lua	
  | ResNet-50 ImageNet	
 => Training epoch # 1	
- | Epoch: [1][16/160]    Time 2.251  Data 0.000  Err 7.2293  top1 100.000  top5 100.000	
- | Epoch: [1][32/160]    Time 0.162  Data 0.000  Err 2.8622  top1  93.750  top5  62.500	
- | Epoch: [1][48/160]    Time 0.162  Data 0.000  Err 14.0959  top1  93.750  top5  68.750	
- | Epoch: [1][64/160]    Time 0.162  Data 0.000  Err 37.1680  top1  93.750  top5  68.750	
- | Epoch: [1][80/160]    Time 0.162  Data 0.000  Err 54.0969  top1  93.750  top5  68.750	
- | Epoch: [1][96/160]    Time 0.162  Data 0.000  Err 23.7851  top1  87.500  top5  68.750	
- | Epoch: [1][112/160]    Time 0.162  Data 0.000  Err 12.7451  top1  87.500  top5  62.500	
- | Epoch: [1][128/160]    Time 0.162  Data 0.000  Err 5.4541  top1  87.500  top5  62.500	
- | Epoch: [1][144/160]    Time 0.161  Data 0.000  Err 5.4170  top1  81.250  top5  62.500	
- | Epoch: [1][160/160]    Time 0.162  Data 0.000  Err 5.3025  top1  81.250  top5  68.750	
-=> Training epoch # 2	
- | Epoch: [2][16/160]    Time 0.162  Data 0.000  Err 5.1018  top1  81.250  top5  68.750	
- | Epoch: [2][32/160]    Time 0.161  Data 0.000  Err 4.9502  top1  81.250  top5  62.500	
- | Epoch: [2][48/160]    Time 0.162  Data 0.000  Err 4.8282  top1  87.500  top5  62.500	
- | Epoch: [2][64/160]    Time 0.161  Data 0.000  Err 4.6814  top1  81.250  top5  56.250	
- | Epoch: [2][80/160]    Time 0.161  Data 0.000  Err 4.5210  top1  81.250  top5  50.000	
- | Epoch: [2][96/160]    Time 0.162  Data 0.000  Err 4.5475  top1  87.500  top5  43.750	
- | Epoch: [2][112/160]    Time 0.161  Data 0.000  Err 6.0075  top1  93.750  top5  56.250	
- | Epoch: [2][128/160]    Time 0.161  Data 0.000  Err 4.6335  top1  87.500  top5  62.500	
- | Epoch: [2][144/160]    Time 0.161  Data 0.000  Err 4.3802  top1  93.750  top5  50.000	
- | Epoch: [2][160/160]    Time 0.162  Data 0.000  Err 4.1606  top1  93.750  top5  62.500	
-=> Training epoch # 3	
- | Epoch: [3][16/160]    Time 0.162  Data 0.000  Err 4.1167  top1  93.750  top5  62.500	
- | Epoch: [3][32/160]    Time 0.161  Data 0.000  Err 4.0610  top1  93.750  top5  62.500	
- | Epoch: [3][48/160]    Time 0.162  Data 0.000  Err 3.9770  top1  87.500  top5  56.250	
- | Epoch: [3][64/160]    Time 0.162  Data 0.000  Err 3.8810  top1  87.500  top5  56.250	
- | Epoch: [3][80/160]    Time 0.162  Data 0.000  Err 3.8124  top1  87.500  top5  56.250	
- | Epoch: [3][96/160]    Time 0.161  Data 0.000  Err 3.7200  top1  87.500  top5  56.250	
- | Epoch: [3][112/160]    Time 0.161  Data 0.000  Err 3.6292  top1  87.500  top5  50.000	
- | Epoch: [3][128/160]    Time 0.162  Data 0.000  Err 3.5318  top1  87.500  top5  50.000	
- | Epoch: [3][144/160]    Time 0.162  Data 0.000  Err 3.4305  top1  81.250  top5  37.500	
- | Epoch: [3][160/160]    Time 0.163  Data 0.000  Err 3.3110  top1  75.000  top5  37.500	
-=> Training epoch # 4	
- | Epoch: [4][16/160]    Time 0.163  Data 0.001  Err 3.1741  top1  68.750  top5  37.500	
- | Epoch: [4][32/160]    Time 0.162  Data 0.000  Err 3.0304  top1  68.750  top5  37.500	
- | Epoch: [4][48/160]    Time 0.161  Data 0.000  Err 2.8781  top1  75.000  top5  18.750	
- | Epoch: [4][64/160]    Time 0.162  Data 0.000  Err 2.7165  top1  62.500  top5  18.750	
- | Epoch: [4][80/160]    Time 0.162  Data 0.000  Err 2.5456  top1  62.500  top5  18.750	
- | Epoch: [4][96/160]    Time 0.162  Data 0.000  Err 2.3763  top1  37.500  top5  18.750	
- | Epoch: [4][112/160]    Time 0.162  Data 0.000  Err 2.2259  top1  43.750  top5  18.750	
- | Epoch: [4][128/160]    Time 0.161  Data 0.000  Err 2.0648  top1  37.500  top5  18.750	
- | Epoch: [4][144/160]    Time 0.161  Data 0.000  Err 1.8983  top1  50.000  top5  18.750	
- | Epoch: [4][160/160]    Time 0.162  Data 0.000  Err 1.7376  top1  31.250  top5  12.500	
+ | Epoch: [][]    Time   0.161 	
 Model parameters: 	25557032	
 All shape: 	{
   1 : CudaTensor - size: 64x3x7x7
@@ -208,4 +166,3 @@ All shape: 	{
   160 : CudaTensor - size: 1000x2048
   161 : CudaTensor - size: 1000
 }
- * Finished top1:    inf  top5:    inf	

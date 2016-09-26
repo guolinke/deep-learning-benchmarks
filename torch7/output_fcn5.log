@@ -1,6 +1,6 @@
 fc	
-1 GPUs: 2389 samples per sec	
- | Epoch: [][]    Time   0.026795	
+1 GPUs: 2531 samples per sec	
+ | Epoch: [][]    Time   0.025291	
 Model parameters: 	117997696	
 All shape: 	{
   1 : CudaTensor - size: 2048x26752

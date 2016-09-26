@@ -183,6 +183,32 @@ opt.lr = opt.startlr
 opt.trainsize = opt.trainsize == -1 and trainset:size() or opt.trainsize
 opt.validsize = opt.validsize == -1 and validset:size() or opt.validsize
 while opt.maxepoch <= 0 or epoch <= opt.maxepoch do
+
+   NDryUp = 5
+   for i, inputs, targets in trainset:subiter(opt.seqlen, opt.trainsize) do
+      targets = targetmodule:forward(targets)
+      -- forward
+      local outputs = lm:forward(inputs)
+      criterion:forward(outputs, targets)
+      -- backward 
+      lm:zeroGradParameters()
+      lm:backward(inputs, criterion:backward(outputs, targets))
+
+      if opt.cutoff > 0 then
+         local norm = lm:gradParamClip(opt.cutoff) -- affects gradParams
+         opt.meanNorm = opt.meanNorm and (opt.meanNorm*0.9 + norm*0.1) or norm
+      end
+
+      lm:updateParameters(opt.lr) -- affects params
+      --[[ Set i small for profiling, remove if complete training is needed ]]--
+      if i >= NDryUp*opt.seqlen then
+         break
+      end
+   end
+
+   collectgarbage()
+   cutorch.synchronize()
+
    print("")
    print("Epoch #"..epoch.." :")
 
@@ -190,45 +216,34 @@ while opt.maxepoch <= 0 or epoch <= opt.maxepoch do
    
    local a = torch.Timer()
    lm:training()
-   local sumErr = 0
    for i, inputs, targets in trainset:subiter(opt.seqlen, opt.trainsize) do
-      print(i)
       targets = targetmodule:forward(targets)
-      
       -- forward
       local outputs = lm:forward(inputs)
-      local err = criterion:forward(outputs, targets)
-      sumErr = sumErr + err
-      
+      criterion:forward(outputs, targets)
+
       -- backward 
-      local gradOutputs = criterion:backward(outputs, targets)
       lm:zeroGradParameters()
-      lm:backward(inputs, gradOutputs)
+      lm:backward(inputs, criterion:backward(outputs, targets))
       
-      -- update
       if opt.cutoff > 0 then
          local norm = lm:gradParamClip(opt.cutoff) -- affects gradParams
          opt.meanNorm = opt.meanNorm and (opt.meanNorm*0.9 + norm*0.1) or norm
       end
-      --lm:updateGradParameters(opt.momentum) -- affects gradParams
+
       lm:updateParameters(opt.lr) -- affects params
-      lm:maxParamNorm(opt.maxnormout) -- affects params
-
-      if opt.progress then
-         xlua.progress(math.min(i + opt.seqlen, opt.trainsize), opt.trainsize)
-      end
-
+      -- lm:maxParamNorm(opt.maxnormout)
       if i % (10 * opt.seqlen) == 0 then
          collectgarbage()
       end
       
       --[[ Set i small for profiling, remove if complete training is needed ]]--
       if i >= opt.iters*opt.seqlen then
-         collectgarbage()
          break
       end
-
    end
+   collectgarbage()
+   cutorch.synchronize()
    print('Time elapsed for '.. opt.iters  .. ' iters: ' .. a:time().real .. ' seconds')
 
 local mpx, mpdx = lm:getParameters()
