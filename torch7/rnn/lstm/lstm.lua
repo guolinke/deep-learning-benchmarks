@@ -18,7 +18,7 @@ cmd:option('--startlr', 0.05, 'learning rate at t=0')
 cmd:option('--minlr', 0.00001, 'minimum learning rate')
 cmd:option('--saturate', 400, 'epoch at which linear decayed LR will reach minlr')
 cmd:option('--schedule', '', 'learning rate schedule. e.g. {[5] = 0.004, [6] = 0.001}')
-cmd:option('--momentum', 0.9, 'momentum')
+--cmd:option('--momentum', 0.9, 'momentum')
 cmd:option('--maxnormout', -1, 'max l2-norm of each layer\'s output neuron weights')
 cmd:option('--cutoff', -1, 'max l2-norm of concatenation of all gradParam tensors')
 --[[cmd:option('--batchSize', 32, 'number of examples per batch')]]--
@@ -210,7 +210,7 @@ while opt.maxepoch <= 0 or epoch <= opt.maxepoch do
          local norm = lm:gradParamClip(opt.cutoff) -- affects gradParams
          opt.meanNorm = opt.meanNorm and (opt.meanNorm*0.9 + norm*0.1) or norm
       end
-      lm:updateGradParameters(opt.momentum) -- affects gradParams
+      --lm:updateGradParameters(opt.momentum) -- affects gradParams
       lm:updateParameters(opt.lr) -- affects params
       lm:maxParamNorm(opt.maxnormout) -- affects params
 
