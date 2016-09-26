@@ -61,18 +61,15 @@ for i=1,#nets do
       size[1] = opt.batchSize
       local input, label
       local inputData 
-      local criterion
 
       if opt.deviceId >= 0 then
-          model = model:cuda()
+          model=model:cuda()
           inputData, label = makeInput(libs[j],size)
-          label = label:cuda()
+          label:cuda()
           input = torch.Tensor(inputData:size()):float():cuda()
-          criterion = nn.ClassNLLCriterion():cuda()
       else
           inputData, label = makeInput(libs[j],size)
           input = torch.Tensor(inputData:size()):float()
-          criterion = nn.ClassNLLCriterion()
       end
       local lib_name = libs[j][5]
       print('ModelType: ' .. model_name, 'Kernels: ' .. lib_name,
@@ -82,77 +79,48 @@ for i=1,#nets do
       -- dry-run
       for i=1,nDryRuns do
          model:zeroGradParameters()
-         input:copy(inputData)
-         local output = model:forward(input)
-         local err    = criterion:forward(output, label)
-         local gradOutput = criterion:backward(output, label)
-         local gradInput  = model:backward(input, gradOutput)
-
-         --local output = model:updateOutput(input)
-         --local gradInput = model:updateGradInput(input, output)
-         --model:accGradParameters(input, output)
-         paramx:add(paramdx:mul(-opt.LR))
-
+         local output = model:updateOutput(input)
+         local gradInput = model:updateGradInput(input, output)
+         model:accGradParameters(input, output)
          cutorch.synchronize()
          collectgarbage()
       end
 
-      local tmf, tmbi, tmbg, tmcopy, tmzero
-        
-      collectgarbage()
-      sys.tic()
-      for t = 1, steps do
-          input:copy(inputData)
-      end
-      cutorch.synchronize()
-      tmcopy = sys.toc()/steps
-      print(string.format("%-30s %25s %10.2f", lib_name, ':Copy data:', tmcopy*1000))
-
-
-      collectgarbage()
+      local tmf, tmbi, tmbg
       sys.tic()
       for t = 1,steps do
-         output = model:forward(input)
-         err    = criterion:forward(output, label)
+         output = model:updateOutput(input)
       end
       cutorch.synchronize()
       tmf = sys.toc()/steps
-      print(string.format("%-30s %25s %10.2f", lib_name, ':forward:', tmf*1000))
-
+      print(string.format("%-30s %25s %10.2f", lib_name, ':updateOutput():', tmf*1000))
 
       collectgarbage()
       sys.tic()
       for t = 1,steps do
-         gradOutput = criterion:backward(output, label)
-         gradInput  = model:backward(input, gradOutput)
+         model:updateGradInput(input, output)
       end
       cutorch.synchronize()
       tmbi = sys.toc()/steps
-      print(string.format("%-30s %25s %10.2f", lib_name, ':backward:', tmbi*1000))
+      print(string.format("%-30s %25s %10.2f", lib_name, ':updateGradInput():', tmbi*1000))
 
       collectgarbage()
       sys.tic()
+      local ok = 1
       for t = 1,steps do
-         --paramx:add(paramdx:mul(-opt.LR))
-         pcall(function() model:accGradParameters(input, output) model:updateParameters(opt.LR) end)
+         ok = pcall(function() model:accGradParameters(input, output) model:updateParameters(0.01) end)
       end
       cutorch.synchronize()
       tmbg = sys.toc()/steps
-      print(string.format("%-30s %25s %10.2f", lib_name, ':update:', tmbg*1000))
-
-
-      sys.tic()
-      for t = 1,steps do
-          model:zeroGradParameters()
+      if not ok then
+         print(string.format("%-30s %25s %s", lib_name, ':accGradParameters():', 'FAILED!'))
+      else
+         print(string.format("%-30s %25s %10.2f", lib_name, ':accGradParameters():', tmbg*1000))
       end
-      cutorch.synchronize()
-      tmzero = sys.toc()/steps
-      print(string.format("%-30s %25s %10.2f", lib_name, ':Reset gradient:', tmzero*1000))
-
-
-
-      print(string.format("%-30s %25s %10.2fms", lib_name, ':TOTAL:', (tmcopy+tmf+tmbi+tmbg+tmzero)*1000))
-      print(string.format(" | Epoch: [][]    Time %10.6f", (tmcopy+tmf+tmbi+tmbg+tmzero)))
+      print(string.format("%-30s %25s %10.2f", lib_name, ':Forward:', (tmf)*1000))
+      print(string.format("%-30s %25s %10.2f", lib_name, ':Backward:', (tmbi+tmbg)*1000))
+      print(string.format("%-30s %25s %10.2fms", lib_name, ':TOTAL:', (tmf+tmbi+tmbg)*1000))
+      print(string.format(" | Epoch: [][]    Time %10.6f", (tmf+tmbi+tmbg)))
       print()
    end
 end
