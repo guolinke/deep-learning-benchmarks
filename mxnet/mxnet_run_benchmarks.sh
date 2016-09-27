@@ -56,9 +56,9 @@ sudo rm -f output_fcn8.log
 sudo rm -f output_lstm32.log
 sudo rm -f output_lstm64.log
 
-python cnn/cnn.py --batch-size ${CMBS} --num-batch ${CNB} --network alexnet 2>&1 | tee output_alexnet.log
-python cnn/cnn.py --batch-size ${CMBS} --num-batch ${CNB} --network resnet 2>&1 | tee output_resnet.log
-python fcn/fcn5.py --batch-size ${FMBS} --num-batch ${FNB} 2>&1 | tee output_fcn5.log
-python fcn/fcn8.py --batch-size ${FMBS} --num-batch ${FNB} 2>&1 | tee output_fcn8.log
-python rnn/lstm_bucketing.py --batch-size ${LMBS} --num-batch ${LNB} --seq-len 32 --data-path "../cntk/rnn/PennTreebank/Data" 2>&1 | tee output_lstm32.log
-python rnn/lstm_bucketing.py --batch-size ${LMBS} --num-batch ${LNB} --seq-len 64 --data-path "../cntk/rnn/PennTreebank/Data" 2>&1 | tee output_lstm64.log	
+python benchmark.py --arch alexnet --batch-size ${CMBS} --num-batch ${CNB} 2>&1 | tee output_alexnet.log
+python benchmark.py --arch resnet --batch-size ${CMBS} --num-batch ${CNB}  2>&1 | tee output_resnet.log
+python benchmark.py --arch fcn5 --batch-size ${FMBS} --num-batch ${FNB} 2>&1 | tee output_fcn5.log
+python benchmark.py --arch fcn8 --batch-size ${FMBS} --num-batch ${FNB} 2>&1 | tee output_fcn8.log
+#python rnn/lstm_bucketing.py --batch-size ${LMBS} --num-batch ${LNB} --seq-len 32 --data-path "../cntk/rnn/PennTreebank/Data" 2>&1 | tee output_lstm32.log
+#python rnn/lstm_bucketing.py --batch-size ${LMBS} --num-batch ${LNB} --seq-len 64 --data-path "../cntk/rnn/PennTreebank/Data" 2>&1 | tee output_lstm64.log	

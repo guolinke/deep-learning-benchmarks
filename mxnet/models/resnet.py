@@ -4,6 +4,8 @@ https://github.com/tao-j/resnet/tree/master/mxnet
 """
 import mxnet as mx
 
+featureDim = (3, 224, 224)
+labelDim = 1000
 
 def ConvFactory(data, num_filter, kernel, stride, pad, no_bias=False):
     if no_bias == True:
@@ -47,10 +49,11 @@ def BottleneckFactory(data, num_filter, layer_idx, project=False):
     return layer_idx, act
 
 
-def get_resnet_symbol(num_classes=1000, model_idx=0):
+def build_model(model_idx=0):
 
     layer_idx = 0
     data = mx.symbol.Variable(name='data')
+    label = mx.sym.Variable("label")
 
     # stage conv1_x
     data = ConvFactory(data=data, num_filter=64, kernel=(7, 7), stride=(2, 2), pad=(3, 3), no_bias=True)
@@ -92,6 +95,6 @@ def get_resnet_symbol(num_classes=1000, model_idx=0):
     layer_idx += 1
     avg = mx.symbol.Pooling(data=necks, kernel=(7, 7), stride=(1, 1), name='global_pool', pool_type='avg')
     flatten = mx.sym.Flatten(data=avg, name="flatten")
-    fc0 = mx.symbol.FullyConnected(data=flatten, num_hidden=num_classes, name='fc0')
-    
-    return fc0
+    fc0 = mx.symbol.FullyConnected(data=flatten, num_hidden=labelDim, name='fc0')
+    softmax = mx.sym.SoftmaxOutput(data=fc0, label=label)
+    return softmax

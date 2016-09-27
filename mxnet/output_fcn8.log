@@ -1,26 +1,26 @@
 ************** Config Message **************
-model: FCN-8
+model: fcn8
 gpu: 0
 Mini_batch_size: 64
 Num_batch: 100
 ********************************************
-FCN-8 shape checking:
-(2048, 26752)
-(2048,)
-(2048, 2048)
-(2048,)
-(2048, 2048)
-(2048,)
-(2048, 2048)
-(2048,)
-(2048, 2048)
-(2048,)
-(2048, 2048)
-(2048,)
-(26752, 2048)
-(26752,)
+Network shape checking:
+(2048L, 26752L)
+(2048L,)
+(2048L, 2048L)
+(2048L,)
+(2048L, 2048L)
+(2048L,)
+(2048L, 2048L)
+(2048L,)
+(2048L, 2048L)
+(2048L,)
+(2048L, 2048L)
+(2048L,)
+(26752L, 2048L)
+(26752L,)
 Parameter Number: 130586752
 ********************** Training on GPU(0) **********************
-Avg elasped time per mini-batch (sec/mini-batch): 0.028318
-Avg samples per second (samples/sec): 2260
+Avg elasped time per mini-batch (sec/mini-batch): 0.029695
+Avg samples per second (samples/sec): 2155
 ****************************************************************

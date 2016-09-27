@@ -1,20 +1,20 @@
 ************** Config Message **************
-model: FCN-5
+model: fcn5
 gpu: 0
 Mini_batch_size: 64
 Num_batch: 100
 ********************************************
-FCN-5 shape checking:
-(2048, 26752)
-(2048,)
-(2048, 2048)
-(2048,)
-(2048, 2048)
-(2048,)
-(26752, 2048)
-(26752,)
+Network shape checking:
+(2048L, 26752L)
+(2048L,)
+(2048L, 2048L)
+(2048L,)
+(2048L, 2048L)
+(2048L,)
+(26752L, 2048L)
+(26752L,)
 Parameter Number: 117997696
 ********************** Training on GPU(0) **********************
-Avg elasped time per mini-batch (sec/mini-batch): 0.025563
-Avg samples per second (samples/sec): 2504
+Avg elasped time per mini-batch (sec/mini-batch): 0.02662
+Avg samples per second (samples/sec): 2404
 ****************************************************************
