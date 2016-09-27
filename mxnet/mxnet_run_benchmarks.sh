@@ -60,5 +60,5 @@ python benchmark.py --arch alexnet --batch-size ${CMBS} --num-batch ${CNB} 2>&1 
 python benchmark.py --arch resnet --batch-size ${CMBS} --num-batch ${CNB}  2>&1 | tee output_resnet.log
 python benchmark.py --arch fcn5 --batch-size ${FMBS} --num-batch ${FNB} 2>&1 | tee output_fcn5.log
 python benchmark.py --arch fcn8 --batch-size ${FMBS} --num-batch ${FNB} 2>&1 | tee output_fcn8.log
-#python rnn/lstm_bucketing.py --batch-size ${LMBS} --num-batch ${LNB} --seq-len 32 --data-path "../cntk/rnn/PennTreebank/Data" 2>&1 | tee output_lstm32.log
-#python rnn/lstm_bucketing.py --batch-size ${LMBS} --num-batch ${LNB} --seq-len 64 --data-path "../cntk/rnn/PennTreebank/Data" 2>&1 | tee output_lstm64.log	
+python rnn/lstm_bucketing.py --batch-size ${LMBS} --num-batch ${LNB} --seq-len 32 --data-path "../cntk/rnn/PennTreebank/Data" 2>&1 | tee output_lstm32.log
+python rnn/lstm_bucketing.py --batch-size ${LMBS} --num-batch ${LNB} --seq-len 64 --data-path "../cntk/rnn/PennTreebank/Data" 2>&1 | tee output_lstm64.log	

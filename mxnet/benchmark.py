@@ -27,10 +27,6 @@ elif args.arch == 'fcn5':
     from models.fcn5 import build_model, featureDim, labelDim
 elif args.arch == 'fcn8':
     from models.fcn8 import build_model, featureDim, labelDim
-elif args.arch == 'lstm32':
-    from models.lstm import build_model32 as build_model, featureDim32 as featureDim, labelDim32 as labelDim, input_generator32 as input_generator
-elif args.arch == 'lstm64':
-    from models.lstm import build_model64 as build_model, featureDim64 as featureDim, labelDim64 as labelDim, input_generator64 as input_generator
 else:
     raise ValueError('Invalid architecture name')
 
