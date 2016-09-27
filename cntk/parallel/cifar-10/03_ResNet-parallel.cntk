@@ -9,6 +9,7 @@ configName = "ssgd"
 minibatchSize = 128
 epochSize = 5
 parallelizationMethod = "DataParallelSGD"
+asyncBuffer="true"
 
 ConfigDir = "$RootDir$"
 DataDir = "$RootDir$"
@@ -68,14 +69,14 @@ Train = [
             parallelizationStartEpoch = 1
             DataParallelSGD = [
                 gradientBits = 32
-                useBufferdAsyncGradientAggregation = true
+                useBufferdAsyncGradientAggregation = $asyncBuffer$
             ]
             ModelAveragingSGD = [
                 blockSizePerWorker = 128
             ]
             DataParallelASGD = [
                 syncPeriod = 128
-                usePipeline = true
+                usePipeline = $asyncBuffer$
             ]
         ]
     ]
