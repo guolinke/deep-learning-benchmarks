@@ -1,8 +1,6 @@
-=> Creating model from file: models/resnet.lua	
+Running on device: GeForce GTX TITAN X	
  | ResNet-50 ImageNet	
-=> Training epoch # 1	
- | Epoch: [][]    Time   0.161 	
-Model parameters: 	25557032	
+Model Parameters: 	25557032	
 All shape: 	{
   1 : CudaTensor - size: 64x3x7x7
   2 : CudaTensor - size: 64
@@ -166,3 +164,6 @@ All shape: 	{
   160 : CudaTensor - size: 1000x2048
   161 : CudaTensor - size: 1000
 }
+ModelType: Resnet	
+Avg elasped time per mini-batch (sec/mini-batch):   0.157997	
+Avg samples per second (samples/sec): 101.267855	

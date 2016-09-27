@@ -60,19 +60,10 @@ sudo rm -f output_fcn8.log
 sudo rm -f output_lstm32.log
 sudo rm -f output_lstm64.log
 
-pushd ./cnn/alexnet/
-th alexnetbm.lua -nEpochs 1 -batchSize ${CMBS} -nIterations ${CNB} -deviceId 1 2>&1 | tee ../../output_alexnet.log
-popd
-
-pushd ./cnn/resnet/
-#th resnet.lua -depth 50 -deviceId 1 -batchSize ${CMBS} -nEpochs 4 -nIterations ${CNB} -dataset imagenet -data /home/data/ILSVRC2015/Data/CLS-LOC/ 2>&1 | tee ../../output_resnet.log
-th resnet.lua -depth 50 -deviceId 1 -batchSize ${CMBS} -nEpochs 1 -nIterations ${CNB} -dataset imagenet 2>&1 | tee ../../output_resnet.log
-popd
-
-pushd ./fcn/
-th  ffn26752bm.lua   -deviceId 1 -batchSize ${FMBS} -nEpochs 1 -nIterations ${FNB} 2>&1 | tee ../output_fcn5.log
-th  ffn26752l6bm.lua -deviceId 1 -batchSize ${FMBS} -nEpochs 1 -nIterations ${FNB} 2>&1 | tee ../output_fcn8.log
-popd 
+th benchmark.lua -arch alexnet -batchSize ${CMBS} -nIterations ${CNB} -deviceId 1 2>&1 | tee output_alexnet.log
+th benchmark.lua -arch resnet -batchSize ${CMBS} -nIterations ${CNB} -deviceId 1 2>&1 | tee output_resnet.log
+th benchmark.lua -arch fcn5 -batchSize ${CMBS} -nIterations ${CNB} -deviceId 1 2>&1 | tee output_fcn5.log
+th benchmark.lua -arch fcn8 -batchSize ${CMBS} -nIterations ${CNB} -deviceId 1 2>&1 | tee output_fcn8.log
 
 luarocks install rnn
 luarocks install dataload

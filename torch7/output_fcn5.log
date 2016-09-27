@@ -1,14 +1,15 @@
-fc	
-1 GPUs: 2531 samples per sec	
- | Epoch: [][]    Time   0.025291	
-Model parameters: 	117997696	
+Running on device: GeForce GTX TITAN X	
+Model Parameters: 	117997696	
 All shape: 	{
-  1 : CudaTensor - size: 2048x26752
-  2 : CudaTensor - size: 2048
-  3 : CudaTensor - size: 2048x2048
-  4 : CudaTensor - size: 2048
-  5 : CudaTensor - size: 2048x2048
-  6 : CudaTensor - size: 2048
-  7 : CudaTensor - size: 26752x2048
-  8 : CudaTensor - size: 26752
+  1 : DoubleTensor - size: 2048x26752
+  2 : DoubleTensor - size: 2048
+  3 : DoubleTensor - size: 2048x2048
+  4 : DoubleTensor - size: 2048
+  5 : DoubleTensor - size: 2048x2048
+  6 : DoubleTensor - size: 2048
+  7 : DoubleTensor - size: 26752x2048
+  8 : DoubleTensor - size: 26752
 }
+ModelType: FCN5	
+Avg elasped time per mini-batch (sec/mini-batch):   0.019708	
+Avg samples per second (samples/sec): 811.842381	

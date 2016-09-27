@@ -18,6 +18,6 @@ All shape: 	{
   15 : DoubleTensor - size: 1000x4096
   16 : DoubleTensor - size: 1000
 }
-ModelType: AlexNet	Kernels: cudnn	Input shape: 16x3x224x224	
- | Epoch: [][]    Time   0.028102	
-	
+ModelType: AlexNet	
+Avg elasped time per mini-batch (sec/mini-batch):   0.028354	
+Avg samples per second (samples/sec): 564.299668	

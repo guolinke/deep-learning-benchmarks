@@ -53,7 +53,7 @@ seconds/num_batches:
 |MXNet| 0.027 | 0.030 | 0.027 | 0.157 | 0.137 | 0.190 |
 |TensorFlow| 0.050 | 0.053 | 0.033 | 0.255 | 0.074 | 0.137 |
 |Theano|  |  |  |  |  |  |
-|Torch| 0.025 | 0.029 | 0.028 | 0.161 | 0.088 | 0.174 |
+|Torch| 0.020 | 0.022 | 0.028 | 0.158 | 0.088 | 0.174 |
 
 ( Note: Samples of one mini batch for LSTM is SequenceLenght*MiniBatchSize. )
 
@@ -66,7 +66,7 @@ samples/second:
 |MXNet| 2404 | 2155 | 582 | 101 | 29921 | 43216 |
 |TensorFlow| 1274 | 1200 | 484 | 62 | 55328 | 59856 |
 |Theano|  |  |  |  |  |  |
-|Torch| 2530 | 2243 | 569 | 99 | 46476 | 47074 |
+|Torch| 3247 | 2894 | 564 | 101 | 46476 | 47074 |
 
 
 ####Issues
