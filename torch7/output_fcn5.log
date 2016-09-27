@@ -11,5 +11,5 @@ All shape: 	{
   8 : DoubleTensor - size: 26752
 }
 ModelType: FCN5	
-Avg elasped time per mini-batch (sec/mini-batch):   0.019708	
-Avg samples per second (samples/sec): 811.842381	
+Avg elasped time per mini-batch (sec/mini-batch):   0.025422	
+Avg samples per second (samples/sec): 2517.478937	
