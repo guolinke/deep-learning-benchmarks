@@ -5,7 +5,7 @@ import numpy as np
 
 
 featureDim = (26752, )
-labelDim = 26752
+numClasses = 26752
 hiddenLayDim = 2048
 
 
@@ -25,6 +25,6 @@ def build_model():
 	l6 = mx.sym.FullyConnected(data = a5, num_hidden = hiddenLayDim, name = 'h6')
 	a6 = mx.sym.Activation(data = l6, act_type = 'sigmoid', name = 'act6')
 	w = mx.sym.Variable('weight')
-	l7 = mx.sym.FullyConnected(data = a6, num_hidden = labelDim, weight = w, name = 'output')
+	l7 = mx.sym.FullyConnected(data = a6, num_hidden = numClasses, weight = w, name = 'output')
 	softmax = mx.sym.SoftmaxOutput(data = l7, label = label, name = 'softmax')
 	return softmax

@@ -20,13 +20,13 @@ args=parser.parse_args()
 
 
 if args.arch == 'alexnet':
-    from models.alexnet import build_model, featureDim, labelDim
+    from models.alexnet import build_model, featureDim, numClasses
 elif args.arch == 'resnet':
-    from models.resnet import build_model, featureDim, labelDim
+    from models.resnet import build_model, featureDim, numClasses
 elif args.arch == 'fcn5':
-    from models.fcn5 import build_model, featureDim, labelDim
+    from models.fcn5 import build_model, featureDim, numClasses
 elif args.arch == 'fcn8':
-    from models.fcn8 import build_model, featureDim, labelDim
+    from models.fcn8 import build_model, featureDim, numClasses
 else:
     raise ValueError('Invalid architecture name')
 
@@ -113,7 +113,7 @@ for arg in executor.arg_arrays:
 
 # Genarate fake data
 data = np.random.uniform(-1, 1, data_shape).astype("float32")
-label = np.random.randint(0, labelDim, label_shape)
+label = np.random.randint(0, numClasses, label_shape)
 
 # Block all async all
 mx.nd.waitall()

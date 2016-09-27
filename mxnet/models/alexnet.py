@@ -5,7 +5,7 @@ Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. "Imagenet classificati
 import mxnet as mx
 
 featureDim = (3, 224, 224)
-labelDim = 1000
+numClasses = 1000
 
 def build_model():
     data = mx.symbol.Variable(name="data")
@@ -40,6 +40,6 @@ def build_model():
     fc2 = mx.symbol.FullyConnected(data=relu6, num_hidden=4096)
     relu7 = mx.symbol.Activation(data=fc2, act_type="relu")
     # stage 6
-    fc3 = mx.symbol.FullyConnected(data=relu7, num_hidden=labelDim)
+    fc3 = mx.symbol.FullyConnected(data=relu7, num_hidden=numClasses)
     softmax = mx.sym.SoftmaxOutput(data=fc3, label=label)
     return softmax

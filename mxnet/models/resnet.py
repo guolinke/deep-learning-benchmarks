@@ -5,7 +5,7 @@ https://github.com/tao-j/resnet/tree/master/mxnet
 import mxnet as mx
 
 featureDim = (3, 224, 224)
-labelDim = 1000
+numClasses = 1000
 
 def ConvFactory(data, num_filter, kernel, stride, pad, no_bias=False):
     if no_bias == True:
@@ -95,6 +95,6 @@ def build_model(model_idx=0):
     layer_idx += 1
     avg = mx.symbol.Pooling(data=necks, kernel=(7, 7), stride=(1, 1), name='global_pool', pool_type='avg')
     flatten = mx.sym.Flatten(data=avg, name="flatten")
-    fc0 = mx.symbol.FullyConnected(data=flatten, num_hidden=labelDim, name='fc0')
+    fc0 = mx.symbol.FullyConnected(data=flatten, num_hidden=numClasses, name='fc0')
     softmax = mx.sym.SoftmaxOutput(data=fc0, label=label)
     return softmax
