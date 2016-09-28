@@ -22,6 +22,13 @@ args = parser.parse_args()
 input_generator = None
 use_onehot_label = False
 
+def get_output_size(batch_size):
+    '''
+    In most cases, the output size is (batch_size, ).
+    But it will be (batch_size * seq_len,) when you use lstm
+    '''
+    return (batch_size, )
+
 if args.arch == 'alexnet':
     from models.alexnet import build_model, featureDim, labelDim
 elif args.arch == 'resnet':
@@ -33,9 +40,11 @@ elif args.arch == 'fcn8':
     from models.fcn8 import build_model, featureDim, labelDim
     #use_onehot_label = True
 elif args.arch == 'lstm32':
-    from models.lstm import build_model32 as build_model, featureDim32 as featureDim, labelDim32 as labelDim, input_generator32 as input_generator
+    from models.lstm import build_model32 as build_model, featureDim32 as featureDim, \
+        labelDim32 as labelDim, input_generator32 as input_generator, get_output_size32 as get_output_size
 elif args.arch == 'lstm64':
-    from models.lstm import build_model64 as build_model, featureDim64 as featureDim, labelDim64 as labelDim, input_generator64 as input_generator
+    from models.lstm import build_model64 as build_model, featureDim64 as featureDim, \
+        labelDim64 as labelDim, input_generator64 as input_generator, get_output_size64 as get_output_size
 else:
     raise ValueError('Invalid architecture name')
 
@@ -64,10 +73,13 @@ def main():
     print('Building model...')
     layer, input_var = build_model(batch_size=batch_size)
     print("number of parameters in model: %d" % lasagne.layers.count_params(layer, trainable=True))
+
+    output_dim = 1 # get the output dimensions
+    dtype = 'int32'
     if use_onehot_label:
-        labels_var = T.fmatrix('labels')
-    else:
-        labels_var = T.ivector('labels')
+        output_dim += 1
+        dtype = 'float32'
+    labels_var = T.TensorType(dtype=dtype, broadcastable=[False] * output_dim)('labels')
 
     output = get_output(layer)
 
@@ -93,20 +105,21 @@ def main():
     if input_generator is None:
         inputs = [[np.random.rand(batch_size, *featureDim).astype(np.float32)] for i in xrange(num_batches + NUM_STEPS_BURN_IN)]
     else:
-        inputs = [[input_generator(batch_size, *featureDim)] for i in xrange(num_batches + NUM_STEPS_BURN_IN)]
+        inputs = [[input_generator(batch_size)] for i in xrange(num_batches + NUM_STEPS_BURN_IN)]
 
 
     # generate label
+    output_size = get_output_size(batch_size)
     if use_onehot_label:
         # convert the random labels to one-hot format
         labels = []
         for i in xrange(num_batches + NUM_STEPS_BURN_IN):
             batch_label = np.zeros((batch_size, labelDim)).astype(np.float32)
-            for j, v in enumerate(np.random.randint(0, labelDim, size=batch_size)):
+            for j, v in enumerate(np.random.randint(0, labelDim, size=output_size)):
                 batch_label[j][v] = 1.
             labels.append([batch_label])
     else:
-        labels = [[np.random.randint(0, labelDim, size=batch_size).astype(np.int32)] for i in xrange(num_batches + NUM_STEPS_BURN_IN)]
+        labels = [[np.random.randint(0, labelDim, size=output_size).astype(np.int32)] for i in xrange(num_batches + NUM_STEPS_BURN_IN)]
 
     time_theano_run(forward_func, inputs, 'Forward')
     time_theano_run(full_func, [(ipt + lab) for ipt, lab  in zip(inputs, labels)], 'Forward-Backward')
