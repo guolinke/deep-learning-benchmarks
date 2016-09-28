@@ -112,8 +112,8 @@ for arg in executor.arg_arrays:
     arg[:] = mx.rnd.uniform(-0.01, 0.01, arg.shape)
 
 # Genarate fake data
-data = np.random.uniform(-1, 1, data_shape).astype("float32")
-label = np.random.randint(0, numClasses, label_shape)
+data = np.random.uniform(-1, 1, data_shape).astype(np.float32)
+label = np.random.randint(0, numClasses, label_shape).astype(np.int32)
 
 # Block all async all
 mx.nd.waitall()
