@@ -9,21 +9,21 @@ major: 5 minor: 2 memoryClockRate (GHz) 1.076
 pciBusID 0000:04:00.0
 Total memory: 11.92GiB
 Free memory: 11.81GiB
-W tensorflow/stream_executor/cuda/cuda_driver.cc:572] creating context when one is currently active; existing: 0x3f69880
+W tensorflow/stream_executor/cuda/cuda_driver.cc:572] creating context when one is currently active; existing: 0x3f4bf90
 I tensorflow/core/common_runtime/gpu/gpu_init.cc:102] Found device 1 with properties: 
 name: GeForce GTX TITAN X
 major: 5 minor: 2 memoryClockRate (GHz) 1.076
 pciBusID 0000:05:00.0
 Total memory: 11.92GiB
 Free memory: 11.81GiB
-W tensorflow/stream_executor/cuda/cuda_driver.cc:572] creating context when one is currently active; existing: 0x43f7b00
+W tensorflow/stream_executor/cuda/cuda_driver.cc:572] creating context when one is currently active; existing: 0x43da340
 I tensorflow/core/common_runtime/gpu/gpu_init.cc:102] Found device 2 with properties: 
 name: GeForce GTX TITAN X
 major: 5 minor: 2 memoryClockRate (GHz) 1.076
 pciBusID 0000:08:00.0
 Total memory: 11.92GiB
 Free memory: 11.81GiB
-W tensorflow/stream_executor/cuda/cuda_driver.cc:572] creating context when one is currently active; existing: 0x4884c30
+W tensorflow/stream_executor/cuda/cuda_driver.cc:572] creating context when one is currently active; existing: 0x4867470
 I tensorflow/core/common_runtime/gpu/gpu_init.cc:102] Found device 3 with properties: 
 name: GeForce GTX TITAN X
 major: 5 minor: 2 memoryClockRate (GHz) 1.076
@@ -39,8 +39,6 @@ I tensorflow/core/common_runtime/gpu/gpu_device.cc:838] Creating TensorFlow devi
 I tensorflow/core/common_runtime/gpu/gpu_device.cc:838] Creating TensorFlow device (/gpu:1) -> (device: 1, name: GeForce GTX TITAN X, pci bus id: 0000:05:00.0)
 I tensorflow/core/common_runtime/gpu/gpu_device.cc:838] Creating TensorFlow device (/gpu:2) -> (device: 2, name: GeForce GTX TITAN X, pci bus id: 0000:08:00.0)
 I tensorflow/core/common_runtime/gpu/gpu_device.cc:838] Creating TensorFlow device (/gpu:3) -> (device: 3, name: GeForce GTX TITAN X, pci bus id: 0000:09:00.0)
-(16, 227, 227, 3)
-(16,)
 (11, 11, 3, 96)
 (96,)
 (5, 5, 96, 256)
@@ -57,44 +55,7 @@ I tensorflow/core/common_runtime/gpu/gpu_device.cc:838] Creating TensorFlow devi
 (4096,)
 (4096, 1000)
 (1000,)
-Parameter Number:64114344
-2016-09-21 20:51:36.974879: step 10, duration = 0.034
-2016-09-21 20:51:37.310246: step 20, duration = 0.034
-2016-09-21 20:51:37.645933: step 30, duration = 0.033
-2016-09-21 20:51:37.981258: step 40, duration = 0.034
-2016-09-21 20:51:38.316486: step 50, duration = 0.034
-2016-09-21 20:51:38.652338: step 60, duration = 0.034
-2016-09-21 20:51:38.987787: step 70, duration = 0.033
-2016-09-21 20:51:39.323225: step 80, duration = 0.034
-2016-09-21 20:51:39.658839: step 90, duration = 0.033
-2016-09-21 20:51:39.994244: step 100, duration = 0.033
-2016-09-21 20:51:40.329560: step 110, duration = 0.033
-2016-09-21 20:51:40.664781: step 120, duration = 0.033
-2016-09-21 20:51:41.000277: step 130, duration = 0.034
-2016-09-21 20:51:41.335394: step 140, duration = 0.033
-2016-09-21 20:51:41.670912: step 150, duration = 0.034
-2016-09-21 20:51:42.006678: step 160, duration = 0.033
-2016-09-21 20:51:42.341688: step 170, duration = 0.033
-2016-09-21 20:51:42.677240: step 180, duration = 0.034
-2016-09-21 20:51:43.012725: step 190, duration = 0.033
-2016-09-21 20:51:43.348940: step 200, duration = 0.034
-2016-09-21 20:51:43.685105: step 210, duration = 0.034
-2016-09-21 20:51:44.020863: step 220, duration = 0.034
-2016-09-21 20:51:44.356418: step 230, duration = 0.034
-2016-09-21 20:51:44.692424: step 240, duration = 0.034
-2016-09-21 20:51:45.028671: step 250, duration = 0.034
-2016-09-21 20:51:45.364344: step 260, duration = 0.034
-2016-09-21 20:51:45.700139: step 270, duration = 0.034
-2016-09-21 20:51:46.035270: step 280, duration = 0.034
-2016-09-21 20:51:46.374304: step 290, duration = 0.033
-2016-09-21 20:51:46.710160: step 300, duration = 0.034
-2016-09-21 20:51:47.045396: step 310, duration = 0.033
-2016-09-21 20:51:47.381018: step 320, duration = 0.034
-2016-09-21 20:51:47.717045: step 330, duration = 0.034
-2016-09-21 20:51:48.052752: step 340, duration = 0.034
-2016-09-21 20:51:48.389997: step 350, duration = 0.034
-2016-09-21 20:51:48.726978: step 360, duration = 0.034
-2016-09-21 20:51:49.063783: step 370, duration = 0.034
-2016-09-21 20:51:49.401028: step 380, duration = 0.034
-2016-09-21 20:51:49.737825: step 390, duration = 0.034
-fake 2016-09-21 20:51:50.041739: Forward-backward across 400 steps, 0.033 +/- 0.002 sec / batch
+Parameter Number:61640936
+********************** Training on GPU(0) **********************
+Avg elasped time per mini-batch (sec/mini-batch): 0.028888
+Avg samples per second (samples/sec): 554

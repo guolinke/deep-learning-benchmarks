@@ -79,46 +79,28 @@ def GetCNTKResult():
 
 def GetTimeFromTensorflowLog(filename):
 	file_in = open(filename,"r")
-	if 'fcn' in filename:
-		sps = -1
-		time = -1
-		for line in file_in.readlines():
-			if 'Training speed (samples/sec)' in line:
-				sps = int(line.split(':')[1].split(',')[0].split('=')[1])
-			if 'fc across' in line:
-				time = float( line.split(',')[-1].split('sec')[0])
-		return [time, sps]
+
+	batch_size = -1
+	if 'alexnet' in filename or 'resnet' in filename:
+		batch_size = CNN_batch_size
 	elif 'lstm' in filename:
-		batch_size = -1
+		batch_size = RNN_batch_size
+	else:
+		batch_size = FCN_batch_size
+
+	if 'lstm' in filename:
 		for line in file_in.readlines():
-			if 'batch_size:' in line:
-				batch_size = int(line.split(':')[-1])
 			if 'for one mini batch' in line:
 				time = float( line.split('seconds.')[-1].split('seconds ')[0])
 		if '32' in filename:
 			return [time, 32.0 / time * batch_size]
 		else:
 			return [time, 64.0 / time * batch_size]
-	elif 'resnet' in filename:
-		total_samples = 0
-		total_time = 0
-		num_batches = 0
-		for line in file_in.readlines():
-			if 'step' in line and not 'step 0' in line:
-				tokens = line.split('(')[-1].split(')')[0]
-				time_str = tokens.split(';')[1].strip()
-				sps_str = tokens.split(';')[0].strip()
-				num_batches += 1
-				time = float(time_str.split(' ')[0])
-				total_time += time
-				cur_samples = float(sps_str.split(' ')[0]) * time
-				total_samples += cur_samples
-		return [total_time / num_batches, total_samples / total_time]
 	else:
 		for line in file_in.readlines():
-			if 'Forward-backward across' in line:
-				time = float(line.split(',')[-1].split('+/-')[0])
-				return [time, CNN_batch_size * 1.0 / time]	
+			if '(sec/mini-batch)' in line:
+				time = float(line.split(':')[-1])
+				return [time, batch_size * 1.0 / time]
 def GetTersonflowResult():
 	return[GetTimeFromTensorflowLog('tensorflow/output_fcn5.log'),
 	GetTimeFromTensorflowLog('tensorflow/output_fcn8.log'),

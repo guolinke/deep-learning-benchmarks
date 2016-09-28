@@ -4,12 +4,19 @@ import tensorflow as tf
 from tensorflow.python.ops import control_flow_ops
 from tensorflow.python.training import moving_averages
 
-from config import Config
 
 import datetime
 import numpy as np
 import os
 import time
+
+
+image_size = 224
+
+featureDim = (image_size, image_size, 3)
+
+numClasses = 1000
+
 
 MOVING_AVERAGE_DECAY = 0.9997
 BN_DECAY = MOVING_AVERAGE_DECAY
@@ -22,11 +29,77 @@ RESNET_VARIABLES = 'resnet_variables'
 UPDATE_OPS_COLLECTION = 'resnet_update_ops'  # must be grouped with training op
 IMAGENET_MEAN_BGR = [103.062623801, 115.902882574, 123.151630838, ]
 
-tf.app.flags.DEFINE_integer('input_size', 224, "input image size")
-
 
 activation = tf.nn.relu
 
+
+class Config:
+    def __init__(self):
+        root = self.Scope('')
+        self.stack = [ root ]
+
+    def iteritems(self):
+        return self.to_dict().iteritems()
+
+    def to_dict(self):
+        self._pop_stale()
+        out = {}
+        # Work backwards from the flags to top fo the stack
+        # overwriting keys that were found earlier.
+        for i in range(len(self.stack)):
+            cs = self.stack[-i]
+            for name in cs:
+                out[name] = cs[name]
+        return out
+
+    def _pop_stale(self):
+        var_scope_name = tf.get_variable_scope().name
+        top = self.stack[0]
+        while not top.contains(var_scope_name):
+            # We aren't in this scope anymore
+            self.stack.pop(0)
+            top = self.stack[0]
+
+    def __getitem__(self, name):
+        self._pop_stale()
+        # Recursively extract value
+        for i in range(len(self.stack)):
+            cs = self.stack[i]
+            if name in cs:
+                return cs[name]
+
+        raise KeyError(name)
+
+    def set_default(self, name, value):
+        if not name in self:
+            self[name] = value
+
+    def __contains__(self, name):
+        self._pop_stale()
+        for i in range(len(self.stack)):
+            cs = self.stack[i]
+            if name in cs:
+                return True
+        return False
+
+    def __setitem__(self, name, value):
+        self._pop_stale()
+        top = self.stack[0]
+        var_scope_name = tf.get_variable_scope().name
+        assert top.contains(var_scope_name)
+
+        if top.name != var_scope_name:
+            top = self.Scope(var_scope_name)
+            self.stack.insert(0, top)
+
+        top[name] = value
+
+    class Scope(dict):
+        def __init__(self, name):
+            self.name = name
+
+        def contains(self, var_scope_name):
+            return var_scope_name.startswith(self.name)
 
 def inference(x, is_training,
               num_classes=1000,
@@ -86,55 +159,6 @@ def inference(x, is_training,
     return x
 
 
-# This is what they use for CIFAR-10 and 100.
-# See Section 4.2 in http://arxiv.org/abs/1512.03385
-def inference_small(x,
-                    is_training,
-                    num_blocks=3, # 6n+2 total weight layers will be used.
-                    use_bias=False, # defaults to using batch norm
-                    num_classes=10):
-    c = Config()
-    c['is_training'] = tf.convert_to_tensor(is_training,
-                                            dtype='bool',
-                                            name='is_training')
-    c['use_bias'] = use_bias
-    c['fc_units_out'] = num_classes
-    c['num_blocks'] = num_blocks
-    c['num_classes'] = num_classes
-    inference_small_config(x, c)
-
-def inference_small_config(x, c):
-    c['bottleneck'] = False
-    c['ksize'] = 3
-    c['stride'] = 1
-    with tf.variable_scope('scale1'):
-        c['conv_filters_out'] = 16
-        c['block_filters_internal'] = 16
-        c['stack_stride'] = 1
-        x = conv(x, c)
-        x = bn(x, c)
-        x = activation(x)
-        x = stack(x, c)
-
-    with tf.variable_scope('scale2'):
-        c['block_filters_internal'] = 32
-        c['stack_stride'] = 2
-        x = stack(x, c)
-
-    with tf.variable_scope('scale3'):
-        c['block_filters_internal'] = 64
-        c['stack_stride'] = 2
-        x = stack(x, c)
-
-    # post-net
-    x = tf.reduce_mean(x, reduction_indices=[1, 2], name="avg_pool")
-
-    if c['num_classes'] != None:
-        with tf.variable_scope('fc'):
-            x = fc(x, c)
-
-    return x
-
 
 def _imagenet_preprocess(rgb):
     """Changes RGB [0,1] valued image to BGR [0,255] with mean subtracted."""
@@ -144,16 +168,16 @@ def _imagenet_preprocess(rgb):
     return bgr
 
 
-def loss(logits, labels):
-    cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(logits, labels)
-    cross_entropy_mean = tf.reduce_mean(cross_entropy)
+# def loss(logits, labels):
+#     cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(logits, labels)
+#     cross_entropy_mean = tf.reduce_mean(cross_entropy)
  
-    regularization_losses = tf.get_collection(tf.GraphKeys.REGULARIZATION_LOSSES)
+#     regularization_losses = tf.get_collection(tf.GraphKeys.REGULARIZATION_LOSSES)
 
-    loss_ = tf.add_n([cross_entropy_mean] + regularization_losses)
-    tf.scalar_summary('loss', loss_)
+#     loss_ = tf.add_n([cross_entropy_mean] + regularization_losses)
+#     tf.scalar_summary('loss', loss_)
 
-    return loss_
+#     return loss_
 
 
 def stack(x, c):
@@ -332,3 +356,8 @@ def _max_pool(x, ksize=3, stride=2):
                           ksize=[1, ksize, ksize, 1],
                           strides=[1, stride, stride, 1],
                           padding='SAME')
+
+def build_model(feature):
+    return inference(feature ,num_classes=numClasses,
+                           is_training=True,
+                           bottleneck=True)
