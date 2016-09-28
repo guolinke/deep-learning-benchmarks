@@ -56,7 +56,6 @@ done
 
 # run benchmark
 cd $CUR_DIR
-sudo rm -rf model
 sudo rm -rf log
 run_benchmark () {
     mkdir -p log

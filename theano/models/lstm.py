@@ -1,6 +1,6 @@
 import theano.tensor as T
 import lasagne
-from lasagne.layers import InputLayer, DenseLayer, EmbeddingLayer
+from lasagne.layers import InputLayer, DenseLayer, EmbeddingLayer, ReshapeLayer
 import numpy as np
 
 
@@ -15,6 +15,9 @@ def build_function(vocab_size=10000, seq=32, hiddenLayDim=256):
         x = T.matrix('input', dtype='int32')
 
         l_in = lasagne.layers.InputLayer(shape=(None, None,), input_var=x)
+        # We can retrieve symbolic references to the input variable's shape, which
+        # we will later use in reshape layers.
+        batchsize, seqlen = l_in.input_var.shape
 
         W = np.random.rand(vocab_size, embedding_size).astype(np.float32)
         ebd = EmbeddingLayer(l_in, input_size=vocab_size, output_size=embedding_size, W=W)
@@ -30,20 +33,29 @@ def build_function(vocab_size=10000, seq=32, hiddenLayDim=256):
 
         l_forward_2 = lasagne.layers.LSTMLayer(
             l_forward_1, hiddenLayDim, grad_clipping=GRAD_CLIP,
-            nonlinearity=lasagne.nonlinearities.tanh,
-            only_return_final=True)
+            nonlinearity=lasagne.nonlinearities.tanh)
 
-        # The output of l_forward_2 of shape (batch_size, hiddenLayDim) is then passed through the softmax nonlinearity to
-        # create probability distribution of the prediction
-        # The output of this stage is (batch_size, vocab_size)
-        l_out = lasagne.layers.DenseLayer(l_forward_2, num_units=vocab_size, W = lasagne.init.Normal(), nonlinearity=None)
+        # the output size of l_forward_2 will be (batch_size, seqlen, hiddenLayDim)
+
+        # In order to connect a recurrent layer to a dense layer, we need to
+        # flatten the first two dimensions (batch_size, seqlen); this will
+        # cause each time step of each sequence to be processed independently
+        l_shp = ReshapeLayer(l_forward_2, (-1, hiddenLayDim))
+        l_out = lasagne.layers.DenseLayer(l_shp, num_units=vocab_size, W = lasagne.init.Normal(), nonlinearity=None)
+        # Don't reshape back. Because keep the current shape will make it
+        # easier to calc the categorical_crossentropy
+        # l_out = ReshapeLayer(l_dense, (batchsize, seqlen, vocab_size))
         return l_out, x
 
-    def input_generator(*dims):
-        return np.random.randint(vocab_size, size=dims).astype(np.int32)
+    def input_generator(batch_size):
+        return np.random.randint(vocab_size,
+            size=(batch_size,) + featureDim).astype(np.int32)
 
-    return build_model, featureDim, labelDim, input_generator
+    def get_output_size(batch_size):
+        return (batch_size * seq, )
+
+    return build_model, featureDim, labelDim, input_generator, get_output_size
 
 
-build_model32, featureDim32, labelDim32, input_generator32 = build_function(seq=32)
-build_model64, featureDim64, labelDim64, input_generator64 = build_function(seq=64)
+build_model32, featureDim32, labelDim32, input_generator32, get_output_size32 = build_function(seq=32)
+build_model64, featureDim64, labelDim64, input_generator64, get_output_size64 = build_function(seq=64)
