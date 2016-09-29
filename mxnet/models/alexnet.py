@@ -12,7 +12,7 @@ def build_model():
     label = mx.sym.Variable("label")
     # stage 1
     conv1 = mx.symbol.Convolution(
-        data=data, kernel=(11, 11), stride=(4, 4), num_filter=96)
+        data=data, kernel=(11, 11), stride=(4, 4), pad=(2, 2), num_filter=96)
     relu1 = mx.symbol.Activation(data=conv1, act_type="relu")
     pool1 = mx.symbol.Pooling(
         data=relu1, pool_type="max", kernel=(3, 3), stride=(2,2))

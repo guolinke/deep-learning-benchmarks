@@ -15,14 +15,14 @@ Network shape checking:
 (384L,)
 (256L, 384L, 3L, 3L)
 (256L,)
-(4096L, 6400L)
+(4096L, 9216L)
 (4096L,)
 (4096L, 4096L)
 (4096L,)
 (1000L, 4096L)
 (1000L,)
-Parameter Number: 50844008
+Parameter Number: 62378344
 ********************** Training on GPU(0) **********************
-Avg elasped time per mini-batch (sec/mini-batch): 0.027469
-Avg samples per second (samples/sec): 582
+Avg elasped time per mini-batch (sec/mini-batch): 0.031722
+Avg samples per second (samples/sec): 504
 ****************************************************************
