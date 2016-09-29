@@ -78,7 +78,7 @@ label_shape = (batch_size, )
 
 with tf.Graph().as_default(), tf.device(device_str):
     with tf.device('/cpu:0'):
-        feature = tf.Variable(np.random.uniform(-1, 1, data_shape).astype(np.float32), trainable=False)
+        feature = tf.Variable(np.random.uniform(0, 1, data_shape).astype(np.float32), trainable=False)
         label = tf.Variable(np.random.randint(0, numClasses, label_shape, dtype=np.int32), trainable=False)
 
     last_layer = build_model(feature)
