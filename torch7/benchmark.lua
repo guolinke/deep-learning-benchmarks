@@ -71,18 +71,60 @@ end
 cutorch.synchronize()
 collectgarbage()
 
+
+-- copy
+sys.tic()
+for t = 1, opt.nIterations do
+    input:copy(inputCPU)
+    label:copy(labelCPU)
+end
+cutorch.synchronize()
+batch_time = sys.toc()/opt.nIterations
+collectgarbage()
+print(string.format("Used time for [copy] : %10.6f", (batch_time)))
+
+-- copy + forward
 sys.tic()
 for t = 1, opt.nIterations do
     input:copy(inputCPU)
     label:copy(labelCPU)
     local preb = model:forward(input)
-    criterion:forward(preb, label)
-    model:zeroGradParameters()
-    model:backward(input, criterion:backward(preb, label))
-    model:updateParameters(opt.LR)
+    local err = criterion:forward(preb, label)
 end
 cutorch.synchronize()
 batch_time = sys.toc()/opt.nIterations
+collectgarbage()
+print(string.format("Used time for [copy + forward] : %10.6f", (batch_time)))
+
+-- copy + forward + backward
+sys.tic()
+for t = 1, opt.nIterations do
+    input:copy(inputCPU)
+    label:copy(labelCPU)
+    local preb = model:forward(input)
+    local err = criterion:forward(preb, label)
+    model:backward(input, criterion:backward(preb, label))
+end
+cutorch.synchronize()
+batch_time = sys.toc()/opt.nIterations
+collectgarbage()
+print(string.format("Used time for [copy + forward + backward] : %10.6f", (batch_time)))
+
+-- total
+sys.tic()
+for t = 1, opt.nIterations do
+    input:copy(inputCPU)
+    label:copy(labelCPU)
+    local preb = model:forward(input)
+    local err = criterion:forward(preb, label)
+    model:zeroGradParameters()
+    model:backward(input, criterion:backward(preb, label))
+    model:updateParameters(opt.LR)
+    print(string.format("Error at %d iter : %10.6f", t , err))
+end
+cutorch.synchronize()
+batch_time = sys.toc()/opt.nIterations
+collectgarbage()
 
 print(string.format("Avg elasped time per mini-batch (sec/mini-batch): %10.6f", (batch_time)))
 print(string.format("Avg samples per second (samples/sec): %10.6f", opt.batchSize / batch_time))
