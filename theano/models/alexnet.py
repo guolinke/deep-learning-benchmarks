@@ -10,7 +10,7 @@ def build_model(batch_size=128):
     x = T.tensor4('input')
     layer = InputLayer((batch_size,) + featureDim, input_var=x)
 
-    layer = Conv2DLayer(layer, 96, 11, stride=4, pad='same')
+    layer = Conv2DLayer(layer, 96, 11, stride=4, pad=2)
     layer = MaxPool2DLayer(layer, 3, stride=2)
 
     layer = Conv2DLayer(layer, 256, 5, pad='same')
