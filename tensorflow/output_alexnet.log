@@ -9,21 +9,21 @@ major: 5 minor: 2 memoryClockRate (GHz) 1.076
 pciBusID 0000:04:00.0
 Total memory: 11.92GiB
 Free memory: 11.81GiB
-W tensorflow/stream_executor/cuda/cuda_driver.cc:572] creating context when one is currently active; existing: 0x3f4bf90
+W tensorflow/stream_executor/cuda/cuda_driver.cc:572] creating context when one is currently active; existing: 0x3d02a50
 I tensorflow/core/common_runtime/gpu/gpu_init.cc:102] Found device 1 with properties: 
 name: GeForce GTX TITAN X
 major: 5 minor: 2 memoryClockRate (GHz) 1.076
 pciBusID 0000:05:00.0
 Total memory: 11.92GiB
 Free memory: 11.81GiB
-W tensorflow/stream_executor/cuda/cuda_driver.cc:572] creating context when one is currently active; existing: 0x43da340
+W tensorflow/stream_executor/cuda/cuda_driver.cc:572] creating context when one is currently active; existing: 0x4190b70
 I tensorflow/core/common_runtime/gpu/gpu_init.cc:102] Found device 2 with properties: 
 name: GeForce GTX TITAN X
 major: 5 minor: 2 memoryClockRate (GHz) 1.076
 pciBusID 0000:08:00.0
 Total memory: 11.92GiB
 Free memory: 11.81GiB
-W tensorflow/stream_executor/cuda/cuda_driver.cc:572] creating context when one is currently active; existing: 0x4867470
+W tensorflow/stream_executor/cuda/cuda_driver.cc:572] creating context when one is currently active; existing: 0x461dca0
 I tensorflow/core/common_runtime/gpu/gpu_init.cc:102] Found device 3 with properties: 
 name: GeForce GTX TITAN X
 major: 5 minor: 2 memoryClockRate (GHz) 1.076
@@ -45,9 +45,9 @@ I tensorflow/core/common_runtime/gpu/gpu_device.cc:838] Creating TensorFlow devi
 (256,)
 (3, 3, 256, 384)
 (384,)
+(3, 3, 384, 384)
+(384,)
 (3, 3, 384, 256)
-(256,)
-(3, 3, 256, 256)
 (256,)
 (9216, 4096)
 (4096,)
@@ -55,7 +55,7 @@ I tensorflow/core/common_runtime/gpu/gpu_device.cc:838] Creating TensorFlow devi
 (4096,)
 (4096, 1000)
 (1000,)
-Parameter Number:61640936
+Parameter Number:62378344
 ********************** Training on GPU(0) **********************
-Avg elasped time per mini-batch (sec/mini-batch): 0.028888
-Avg samples per second (samples/sec): 554
+Avg elasped time per mini-batch (sec/mini-batch): 0.031074
+Avg samples per second (samples/sec): 515
