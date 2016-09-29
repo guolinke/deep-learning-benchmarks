@@ -8,7 +8,7 @@ ConfigDir = "$RootDir$"
 DataDir   = "$RootDir$/Data"
 OutputDir = "$RootDir$/Output"
 ModelDir  = "$OutputDir$/$ConfigName$"
-stderr  = "./output_$ConfigName$"
+stderr  = "./output_$ConfigName$_Train.log"
 
 # deviceId=-1 for CPU, >=0 for GPU devices, "auto" chooses the best GPU, or CPU if no usable GPU is available
 epochSize=40960

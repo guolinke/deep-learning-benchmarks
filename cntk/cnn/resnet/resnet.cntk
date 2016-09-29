@@ -4,7 +4,7 @@ ConfigDir = "$RootDir$"
 DataDir=/home/dl/data/cntk
 OutputDir = "$RootDir$/Output"
 ModelDir = "$OutputDir$/$ConfigName$"
-stderr  = "./output_$ConfigName$"
+stderr  = "./output_$ConfigName$_Train.log"
 ndlMacros="$ConfigDir$/Macros.ndl"
 
 precision="float"

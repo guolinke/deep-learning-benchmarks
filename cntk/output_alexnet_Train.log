@@ -1,8 +1,8 @@
 -------------------------------------------------------------------
 Build info: 
 
-		Built time: Aug 30 2016 14:07:49
-		Last modified date: Mon Aug 29 18:55:53 2016
+		Built time: Sep 27 2016 14:05:01
+		Last modified date: Tue Sep 27 07:19:56 2016
 		Build type: release
 		Build target: GPU
 		With 1bit-SGD: yes
@@ -11,23 +11,18 @@ Build info:
 		CUB_PATH: /usr/local/cub-1.4.1
 		CUDNN_PATH: /usr/local/cudnn-5.1
 		Build Branch: HEAD
-		Build SHA1: 2f9c73cab134c45ab3ddcf1ca6873cc4d18dec34
-		Built by philly on 17068eac0c7b
+		Build SHA1: 2e4a773398b5ee84e1695abe73eb831c3cca1e36
+		Built by philly on 9ab719fcc26d
 		Build Path: /home/philly/jenkins/workspace/CNTK-Build-Linux
 -------------------------------------------------------------------
 -------------------------------------------------------------------
 GPU info:
 
-		Device[0]: cores = 4608; computeCapability = 5.2; type = "GeForce GTX TITAN X"; memory = 12204 MB
+		Device[0]: cores = 4608; computeCapability = 5.2; type = "GeForce GTX TITAN X"; memory = 12205 MB
 		Device[1]: cores = 4608; computeCapability = 5.2; type = "GeForce GTX TITAN X"; memory = 12206 MB
 		Device[2]: cores = 4608; computeCapability = 5.2; type = "GeForce GTX TITAN X"; memory = 12206 MB
 		Device[3]: cores = 4608; computeCapability = 5.2; type = "GeForce GTX TITAN X"; memory = 12206 MB
 -------------------------------------------------------------------
-
-Running on localhost at 2016/09/21 22:16:44
-Command line: 
-cntk/cntk/bin/cntk  configFile=cnn/alexnet/alexnet.cntk  configName=alexnet  deviceId=0  minibatchSize=16  epochSize=1600  DataDir=cnn  ConfigDir=cnn/alexnet
-
 
 Configuration After Processing and Variable Resolution:
 
@@ -46,7 +41,7 @@ configparameters: alexnet.cntk:ModelDir=./Output/alexnet
 configparameters: alexnet.cntk:ndlMacros=cnn/alexnet/Macros.ndl
 configparameters: alexnet.cntk:precision=float
 configparameters: alexnet.cntk:prefetch=true
-configparameters: alexnet.cntk:stderr=./output_alexnet
+configparameters: alexnet.cntk:stderr=./output_alexnet_Train.log
 configparameters: alexnet.cntk:traceLevel=1
 configparameters: alexnet.cntk:Train=[
     action=train
@@ -82,117 +77,19 @@ configparameters: alexnet.cntk:Train=[
 
 configparameters: alexnet.cntk:WorkDir=.
 Commands: Train
-Precision = "float"
-CNTKModelPath: ./Output/alexnet/AlexNet
-CNTKCommandTrainInfo: Train : 3
-CNTKCommandTrainInfo: CNTKNoMoreCommands_Total : 3
+precision = "float"
 
 ##############################################################################
 #                                                                            #
-# Action "train"                                                             #
+# Train command (train action)                                               #
 #                                                                            #
 ##############################################################################
 
-CNTKCommandTrainBegin: Train
 
 Creating virgin network.
 NDLBuilder Using GPU 0
-Node 'conv1_act.convW' (LearnableParameter operation): Initializing Parameter[96 x 363] <- 0.000000.
-Node 'conv1_act.convB' (LearnableParameter operation): Initializing Parameter[1 x 1 x 96] <- 0.000000.
-Node 'conv2_act.convW' (LearnableParameter operation): Initializing Parameter[256 x 2400] <- 0.000000.
-Node 'conv2_act.convB' (LearnableParameter operation): Initializing Parameter[1 x 1 x 256] <- 0.000000.
-Node 'conv3_act.convW' (LearnableParameter operation): Initializing Parameter[384 x 2304] <- 0.000000.
-Node 'conv3_act.convB' (LearnableParameter operation): Initializing Parameter[1 x 1 x 384] <- 0.000000.
-Node 'conv4_act.convW' (LearnableParameter operation): Initializing Parameter[384 x 3456] <- 0.000000.
-Node 'conv4_act.convB' (LearnableParameter operation): Initializing Parameter[1 x 1 x 384] <- 0.000000.
-Node 'conv5_act.convW' (LearnableParameter operation): Initializing Parameter[256 x 3456] <- 0.000000.
-Node 'conv5_act.convB' (LearnableParameter operation): Initializing Parameter[1 x 1 x 256] <- 0.000000.
-Node 'h1.W' (LearnableParameter operation): Initializing Parameter[4096 x 9216] <- 0.000000.
-Node 'h1.b' (LearnableParameter operation): Initializing Parameter[4096] <- 0.000000.
-Node 'h2.W' (LearnableParameter operation): Initializing Parameter[4096 x 4096] <- 0.000000.
-Node 'h2.b' (LearnableParameter operation): Initializing Parameter[4096] <- 0.000000.
-Node 'OutputNodes.W' (LearnableParameter operation): Initializing Parameter[1000 x 4096] <- 0.000000.
-Node 'OutputNodes.b' (LearnableParameter operation): Initializing Parameter[1000] <- 0.000000.
-Node 'conv1_act.convW' (LearnableParameter operation): Initializing Parameter[96 x 363] <- gaussian(seed=1, init dims=[96 x 363], range=0.010497*0.950000, onCPU=true).
-Node 'conv1_act.convB' (LearnableParameter operation): Initializing Parameter[1 x 1 x 96] <- 0.000000.
-Node 'conv2_act.convW' (LearnableParameter operation): Initializing Parameter[256 x 2400] <- gaussian(seed=2, init dims=[256 x 2400], range=0.004082*2.000000, onCPU=true).
-Node 'conv2_act.convB' (LearnableParameter operation): Initializing Parameter[1 x 1 x 256] <- 1.000000.
-Node 'conv3_act.convW' (LearnableParameter operation): Initializing Parameter[384 x 2304] <- gaussian(seed=3, init dims=[384 x 2304], range=0.004167*2.070000, onCPU=true).
-Node 'conv3_act.convB' (LearnableParameter operation): Initializing Parameter[1 x 1 x 384] <- 0.000000.
-Node 'conv4_act.convW' (LearnableParameter operation): Initializing Parameter[384 x 3456] <- gaussian(seed=4, init dims=[384 x 3456], range=0.003402*2.900000, onCPU=true).
-Node 'conv4_act.convB' (LearnableParameter operation): Initializing Parameter[1 x 1 x 384] <- 1.000000.
-Node 'conv5_act.convW' (LearnableParameter operation): Initializing Parameter[256 x 3456] <- gaussian(seed=5, init dims=[256 x 3456], range=0.003402*2.400000, onCPU=true).
-Node 'conv5_act.convB' (LearnableParameter operation): Initializing Parameter[1 x 1 x 256] <- 1.000000.
-Node 'h1.W' (LearnableParameter operation): Initializing Parameter[4096 x 9216] <- gaussian(seed=6, init dims=[4096 x 9216], range=0.002083*6.400000, onCPU=true).
-Node 'h1.b' (LearnableParameter operation): Initializing Parameter[4096] <- 1.000000.
-Node 'h2.W' (LearnableParameter operation): Initializing Parameter[4096 x 4096] <- gaussian(seed=7, init dims=[4096 x 4096], range=0.003125*3.200000, onCPU=true).
-Node 'h2.b' (LearnableParameter operation): Initializing Parameter[4096] <- 1.000000.
-Node 'OutputNodes.W' (LearnableParameter operation): Initializing Parameter[1000 x 4096] <- gaussian(seed=8, init dims=[1000 x 4096], range=0.003125*3.200000, onCPU=true).
-Node 'OutputNodes.b' (LearnableParameter operation): Initializing Parameter[1000] <- 1.000000.
-
-Post-processing network...
-
-3 roots:
-	CE = CrossEntropyWithSoftmax()
-	Err = ClassificationError()
-	OutputNodes.z = Plus()
-
-Validating network. 46 nodes to process in pass 1.
-
-Validating --> labels = InputValue() :  -> [1000 x *]
-Validating --> OutputNodes.W = LearnableParameter() :  -> [1000 x 4096]
-Validating --> h2.W = LearnableParameter() :  -> [4096 x 4096]
-Validating --> h1.W = LearnableParameter() :  -> [4096 x 9216]
-Validating --> conv5_act.convW = LearnableParameter() :  -> [256 x 3456]
-Validating --> conv4_act.convW = LearnableParameter() :  -> [384 x 3456]
-Validating --> conv3_act.convW = LearnableParameter() :  -> [384 x 2304]
-Validating --> conv2_act.convW = LearnableParameter() :  -> [256 x 2400]
-Validating --> conv1_act.convW = LearnableParameter() :  -> [96 x 363]
-Validating --> features = InputValue() :  -> [224 x 224 x 3 x *]
-Validating --> conv1_act.conv = Convolution (conv1_act.convW, features) : [96 x 363], [224 x 224 x 3 x *] -> [56 x 56 x 96 x *]
-Validating --> conv1_act.convB = LearnableParameter() :  -> [1 x 1 x 96]
-Validating --> conv1_act.convPlusB = Plus (conv1_act.conv, conv1_act.convB) : [56 x 56 x 96 x *], [1 x 1 x 96] -> [56 x 56 x 96 x *]
-Validating --> conv1_act.act = RectifiedLinear (conv1_act.convPlusB) : [56 x 56 x 96 x *] -> [56 x 56 x 96 x *]
-Validating --> pool1 = MaxPooling (conv1_act.act) : [56 x 56 x 96 x *] -> [27 x 27 x 96 x *]
-Validating --> conv2_act.conv = Convolution (conv2_act.convW, pool1) : [256 x 2400], [27 x 27 x 96 x *] -> [27 x 27 x 256 x *]
-Validating --> conv2_act.convB = LearnableParameter() :  -> [1 x 1 x 256]
-Validating --> conv2_act.convPlusB = Plus (conv2_act.conv, conv2_act.convB) : [27 x 27 x 256 x *], [1 x 1 x 256] -> [27 x 27 x 256 x *]
-Validating --> conv2_act.act = RectifiedLinear (conv2_act.convPlusB) : [27 x 27 x 256 x *] -> [27 x 27 x 256 x *]
-Validating --> pool2 = MaxPooling (conv2_act.act) : [27 x 27 x 256 x *] -> [13 x 13 x 256 x *]
-Validating --> conv3_act.conv = Convolution (conv3_act.convW, pool2) : [384 x 2304], [13 x 13 x 256 x *] -> [13 x 13 x 384 x *]
-Validating --> conv3_act.convB = LearnableParameter() :  -> [1 x 1 x 384]
-Validating --> conv3_act.convPlusB = Plus (conv3_act.conv, conv3_act.convB) : [13 x 13 x 384 x *], [1 x 1 x 384] -> [13 x 13 x 384 x *]
-Validating --> conv3_act.act = RectifiedLinear (conv3_act.convPlusB) : [13 x 13 x 384 x *] -> [13 x 13 x 384 x *]
-Validating --> conv4_act.conv = Convolution (conv4_act.convW, conv3_act.act) : [384 x 3456], [13 x 13 x 384 x *] -> [13 x 13 x 384 x *]
-Validating --> conv4_act.convB = LearnableParameter() :  -> [1 x 1 x 384]
-Validating --> conv4_act.convPlusB = Plus (conv4_act.conv, conv4_act.convB) : [13 x 13 x 384 x *], [1 x 1 x 384] -> [13 x 13 x 384 x *]
-Validating --> conv4_act.act = RectifiedLinear (conv4_act.convPlusB) : [13 x 13 x 384 x *] -> [13 x 13 x 384 x *]
-Validating --> conv5_act.conv = Convolution (conv5_act.convW, conv4_act.act) : [256 x 3456], [13 x 13 x 384 x *] -> [13 x 13 x 256 x *]
-Validating --> conv5_act.convB = LearnableParameter() :  -> [1 x 1 x 256]
-Validating --> conv5_act.convPlusB = Plus (conv5_act.conv, conv5_act.convB) : [13 x 13 x 256 x *], [1 x 1 x 256] -> [13 x 13 x 256 x *]
-Validating --> conv5_act.act = RectifiedLinear (conv5_act.convPlusB) : [13 x 13 x 256 x *] -> [13 x 13 x 256 x *]
-Validating --> pool3 = MaxPooling (conv5_act.act) : [13 x 13 x 256 x *] -> [6 x 6 x 256 x *]
 
 h1.t Times operation: For legacy compatibility, the sample layout of left input (h1.W LearnableParameter operation) was patched to [4096 x 6 x 6 x 256] (from [4096 x 9216])
-Validating --> h1.t = Times (h1.W, pool3) : [4096 x 6 x 6 x 256], [6 x 6 x 256 x *] -> [4096 x *]
-Validating --> h1.b = LearnableParameter() :  -> [4096]
-Validating --> h1.z = Plus (h1.t, h1.b) : [4096 x *], [4096] -> [4096 x *]
-Validating --> h1.y = RectifiedLinear (h1.z) : [4096 x *] -> [4096 x *]
-Validating --> h2.t = Times (h2.W, h1.y) : [4096 x 4096], [4096 x *] -> [4096 x *]
-Validating --> h2.b = LearnableParameter() :  -> [4096]
-Validating --> h2.z = Plus (h2.t, h2.b) : [4096 x *], [4096] -> [4096 x *]
-Validating --> h2.y = RectifiedLinear (h2.z) : [4096 x *] -> [4096 x *]
-Validating --> OutputNodes.t = Times (OutputNodes.W, h2.y) : [1000 x 4096], [4096 x *] -> [1000 x *]
-Validating --> OutputNodes.b = LearnableParameter() :  -> [1000]
-Validating --> OutputNodes.z = Plus (OutputNodes.t, OutputNodes.b) : [1000 x *], [1000] -> [1000 x *]
-Validating --> CE = CrossEntropyWithSoftmax (labels, OutputNodes.z) : [1000 x *], [1000 x *] -> [1]
-Validating --> Err = ClassificationError (labels, OutputNodes.z) : [1000 x *], [1000 x *] -> [1]
-
-Validating network. 28 nodes to process in pass 2.
-
-
-Validating network, final pass.
-
 conv1_act.conv: using cuDNN convolution engine for geometry: Input: 224 x 224 x 3, Output: 56 x 56 x 96, Kernel: 11 x 11 x 3, Map: 1 x 1 x 96, Stride: 4 x 4 x 3, Sharing: (1), AutoPad: (1), LowerPad: 0, UpperPad: 0.
 pool1: using cuDNN convolution engine for geometry: Input: 56 x 56 x 96, Output: 27 x 27 x 96, Kernel: 3 x 3 x 1, Map: 1, Stride: 2 x 2 x 1, Sharing: (1), AutoPad: (0), LowerPad: 0, UpperPad: 0.
 conv2_act.conv: using cuDNN convolution engine for geometry: Input: 27 x 27 x 96, Output: 27 x 27 x 256, Kernel: 5 x 5 x 96, Map: 1 x 1 x 256, Stride: 1 x 1 x 96, Sharing: (1), AutoPad: (1), LowerPad: 0, UpperPad: 0.
@@ -201,36 +98,22 @@ conv3_act.conv: using cuDNN convolution engine for geometry: Input: 13 x 13 x 25
 conv4_act.conv: using cuDNN convolution engine for geometry: Input: 13 x 13 x 384, Output: 13 x 13 x 384, Kernel: 3 x 3 x 384, Map: 1 x 1 x 384, Stride: 1 x 1 x 384, Sharing: (1), AutoPad: (1), LowerPad: 0, UpperPad: 0.
 conv5_act.conv: using cuDNN convolution engine for geometry: Input: 13 x 13 x 384, Output: 13 x 13 x 256, Kernel: 3 x 3 x 384, Map: 1 x 1 x 256, Stride: 1 x 1 x 384, Sharing: (1), AutoPad: (1), LowerPad: 0, UpperPad: 0.
 pool3: using cuDNN convolution engine for geometry: Input: 13 x 13 x 256, Output: 6 x 6 x 256, Kernel: 3 x 3 x 1, Map: 1, Stride: 2 x 2 x 1, Sharing: (1), AutoPad: (0), LowerPad: 0, UpperPad: 0.
-
-
-18 out of 46 nodes do not share the minibatch layout with the input data.
-
-Post-processing network complete.
-
 ********** DEPRECATED **********
 UCIFastReader is no longer actively maintained.
 It is known to have defects, proceed with caution (better yet, switch to CNTKTextFormatReader)!
 For more details please see https://github.com/Microsoft/CNTK/wiki 
 Reading UCI file cnn/imagenet_data.txt
-Created model with 46 nodes on GPU 0.
 
-Training criterion node(s):
-	CE = CrossEntropyWithSoftmax
+Model has 46 nodes. Using GPU 0.
 
-Evaluation criterion node(s):
-	Err = ClassificationError
+Training criterion:   CE = CrossEntropyWithSoftmax
+Evaluation criterion: Err = ClassificationError
 
 
 Allocating matrices for forward and/or backward propagation.
 
 Memory Sharing: Out of 89 matrices, 60 are shared as 26, and 29 are not shared.
 
-	{ conv1_act.act : [56 x 56 x 96 x *]
-	  conv1_act.conv : [56 x 56 x 96 x *] (gradient) }
-	{ conv1_act.convPlusB : [56 x 56 x 96 x *]
-	  conv1_act.convW : [96 x 363] (gradient) }
-	{ conv1_act.convPlusB : [56 x 56 x 96 x *] (gradient)
-	  pool1 : [27 x 27 x 96 x *] }
 	{ conv1_act.act : [56 x 56 x 96 x *] (gradient)
 	  conv1_act.convB : [1 x 1 x 96] (gradient) }
 	{ conv2_act.convPlusB : [27 x 27 x 256 x *]
@@ -285,6 +168,12 @@ Memory Sharing: Out of 89 matrices, 60 are shared as 26, and 29 are not shared.
 	  OutputNodes.z : [1000 x *] (gradient) }
 	{ h2.b : [4096] (gradient)
 	  h2.y : [4096 x *] (gradient) }
+	{ conv1_act.act : [56 x 56 x 96 x *]
+	  conv1_act.conv : [56 x 56 x 96 x *] (gradient) }
+	{ conv1_act.convPlusB : [56 x 56 x 96 x *]
+	  conv1_act.convW : [96 x 363] (gradient) }
+	{ conv1_act.convPlusB : [56 x 56 x 96 x *] (gradient)
+	  pool1 : [27 x 27 x 96 x *] }
 
 
 Training 62378344 parameters in 16 out of 16 parameter tensors and 43 nodes with gradient:
@@ -315,107 +204,107 @@ starting epoch 1 at record count 0, and file position 0
 already there from last epoch
 
 Starting minibatch loop.
- Epoch[ 1 of 3]-Minibatch[   1-   1, 1.00%]: CE = 6.80917215 * 16; Err = 0.93750000 * 16; time = 0.5720s; samplesPerSecond = 28.0
- Epoch[ 1 of 3]-Minibatch[   2-   2, 2.00%]: CE = 11.15454435 * 16; Err = 1.00000000 * 16; time = 0.0346s; samplesPerSecond = 463.0
- Epoch[ 1 of 3]-Minibatch[   3-   3, 3.00%]: CE = 10.24898720 * 16; Err = 1.00000000 * 16; time = 0.2275s; samplesPerSecond = 70.3
- Epoch[ 1 of 3]-Minibatch[   4-   4, 4.00%]: CE = 8.80297470 * 16; Err = 1.00000000 * 16; time = 0.1370s; samplesPerSecond = 116.8
- Epoch[ 1 of 3]-Minibatch[   5-   5, 5.00%]: CE = 7.89539337 * 16; Err = 1.00000000 * 16; time = 0.1342s; samplesPerSecond = 119.2
- Epoch[ 1 of 3]-Minibatch[   6-   6, 6.00%]: CE = 8.23277664 * 16; Err = 1.00000000 * 16; time = 0.1349s; samplesPerSecond = 118.6
- Epoch[ 1 of 3]-Minibatch[   7-   7, 7.00%]: CE = 7.18295288 * 16; Err = 1.00000000 * 16; time = 0.1346s; samplesPerSecond = 118.9
- Epoch[ 1 of 3]-Minibatch[   8-   8, 8.00%]: CE = 7.63440323 * 16; Err = 0.93750000 * 16; time = 0.1366s; samplesPerSecond = 117.1
- Epoch[ 1 of 3]-Minibatch[   9-   9, 9.00%]: CE = 7.83544922 * 16; Err = 1.00000000 * 16; time = 0.1343s; samplesPerSecond = 119.2
- Epoch[ 1 of 3]-Minibatch[  10-  10, 10.00%]: CE = 7.71350098 * 16; Err = 1.00000000 * 16; time = 0.1349s; samplesPerSecond = 118.6
- Epoch[ 1 of 3]-Minibatch[  11-  11, 11.00%]: CE = 7.58921814 * 16; Err = 1.00000000 * 16; time = 0.1345s; samplesPerSecond = 118.9
- Epoch[ 1 of 3]-Minibatch[  12-  12, 12.00%]: CE = 7.57836914 * 16; Err = 1.00000000 * 16; time = 0.1346s; samplesPerSecond = 118.9
- Epoch[ 1 of 3]-Minibatch[  13-  13, 13.00%]: CE = 6.82156372 * 16; Err = 1.00000000 * 16; time = 0.1343s; samplesPerSecond = 119.1
- Epoch[ 1 of 3]-Minibatch[  14-  14, 14.00%]: CE = 8.14842987 * 16; Err = 1.00000000 * 16; time = 0.1369s; samplesPerSecond = 116.9
- Epoch[ 1 of 3]-Minibatch[  15-  15, 15.00%]: CE = 7.32724762 * 16; Err = 1.00000000 * 16; time = 0.1348s; samplesPerSecond = 118.7
- Epoch[ 1 of 3]-Minibatch[  16-  16, 16.00%]: CE = 7.67255402 * 16; Err = 1.00000000 * 16; time = 0.1348s; samplesPerSecond = 118.7
- Epoch[ 1 of 3]-Minibatch[  17-  17, 17.00%]: CE = 7.74392700 * 16; Err = 1.00000000 * 16; time = 0.1340s; samplesPerSecond = 119.4
- Epoch[ 1 of 3]-Minibatch[  18-  18, 18.00%]: CE = 7.56604004 * 16; Err = 1.00000000 * 16; time = 0.1347s; samplesPerSecond = 118.8
- Epoch[ 1 of 3]-Minibatch[  19-  19, 19.00%]: CE = 7.28956604 * 16; Err = 1.00000000 * 16; time = 0.1341s; samplesPerSecond = 119.3
- Epoch[ 1 of 3]-Minibatch[  20-  20, 20.00%]: CE = 7.17752075 * 16; Err = 1.00000000 * 16; time = 0.1346s; samplesPerSecond = 118.9
- Epoch[ 1 of 3]-Minibatch[  21-  21, 21.00%]: CE = 7.34170532 * 16; Err = 1.00000000 * 16; time = 0.1350s; samplesPerSecond = 118.5
- Epoch[ 1 of 3]-Minibatch[  22-  22, 22.00%]: CE = 7.41917419 * 16; Err = 1.00000000 * 16; time = 0.1345s; samplesPerSecond = 119.0
- Epoch[ 1 of 3]-Minibatch[  23-  23, 23.00%]: CE = 7.46569824 * 16; Err = 1.00000000 * 16; time = 0.1344s; samplesPerSecond = 119.0
- Epoch[ 1 of 3]-Minibatch[  24-  24, 24.00%]: CE = 7.06973267 * 16; Err = 0.93750000 * 16; time = 0.1347s; samplesPerSecond = 118.8
- Epoch[ 1 of 3]-Minibatch[  25-  25, 25.00%]: CE = 7.30427551 * 16; Err = 1.00000000 * 16; time = 0.1345s; samplesPerSecond = 119.0
- Epoch[ 1 of 3]-Minibatch[  26-  26, 26.00%]: CE = 7.43574524 * 16; Err = 1.00000000 * 16; time = 0.1348s; samplesPerSecond = 118.7
- Epoch[ 1 of 3]-Minibatch[  27-  27, 27.00%]: CE = 7.54641724 * 16; Err = 1.00000000 * 16; time = 0.1340s; samplesPerSecond = 119.4
- Epoch[ 1 of 3]-Minibatch[  28-  28, 28.00%]: CE = 7.50038147 * 16; Err = 1.00000000 * 16; time = 0.1346s; samplesPerSecond = 118.9
- Epoch[ 1 of 3]-Minibatch[  29-  29, 29.00%]: CE = 7.39521790 * 16; Err = 1.00000000 * 16; time = 0.1341s; samplesPerSecond = 119.3
- Epoch[ 1 of 3]-Minibatch[  30-  30, 30.00%]: CE = 7.41540527 * 16; Err = 1.00000000 * 16; time = 0.1347s; samplesPerSecond = 118.8
- Epoch[ 1 of 3]-Minibatch[  31-  31, 31.00%]: CE = 7.49426270 * 16; Err = 1.00000000 * 16; time = 0.1359s; samplesPerSecond = 117.8
- Epoch[ 1 of 3]-Minibatch[  32-  32, 32.00%]: CE = 7.37971497 * 16; Err = 1.00000000 * 16; time = 0.1361s; samplesPerSecond = 117.6
- Epoch[ 1 of 3]-Minibatch[  33-  33, 33.00%]: CE = 7.58125305 * 16; Err = 1.00000000 * 16; time = 0.1343s; samplesPerSecond = 119.2
- Epoch[ 1 of 3]-Minibatch[  34-  34, 34.00%]: CE = 7.21870422 * 16; Err = 1.00000000 * 16; time = 0.1346s; samplesPerSecond = 118.9
- Epoch[ 1 of 3]-Minibatch[  35-  35, 35.00%]: CE = 7.60116577 * 16; Err = 1.00000000 * 16; time = 0.1343s; samplesPerSecond = 119.1
- Epoch[ 1 of 3]-Minibatch[  36-  36, 36.00%]: CE = 7.36813354 * 16; Err = 1.00000000 * 16; time = 0.1347s; samplesPerSecond = 118.8
- Epoch[ 1 of 3]-Minibatch[  37-  37, 37.00%]: CE = 7.36828613 * 16; Err = 1.00000000 * 16; time = 0.1345s; samplesPerSecond = 119.0
- Epoch[ 1 of 3]-Minibatch[  38-  38, 38.00%]: CE = 6.77905273 * 16; Err = 1.00000000 * 16; time = 0.1348s; samplesPerSecond = 118.7
- Epoch[ 1 of 3]-Minibatch[  39-  39, 39.00%]: CE = 7.50946045 * 16; Err = 1.00000000 * 16; time = 0.1341s; samplesPerSecond = 119.3
- Epoch[ 1 of 3]-Minibatch[  40-  40, 40.00%]: CE = 7.39309692 * 16; Err = 1.00000000 * 16; time = 0.1349s; samplesPerSecond = 118.6
- Epoch[ 1 of 3]-Minibatch[  41-  41, 41.00%]: CE = 7.00015259 * 16; Err = 1.00000000 * 16; time = 0.1351s; samplesPerSecond = 118.5
- Epoch[ 1 of 3]-Minibatch[  42-  42, 42.00%]: CE = 7.43994141 * 16; Err = 1.00000000 * 16; time = 0.1346s; samplesPerSecond = 118.9
- Epoch[ 1 of 3]-Minibatch[  43-  43, 43.00%]: CE = 7.31469727 * 16; Err = 1.00000000 * 16; time = 0.1343s; samplesPerSecond = 119.1
- Epoch[ 1 of 3]-Minibatch[  44-  44, 44.00%]: CE = 7.34835815 * 16; Err = 1.00000000 * 16; time = 0.1346s; samplesPerSecond = 118.9
- Epoch[ 1 of 3]-Minibatch[  45-  45, 45.00%]: CE = 7.07678223 * 16; Err = 1.00000000 * 16; time = 0.1359s; samplesPerSecond = 117.7
- Epoch[ 1 of 3]-Minibatch[  46-  46, 46.00%]: CE = 7.31802368 * 16; Err = 1.00000000 * 16; time = 0.1350s; samplesPerSecond = 118.5
- Epoch[ 1 of 3]-Minibatch[  47-  47, 47.00%]: CE = 7.04232788 * 16; Err = 1.00000000 * 16; time = 0.1346s; samplesPerSecond = 118.9
- Epoch[ 1 of 3]-Minibatch[  48-  48, 48.00%]: CE = 7.12420654 * 16; Err = 1.00000000 * 16; time = 0.1348s; samplesPerSecond = 118.7
- Epoch[ 1 of 3]-Minibatch[  49-  49, 49.00%]: CE = 7.20413208 * 16; Err = 1.00000000 * 16; time = 0.1358s; samplesPerSecond = 117.8
- Epoch[ 1 of 3]-Minibatch[  50-  50, 50.00%]: CE = 7.49822998 * 16; Err = 1.00000000 * 16; time = 0.1347s; samplesPerSecond = 118.8
- Epoch[ 1 of 3]-Minibatch[  51-  51, 51.00%]: CE = 7.03179932 * 16; Err = 1.00000000 * 16; time = 0.1351s; samplesPerSecond = 118.4
- Epoch[ 1 of 3]-Minibatch[  52-  52, 52.00%]: CE = 7.07815552 * 16; Err = 1.00000000 * 16; time = 0.1346s; samplesPerSecond = 118.9
- Epoch[ 1 of 3]-Minibatch[  53-  53, 53.00%]: CE = 6.95556641 * 16; Err = 1.00000000 * 16; time = 0.1344s; samplesPerSecond = 119.0
- Epoch[ 1 of 3]-Minibatch[  54-  54, 54.00%]: CE = 7.07785034 * 16; Err = 1.00000000 * 16; time = 0.1345s; samplesPerSecond = 118.9
- Epoch[ 1 of 3]-Minibatch[  55-  55, 55.00%]: CE = 7.26495361 * 16; Err = 1.00000000 * 16; time = 0.1343s; samplesPerSecond = 119.1
- Epoch[ 1 of 3]-Minibatch[  56-  56, 56.00%]: CE = 7.24365234 * 16; Err = 1.00000000 * 16; time = 0.1346s; samplesPerSecond = 118.9
- Epoch[ 1 of 3]-Minibatch[  57-  57, 57.00%]: CE = 7.11410522 * 16; Err = 1.00000000 * 16; time = 0.1361s; samplesPerSecond = 117.5
- Epoch[ 1 of 3]-Minibatch[  58-  58, 58.00%]: CE = 7.03857422 * 16; Err = 1.00000000 * 16; time = 0.1347s; samplesPerSecond = 118.8
- Epoch[ 1 of 3]-Minibatch[  59-  59, 59.00%]: CE = 7.24301147 * 16; Err = 1.00000000 * 16; time = 0.1348s; samplesPerSecond = 118.7
- Epoch[ 1 of 3]-Minibatch[  60-  60, 60.00%]: CE = 6.90673828 * 16; Err = 1.00000000 * 16; time = 0.1349s; samplesPerSecond = 118.6
- Epoch[ 1 of 3]-Minibatch[  61-  61, 61.00%]: CE = 7.29479980 * 16; Err = 1.00000000 * 16; time = 0.1341s; samplesPerSecond = 119.3
- Epoch[ 1 of 3]-Minibatch[  62-  62, 62.00%]: CE = 7.08160400 * 16; Err = 1.00000000 * 16; time = 0.1346s; samplesPerSecond = 118.9
- Epoch[ 1 of 3]-Minibatch[  63-  63, 63.00%]: CE = 7.20333862 * 16; Err = 1.00000000 * 16; time = 0.1346s; samplesPerSecond = 118.9
- Epoch[ 1 of 3]-Minibatch[  64-  64, 64.00%]: CE = 7.25112915 * 16; Err = 1.00000000 * 16; time = 0.1346s; samplesPerSecond = 118.9
- Epoch[ 1 of 3]-Minibatch[  65-  65, 65.00%]: CE = 6.95071411 * 16; Err = 1.00000000 * 16; time = 0.1344s; samplesPerSecond = 119.1
- Epoch[ 1 of 3]-Minibatch[  66-  66, 66.00%]: CE = 7.23660278 * 16; Err = 1.00000000 * 16; time = 0.1345s; samplesPerSecond = 119.0
- Epoch[ 1 of 3]-Minibatch[  67-  67, 67.00%]: CE = 7.28854370 * 16; Err = 1.00000000 * 16; time = 0.1344s; samplesPerSecond = 119.1
- Epoch[ 1 of 3]-Minibatch[  68-  68, 68.00%]: CE = 7.05361938 * 16; Err = 1.00000000 * 16; time = 0.1343s; samplesPerSecond = 119.1
- Epoch[ 1 of 3]-Minibatch[  69-  69, 69.00%]: CE = 6.96426392 * 16; Err = 1.00000000 * 16; time = 0.1345s; samplesPerSecond = 118.9
- Epoch[ 1 of 3]-Minibatch[  70-  70, 70.00%]: CE = 6.92803955 * 16; Err = 1.00000000 * 16; time = 0.1347s; samplesPerSecond = 118.8
- Epoch[ 1 of 3]-Minibatch[  71-  71, 71.00%]: CE = 6.84179688 * 16; Err = 1.00000000 * 16; time = 0.1341s; samplesPerSecond = 119.3
- Epoch[ 1 of 3]-Minibatch[  72-  72, 72.00%]: CE = 7.19293213 * 16; Err = 1.00000000 * 16; time = 0.1376s; samplesPerSecond = 116.3
- Epoch[ 1 of 3]-Minibatch[  73-  73, 73.00%]: CE = 7.22430420 * 16; Err = 1.00000000 * 16; time = 0.1342s; samplesPerSecond = 119.2
- Epoch[ 1 of 3]-Minibatch[  74-  74, 74.00%]: CE = 6.87463379 * 16; Err = 1.00000000 * 16; time = 0.1350s; samplesPerSecond = 118.5
- Epoch[ 1 of 3]-Minibatch[  75-  75, 75.00%]: CE = 6.99475098 * 16; Err = 1.00000000 * 16; time = 0.1344s; samplesPerSecond = 119.0
- Epoch[ 1 of 3]-Minibatch[  76-  76, 76.00%]: CE = 6.88366699 * 16; Err = 0.93750000 * 16; time = 0.1344s; samplesPerSecond = 119.1
- Epoch[ 1 of 3]-Minibatch[  77-  77, 77.00%]: CE = 7.00585938 * 16; Err = 1.00000000 * 16; time = 0.1344s; samplesPerSecond = 119.1
- Epoch[ 1 of 3]-Minibatch[  78-  78, 78.00%]: CE = 7.17059326 * 16; Err = 1.00000000 * 16; time = 0.1347s; samplesPerSecond = 118.8
- Epoch[ 1 of 3]-Minibatch[  79-  79, 79.00%]: CE = 6.96502686 * 16; Err = 1.00000000 * 16; time = 0.1343s; samplesPerSecond = 119.1
- Epoch[ 1 of 3]-Minibatch[  80-  80, 80.00%]: CE = 7.09771729 * 16; Err = 1.00000000 * 16; time = 0.1348s; samplesPerSecond = 118.7
- Epoch[ 1 of 3]-Minibatch[  81-  81, 81.00%]: CE = 7.24804688 * 16; Err = 1.00000000 * 16; time = 0.1343s; samplesPerSecond = 119.1
- Epoch[ 1 of 3]-Minibatch[  82-  82, 82.00%]: CE = 6.87249756 * 16; Err = 1.00000000 * 16; time = 0.1346s; samplesPerSecond = 118.8
- Epoch[ 1 of 3]-Minibatch[  83-  83, 83.00%]: CE = 7.13006592 * 16; Err = 1.00000000 * 16; time = 0.1353s; samplesPerSecond = 118.3
- Epoch[ 1 of 3]-Minibatch[  84-  84, 84.00%]: CE = 7.15576172 * 16; Err = 1.00000000 * 16; time = 0.1350s; samplesPerSecond = 118.6
- Epoch[ 1 of 3]-Minibatch[  85-  85, 85.00%]: CE = 7.03686523 * 16; Err = 1.00000000 * 16; time = 0.1345s; samplesPerSecond = 118.9
- Epoch[ 1 of 3]-Minibatch[  86-  86, 86.00%]: CE = 7.12597656 * 16; Err = 1.00000000 * 16; time = 0.1350s; samplesPerSecond = 118.6
- Epoch[ 1 of 3]-Minibatch[  87-  87, 87.00%]: CE = 7.14984131 * 16; Err = 1.00000000 * 16; time = 0.1348s; samplesPerSecond = 118.7
- Epoch[ 1 of 3]-Minibatch[  88-  88, 88.00%]: CE = 7.11303711 * 16; Err = 1.00000000 * 16; time = 0.1347s; samplesPerSecond = 118.8
- Epoch[ 1 of 3]-Minibatch[  89-  89, 89.00%]: CE = 7.06427002 * 16; Err = 1.00000000 * 16; time = 0.1361s; samplesPerSecond = 117.5
- Epoch[ 1 of 3]-Minibatch[  90-  90, 90.00%]: CE = 6.88708496 * 16; Err = 1.00000000 * 16; time = 0.1353s; samplesPerSecond = 118.3
- Epoch[ 1 of 3]-Minibatch[  91-  91, 91.00%]: CE = 7.05755615 * 16; Err = 1.00000000 * 16; time = 0.1341s; samplesPerSecond = 119.3
- Epoch[ 1 of 3]-Minibatch[  92-  92, 92.00%]: CE = 6.96575928 * 16; Err = 1.00000000 * 16; time = 0.1347s; samplesPerSecond = 118.8
- Epoch[ 1 of 3]-Minibatch[  93-  93, 93.00%]: CE = 7.03143311 * 16; Err = 1.00000000 * 16; time = 0.1347s; samplesPerSecond = 118.8
- Epoch[ 1 of 3]-Minibatch[  94-  94, 94.00%]: CE = 7.15722656 * 16; Err = 1.00000000 * 16; time = 0.1363s; samplesPerSecond = 117.4
- Epoch[ 1 of 3]-Minibatch[  95-  95, 95.00%]: CE = 7.05633545 * 16; Err = 1.00000000 * 16; time = 0.1343s; samplesPerSecond = 119.1
- Epoch[ 1 of 3]-Minibatch[  96-  96, 96.00%]: CE = 6.89160156 * 16; Err = 1.00000000 * 16; time = 0.1347s; samplesPerSecond = 118.8
- Epoch[ 1 of 3]-Minibatch[  97-  97, 97.00%]: CE = 6.94927979 * 16; Err = 1.00000000 * 16; time = 0.1342s; samplesPerSecond = 119.3
- Epoch[ 1 of 3]-Minibatch[  98-  98, 98.00%]: CE = 7.05596924 * 16; Err = 1.00000000 * 16; time = 0.1344s; samplesPerSecond = 119.1
- Epoch[ 1 of 3]-Minibatch[  99-  99, 99.00%]: CE = 6.99584961 * 16; Err = 1.00000000 * 16; time = 0.1345s; samplesPerSecond = 118.9
- Epoch[ 1 of 3]-Minibatch[ 100- 100, 100.00%]: CE = 7.05297852 * 16; Err = 1.00000000 * 16; time = 0.1347s; samplesPerSecond = 118.8
-Finished Epoch[ 1 of 3]: [Training] CE = 7.31834106 * 1600; Err = 0.99750000 * 1600; totalSamplesSeen = 1600; learningRatePerSample = 0.00062499999; epochTime=23.9684s
+ Epoch[ 1 of 3]-Minibatch[   1-   1, 1.00%]: CE = 7.45152378 * 16; Err = 1.00000000 * 16; time = 0.5337s; samplesPerSecond = 30.0
+ Epoch[ 1 of 3]-Minibatch[   2-   2, 2.00%]: CE = 11.68353558 * 16; Err = 1.00000000 * 16; time = 0.0344s; samplesPerSecond = 465.1
+ Epoch[ 1 of 3]-Minibatch[   3-   3, 3.00%]: CE = 9.65966415 * 16; Err = 1.00000000 * 16; time = 0.2270s; samplesPerSecond = 70.5
+ Epoch[ 1 of 3]-Minibatch[   4-   4, 4.00%]: CE = 8.51953506 * 16; Err = 1.00000000 * 16; time = 0.1588s; samplesPerSecond = 100.7
+ Epoch[ 1 of 3]-Minibatch[   5-   5, 5.00%]: CE = 8.68581009 * 16; Err = 1.00000000 * 16; time = 0.1561s; samplesPerSecond = 102.5
+ Epoch[ 1 of 3]-Minibatch[   6-   6, 6.00%]: CE = 7.82530594 * 16; Err = 1.00000000 * 16; time = 0.1566s; samplesPerSecond = 102.2
+ Epoch[ 1 of 3]-Minibatch[   7-   7, 7.00%]: CE = 7.77209091 * 16; Err = 1.00000000 * 16; time = 0.1561s; samplesPerSecond = 102.5
+ Epoch[ 1 of 3]-Minibatch[   8-   8, 8.00%]: CE = 7.67073059 * 16; Err = 1.00000000 * 16; time = 0.1574s; samplesPerSecond = 101.7
+ Epoch[ 1 of 3]-Minibatch[   9-   9, 9.00%]: CE = 7.90888977 * 16; Err = 1.00000000 * 16; time = 0.1561s; samplesPerSecond = 102.5
+ Epoch[ 1 of 3]-Minibatch[  10-  10, 10.00%]: CE = 7.65433502 * 16; Err = 1.00000000 * 16; time = 0.1563s; samplesPerSecond = 102.4
+ Epoch[ 1 of 3]-Minibatch[  11-  11, 11.00%]: CE = 7.43485260 * 16; Err = 1.00000000 * 16; time = 0.1358s; samplesPerSecond = 117.8
+ Epoch[ 1 of 3]-Minibatch[  12-  12, 12.00%]: CE = 7.69657898 * 16; Err = 1.00000000 * 16; time = 0.1358s; samplesPerSecond = 117.8
+ Epoch[ 1 of 3]-Minibatch[  13-  13, 13.00%]: CE = 8.03502655 * 16; Err = 1.00000000 * 16; time = 0.1347s; samplesPerSecond = 118.8
+ Epoch[ 1 of 3]-Minibatch[  14-  14, 14.00%]: CE = 7.17655945 * 16; Err = 1.00000000 * 16; time = 0.1344s; samplesPerSecond = 119.1
+ Epoch[ 1 of 3]-Minibatch[  15-  15, 15.00%]: CE = 7.30470276 * 16; Err = 1.00000000 * 16; time = 0.1348s; samplesPerSecond = 118.7
+ Epoch[ 1 of 3]-Minibatch[  16-  16, 16.00%]: CE = 7.34547424 * 16; Err = 1.00000000 * 16; time = 0.1347s; samplesPerSecond = 118.8
+ Epoch[ 1 of 3]-Minibatch[  17-  17, 17.00%]: CE = 7.89755249 * 16; Err = 1.00000000 * 16; time = 0.1345s; samplesPerSecond = 119.0
+ Epoch[ 1 of 3]-Minibatch[  18-  18, 18.00%]: CE = 7.45874023 * 16; Err = 1.00000000 * 16; time = 0.1348s; samplesPerSecond = 118.7
+ Epoch[ 1 of 3]-Minibatch[  19-  19, 19.00%]: CE = 7.53955078 * 16; Err = 1.00000000 * 16; time = 0.1341s; samplesPerSecond = 119.3
+ Epoch[ 1 of 3]-Minibatch[  20-  20, 20.00%]: CE = 7.77912903 * 16; Err = 1.00000000 * 16; time = 0.1346s; samplesPerSecond = 118.9
+ Epoch[ 1 of 3]-Minibatch[  21-  21, 21.00%]: CE = 7.81227112 * 16; Err = 1.00000000 * 16; time = 0.1343s; samplesPerSecond = 119.2
+ Epoch[ 1 of 3]-Minibatch[  22-  22, 22.00%]: CE = 7.63261414 * 16; Err = 1.00000000 * 16; time = 0.1355s; samplesPerSecond = 118.1
+ Epoch[ 1 of 3]-Minibatch[  23-  23, 23.00%]: CE = 7.37409973 * 16; Err = 1.00000000 * 16; time = 0.1342s; samplesPerSecond = 119.3
+ Epoch[ 1 of 3]-Minibatch[  24-  24, 24.00%]: CE = 7.27626038 * 16; Err = 1.00000000 * 16; time = 0.1355s; samplesPerSecond = 118.1
+ Epoch[ 1 of 3]-Minibatch[  25-  25, 25.00%]: CE = 7.33316040 * 16; Err = 1.00000000 * 16; time = 0.1362s; samplesPerSecond = 117.5
+ Epoch[ 1 of 3]-Minibatch[  26-  26, 26.00%]: CE = 7.49444580 * 16; Err = 1.00000000 * 16; time = 0.1354s; samplesPerSecond = 118.2
+ Epoch[ 1 of 3]-Minibatch[  27-  27, 27.00%]: CE = 7.62139893 * 16; Err = 1.00000000 * 16; time = 0.1339s; samplesPerSecond = 119.5
+ Epoch[ 1 of 3]-Minibatch[  28-  28, 28.00%]: CE = 7.13627625 * 16; Err = 1.00000000 * 16; time = 0.1346s; samplesPerSecond = 118.8
+ Epoch[ 1 of 3]-Minibatch[  29-  29, 29.00%]: CE = 7.21414185 * 16; Err = 1.00000000 * 16; time = 0.1340s; samplesPerSecond = 119.4
+ Epoch[ 1 of 3]-Minibatch[  30-  30, 30.00%]: CE = 7.47482300 * 16; Err = 1.00000000 * 16; time = 0.1347s; samplesPerSecond = 118.8
+ Epoch[ 1 of 3]-Minibatch[  31-  31, 31.00%]: CE = 7.37312317 * 16; Err = 1.00000000 * 16; time = 0.1341s; samplesPerSecond = 119.3
+ Epoch[ 1 of 3]-Minibatch[  32-  32, 32.00%]: CE = 7.13046265 * 16; Err = 1.00000000 * 16; time = 0.1342s; samplesPerSecond = 119.3
+ Epoch[ 1 of 3]-Minibatch[  33-  33, 33.00%]: CE = 7.43360901 * 16; Err = 1.00000000 * 16; time = 0.1342s; samplesPerSecond = 119.3
+ Epoch[ 1 of 3]-Minibatch[  34-  34, 34.00%]: CE = 7.50854492 * 16; Err = 1.00000000 * 16; time = 0.1344s; samplesPerSecond = 119.1
+ Epoch[ 1 of 3]-Minibatch[  35-  35, 35.00%]: CE = 7.27880859 * 16; Err = 1.00000000 * 16; time = 0.1343s; samplesPerSecond = 119.1
+ Epoch[ 1 of 3]-Minibatch[  36-  36, 36.00%]: CE = 7.35595703 * 16; Err = 1.00000000 * 16; time = 0.1350s; samplesPerSecond = 118.5
+ Epoch[ 1 of 3]-Minibatch[  37-  37, 37.00%]: CE = 7.26693726 * 16; Err = 1.00000000 * 16; time = 0.1358s; samplesPerSecond = 117.8
+ Epoch[ 1 of 3]-Minibatch[  38-  38, 38.00%]: CE = 7.12078857 * 16; Err = 1.00000000 * 16; time = 0.1345s; samplesPerSecond = 119.0
+ Epoch[ 1 of 3]-Minibatch[  39-  39, 39.00%]: CE = 7.52005005 * 16; Err = 1.00000000 * 16; time = 0.1341s; samplesPerSecond = 119.3
+ Epoch[ 1 of 3]-Minibatch[  40-  40, 40.00%]: CE = 7.35421753 * 16; Err = 1.00000000 * 16; time = 0.1352s; samplesPerSecond = 118.3
+ Epoch[ 1 of 3]-Minibatch[  41-  41, 41.00%]: CE = 7.28540039 * 16; Err = 1.00000000 * 16; time = 0.1341s; samplesPerSecond = 119.3
+ Epoch[ 1 of 3]-Minibatch[  42-  42, 42.00%]: CE = 7.05718994 * 16; Err = 1.00000000 * 16; time = 0.1345s; samplesPerSecond = 119.0
+ Epoch[ 1 of 3]-Minibatch[  43-  43, 43.00%]: CE = 7.18377686 * 16; Err = 1.00000000 * 16; time = 0.1343s; samplesPerSecond = 119.1
+ Epoch[ 1 of 3]-Minibatch[  44-  44, 44.00%]: CE = 7.23037720 * 16; Err = 1.00000000 * 16; time = 0.1353s; samplesPerSecond = 118.2
+ Epoch[ 1 of 3]-Minibatch[  45-  45, 45.00%]: CE = 7.27337646 * 16; Err = 1.00000000 * 16; time = 0.1372s; samplesPerSecond = 116.6
+ Epoch[ 1 of 3]-Minibatch[  46-  46, 46.00%]: CE = 7.30087280 * 16; Err = 1.00000000 * 16; time = 0.1351s; samplesPerSecond = 118.4
+ Epoch[ 1 of 3]-Minibatch[  47-  47, 47.00%]: CE = 7.12612915 * 16; Err = 1.00000000 * 16; time = 0.1369s; samplesPerSecond = 116.9
+ Epoch[ 1 of 3]-Minibatch[  48-  48, 48.00%]: CE = 7.16610718 * 16; Err = 1.00000000 * 16; time = 0.1344s; samplesPerSecond = 119.0
+ Epoch[ 1 of 3]-Minibatch[  49-  49, 49.00%]: CE = 7.16473389 * 16; Err = 1.00000000 * 16; time = 0.1339s; samplesPerSecond = 119.5
+ Epoch[ 1 of 3]-Minibatch[  50-  50, 50.00%]: CE = 7.13345337 * 16; Err = 1.00000000 * 16; time = 0.1345s; samplesPerSecond = 119.0
+ Epoch[ 1 of 3]-Minibatch[  51-  51, 51.00%]: CE = 7.04931641 * 16; Err = 1.00000000 * 16; time = 0.1339s; samplesPerSecond = 119.5
+ Epoch[ 1 of 3]-Minibatch[  52-  52, 52.00%]: CE = 7.20196533 * 16; Err = 1.00000000 * 16; time = 0.1355s; samplesPerSecond = 118.1
+ Epoch[ 1 of 3]-Minibatch[  53-  53, 53.00%]: CE = 6.90042114 * 16; Err = 1.00000000 * 16; time = 0.1341s; samplesPerSecond = 119.3
+ Epoch[ 1 of 3]-Minibatch[  54-  54, 54.00%]: CE = 7.17901611 * 16; Err = 1.00000000 * 16; time = 0.1353s; samplesPerSecond = 118.2
+ Epoch[ 1 of 3]-Minibatch[  55-  55, 55.00%]: CE = 7.10437012 * 16; Err = 1.00000000 * 16; time = 0.1340s; samplesPerSecond = 119.4
+ Epoch[ 1 of 3]-Minibatch[  56-  56, 56.00%]: CE = 7.37481689 * 16; Err = 1.00000000 * 16; time = 0.1341s; samplesPerSecond = 119.3
+ Epoch[ 1 of 3]-Minibatch[  57-  57, 57.00%]: CE = 7.27120972 * 16; Err = 1.00000000 * 16; time = 0.1365s; samplesPerSecond = 117.2
+ Epoch[ 1 of 3]-Minibatch[  58-  58, 58.00%]: CE = 7.05273438 * 16; Err = 1.00000000 * 16; time = 0.1352s; samplesPerSecond = 118.3
+ Epoch[ 1 of 3]-Minibatch[  59-  59, 59.00%]: CE = 7.30975342 * 16; Err = 1.00000000 * 16; time = 0.1339s; samplesPerSecond = 119.5
+ Epoch[ 1 of 3]-Minibatch[  60-  60, 60.00%]: CE = 7.22723389 * 16; Err = 1.00000000 * 16; time = 0.1658s; samplesPerSecond = 96.5
+ Epoch[ 1 of 3]-Minibatch[  61-  61, 61.00%]: CE = 7.07888794 * 16; Err = 1.00000000 * 16; time = 0.2000s; samplesPerSecond = 80.0
+ Epoch[ 1 of 3]-Minibatch[  62-  62, 62.00%]: CE = 7.24954224 * 16; Err = 1.00000000 * 16; time = 0.2002s; samplesPerSecond = 79.9
+ Epoch[ 1 of 3]-Minibatch[  63-  63, 63.00%]: CE = 7.33688354 * 16; Err = 1.00000000 * 16; time = 0.1501s; samplesPerSecond = 106.6
+ Epoch[ 1 of 3]-Minibatch[  64-  64, 64.00%]: CE = 6.97940063 * 16; Err = 1.00000000 * 16; time = 0.1342s; samplesPerSecond = 119.2
+ Epoch[ 1 of 3]-Minibatch[  65-  65, 65.00%]: CE = 6.98257446 * 16; Err = 1.00000000 * 16; time = 0.1341s; samplesPerSecond = 119.3
+ Epoch[ 1 of 3]-Minibatch[  66-  66, 66.00%]: CE = 7.13043213 * 16; Err = 1.00000000 * 16; time = 0.1344s; samplesPerSecond = 119.0
+ Epoch[ 1 of 3]-Minibatch[  67-  67, 67.00%]: CE = 7.01889038 * 16; Err = 1.00000000 * 16; time = 0.1341s; samplesPerSecond = 119.3
+ Epoch[ 1 of 3]-Minibatch[  68-  68, 68.00%]: CE = 7.19003296 * 16; Err = 1.00000000 * 16; time = 0.1342s; samplesPerSecond = 119.2
+ Epoch[ 1 of 3]-Minibatch[  69-  69, 69.00%]: CE = 7.04898071 * 16; Err = 1.00000000 * 16; time = 0.1341s; samplesPerSecond = 119.4
+ Epoch[ 1 of 3]-Minibatch[  70-  70, 70.00%]: CE = 7.23510742 * 16; Err = 1.00000000 * 16; time = 0.1345s; samplesPerSecond = 119.0
+ Epoch[ 1 of 3]-Minibatch[  71-  71, 71.00%]: CE = 6.91882324 * 16; Err = 1.00000000 * 16; time = 0.1341s; samplesPerSecond = 119.3
+ Epoch[ 1 of 3]-Minibatch[  72-  72, 72.00%]: CE = 7.07446289 * 16; Err = 1.00000000 * 16; time = 0.1369s; samplesPerSecond = 116.9
+ Epoch[ 1 of 3]-Minibatch[  73-  73, 73.00%]: CE = 7.01385498 * 16; Err = 1.00000000 * 16; time = 0.1341s; samplesPerSecond = 119.3
+ Epoch[ 1 of 3]-Minibatch[  74-  74, 74.00%]: CE = 6.98632812 * 16; Err = 1.00000000 * 16; time = 0.1344s; samplesPerSecond = 119.1
+ Epoch[ 1 of 3]-Minibatch[  75-  75, 75.00%]: CE = 6.88372803 * 16; Err = 1.00000000 * 16; time = 0.1344s; samplesPerSecond = 119.0
+ Epoch[ 1 of 3]-Minibatch[  76-  76, 76.00%]: CE = 7.33074951 * 16; Err = 1.00000000 * 16; time = 0.1341s; samplesPerSecond = 119.3
+ Epoch[ 1 of 3]-Minibatch[  77-  77, 77.00%]: CE = 7.05133057 * 16; Err = 1.00000000 * 16; time = 0.1364s; samplesPerSecond = 117.3
+ Epoch[ 1 of 3]-Minibatch[  78-  78, 78.00%]: CE = 7.00854492 * 16; Err = 1.00000000 * 16; time = 0.1343s; samplesPerSecond = 119.1
+ Epoch[ 1 of 3]-Minibatch[  79-  79, 79.00%]: CE = 7.24328613 * 16; Err = 1.00000000 * 16; time = 0.1346s; samplesPerSecond = 118.8
+ Epoch[ 1 of 3]-Minibatch[  80-  80, 80.00%]: CE = 7.07421875 * 16; Err = 1.00000000 * 16; time = 0.1348s; samplesPerSecond = 118.7
+ Epoch[ 1 of 3]-Minibatch[  81-  81, 81.00%]: CE = 7.17181396 * 16; Err = 1.00000000 * 16; time = 0.1346s; samplesPerSecond = 118.9
+ Epoch[ 1 of 3]-Minibatch[  82-  82, 82.00%]: CE = 7.05944824 * 16; Err = 1.00000000 * 16; time = 0.1348s; samplesPerSecond = 118.7
+ Epoch[ 1 of 3]-Minibatch[  83-  83, 83.00%]: CE = 6.96148682 * 16; Err = 1.00000000 * 16; time = 0.1372s; samplesPerSecond = 116.6
+ Epoch[ 1 of 3]-Minibatch[  84-  84, 84.00%]: CE = 6.95904541 * 16; Err = 1.00000000 * 16; time = 0.1345s; samplesPerSecond = 118.9
+ Epoch[ 1 of 3]-Minibatch[  85-  85, 85.00%]: CE = 6.96691895 * 16; Err = 1.00000000 * 16; time = 0.1342s; samplesPerSecond = 119.2
+ Epoch[ 1 of 3]-Minibatch[  86-  86, 86.00%]: CE = 6.89117432 * 16; Err = 1.00000000 * 16; time = 0.1344s; samplesPerSecond = 119.1
+ Epoch[ 1 of 3]-Minibatch[  87-  87, 87.00%]: CE = 7.18786621 * 16; Err = 1.00000000 * 16; time = 0.1341s; samplesPerSecond = 119.3
+ Epoch[ 1 of 3]-Minibatch[  88-  88, 88.00%]: CE = 7.01507568 * 16; Err = 1.00000000 * 16; time = 0.1413s; samplesPerSecond = 113.2
+ Epoch[ 1 of 3]-Minibatch[  89-  89, 89.00%]: CE = 7.03662109 * 16; Err = 1.00000000 * 16; time = 0.1459s; samplesPerSecond = 109.7
+ Epoch[ 1 of 3]-Minibatch[  90-  90, 90.00%]: CE = 6.85546875 * 16; Err = 1.00000000 * 16; time = 0.1347s; samplesPerSecond = 118.8
+ Epoch[ 1 of 3]-Minibatch[  91-  91, 91.00%]: CE = 7.09503174 * 16; Err = 1.00000000 * 16; time = 0.1343s; samplesPerSecond = 119.2
+ Epoch[ 1 of 3]-Minibatch[  92-  92, 92.00%]: CE = 7.07690430 * 16; Err = 1.00000000 * 16; time = 0.1350s; samplesPerSecond = 118.5
+ Epoch[ 1 of 3]-Minibatch[  93-  93, 93.00%]: CE = 6.94073486 * 16; Err = 1.00000000 * 16; time = 0.1337s; samplesPerSecond = 119.7
+ Epoch[ 1 of 3]-Minibatch[  94-  94, 94.00%]: CE = 7.14215088 * 16; Err = 1.00000000 * 16; time = 0.1347s; samplesPerSecond = 118.8
+ Epoch[ 1 of 3]-Minibatch[  95-  95, 95.00%]: CE = 7.06750488 * 16; Err = 1.00000000 * 16; time = 0.1399s; samplesPerSecond = 114.4
+ Epoch[ 1 of 3]-Minibatch[  96-  96, 96.00%]: CE = 6.92175293 * 16; Err = 1.00000000 * 16; time = 0.1342s; samplesPerSecond = 119.2
+ Epoch[ 1 of 3]-Minibatch[  97-  97, 97.00%]: CE = 7.24774170 * 16; Err = 1.00000000 * 16; time = 0.1342s; samplesPerSecond = 119.2
+ Epoch[ 1 of 3]-Minibatch[  98-  98, 98.00%]: CE = 6.99023438 * 16; Err = 1.00000000 * 16; time = 0.1344s; samplesPerSecond = 119.0
+ Epoch[ 1 of 3]-Minibatch[  99-  99, 99.00%]: CE = 7.06201172 * 16; Err = 1.00000000 * 16; time = 0.1343s; samplesPerSecond = 119.1
+ Epoch[ 1 of 3]-Minibatch[ 100- 100, 100.00%]: CE = 6.88092041 * 16; Err = 1.00000000 * 16; time = 0.1342s; samplesPerSecond = 119.3
+Finished Epoch[ 1 of 3]: [Training] CE = 7.34169800 * 1600; Err = 1.00000000 * 1600; totalSamplesSeen = 1600; learningRatePerSample = 0.00062499999; epochTime=24.0487s
 SGD: Saving checkpoint model './Output/alexnet/AlexNet.1'
 
 Starting Epoch 2: learning rate per sample = 0.000625  effective momentum = 0.000000  momentum as time constant = 0.0 samples
@@ -423,107 +312,107 @@ starting epoch 2 at record count 1600, and file position 0
 already there from last epoch
 
 Starting minibatch loop.
- Epoch[ 2 of 3]-Minibatch[   1-   1, 1.00%]: CE = 7.04332638 * 16; Err = 1.00000000 * 16; time = 0.0409s; samplesPerSecond = 391.0
- Epoch[ 2 of 3]-Minibatch[   2-   2, 2.00%]: CE = 6.81927013 * 16; Err = 1.00000000 * 16; time = 0.0383s; samplesPerSecond = 417.3
- Epoch[ 2 of 3]-Minibatch[   3-   3, 3.00%]: CE = 6.92604637 * 16; Err = 1.00000000 * 16; time = 0.0381s; samplesPerSecond = 420.2
- Epoch[ 2 of 3]-Minibatch[   4-   4, 4.00%]: CE = 7.09915161 * 16; Err = 1.00000000 * 16; time = 0.0371s; samplesPerSecond = 430.8
- Epoch[ 2 of 3]-Minibatch[   5-   5, 5.00%]: CE = 7.08070374 * 16; Err = 1.00000000 * 16; time = 0.0360s; samplesPerSecond = 443.9
- Epoch[ 2 of 3]-Minibatch[   6-   6, 6.00%]: CE = 6.95244980 * 16; Err = 1.00000000 * 16; time = 0.0359s; samplesPerSecond = 445.8
- Epoch[ 2 of 3]-Minibatch[   7-   7, 7.00%]: CE = 7.03843689 * 16; Err = 1.00000000 * 16; time = 0.0360s; samplesPerSecond = 444.9
- Epoch[ 2 of 3]-Minibatch[   8-   8, 8.00%]: CE = 6.75312805 * 16; Err = 1.00000000 * 16; time = 0.0360s; samplesPerSecond = 444.6
- Epoch[ 2 of 3]-Minibatch[   9-   9, 9.00%]: CE = 6.96837997 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 459.9
- Epoch[ 2 of 3]-Minibatch[  10-  10, 10.00%]: CE = 6.96888733 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 460.5
- Epoch[ 2 of 3]-Minibatch[  11-  11, 11.00%]: CE = 7.00740051 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 456.7
- Epoch[ 2 of 3]-Minibatch[  12-  12, 12.00%]: CE = 7.03752899 * 16; Err = 1.00000000 * 16; time = 0.0353s; samplesPerSecond = 452.6
- Epoch[ 2 of 3]-Minibatch[  13-  13, 13.00%]: CE = 6.75875854 * 16; Err = 1.00000000 * 16; time = 0.0349s; samplesPerSecond = 458.6
- Epoch[ 2 of 3]-Minibatch[  14-  14, 14.00%]: CE = 6.93776703 * 16; Err = 1.00000000 * 16; time = 0.0351s; samplesPerSecond = 456.3
- Epoch[ 2 of 3]-Minibatch[  15-  15, 15.00%]: CE = 6.99991608 * 16; Err = 1.00000000 * 16; time = 0.0351s; samplesPerSecond = 455.9
- Epoch[ 2 of 3]-Minibatch[  16-  16, 16.00%]: CE = 6.94692230 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 456.5
- Epoch[ 2 of 3]-Minibatch[  17-  17, 17.00%]: CE = 7.10028076 * 16; Err = 1.00000000 * 16; time = 0.0349s; samplesPerSecond = 458.0
- Epoch[ 2 of 3]-Minibatch[  18-  18, 18.00%]: CE = 7.08290863 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 457.4
- Epoch[ 2 of 3]-Minibatch[  19-  19, 19.00%]: CE = 6.83930206 * 16; Err = 1.00000000 * 16; time = 0.0351s; samplesPerSecond = 456.1
- Epoch[ 2 of 3]-Minibatch[  20-  20, 20.00%]: CE = 6.97441101 * 16; Err = 1.00000000 * 16; time = 0.0351s; samplesPerSecond = 455.4
- Epoch[ 2 of 3]-Minibatch[  21-  21, 21.00%]: CE = 7.04386902 * 16; Err = 1.00000000 * 16; time = 0.0351s; samplesPerSecond = 455.6
- Epoch[ 2 of 3]-Minibatch[  22-  22, 22.00%]: CE = 7.04603577 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 457.4
- Epoch[ 2 of 3]-Minibatch[  23-  23, 23.00%]: CE = 6.90101624 * 16; Err = 1.00000000 * 16; time = 0.0351s; samplesPerSecond = 456.1
- Epoch[ 2 of 3]-Minibatch[  24-  24, 24.00%]: CE = 6.87042236 * 16; Err = 1.00000000 * 16; time = 0.0352s; samplesPerSecond = 454.2
- Epoch[ 2 of 3]-Minibatch[  25-  25, 25.00%]: CE = 6.80615234 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 460.3
- Epoch[ 2 of 3]-Minibatch[  26-  26, 26.00%]: CE = 6.76670837 * 16; Err = 1.00000000 * 16; time = 0.0351s; samplesPerSecond = 455.7
- Epoch[ 2 of 3]-Minibatch[  27-  27, 27.00%]: CE = 6.93316650 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 456.5
- Epoch[ 2 of 3]-Minibatch[  28-  28, 28.00%]: CE = 6.85429382 * 16; Err = 1.00000000 * 16; time = 0.0351s; samplesPerSecond = 456.3
- Epoch[ 2 of 3]-Minibatch[  29-  29, 29.00%]: CE = 6.88414001 * 16; Err = 1.00000000 * 16; time = 0.0351s; samplesPerSecond = 455.2
- Epoch[ 2 of 3]-Minibatch[  30-  30, 30.00%]: CE = 7.03096008 * 16; Err = 1.00000000 * 16; time = 0.0351s; samplesPerSecond = 456.3
- Epoch[ 2 of 3]-Minibatch[  31-  31, 31.00%]: CE = 6.98098755 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 461.1
- Epoch[ 2 of 3]-Minibatch[  32-  32, 32.00%]: CE = 6.92808533 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 461.4
- Epoch[ 2 of 3]-Minibatch[  33-  33, 33.00%]: CE = 6.80993652 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 460.5
- Epoch[ 2 of 3]-Minibatch[  34-  34, 34.00%]: CE = 6.78080750 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 461.3
- Epoch[ 2 of 3]-Minibatch[  35-  35, 35.00%]: CE = 6.86680603 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 461.3
- Epoch[ 2 of 3]-Minibatch[  36-  36, 36.00%]: CE = 6.93066406 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 461.8
- Epoch[ 2 of 3]-Minibatch[  37-  37, 37.00%]: CE = 6.99864197 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 460.5
- Epoch[ 2 of 3]-Minibatch[  38-  38, 38.00%]: CE = 6.65826416 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 460.3
- Epoch[ 2 of 3]-Minibatch[  39-  39, 39.00%]: CE = 7.00396729 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 461.1
- Epoch[ 2 of 3]-Minibatch[  40-  40, 40.00%]: CE = 6.96548462 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 460.4
- Epoch[ 2 of 3]-Minibatch[  41-  41, 41.00%]: CE = 6.77804565 * 16; Err = 1.00000000 * 16; time = 0.0349s; samplesPerSecond = 458.1
- Epoch[ 2 of 3]-Minibatch[  42-  42, 42.00%]: CE = 6.85934448 * 16; Err = 1.00000000 * 16; time = 0.0349s; samplesPerSecond = 458.4
- Epoch[ 2 of 3]-Minibatch[  43-  43, 43.00%]: CE = 6.93603516 * 16; Err = 1.00000000 * 16; time = 0.0349s; samplesPerSecond = 459.1
- Epoch[ 2 of 3]-Minibatch[  44-  44, 44.00%]: CE = 7.08483887 * 16; Err = 1.00000000 * 16; time = 0.0349s; samplesPerSecond = 458.0
- Epoch[ 2 of 3]-Minibatch[  45-  45, 45.00%]: CE = 6.82708740 * 16; Err = 1.00000000 * 16; time = 0.0352s; samplesPerSecond = 454.2
- Epoch[ 2 of 3]-Minibatch[  46-  46, 46.00%]: CE = 6.96716309 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 459.5
- Epoch[ 2 of 3]-Minibatch[  47-  47, 47.00%]: CE = 6.74099731 * 16; Err = 1.00000000 * 16; time = 0.0351s; samplesPerSecond = 456.4
- Epoch[ 2 of 3]-Minibatch[  48-  48, 48.00%]: CE = 6.80874634 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 460.0
- Epoch[ 2 of 3]-Minibatch[  49-  49, 49.00%]: CE = 6.92227173 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 460.2
- Epoch[ 2 of 3]-Minibatch[  50-  50, 50.00%]: CE = 7.00234985 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 457.1
- Epoch[ 2 of 3]-Minibatch[  51-  51, 51.00%]: CE = 6.85485840 * 16; Err = 1.00000000 * 16; time = 0.0351s; samplesPerSecond = 456.5
- Epoch[ 2 of 3]-Minibatch[  52-  52, 52.00%]: CE = 6.82748413 * 16; Err = 1.00000000 * 16; time = 0.0349s; samplesPerSecond = 459.0
- Epoch[ 2 of 3]-Minibatch[  53-  53, 53.00%]: CE = 6.83651733 * 16; Err = 1.00000000 * 16; time = 0.0351s; samplesPerSecond = 455.8
- Epoch[ 2 of 3]-Minibatch[  54-  54, 54.00%]: CE = 6.77841187 * 16; Err = 1.00000000 * 16; time = 0.0352s; samplesPerSecond = 455.0
- Epoch[ 2 of 3]-Minibatch[  55-  55, 55.00%]: CE = 6.97106934 * 16; Err = 1.00000000 * 16; time = 0.0352s; samplesPerSecond = 454.6
- Epoch[ 2 of 3]-Minibatch[  56-  56, 56.00%]: CE = 6.92861938 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 456.6
- Epoch[ 2 of 3]-Minibatch[  57-  57, 57.00%]: CE = 6.78549194 * 16; Err = 1.00000000 * 16; time = 0.0351s; samplesPerSecond = 455.3
- Epoch[ 2 of 3]-Minibatch[  58-  58, 58.00%]: CE = 6.75122070 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 459.8
- Epoch[ 2 of 3]-Minibatch[  59-  59, 59.00%]: CE = 6.94186401 * 16; Err = 1.00000000 * 16; time = 0.0351s; samplesPerSecond = 455.6
- Epoch[ 2 of 3]-Minibatch[  60-  60, 60.00%]: CE = 6.65380859 * 16; Err = 1.00000000 * 16; time = 0.0351s; samplesPerSecond = 456.4
- Epoch[ 2 of 3]-Minibatch[  61-  61, 61.00%]: CE = 6.95370483 * 16; Err = 1.00000000 * 16; time = 0.0349s; samplesPerSecond = 458.0
- Epoch[ 2 of 3]-Minibatch[  62-  62, 62.00%]: CE = 6.84289551 * 16; Err = 1.00000000 * 16; time = 0.0349s; samplesPerSecond = 458.0
- Epoch[ 2 of 3]-Minibatch[  63-  63, 63.00%]: CE = 6.97903442 * 16; Err = 1.00000000 * 16; time = 0.0351s; samplesPerSecond = 455.8
- Epoch[ 2 of 3]-Minibatch[  64-  64, 64.00%]: CE = 6.96084595 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 456.6
- Epoch[ 2 of 3]-Minibatch[  65-  65, 65.00%]: CE = 6.78823853 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 457.0
- Epoch[ 2 of 3]-Minibatch[  66-  66, 66.00%]: CE = 6.95901489 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 457.1
- Epoch[ 2 of 3]-Minibatch[  67-  67, 67.00%]: CE = 7.07083130 * 16; Err = 1.00000000 * 16; time = 0.0346s; samplesPerSecond = 462.1
- Epoch[ 2 of 3]-Minibatch[  68-  68, 68.00%]: CE = 6.83831787 * 16; Err = 1.00000000 * 16; time = 0.0352s; samplesPerSecond = 454.4
- Epoch[ 2 of 3]-Minibatch[  69-  69, 69.00%]: CE = 6.76779175 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 456.6
- Epoch[ 2 of 3]-Minibatch[  70-  70, 70.00%]: CE = 6.75610352 * 16; Err = 1.00000000 * 16; time = 0.0351s; samplesPerSecond = 456.4
- Epoch[ 2 of 3]-Minibatch[  71-  71, 71.00%]: CE = 6.62838745 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 457.4
- Epoch[ 2 of 3]-Minibatch[  72-  72, 72.00%]: CE = 7.00421143 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 456.8
- Epoch[ 2 of 3]-Minibatch[  73-  73, 73.00%]: CE = 7.00564575 * 16; Err = 1.00000000 * 16; time = 0.0352s; samplesPerSecond = 455.1
- Epoch[ 2 of 3]-Minibatch[  74-  74, 74.00%]: CE = 6.65707397 * 16; Err = 0.93750000 * 16; time = 0.0351s; samplesPerSecond = 455.7
- Epoch[ 2 of 3]-Minibatch[  75-  75, 75.00%]: CE = 6.73278809 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 456.8
- Epoch[ 2 of 3]-Minibatch[  76-  76, 76.00%]: CE = 6.53802490 * 16; Err = 0.93750000 * 16; time = 0.0351s; samplesPerSecond = 456.3
- Epoch[ 2 of 3]-Minibatch[  77-  77, 77.00%]: CE = 6.78271484 * 16; Err = 1.00000000 * 16; time = 0.0351s; samplesPerSecond = 455.7
- Epoch[ 2 of 3]-Minibatch[  78-  78, 78.00%]: CE = 6.84545898 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 456.6
- Epoch[ 2 of 3]-Minibatch[  79-  79, 79.00%]: CE = 6.67126465 * 16; Err = 1.00000000 * 16; time = 0.0351s; samplesPerSecond = 455.6
- Epoch[ 2 of 3]-Minibatch[  80-  80, 80.00%]: CE = 6.91003418 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 456.7
- Epoch[ 2 of 3]-Minibatch[  81-  81, 81.00%]: CE = 6.99499512 * 16; Err = 1.00000000 * 16; time = 0.0351s; samplesPerSecond = 456.1
- Epoch[ 2 of 3]-Minibatch[  82-  82, 82.00%]: CE = 6.71508789 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 461.6
- Epoch[ 2 of 3]-Minibatch[  83-  83, 83.00%]: CE = 6.95935059 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 457.2
- Epoch[ 2 of 3]-Minibatch[  84-  84, 84.00%]: CE = 7.02276611 * 16; Err = 1.00000000 * 16; time = 0.0349s; samplesPerSecond = 458.4
- Epoch[ 2 of 3]-Minibatch[  85-  85, 85.00%]: CE = 6.91943359 * 16; Err = 1.00000000 * 16; time = 0.0352s; samplesPerSecond = 454.0
- Epoch[ 2 of 3]-Minibatch[  86-  86, 86.00%]: CE = 6.81372070 * 16; Err = 1.00000000 * 16; time = 0.0352s; samplesPerSecond = 455.1
- Epoch[ 2 of 3]-Minibatch[  87-  87, 87.00%]: CE = 6.93402100 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 457.0
- Epoch[ 2 of 3]-Minibatch[  88-  88, 88.00%]: CE = 6.95080566 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 457.2
- Epoch[ 2 of 3]-Minibatch[  89-  89, 89.00%]: CE = 6.90020752 * 16; Err = 1.00000000 * 16; time = 0.0349s; samplesPerSecond = 458.0
- Epoch[ 2 of 3]-Minibatch[  90-  90, 90.00%]: CE = 6.74945068 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 459.8
- Epoch[ 2 of 3]-Minibatch[  91-  91, 91.00%]: CE = 6.86120605 * 16; Err = 1.00000000 * 16; time = 0.0346s; samplesPerSecond = 462.2
- Epoch[ 2 of 3]-Minibatch[  92-  92, 92.00%]: CE = 6.84210205 * 16; Err = 1.00000000 * 16; time = 0.0351s; samplesPerSecond = 455.5
- Epoch[ 2 of 3]-Minibatch[  93-  93, 93.00%]: CE = 6.84912109 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 456.6
- Epoch[ 2 of 3]-Minibatch[  94-  94, 94.00%]: CE = 6.93249512 * 16; Err = 1.00000000 * 16; time = 0.0349s; samplesPerSecond = 458.3
- Epoch[ 2 of 3]-Minibatch[  95-  95, 95.00%]: CE = 6.95172119 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 459.5
- Epoch[ 2 of 3]-Minibatch[  96-  96, 96.00%]: CE = 6.74304199 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 460.3
- Epoch[ 2 of 3]-Minibatch[  97-  97, 97.00%]: CE = 6.83032227 * 16; Err = 1.00000000 * 16; time = 0.0345s; samplesPerSecond = 463.2
- Epoch[ 2 of 3]-Minibatch[  98-  98, 98.00%]: CE = 6.79095459 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 461.4
- Epoch[ 2 of 3]-Minibatch[  99-  99, 99.00%]: CE = 6.92010498 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 461.5
- Epoch[ 2 of 3]-Minibatch[ 100- 100, 100.00%]: CE = 6.93939209 * 16; Err = 1.00000000 * 16; time = 0.0343s; samplesPerSecond = 466.3
-Finished Epoch[ 2 of 3]: [Training] CE = 6.88964294 * 1600; Err = 0.99875000 * 1600; totalSamplesSeen = 3200; learningRatePerSample = 0.00062499999; epochTime=3.51748s
+ Epoch[ 2 of 3]-Minibatch[   1-   1, 1.00%]: CE = 7.08525705 * 16; Err = 1.00000000 * 16; time = 0.0407s; samplesPerSecond = 392.7
+ Epoch[ 2 of 3]-Minibatch[   2-   2, 2.00%]: CE = 7.05421972 * 16; Err = 1.00000000 * 16; time = 0.0378s; samplesPerSecond = 423.6
+ Epoch[ 2 of 3]-Minibatch[   3-   3, 3.00%]: CE = 6.88392448 * 16; Err = 1.00000000 * 16; time = 0.0381s; samplesPerSecond = 419.8
+ Epoch[ 2 of 3]-Minibatch[   4-   4, 4.00%]: CE = 7.00592804 * 16; Err = 1.00000000 * 16; time = 0.0378s; samplesPerSecond = 423.5
+ Epoch[ 2 of 3]-Minibatch[   5-   5, 5.00%]: CE = 6.87305260 * 16; Err = 1.00000000 * 16; time = 0.0373s; samplesPerSecond = 428.7
+ Epoch[ 2 of 3]-Minibatch[   6-   6, 6.00%]: CE = 6.99773026 * 16; Err = 1.00000000 * 16; time = 0.0363s; samplesPerSecond = 441.0
+ Epoch[ 2 of 3]-Minibatch[   7-   7, 7.00%]: CE = 6.87273407 * 16; Err = 1.00000000 * 16; time = 0.0361s; samplesPerSecond = 442.8
+ Epoch[ 2 of 3]-Minibatch[   8-   8, 8.00%]: CE = 7.04550552 * 16; Err = 1.00000000 * 16; time = 0.0357s; samplesPerSecond = 448.2
+ Epoch[ 2 of 3]-Minibatch[   9-   9, 9.00%]: CE = 7.00114441 * 16; Err = 1.00000000 * 16; time = 0.0360s; samplesPerSecond = 444.4
+ Epoch[ 2 of 3]-Minibatch[  10-  10, 10.00%]: CE = 6.95579529 * 16; Err = 1.00000000 * 16; time = 0.0354s; samplesPerSecond = 452.4
+ Epoch[ 2 of 3]-Minibatch[  11-  11, 11.00%]: CE = 6.91335297 * 16; Err = 1.00000000 * 16; time = 0.0344s; samplesPerSecond = 465.7
+ Epoch[ 2 of 3]-Minibatch[  12-  12, 12.00%]: CE = 7.07475281 * 16; Err = 1.00000000 * 16; time = 0.0343s; samplesPerSecond = 466.1
+ Epoch[ 2 of 3]-Minibatch[  13-  13, 13.00%]: CE = 7.12172699 * 16; Err = 1.00000000 * 16; time = 0.0343s; samplesPerSecond = 466.0
+ Epoch[ 2 of 3]-Minibatch[  14-  14, 14.00%]: CE = 6.81169891 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 461.6
+ Epoch[ 2 of 3]-Minibatch[  15-  15, 15.00%]: CE = 6.78955841 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 460.4
+ Epoch[ 2 of 3]-Minibatch[  16-  16, 16.00%]: CE = 6.99613190 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 460.5
+ Epoch[ 2 of 3]-Minibatch[  17-  17, 17.00%]: CE = 6.97232056 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 457.3
+ Epoch[ 2 of 3]-Minibatch[  18-  18, 18.00%]: CE = 6.94504547 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 460.2
+ Epoch[ 2 of 3]-Minibatch[  19-  19, 19.00%]: CE = 6.79740143 * 16; Err = 0.93750000 * 16; time = 0.0346s; samplesPerSecond = 462.0
+ Epoch[ 2 of 3]-Minibatch[  20-  20, 20.00%]: CE = 7.09837341 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 461.4
+ Epoch[ 2 of 3]-Minibatch[  21-  21, 21.00%]: CE = 6.80499268 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 460.8
+ Epoch[ 2 of 3]-Minibatch[  22-  22, 22.00%]: CE = 7.07276917 * 16; Err = 1.00000000 * 16; time = 0.0346s; samplesPerSecond = 461.8
+ Epoch[ 2 of 3]-Minibatch[  23-  23, 23.00%]: CE = 6.83712769 * 16; Err = 1.00000000 * 16; time = 0.0345s; samplesPerSecond = 463.7
+ Epoch[ 2 of 3]-Minibatch[  24-  24, 24.00%]: CE = 6.83441162 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 459.9
+ Epoch[ 2 of 3]-Minibatch[  25-  25, 25.00%]: CE = 6.84153748 * 16; Err = 1.00000000 * 16; time = 0.0346s; samplesPerSecond = 462.2
+ Epoch[ 2 of 3]-Minibatch[  26-  26, 26.00%]: CE = 6.90602112 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 461.0
+ Epoch[ 2 of 3]-Minibatch[  27-  27, 27.00%]: CE = 6.95118713 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 460.6
+ Epoch[ 2 of 3]-Minibatch[  28-  28, 28.00%]: CE = 6.89076233 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 460.4
+ Epoch[ 2 of 3]-Minibatch[  29-  29, 29.00%]: CE = 6.72163391 * 16; Err = 1.00000000 * 16; time = 0.0346s; samplesPerSecond = 462.1
+ Epoch[ 2 of 3]-Minibatch[  30-  30, 30.00%]: CE = 7.05554199 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 460.1
+ Epoch[ 2 of 3]-Minibatch[  31-  31, 31.00%]: CE = 6.89186096 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 460.6
+ Epoch[ 2 of 3]-Minibatch[  32-  32, 32.00%]: CE = 6.73045349 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 460.2
+ Epoch[ 2 of 3]-Minibatch[  33-  33, 33.00%]: CE = 6.87548828 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 460.5
+ Epoch[ 2 of 3]-Minibatch[  34-  34, 34.00%]: CE = 7.01910400 * 16; Err = 1.00000000 * 16; time = 0.0344s; samplesPerSecond = 465.2
+ Epoch[ 2 of 3]-Minibatch[  35-  35, 35.00%]: CE = 6.91171265 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 460.5
+ Epoch[ 2 of 3]-Minibatch[  36-  36, 36.00%]: CE = 6.89942932 * 16; Err = 1.00000000 * 16; time = 0.0346s; samplesPerSecond = 462.1
+ Epoch[ 2 of 3]-Minibatch[  37-  37, 37.00%]: CE = 6.82975769 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 460.4
+ Epoch[ 2 of 3]-Minibatch[  38-  38, 38.00%]: CE = 6.87261963 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 460.4
+ Epoch[ 2 of 3]-Minibatch[  39-  39, 39.00%]: CE = 6.95999146 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 460.2
+ Epoch[ 2 of 3]-Minibatch[  40-  40, 40.00%]: CE = 6.88562012 * 16; Err = 1.00000000 * 16; time = 0.0346s; samplesPerSecond = 462.9
+ Epoch[ 2 of 3]-Minibatch[  41-  41, 41.00%]: CE = 6.85092163 * 16; Err = 1.00000000 * 16; time = 0.0346s; samplesPerSecond = 462.4
+ Epoch[ 2 of 3]-Minibatch[  42-  42, 42.00%]: CE = 6.72174072 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 459.7
+ Epoch[ 2 of 3]-Minibatch[  43-  43, 43.00%]: CE = 6.78073120 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 459.2
+ Epoch[ 2 of 3]-Minibatch[  44-  44, 44.00%]: CE = 6.73687744 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 460.0
+ Epoch[ 2 of 3]-Minibatch[  45-  45, 45.00%]: CE = 6.78906250 * 16; Err = 1.00000000 * 16; time = 0.0344s; samplesPerSecond = 465.2
+ Epoch[ 2 of 3]-Minibatch[  46-  46, 46.00%]: CE = 6.85885620 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 460.4
+ Epoch[ 2 of 3]-Minibatch[  47-  47, 47.00%]: CE = 6.88488770 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 459.9
+ Epoch[ 2 of 3]-Minibatch[  48-  48, 48.00%]: CE = 6.70666504 * 16; Err = 1.00000000 * 16; time = 0.0345s; samplesPerSecond = 463.3
+ Epoch[ 2 of 3]-Minibatch[  49-  49, 49.00%]: CE = 6.77127075 * 16; Err = 1.00000000 * 16; time = 0.0346s; samplesPerSecond = 462.3
+ Epoch[ 2 of 3]-Minibatch[  50-  50, 50.00%]: CE = 6.86517334 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 460.0
+ Epoch[ 2 of 3]-Minibatch[  51-  51, 51.00%]: CE = 6.67282104 * 16; Err = 0.93750000 * 16; time = 0.0348s; samplesPerSecond = 460.3
+ Epoch[ 2 of 3]-Minibatch[  52-  52, 52.00%]: CE = 6.85839844 * 16; Err = 1.00000000 * 16; time = 0.0346s; samplesPerSecond = 462.6
+ Epoch[ 2 of 3]-Minibatch[  53-  53, 53.00%]: CE = 6.70840454 * 16; Err = 1.00000000 * 16; time = 0.0343s; samplesPerSecond = 466.5
+ Epoch[ 2 of 3]-Minibatch[  54-  54, 54.00%]: CE = 6.76980591 * 16; Err = 1.00000000 * 16; time = 0.0342s; samplesPerSecond = 467.6
+ Epoch[ 2 of 3]-Minibatch[  55-  55, 55.00%]: CE = 6.96914673 * 16; Err = 1.00000000 * 16; time = 0.0344s; samplesPerSecond = 465.3
+ Epoch[ 2 of 3]-Minibatch[  56-  56, 56.00%]: CE = 6.92538452 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 461.0
+ Epoch[ 2 of 3]-Minibatch[  57-  57, 57.00%]: CE = 7.05941772 * 16; Err = 1.00000000 * 16; time = 0.0343s; samplesPerSecond = 466.9
+ Epoch[ 2 of 3]-Minibatch[  58-  58, 58.00%]: CE = 6.91775513 * 16; Err = 1.00000000 * 16; time = 0.0343s; samplesPerSecond = 466.4
+ Epoch[ 2 of 3]-Minibatch[  59-  59, 59.00%]: CE = 7.02764893 * 16; Err = 1.00000000 * 16; time = 0.0344s; samplesPerSecond = 464.8
+ Epoch[ 2 of 3]-Minibatch[  60-  60, 60.00%]: CE = 7.00305176 * 16; Err = 1.00000000 * 16; time = 0.0344s; samplesPerSecond = 464.9
+ Epoch[ 2 of 3]-Minibatch[  61-  61, 61.00%]: CE = 6.76251221 * 16; Err = 1.00000000 * 16; time = 0.0343s; samplesPerSecond = 465.9
+ Epoch[ 2 of 3]-Minibatch[  62-  62, 62.00%]: CE = 7.01260376 * 16; Err = 1.00000000 * 16; time = 0.0344s; samplesPerSecond = 464.8
+ Epoch[ 2 of 3]-Minibatch[  63-  63, 63.00%]: CE = 7.07531738 * 16; Err = 1.00000000 * 16; time = 0.0346s; samplesPerSecond = 461.9
+ Epoch[ 2 of 3]-Minibatch[  64-  64, 64.00%]: CE = 6.76205444 * 16; Err = 1.00000000 * 16; time = 0.0344s; samplesPerSecond = 465.3
+ Epoch[ 2 of 3]-Minibatch[  65-  65, 65.00%]: CE = 6.69055176 * 16; Err = 1.00000000 * 16; time = 0.0344s; samplesPerSecond = 464.8
+ Epoch[ 2 of 3]-Minibatch[  66-  66, 66.00%]: CE = 6.77587891 * 16; Err = 1.00000000 * 16; time = 0.0346s; samplesPerSecond = 462.6
+ Epoch[ 2 of 3]-Minibatch[  67-  67, 67.00%]: CE = 6.73971558 * 16; Err = 1.00000000 * 16; time = 0.0343s; samplesPerSecond = 465.9
+ Epoch[ 2 of 3]-Minibatch[  68-  68, 68.00%]: CE = 6.93496704 * 16; Err = 1.00000000 * 16; time = 0.0344s; samplesPerSecond = 464.9
+ Epoch[ 2 of 3]-Minibatch[  69-  69, 69.00%]: CE = 6.76971436 * 16; Err = 1.00000000 * 16; time = 0.0346s; samplesPerSecond = 462.4
+ Epoch[ 2 of 3]-Minibatch[  70-  70, 70.00%]: CE = 7.00283813 * 16; Err = 1.00000000 * 16; time = 0.0343s; samplesPerSecond = 466.6
+ Epoch[ 2 of 3]-Minibatch[  71-  71, 71.00%]: CE = 6.75073242 * 16; Err = 1.00000000 * 16; time = 0.0344s; samplesPerSecond = 465.7
+ Epoch[ 2 of 3]-Minibatch[  72-  72, 72.00%]: CE = 6.86779785 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 461.6
+ Epoch[ 2 of 3]-Minibatch[  73-  73, 73.00%]: CE = 6.75350952 * 16; Err = 1.00000000 * 16; time = 0.0344s; samplesPerSecond = 465.7
+ Epoch[ 2 of 3]-Minibatch[  74-  74, 74.00%]: CE = 6.75320435 * 16; Err = 1.00000000 * 16; time = 0.0343s; samplesPerSecond = 467.0
+ Epoch[ 2 of 3]-Minibatch[  75-  75, 75.00%]: CE = 6.65835571 * 16; Err = 1.00000000 * 16; time = 0.0346s; samplesPerSecond = 462.5
+ Epoch[ 2 of 3]-Minibatch[  76-  76, 76.00%]: CE = 6.97326660 * 16; Err = 1.00000000 * 16; time = 0.0346s; samplesPerSecond = 462.9
+ Epoch[ 2 of 3]-Minibatch[  77-  77, 77.00%]: CE = 6.92028809 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 461.7
+ Epoch[ 2 of 3]-Minibatch[  78-  78, 78.00%]: CE = 6.83270264 * 16; Err = 1.00000000 * 16; time = 0.0345s; samplesPerSecond = 463.4
+ Epoch[ 2 of 3]-Minibatch[  79-  79, 79.00%]: CE = 7.01953125 * 16; Err = 1.00000000 * 16; time = 0.0343s; samplesPerSecond = 466.2
+ Epoch[ 2 of 3]-Minibatch[  80-  80, 80.00%]: CE = 6.82458496 * 16; Err = 1.00000000 * 16; time = 0.0345s; samplesPerSecond = 463.3
+ Epoch[ 2 of 3]-Minibatch[  81-  81, 81.00%]: CE = 6.93261719 * 16; Err = 1.00000000 * 16; time = 0.0345s; samplesPerSecond = 463.2
+ Epoch[ 2 of 3]-Minibatch[  82-  82, 82.00%]: CE = 6.87670898 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 460.2
+ Epoch[ 2 of 3]-Minibatch[  83-  83, 83.00%]: CE = 6.70843506 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 460.9
+ Epoch[ 2 of 3]-Minibatch[  84-  84, 84.00%]: CE = 6.71405029 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 460.3
+ Epoch[ 2 of 3]-Minibatch[  85-  85, 85.00%]: CE = 6.64733887 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 460.8
+ Epoch[ 2 of 3]-Minibatch[  86-  86, 86.00%]: CE = 6.56103516 * 16; Err = 1.00000000 * 16; time = 0.0346s; samplesPerSecond = 461.8
+ Epoch[ 2 of 3]-Minibatch[  87-  87, 87.00%]: CE = 7.02276611 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 460.4
+ Epoch[ 2 of 3]-Minibatch[  88-  88, 88.00%]: CE = 6.80908203 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 459.8
+ Epoch[ 2 of 3]-Minibatch[  89-  89, 89.00%]: CE = 6.87231445 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 461.4
+ Epoch[ 2 of 3]-Minibatch[  90-  90, 90.00%]: CE = 6.73999023 * 16; Err = 1.00000000 * 16; time = 0.0346s; samplesPerSecond = 463.0
+ Epoch[ 2 of 3]-Minibatch[  91-  91, 91.00%]: CE = 6.93786621 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 459.9
+ Epoch[ 2 of 3]-Minibatch[  92-  92, 92.00%]: CE = 6.77490234 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 460.0
+ Epoch[ 2 of 3]-Minibatch[  93-  93, 93.00%]: CE = 6.80535889 * 16; Err = 1.00000000 * 16; time = 0.0343s; samplesPerSecond = 466.7
+ Epoch[ 2 of 3]-Minibatch[  94-  94, 94.00%]: CE = 6.94555664 * 16; Err = 1.00000000 * 16; time = 0.0349s; samplesPerSecond = 458.8
+ Epoch[ 2 of 3]-Minibatch[  95-  95, 95.00%]: CE = 6.89892578 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 459.6
+ Epoch[ 2 of 3]-Minibatch[  96-  96, 96.00%]: CE = 6.79669189 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 460.1
+ Epoch[ 2 of 3]-Minibatch[  97-  97, 97.00%]: CE = 7.07623291 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 461.5
+ Epoch[ 2 of 3]-Minibatch[  98-  98, 98.00%]: CE = 6.86334229 * 16; Err = 1.00000000 * 16; time = 0.0346s; samplesPerSecond = 462.2
+ Epoch[ 2 of 3]-Minibatch[  99-  99, 99.00%]: CE = 6.80004883 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 461.3
+ Epoch[ 2 of 3]-Minibatch[ 100- 100, 100.00%]: CE = 6.72033691 * 16; Err = 1.00000000 * 16; time = 0.0340s; samplesPerSecond = 470.5
+Finished Epoch[ 2 of 3]: [Training] CE = 6.87349426 * 1600; Err = 0.99875000 * 1600; totalSamplesSeen = 3200; learningRatePerSample = 0.00062499999; epochTime=3.48873s
 SGD: Saving checkpoint model './Output/alexnet/AlexNet.2'
 
 Starting Epoch 3: learning rate per sample = 0.000625  effective momentum = 0.000000  momentum as time constant = 0.0 samples
@@ -531,110 +420,109 @@ starting epoch 3 at record count 3200, and file position 0
 already there from last epoch
 
 Starting minibatch loop.
- Epoch[ 3 of 3]-Minibatch[   1-   1, 1.00%]: CE = 6.86407566 * 16; Err = 1.00000000 * 16; time = 0.0378s; samplesPerSecond = 422.9
- Epoch[ 3 of 3]-Minibatch[   2-   2, 2.00%]: CE = 6.79792213 * 16; Err = 1.00000000 * 16; time = 0.0352s; samplesPerSecond = 454.0
- Epoch[ 3 of 3]-Minibatch[   3-   3, 3.00%]: CE = 6.66638088 * 16; Err = 1.00000000 * 16; time = 0.0351s; samplesPerSecond = 455.8
- Epoch[ 3 of 3]-Minibatch[   4-   4, 4.00%]: CE = 6.94981766 * 16; Err = 1.00000000 * 16; time = 0.0349s; samplesPerSecond = 458.0
- Epoch[ 3 of 3]-Minibatch[   5-   5, 5.00%]: CE = 6.87787819 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 456.9
- Epoch[ 3 of 3]-Minibatch[   6-   6, 6.00%]: CE = 6.83600235 * 16; Err = 1.00000000 * 16; time = 0.0349s; samplesPerSecond = 458.1
- Epoch[ 3 of 3]-Minibatch[   7-   7, 7.00%]: CE = 6.83181000 * 16; Err = 1.00000000 * 16; time = 0.0349s; samplesPerSecond = 458.5
- Epoch[ 3 of 3]-Minibatch[   8-   8, 8.00%]: CE = 6.60487366 * 16; Err = 0.93750000 * 16; time = 0.0351s; samplesPerSecond = 455.8
- Epoch[ 3 of 3]-Minibatch[   9-   9, 9.00%]: CE = 6.86111450 * 16; Err = 1.00000000 * 16; time = 0.0349s; samplesPerSecond = 458.4
- Epoch[ 3 of 3]-Minibatch[  10-  10, 10.00%]: CE = 6.82693100 * 16; Err = 1.00000000 * 16; time = 0.0352s; samplesPerSecond = 454.0
- Epoch[ 3 of 3]-Minibatch[  11-  11, 11.00%]: CE = 6.98416901 * 16; Err = 1.00000000 * 16; time = 0.0349s; samplesPerSecond = 458.3
- Epoch[ 3 of 3]-Minibatch[  12-  12, 12.00%]: CE = 6.88089752 * 16; Err = 1.00000000 * 16; time = 0.0351s; samplesPerSecond = 456.2
- Epoch[ 3 of 3]-Minibatch[  13-  13, 13.00%]: CE = 6.56074524 * 16; Err = 1.00000000 * 16; time = 0.0349s; samplesPerSecond = 458.4
- Epoch[ 3 of 3]-Minibatch[  14-  14, 14.00%]: CE = 6.80443573 * 16; Err = 1.00000000 * 16; time = 0.0352s; samplesPerSecond = 455.2
- Epoch[ 3 of 3]-Minibatch[  15-  15, 15.00%]: CE = 6.85933685 * 16; Err = 1.00000000 * 16; time = 0.0351s; samplesPerSecond = 456.4
- Epoch[ 3 of 3]-Minibatch[  16-  16, 16.00%]: CE = 6.85793304 * 16; Err = 1.00000000 * 16; time = 0.0352s; samplesPerSecond = 455.0
- Epoch[ 3 of 3]-Minibatch[  17-  17, 17.00%]: CE = 7.00046539 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 457.3
- Epoch[ 3 of 3]-Minibatch[  18-  18, 18.00%]: CE = 6.89972687 * 16; Err = 1.00000000 * 16; time = 0.0351s; samplesPerSecond = 455.3
- Epoch[ 3 of 3]-Minibatch[  19-  19, 19.00%]: CE = 6.74056244 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 457.2
- Epoch[ 3 of 3]-Minibatch[  20-  20, 20.00%]: CE = 6.87709045 * 16; Err = 1.00000000 * 16; time = 0.0352s; samplesPerSecond = 454.8
- Epoch[ 3 of 3]-Minibatch[  21-  21, 21.00%]: CE = 6.87266541 * 16; Err = 1.00000000 * 16; time = 0.0353s; samplesPerSecond = 453.7
- Epoch[ 3 of 3]-Minibatch[  22-  22, 22.00%]: CE = 6.94816589 * 16; Err = 1.00000000 * 16; time = 0.0351s; samplesPerSecond = 456.3
- Epoch[ 3 of 3]-Minibatch[  23-  23, 23.00%]: CE = 6.87309265 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 457.2
- Epoch[ 3 of 3]-Minibatch[  24-  24, 24.00%]: CE = 6.67506409 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 456.6
- Epoch[ 3 of 3]-Minibatch[  25-  25, 25.00%]: CE = 6.68444824 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 457.8
- Epoch[ 3 of 3]-Minibatch[  26-  26, 26.00%]: CE = 6.62091064 * 16; Err = 1.00000000 * 16; time = 0.0351s; samplesPerSecond = 456.1
- Epoch[ 3 of 3]-Minibatch[  27-  27, 27.00%]: CE = 6.86210632 * 16; Err = 1.00000000 * 16; time = 0.0351s; samplesPerSecond = 456.0
- Epoch[ 3 of 3]-Minibatch[  28-  28, 28.00%]: CE = 6.68751526 * 16; Err = 1.00000000 * 16; time = 0.0351s; samplesPerSecond = 455.3
- Epoch[ 3 of 3]-Minibatch[  29-  29, 29.00%]: CE = 6.77297974 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 457.1
- Epoch[ 3 of 3]-Minibatch[  30-  30, 30.00%]: CE = 6.87528992 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 457.4
- Epoch[ 3 of 3]-Minibatch[  31-  31, 31.00%]: CE = 6.89764404 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 457.8
- Epoch[ 3 of 3]-Minibatch[  32-  32, 32.00%]: CE = 6.69847107 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 456.9
- Epoch[ 3 of 3]-Minibatch[  33-  33, 33.00%]: CE = 6.78347778 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 460.1
- Epoch[ 3 of 3]-Minibatch[  34-  34, 34.00%]: CE = 6.69029236 * 16; Err = 1.00000000 * 16; time = 0.0352s; samplesPerSecond = 454.5
- Epoch[ 3 of 3]-Minibatch[  35-  35, 35.00%]: CE = 6.74116516 * 16; Err = 1.00000000 * 16; time = 0.0352s; samplesPerSecond = 454.8
- Epoch[ 3 of 3]-Minibatch[  36-  36, 36.00%]: CE = 6.68066406 * 16; Err = 1.00000000 * 16; time = 0.0352s; samplesPerSecond = 454.2
- Epoch[ 3 of 3]-Minibatch[  37-  37, 37.00%]: CE = 6.90580750 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 459.3
- Epoch[ 3 of 3]-Minibatch[  38-  38, 38.00%]: CE = 6.45693970 * 16; Err = 1.00000000 * 16; time = 0.0349s; samplesPerSecond = 458.1
- Epoch[ 3 of 3]-Minibatch[  39-  39, 39.00%]: CE = 6.94412231 * 16; Err = 1.00000000 * 16; time = 0.0349s; samplesPerSecond = 458.0
- Epoch[ 3 of 3]-Minibatch[  40-  40, 40.00%]: CE = 6.79583740 * 16; Err = 1.00000000 * 16; time = 0.0352s; samplesPerSecond = 454.2
- Epoch[ 3 of 3]-Minibatch[  41-  41, 41.00%]: CE = 6.59933472 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 461.2
- Epoch[ 3 of 3]-Minibatch[  42-  42, 42.00%]: CE = 6.79537964 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 460.1
- Epoch[ 3 of 3]-Minibatch[  43-  43, 43.00%]: CE = 6.78781128 * 16; Err = 1.00000000 * 16; time = 0.0351s; samplesPerSecond = 455.8
- Epoch[ 3 of 3]-Minibatch[  44-  44, 44.00%]: CE = 6.94360352 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 456.8
- Epoch[ 3 of 3]-Minibatch[  45-  45, 45.00%]: CE = 6.68829346 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 460.0
- Epoch[ 3 of 3]-Minibatch[  46-  46, 46.00%]: CE = 6.86016846 * 16; Err = 1.00000000 * 16; time = 0.0352s; samplesPerSecond = 454.4
- Epoch[ 3 of 3]-Minibatch[  47-  47, 47.00%]: CE = 6.52343750 * 16; Err = 1.00000000 * 16; time = 0.0351s; samplesPerSecond = 455.3
- Epoch[ 3 of 3]-Minibatch[  48-  48, 48.00%]: CE = 6.66534424 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 456.5
- Epoch[ 3 of 3]-Minibatch[  49-  49, 49.00%]: CE = 6.76190186 * 16; Err = 1.00000000 * 16; time = 0.0351s; samplesPerSecond = 455.4
- Epoch[ 3 of 3]-Minibatch[  50-  50, 50.00%]: CE = 6.90081787 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 461.6
- Epoch[ 3 of 3]-Minibatch[  51-  51, 51.00%]: CE = 6.65133667 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 457.4
- Epoch[ 3 of 3]-Minibatch[  52-  52, 52.00%]: CE = 6.62149048 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 461.1
- Epoch[ 3 of 3]-Minibatch[  53-  53, 53.00%]: CE = 6.60186768 * 16; Err = 1.00000000 * 16; time = 0.0351s; samplesPerSecond = 455.4
- Epoch[ 3 of 3]-Minibatch[  54-  54, 54.00%]: CE = 6.52838135 * 16; Err = 1.00000000 * 16; time = 0.0349s; samplesPerSecond = 458.0
- Epoch[ 3 of 3]-Minibatch[  55-  55, 55.00%]: CE = 6.89953613 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 457.6
- Epoch[ 3 of 3]-Minibatch[  56-  56, 56.00%]: CE = 6.77255249 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 461.6
- Epoch[ 3 of 3]-Minibatch[  57-  57, 57.00%]: CE = 6.58840942 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 461.6
- Epoch[ 3 of 3]-Minibatch[  58-  58, 58.00%]: CE = 6.59188843 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 456.5
- Epoch[ 3 of 3]-Minibatch[  59-  59, 59.00%]: CE = 6.82852173 * 16; Err = 1.00000000 * 16; time = 0.0349s; samplesPerSecond = 458.0
- Epoch[ 3 of 3]-Minibatch[  60-  60, 60.00%]: CE = 6.46411133 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 460.9
- Epoch[ 3 of 3]-Minibatch[  61-  61, 61.00%]: CE = 6.91882324 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 461.3
- Epoch[ 3 of 3]-Minibatch[  62-  62, 62.00%]: CE = 6.70495605 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 460.1
- Epoch[ 3 of 3]-Minibatch[  63-  63, 63.00%]: CE = 6.80676270 * 16; Err = 1.00000000 * 16; time = 0.0352s; samplesPerSecond = 455.1
- Epoch[ 3 of 3]-Minibatch[  64-  64, 64.00%]: CE = 6.78753662 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 457.5
- Epoch[ 3 of 3]-Minibatch[  65-  65, 65.00%]: CE = 6.66403198 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 461.2
- Epoch[ 3 of 3]-Minibatch[  66-  66, 66.00%]: CE = 6.88024902 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 460.4
- Epoch[ 3 of 3]-Minibatch[  67-  67, 67.00%]: CE = 6.93087769 * 16; Err = 0.93750000 * 16; time = 0.0351s; samplesPerSecond = 456.4
- Epoch[ 3 of 3]-Minibatch[  68-  68, 68.00%]: CE = 6.68984985 * 16; Err = 1.00000000 * 16; time = 0.0352s; samplesPerSecond = 454.2
- Epoch[ 3 of 3]-Minibatch[  69-  69, 69.00%]: CE = 6.64447021 * 16; Err = 1.00000000 * 16; time = 0.0344s; samplesPerSecond = 464.9
- Epoch[ 3 of 3]-Minibatch[  70-  70, 70.00%]: CE = 6.66101074 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 457.1
- Epoch[ 3 of 3]-Minibatch[  71-  71, 71.00%]: CE = 6.45816040 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 457.6
- Epoch[ 3 of 3]-Minibatch[  72-  72, 72.00%]: CE = 6.93090820 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 457.1
- Epoch[ 3 of 3]-Minibatch[  73-  73, 73.00%]: CE = 6.86068726 * 16; Err = 1.00000000 * 16; time = 0.0344s; samplesPerSecond = 464.6
- Epoch[ 3 of 3]-Minibatch[  74-  74, 74.00%]: CE = 6.53247070 * 16; Err = 0.93750000 * 16; time = 0.0349s; samplesPerSecond = 457.8
- Epoch[ 3 of 3]-Minibatch[  75-  75, 75.00%]: CE = 6.64346313 * 16; Err = 1.00000000 * 16; time = 0.0352s; samplesPerSecond = 455.2
- Epoch[ 3 of 3]-Minibatch[  76-  76, 76.00%]: CE = 6.33639526 * 16; Err = 0.93750000 * 16; time = 0.0351s; samplesPerSecond = 456.1
- Epoch[ 3 of 3]-Minibatch[  77-  77, 77.00%]: CE = 6.69451904 * 16; Err = 1.00000000 * 16; time = 0.0352s; samplesPerSecond = 455.2
- Epoch[ 3 of 3]-Minibatch[  78-  78, 78.00%]: CE = 6.69091797 * 16; Err = 1.00000000 * 16; time = 0.0352s; samplesPerSecond = 454.4
- Epoch[ 3 of 3]-Minibatch[  79-  79, 79.00%]: CE = 6.45251465 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 456.9
- Epoch[ 3 of 3]-Minibatch[  80-  80, 80.00%]: CE = 6.78698730 * 16; Err = 1.00000000 * 16; time = 0.0351s; samplesPerSecond = 456.2
- Epoch[ 3 of 3]-Minibatch[  81-  81, 81.00%]: CE = 6.85351562 * 16; Err = 1.00000000 * 16; time = 0.0352s; samplesPerSecond = 454.8
- Epoch[ 3 of 3]-Minibatch[  82-  82, 82.00%]: CE = 6.49224854 * 16; Err = 1.00000000 * 16; time = 0.0344s; samplesPerSecond = 464.8
- Epoch[ 3 of 3]-Minibatch[  83-  83, 83.00%]: CE = 6.87023926 * 16; Err = 1.00000000 * 16; time = 0.0352s; samplesPerSecond = 455.1
- Epoch[ 3 of 3]-Minibatch[  84-  84, 84.00%]: CE = 6.91070557 * 16; Err = 1.00000000 * 16; time = 0.0351s; samplesPerSecond = 455.9
- Epoch[ 3 of 3]-Minibatch[  85-  85, 85.00%]: CE = 6.82104492 * 16; Err = 1.00000000 * 16; time = 0.0352s; samplesPerSecond = 455.2
- Epoch[ 3 of 3]-Minibatch[  86-  86, 86.00%]: CE = 6.73730469 * 16; Err = 1.00000000 * 16; time = 0.0349s; samplesPerSecond = 458.0
- Epoch[ 3 of 3]-Minibatch[  87-  87, 87.00%]: CE = 6.80957031 * 16; Err = 1.00000000 * 16; time = 0.0351s; samplesPerSecond = 455.9
- Epoch[ 3 of 3]-Minibatch[  88-  88, 88.00%]: CE = 6.86450195 * 16; Err = 1.00000000 * 16; time = 0.0352s; samplesPerSecond = 454.3
- Epoch[ 3 of 3]-Minibatch[  89-  89, 89.00%]: CE = 6.77630615 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 461.3
- Epoch[ 3 of 3]-Minibatch[  90-  90, 90.00%]: CE = 6.63507080 * 16; Err = 1.00000000 * 16; time = 0.0345s; samplesPerSecond = 464.0
- Epoch[ 3 of 3]-Minibatch[  91-  91, 91.00%]: CE = 6.71710205 * 16; Err = 1.00000000 * 16; time = 0.0352s; samplesPerSecond = 454.6
- Epoch[ 3 of 3]-Minibatch[  92-  92, 92.00%]: CE = 6.77355957 * 16; Err = 1.00000000 * 16; time = 0.0352s; samplesPerSecond = 455.1
- Epoch[ 3 of 3]-Minibatch[  93-  93, 93.00%]: CE = 6.75219727 * 16; Err = 0.93750000 * 16; time = 0.0347s; samplesPerSecond = 461.5
- Epoch[ 3 of 3]-Minibatch[  94-  94, 94.00%]: CE = 6.82519531 * 16; Err = 1.00000000 * 16; time = 0.0346s; samplesPerSecond = 462.2
- Epoch[ 3 of 3]-Minibatch[  95-  95, 95.00%]: CE = 6.75177002 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 460.4
- Epoch[ 3 of 3]-Minibatch[  96-  96, 96.00%]: CE = 6.68939209 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 460.2
- Epoch[ 3 of 3]-Minibatch[  97-  97, 97.00%]: CE = 6.72357178 * 16; Err = 0.93750000 * 16; time = 0.0348s; samplesPerSecond = 460.4
- Epoch[ 3 of 3]-Minibatch[  98-  98, 98.00%]: CE = 6.65338135 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 461.3
- Epoch[ 3 of 3]-Minibatch[  99-  99, 99.00%]: CE = 6.75286865 * 16; Err = 1.00000000 * 16; time = 0.0346s; samplesPerSecond = 462.4
- Epoch[ 3 of 3]-Minibatch[ 100- 100, 100.00%]: CE = 6.84338379 * 16; Err = 1.00000000 * 16; time = 0.0344s; samplesPerSecond = 465.2
-Finished Epoch[ 3 of 3]: [Training] CE = 6.75451538 * 1600; Err = 0.99625000 * 1600; totalSamplesSeen = 4800; learningRatePerSample = 0.00062499999; epochTime=3.50229s
+ Epoch[ 3 of 3]-Minibatch[   1-   1, 1.00%]: CE = 6.89489460 * 16; Err = 1.00000000 * 16; time = 0.0373s; samplesPerSecond = 428.4
+ Epoch[ 3 of 3]-Minibatch[   2-   2, 2.00%]: CE = 6.91083527 * 16; Err = 1.00000000 * 16; time = 0.0343s; samplesPerSecond = 466.6
+ Epoch[ 3 of 3]-Minibatch[   3-   3, 3.00%]: CE = 6.74135876 * 16; Err = 1.00000000 * 16; time = 0.0344s; samplesPerSecond = 465.7
+ Epoch[ 3 of 3]-Minibatch[   4-   4, 4.00%]: CE = 6.86779022 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 461.4
+ Epoch[ 3 of 3]-Minibatch[   5-   5, 5.00%]: CE = 6.72221756 * 16; Err = 1.00000000 * 16; time = 0.0349s; samplesPerSecond = 458.6
+ Epoch[ 3 of 3]-Minibatch[   6-   6, 6.00%]: CE = 6.85242844 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 459.6
+ Epoch[ 3 of 3]-Minibatch[   7-   7, 7.00%]: CE = 6.73249817 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 459.7
+ Epoch[ 3 of 3]-Minibatch[   8-   8, 8.00%]: CE = 6.98027802 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 460.1
+ Epoch[ 3 of 3]-Minibatch[   9-   9, 9.00%]: CE = 6.81587982 * 16; Err = 1.00000000 * 16; time = 0.0346s; samplesPerSecond = 463.1
+ Epoch[ 3 of 3]-Minibatch[  10-  10, 10.00%]: CE = 6.95394897 * 16; Err = 1.00000000 * 16; time = 0.0343s; samplesPerSecond = 466.5
+ Epoch[ 3 of 3]-Minibatch[  11-  11, 11.00%]: CE = 6.74020386 * 16; Err = 1.00000000 * 16; time = 0.0345s; samplesPerSecond = 463.3
+ Epoch[ 3 of 3]-Minibatch[  12-  12, 12.00%]: CE = 6.95290375 * 16; Err = 1.00000000 * 16; time = 0.0343s; samplesPerSecond = 466.1
+ Epoch[ 3 of 3]-Minibatch[  13-  13, 13.00%]: CE = 6.91593170 * 16; Err = 1.00000000 * 16; time = 0.0343s; samplesPerSecond = 466.1
+ Epoch[ 3 of 3]-Minibatch[  14-  14, 14.00%]: CE = 6.64338684 * 16; Err = 1.00000000 * 16; time = 0.0346s; samplesPerSecond = 462.9
+ Epoch[ 3 of 3]-Minibatch[  15-  15, 15.00%]: CE = 6.56642151 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 460.0
+ Epoch[ 3 of 3]-Minibatch[  16-  16, 16.00%]: CE = 6.89521790 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 460.3
+ Epoch[ 3 of 3]-Minibatch[  17-  17, 17.00%]: CE = 6.86080933 * 16; Err = 1.00000000 * 16; time = 0.0345s; samplesPerSecond = 463.4
+ Epoch[ 3 of 3]-Minibatch[  18-  18, 18.00%]: CE = 6.78351593 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 459.7
+ Epoch[ 3 of 3]-Minibatch[  19-  19, 19.00%]: CE = 6.77343750 * 16; Err = 1.00000000 * 16; time = 0.0343s; samplesPerSecond = 466.8
+ Epoch[ 3 of 3]-Minibatch[  20-  20, 20.00%]: CE = 7.12370300 * 16; Err = 1.00000000 * 16; time = 0.0345s; samplesPerSecond = 463.8
+ Epoch[ 3 of 3]-Minibatch[  21-  21, 21.00%]: CE = 6.70207214 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 459.7
+ Epoch[ 3 of 3]-Minibatch[  22-  22, 22.00%]: CE = 7.00025940 * 16; Err = 1.00000000 * 16; time = 0.0346s; samplesPerSecond = 463.0
+ Epoch[ 3 of 3]-Minibatch[  23-  23, 23.00%]: CE = 6.77412415 * 16; Err = 1.00000000 * 16; time = 0.0342s; samplesPerSecond = 467.3
+ Epoch[ 3 of 3]-Minibatch[  24-  24, 24.00%]: CE = 6.74578857 * 16; Err = 1.00000000 * 16; time = 0.0349s; samplesPerSecond = 458.9
+ Epoch[ 3 of 3]-Minibatch[  25-  25, 25.00%]: CE = 6.74229431 * 16; Err = 1.00000000 * 16; time = 0.0350s; samplesPerSecond = 457.2
+ Epoch[ 3 of 3]-Minibatch[  26-  26, 26.00%]: CE = 6.77958679 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 461.4
+ Epoch[ 3 of 3]-Minibatch[  27-  27, 27.00%]: CE = 6.87124634 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 460.5
+ Epoch[ 3 of 3]-Minibatch[  28-  28, 28.00%]: CE = 6.85671997 * 16; Err = 1.00000000 * 16; time = 0.0345s; samplesPerSecond = 463.1
+ Epoch[ 3 of 3]-Minibatch[  29-  29, 29.00%]: CE = 6.74450684 * 16; Err = 1.00000000 * 16; time = 0.0346s; samplesPerSecond = 462.5
+ Epoch[ 3 of 3]-Minibatch[  30-  30, 30.00%]: CE = 6.94215393 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 461.7
+ Epoch[ 3 of 3]-Minibatch[  31-  31, 31.00%]: CE = 6.80621338 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 461.2
+ Epoch[ 3 of 3]-Minibatch[  32-  32, 32.00%]: CE = 6.58108521 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 460.5
+ Epoch[ 3 of 3]-Minibatch[  33-  33, 33.00%]: CE = 6.72892761 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 460.8
+ Epoch[ 3 of 3]-Minibatch[  34-  34, 34.00%]: CE = 6.90061951 * 16; Err = 1.00000000 * 16; time = 0.0345s; samplesPerSecond = 464.0
+ Epoch[ 3 of 3]-Minibatch[  35-  35, 35.00%]: CE = 6.64561462 * 16; Err = 1.00000000 * 16; time = 0.0346s; samplesPerSecond = 462.3
+ Epoch[ 3 of 3]-Minibatch[  36-  36, 36.00%]: CE = 6.78851318 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 460.5
+ Epoch[ 3 of 3]-Minibatch[  37-  37, 37.00%]: CE = 6.78153992 * 16; Err = 1.00000000 * 16; time = 0.0343s; samplesPerSecond = 466.0
+ Epoch[ 3 of 3]-Minibatch[  38-  38, 38.00%]: CE = 6.71484375 * 16; Err = 1.00000000 * 16; time = 0.0344s; samplesPerSecond = 465.7
+ Epoch[ 3 of 3]-Minibatch[  39-  39, 39.00%]: CE = 6.80685425 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 461.4
+ Epoch[ 3 of 3]-Minibatch[  40-  40, 40.00%]: CE = 6.68756104 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 460.5
+ Epoch[ 3 of 3]-Minibatch[  41-  41, 41.00%]: CE = 6.72769165 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 461.6
+ Epoch[ 3 of 3]-Minibatch[  42-  42, 42.00%]: CE = 6.61822510 * 16; Err = 1.00000000 * 16; time = 0.0344s; samplesPerSecond = 464.8
+ Epoch[ 3 of 3]-Minibatch[  43-  43, 43.00%]: CE = 6.64053345 * 16; Err = 1.00000000 * 16; time = 0.0345s; samplesPerSecond = 464.4
+ Epoch[ 3 of 3]-Minibatch[  44-  44, 44.00%]: CE = 6.64398193 * 16; Err = 1.00000000 * 16; time = 0.0343s; samplesPerSecond = 465.9
+ Epoch[ 3 of 3]-Minibatch[  45-  45, 45.00%]: CE = 6.69149780 * 16; Err = 1.00000000 * 16; time = 0.0343s; samplesPerSecond = 466.6
+ Epoch[ 3 of 3]-Minibatch[  46-  46, 46.00%]: CE = 6.70230103 * 16; Err = 1.00000000 * 16; time = 0.0346s; samplesPerSecond = 463.0
+ Epoch[ 3 of 3]-Minibatch[  47-  47, 47.00%]: CE = 6.66113281 * 16; Err = 1.00000000 * 16; time = 0.0346s; samplesPerSecond = 462.1
+ Epoch[ 3 of 3]-Minibatch[  48-  48, 48.00%]: CE = 6.58773804 * 16; Err = 1.00000000 * 16; time = 0.0349s; samplesPerSecond = 458.2
+ Epoch[ 3 of 3]-Minibatch[  49-  49, 49.00%]: CE = 6.62301636 * 16; Err = 1.00000000 * 16; time = 0.0344s; samplesPerSecond = 464.6
+ Epoch[ 3 of 3]-Minibatch[  50-  50, 50.00%]: CE = 6.62292480 * 16; Err = 1.00000000 * 16; time = 0.0349s; samplesPerSecond = 458.8
+ Epoch[ 3 of 3]-Minibatch[  51-  51, 51.00%]: CE = 6.54562378 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 460.8
+ Epoch[ 3 of 3]-Minibatch[  52-  52, 52.00%]: CE = 6.69677734 * 16; Err = 1.00000000 * 16; time = 0.0346s; samplesPerSecond = 462.8
+ Epoch[ 3 of 3]-Minibatch[  53-  53, 53.00%]: CE = 6.49459839 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 460.4
+ Epoch[ 3 of 3]-Minibatch[  54-  54, 54.00%]: CE = 6.47311401 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 460.1
+ Epoch[ 3 of 3]-Minibatch[  55-  55, 55.00%]: CE = 6.63647461 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 460.5
+ Epoch[ 3 of 3]-Minibatch[  56-  56, 56.00%]: CE = 6.72244263 * 16; Err = 1.00000000 * 16; time = 0.0344s; samplesPerSecond = 465.6
+ Epoch[ 3 of 3]-Minibatch[  57-  57, 57.00%]: CE = 6.88442993 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 459.8
+ Epoch[ 3 of 3]-Minibatch[  58-  58, 58.00%]: CE = 6.77813721 * 16; Err = 1.00000000 * 16; time = 0.0346s; samplesPerSecond = 462.5
+ Epoch[ 3 of 3]-Minibatch[  59-  59, 59.00%]: CE = 6.85504150 * 16; Err = 1.00000000 * 16; time = 0.0349s; samplesPerSecond = 458.8
+ Epoch[ 3 of 3]-Minibatch[  60-  60, 60.00%]: CE = 6.84600830 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 460.7
+ Epoch[ 3 of 3]-Minibatch[  61-  61, 61.00%]: CE = 6.59420776 * 16; Err = 1.00000000 * 16; time = 0.0349s; samplesPerSecond = 458.6
+ Epoch[ 3 of 3]-Minibatch[  62-  62, 62.00%]: CE = 6.83758545 * 16; Err = 1.00000000 * 16; time = 0.0344s; samplesPerSecond = 465.1
+ Epoch[ 3 of 3]-Minibatch[  63-  63, 63.00%]: CE = 6.95019531 * 16; Err = 1.00000000 * 16; time = 0.0349s; samplesPerSecond = 458.9
+ Epoch[ 3 of 3]-Minibatch[  64-  64, 64.00%]: CE = 6.65405273 * 16; Err = 1.00000000 * 16; time = 0.0344s; samplesPerSecond = 464.9
+ Epoch[ 3 of 3]-Minibatch[  65-  65, 65.00%]: CE = 6.66818237 * 16; Err = 1.00000000 * 16; time = 0.0343s; samplesPerSecond = 466.3
+ Epoch[ 3 of 3]-Minibatch[  66-  66, 66.00%]: CE = 6.65826416 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 459.9
+ Epoch[ 3 of 3]-Minibatch[  67-  67, 67.00%]: CE = 6.66555786 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 461.5
+ Epoch[ 3 of 3]-Minibatch[  68-  68, 68.00%]: CE = 6.92013550 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 459.8
+ Epoch[ 3 of 3]-Minibatch[  69-  69, 69.00%]: CE = 6.61349487 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 459.1
+ Epoch[ 3 of 3]-Minibatch[  70-  70, 70.00%]: CE = 6.85043335 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 459.3
+ Epoch[ 3 of 3]-Minibatch[  71-  71, 71.00%]: CE = 6.66455078 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 460.4
+ Epoch[ 3 of 3]-Minibatch[  72-  72, 72.00%]: CE = 6.82760620 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 461.0
+ Epoch[ 3 of 3]-Minibatch[  73-  73, 73.00%]: CE = 6.57202148 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 459.2
+ Epoch[ 3 of 3]-Minibatch[  74-  74, 74.00%]: CE = 6.52999878 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 460.4
+ Epoch[ 3 of 3]-Minibatch[  75-  75, 75.00%]: CE = 6.60363770 * 16; Err = 1.00000000 * 16; time = 0.0346s; samplesPerSecond = 462.8
+ Epoch[ 3 of 3]-Minibatch[  76-  76, 76.00%]: CE = 6.90164185 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 461.5
+ Epoch[ 3 of 3]-Minibatch[  77-  77, 77.00%]: CE = 6.78479004 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 461.1
+ Epoch[ 3 of 3]-Minibatch[  78-  78, 78.00%]: CE = 6.73333740 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 459.9
+ Epoch[ 3 of 3]-Minibatch[  79-  79, 79.00%]: CE = 6.90081787 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 459.8
+ Epoch[ 3 of 3]-Minibatch[  80-  80, 80.00%]: CE = 6.71667480 * 16; Err = 1.00000000 * 16; time = 0.0345s; samplesPerSecond = 463.2
+ Epoch[ 3 of 3]-Minibatch[  81-  81, 81.00%]: CE = 6.90435791 * 16; Err = 1.00000000 * 16; time = 0.0345s; samplesPerSecond = 464.1
+ Epoch[ 3 of 3]-Minibatch[  82-  82, 82.00%]: CE = 6.81506348 * 16; Err = 1.00000000 * 16; time = 0.0349s; samplesPerSecond = 458.5
+ Epoch[ 3 of 3]-Minibatch[  83-  83, 83.00%]: CE = 6.60034180 * 16; Err = 1.00000000 * 16; time = 0.0346s; samplesPerSecond = 461.8
+ Epoch[ 3 of 3]-Minibatch[  84-  84, 84.00%]: CE = 6.60876465 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 461.2
+ Epoch[ 3 of 3]-Minibatch[  85-  85, 85.00%]: CE = 6.49884033 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 459.8
+ Epoch[ 3 of 3]-Minibatch[  86-  86, 86.00%]: CE = 6.34344482 * 16; Err = 1.00000000 * 16; time = 0.0344s; samplesPerSecond = 464.8
+ Epoch[ 3 of 3]-Minibatch[  87-  87, 87.00%]: CE = 6.83245850 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 459.9
+ Epoch[ 3 of 3]-Minibatch[  88-  88, 88.00%]: CE = 6.72967529 * 16; Err = 1.00000000 * 16; time = 0.0344s; samplesPerSecond = 465.2
+ Epoch[ 3 of 3]-Minibatch[  89-  89, 89.00%]: CE = 6.77947998 * 16; Err = 1.00000000 * 16; time = 0.0349s; samplesPerSecond = 458.9
+ Epoch[ 3 of 3]-Minibatch[  90-  90, 90.00%]: CE = 6.56524658 * 16; Err = 1.00000000 * 16; time = 0.0344s; samplesPerSecond = 464.8
+ Epoch[ 3 of 3]-Minibatch[  91-  91, 91.00%]: CE = 6.83441162 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 460.8
+ Epoch[ 3 of 3]-Minibatch[  92-  92, 92.00%]: CE = 6.61315918 * 16; Err = 1.00000000 * 16; time = 0.0349s; samplesPerSecond = 458.8
+ Epoch[ 3 of 3]-Minibatch[  93-  93, 93.00%]: CE = 6.73907471 * 16; Err = 1.00000000 * 16; time = 0.0347s; samplesPerSecond = 460.8
+ Epoch[ 3 of 3]-Minibatch[  94-  94, 94.00%]: CE = 6.79315186 * 16; Err = 1.00000000 * 16; time = 0.0348s; samplesPerSecond = 460.3
+ Epoch[ 3 of 3]-Minibatch[  95-  95, 95.00%]: CE = 6.77416992 * 16; Err = 1.00000000 * 16; time = 0.0345s; samplesPerSecond = 463.2
+ Epoch[ 3 of 3]-Minibatch[  96-  96, 96.00%]: CE = 6.66833496 * 16; Err = 1.00000000 * 16; time = 0.0346s; samplesPerSecond = 463.1
+ Epoch[ 3 of 3]-Minibatch[  97-  97, 97.00%]: CE = 6.98022461 * 16; Err = 1.00000000 * 16; time = 0.0346s; samplesPerSecond = 461.9
+ Epoch[ 3 of 3]-Minibatch[  98-  98, 98.00%]: CE = 6.83331299 * 16; Err = 1.00000000 * 16; time = 0.0345s; samplesPerSecond = 463.5
+ Epoch[ 3 of 3]-Minibatch[  99-  99, 99.00%]: CE = 6.71044922 * 16; Err = 1.00000000 * 16; time = 0.0343s; samplesPerSecond = 466.6
+ Epoch[ 3 of 3]-Minibatch[ 100- 100, 100.00%]: CE = 6.56384277 * 16; Err = 1.00000000 * 16; time = 0.0341s; samplesPerSecond = 469.5
+Finished Epoch[ 3 of 3]: [Training] CE = 6.74614868 * 1600; Err = 1.00000000 * 1600; totalSamplesSeen = 4800; learningRatePerSample = 0.00062499999; epochTime=3.46919s
 SGD: Saving checkpoint model './Output/alexnet/AlexNet'
-CNTKCommandTrainEnd: Train
 
 Action "train" complete.
 
-__COMPLETED__
+COMPLETED.

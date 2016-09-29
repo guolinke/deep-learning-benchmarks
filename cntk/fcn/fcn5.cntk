@@ -2,7 +2,7 @@ WorkDir=.
 ModelDir=$WorkDir$/Output/$ConfigName$
 DataDir=/home/dl/data/cntk
 precision=float
-stderr  = "./output_$ConfigName$"
+stderr  = "./output_$ConfigName$_Train.log"
 
 deviceId=0
 minibatchSize=1024
@@ -20,6 +20,7 @@ hiddenDim = 2048
 initOnCPUOnly=true
 parallelTrain=false
 prefetch=true
+traceLevel=1
 
 Train=[
     action=train

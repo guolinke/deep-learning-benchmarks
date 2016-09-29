@@ -1,8 +1,8 @@
 -------------------------------------------------------------------
 Build info: 
 
-		Built time: Aug 30 2016 14:07:49
-		Last modified date: Mon Aug 29 18:55:53 2016
+		Built time: Sep 27 2016 14:05:01
+		Last modified date: Tue Sep 27 07:19:56 2016
 		Build type: release
 		Build target: GPU
 		With 1bit-SGD: yes
@@ -11,23 +11,18 @@ Build info:
 		CUB_PATH: /usr/local/cub-1.4.1
 		CUDNN_PATH: /usr/local/cudnn-5.1
 		Build Branch: HEAD
-		Build SHA1: 2f9c73cab134c45ab3ddcf1ca6873cc4d18dec34
-		Built by philly on 17068eac0c7b
+		Build SHA1: 2e4a773398b5ee84e1695abe73eb831c3cca1e36
+		Built by philly on 9ab719fcc26d
 		Build Path: /home/philly/jenkins/workspace/CNTK-Build-Linux
 -------------------------------------------------------------------
 -------------------------------------------------------------------
 GPU info:
 
-		Device[0]: cores = 4608; computeCapability = 5.2; type = "GeForce GTX TITAN X"; memory = 12204 MB
+		Device[0]: cores = 4608; computeCapability = 5.2; type = "GeForce GTX TITAN X"; memory = 12205 MB
 		Device[1]: cores = 4608; computeCapability = 5.2; type = "GeForce GTX TITAN X"; memory = 12206 MB
 		Device[2]: cores = 4608; computeCapability = 5.2; type = "GeForce GTX TITAN X"; memory = 12206 MB
 		Device[3]: cores = 4608; computeCapability = 5.2; type = "GeForce GTX TITAN X"; memory = 12206 MB
 -------------------------------------------------------------------
-
-Running on localhost at 2016/09/21 22:17:35
-Command line: 
-cntk/cntk/bin/cntk  configFile=cnn/resnet/resnet.cntk  configName=resnet  deviceId=0  minibatchSize=16  epochSize=1600  DataDir=cnn  ConfigDir=cnn/resnet
-
 
 Configuration After Processing and Variable Resolution:
 
@@ -56,7 +51,7 @@ configparameters: resnet.cntk:precision=float
 configparameters: resnet.cntk:prefetch=true
 configparameters: resnet.cntk:RootDir=.
 configparameters: resnet.cntk:shareNodeValueMatrices=true
-configparameters: resnet.cntk:stderr=./output_resnet
+configparameters: resnet.cntk:stderr=./output_resnet_Train.log
 configparameters: resnet.cntk:stride1x1=1
 configparameters: resnet.cntk:stride3x3=2
 configparameters: resnet.cntk:Test=[
@@ -123,1019 +118,20 @@ configparameters: resnet.cntk:Train=[
 ]
 
 Commands: Train
-Precision = "float"
-CNTKModelPath: ./Output/resnet/ResNet_50
-CNTKCommandTrainInfo: Train : 2
-CNTKCommandTrainInfo: CNTKNoMoreCommands_Total : 2
+precision = "float"
 
 ##############################################################################
 #                                                                            #
-# Action "train"                                                             #
+# Train command (train action)                                               #
 #                                                                            #
 ##############################################################################
 
-CNTKCommandTrainBegin: Train
-useParallelTrain option is not enabled. ParallelTrain config will be ignored.
+parallelTrain option is not enabled. ParallelTrain config will be ignored.
+
 Creating virgin network.
 NDLBuilder Using GPU 0
-Node 'conv1.c.W' (LearnableParameter operation): Initializing Parameter[64 x 147] <- 0.000000.
-Node 'conv1.c.y.b' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'conv1.c.y.sc' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'conv1.c.y.m' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'conv1.c.y.isd' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_1.c1.c.W' (LearnableParameter operation): Initializing Parameter[64 x 64] <- 0.000000.
-Node 'rn1_1.c1.c.y.b' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_1.c1.c.y.sc' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_1.c1.c.y.m' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_1.c1.c.y.isd' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_1.c2.c.W' (LearnableParameter operation): Initializing Parameter[64 x 576] <- 0.000000.
-Node 'rn1_1.c2.c.y.b' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_1.c2.c.y.sc' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_1.c2.c.y.m' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_1.c2.c.y.isd' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_1.c3.W' (LearnableParameter operation): Initializing Parameter[256 x 64] <- 0.000000.
-Node 'rn1_1.c3.y.b' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn1_1.c3.y.sc' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn1_1.c3.y.m' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn1_1.c3.y.isd' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn1_1.c_proj.W' (LearnableParameter operation): Initializing Parameter[256 x 64] <- 0.000000.
-Node 'rn1_1.c_proj.y.b' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn1_1.c_proj.y.sc' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn1_1.c_proj.y.m' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn1_1.c_proj.y.isd' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn1_2.c1.c.W' (LearnableParameter operation): Initializing Parameter[64 x 256] <- 0.000000.
-Node 'rn1_2.c1.c.y.b' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_2.c1.c.y.sc' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_2.c1.c.y.m' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_2.c1.c.y.isd' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_2.c2.c.W' (LearnableParameter operation): Initializing Parameter[64 x 576] <- 0.000000.
-Node 'rn1_2.c2.c.y.b' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_2.c2.c.y.sc' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_2.c2.c.y.m' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_2.c2.c.y.isd' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_2.c3.W' (LearnableParameter operation): Initializing Parameter[256 x 64] <- 0.000000.
-Node 'rn1_2.c3.y.b' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn1_2.c3.y.sc' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn1_2.c3.y.m' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn1_2.c3.y.isd' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn1_3.c1.c.W' (LearnableParameter operation): Initializing Parameter[64 x 256] <- 0.000000.
-Node 'rn1_3.c1.c.y.b' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_3.c1.c.y.sc' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_3.c1.c.y.m' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_3.c1.c.y.isd' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_3.c2.c.W' (LearnableParameter operation): Initializing Parameter[64 x 576] <- 0.000000.
-Node 'rn1_3.c2.c.y.b' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_3.c2.c.y.sc' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_3.c2.c.y.m' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_3.c2.c.y.isd' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_3.c3.W' (LearnableParameter operation): Initializing Parameter[256 x 64] <- 0.000000.
-Node 'rn1_3.c3.y.b' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn1_3.c3.y.sc' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn1_3.c3.y.m' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn1_3.c3.y.isd' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn2_1.c1.c.W' (LearnableParameter operation): Initializing Parameter[128 x 256] <- 0.000000.
-Node 'rn2_1.c1.c.y.b' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_1.c1.c.y.sc' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_1.c1.c.y.m' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_1.c1.c.y.isd' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_1.c2.c.W' (LearnableParameter operation): Initializing Parameter[128 x 1152] <- 0.000000.
-Node 'rn2_1.c2.c.y.b' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_1.c2.c.y.sc' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_1.c2.c.y.m' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_1.c2.c.y.isd' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_1.c3.W' (LearnableParameter operation): Initializing Parameter[512 x 128] <- 0.000000.
-Node 'rn2_1.c3.y.b' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn2_1.c3.y.sc' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn2_1.c3.y.m' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn2_1.c3.y.isd' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn2_1.c_proj.W' (LearnableParameter operation): Initializing Parameter[512 x 256] <- 0.000000.
-Node 'rn2_1.c_proj.y.b' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn2_1.c_proj.y.sc' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn2_1.c_proj.y.m' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn2_1.c_proj.y.isd' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn2_2.c1.c.W' (LearnableParameter operation): Initializing Parameter[128 x 512] <- 0.000000.
-Node 'rn2_2.c1.c.y.b' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_2.c1.c.y.sc' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_2.c1.c.y.m' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_2.c1.c.y.isd' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_2.c2.c.W' (LearnableParameter operation): Initializing Parameter[128 x 1152] <- 0.000000.
-Node 'rn2_2.c2.c.y.b' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_2.c2.c.y.sc' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_2.c2.c.y.m' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_2.c2.c.y.isd' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_2.c3.W' (LearnableParameter operation): Initializing Parameter[512 x 128] <- 0.000000.
-Node 'rn2_2.c3.y.b' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn2_2.c3.y.sc' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn2_2.c3.y.m' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn2_2.c3.y.isd' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn2_3.c1.c.W' (LearnableParameter operation): Initializing Parameter[128 x 512] <- 0.000000.
-Node 'rn2_3.c1.c.y.b' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_3.c1.c.y.sc' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_3.c1.c.y.m' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_3.c1.c.y.isd' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_3.c2.c.W' (LearnableParameter operation): Initializing Parameter[128 x 1152] <- 0.000000.
-Node 'rn2_3.c2.c.y.b' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_3.c2.c.y.sc' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_3.c2.c.y.m' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_3.c2.c.y.isd' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_3.c3.W' (LearnableParameter operation): Initializing Parameter[512 x 128] <- 0.000000.
-Node 'rn2_3.c3.y.b' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn2_3.c3.y.sc' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn2_3.c3.y.m' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn2_3.c3.y.isd' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn2_4.c1.c.W' (LearnableParameter operation): Initializing Parameter[128 x 512] <- 0.000000.
-Node 'rn2_4.c1.c.y.b' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_4.c1.c.y.sc' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_4.c1.c.y.m' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_4.c1.c.y.isd' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_4.c2.c.W' (LearnableParameter operation): Initializing Parameter[128 x 1152] <- 0.000000.
-Node 'rn2_4.c2.c.y.b' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_4.c2.c.y.sc' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_4.c2.c.y.m' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_4.c2.c.y.isd' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_4.c3.W' (LearnableParameter operation): Initializing Parameter[512 x 128] <- 0.000000.
-Node 'rn2_4.c3.y.b' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn2_4.c3.y.sc' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn2_4.c3.y.m' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn2_4.c3.y.isd' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn3_1.c1.c.W' (LearnableParameter operation): Initializing Parameter[256 x 512] <- 0.000000.
-Node 'rn3_1.c1.c.y.b' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_1.c1.c.y.sc' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_1.c1.c.y.m' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_1.c1.c.y.isd' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_1.c2.c.W' (LearnableParameter operation): Initializing Parameter[256 x 2304] <- 0.000000.
-Node 'rn3_1.c2.c.y.b' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_1.c2.c.y.sc' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_1.c2.c.y.m' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_1.c2.c.y.isd' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_1.c3.W' (LearnableParameter operation): Initializing Parameter[1024 x 256] <- 0.000000.
-Node 'rn3_1.c3.y.b' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_1.c3.y.sc' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_1.c3.y.m' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_1.c3.y.isd' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_1.c_proj.W' (LearnableParameter operation): Initializing Parameter[1024 x 512] <- 0.000000.
-Node 'rn3_1.c_proj.y.b' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_1.c_proj.y.sc' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_1.c_proj.y.m' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_1.c_proj.y.isd' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_2.c1.c.W' (LearnableParameter operation): Initializing Parameter[256 x 1024] <- 0.000000.
-Node 'rn3_2.c1.c.y.b' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_2.c1.c.y.sc' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_2.c1.c.y.m' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_2.c1.c.y.isd' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_2.c2.c.W' (LearnableParameter operation): Initializing Parameter[256 x 2304] <- 0.000000.
-Node 'rn3_2.c2.c.y.b' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_2.c2.c.y.sc' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_2.c2.c.y.m' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_2.c2.c.y.isd' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_2.c3.W' (LearnableParameter operation): Initializing Parameter[1024 x 256] <- 0.000000.
-Node 'rn3_2.c3.y.b' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_2.c3.y.sc' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_2.c3.y.m' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_2.c3.y.isd' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_3.c1.c.W' (LearnableParameter operation): Initializing Parameter[256 x 1024] <- 0.000000.
-Node 'rn3_3.c1.c.y.b' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_3.c1.c.y.sc' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_3.c1.c.y.m' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_3.c1.c.y.isd' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_3.c2.c.W' (LearnableParameter operation): Initializing Parameter[256 x 2304] <- 0.000000.
-Node 'rn3_3.c2.c.y.b' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_3.c2.c.y.sc' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_3.c2.c.y.m' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_3.c2.c.y.isd' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_3.c3.W' (LearnableParameter operation): Initializing Parameter[1024 x 256] <- 0.000000.
-Node 'rn3_3.c3.y.b' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_3.c3.y.sc' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_3.c3.y.m' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_3.c3.y.isd' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_4.c1.c.W' (LearnableParameter operation): Initializing Parameter[256 x 1024] <- 0.000000.
-Node 'rn3_4.c1.c.y.b' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_4.c1.c.y.sc' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_4.c1.c.y.m' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_4.c1.c.y.isd' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_4.c2.c.W' (LearnableParameter operation): Initializing Parameter[256 x 2304] <- 0.000000.
-Node 'rn3_4.c2.c.y.b' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_4.c2.c.y.sc' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_4.c2.c.y.m' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_4.c2.c.y.isd' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_4.c3.W' (LearnableParameter operation): Initializing Parameter[1024 x 256] <- 0.000000.
-Node 'rn3_4.c3.y.b' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_4.c3.y.sc' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_4.c3.y.m' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_4.c3.y.isd' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_5.c1.c.W' (LearnableParameter operation): Initializing Parameter[256 x 1024] <- 0.000000.
-Node 'rn3_5.c1.c.y.b' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_5.c1.c.y.sc' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_5.c1.c.y.m' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_5.c1.c.y.isd' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_5.c2.c.W' (LearnableParameter operation): Initializing Parameter[256 x 2304] <- 0.000000.
-Node 'rn3_5.c2.c.y.b' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_5.c2.c.y.sc' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_5.c2.c.y.m' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_5.c2.c.y.isd' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_5.c3.W' (LearnableParameter operation): Initializing Parameter[1024 x 256] <- 0.000000.
-Node 'rn3_5.c3.y.b' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_5.c3.y.sc' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_5.c3.y.m' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_5.c3.y.isd' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_6.c1.c.W' (LearnableParameter operation): Initializing Parameter[256 x 1024] <- 0.000000.
-Node 'rn3_6.c1.c.y.b' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_6.c1.c.y.sc' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_6.c1.c.y.m' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_6.c1.c.y.isd' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_6.c2.c.W' (LearnableParameter operation): Initializing Parameter[256 x 2304] <- 0.000000.
-Node 'rn3_6.c2.c.y.b' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_6.c2.c.y.sc' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_6.c2.c.y.m' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_6.c2.c.y.isd' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_6.c3.W' (LearnableParameter operation): Initializing Parameter[1024 x 256] <- 0.000000.
-Node 'rn3_6.c3.y.b' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_6.c3.y.sc' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_6.c3.y.m' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_6.c3.y.isd' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn4_1.c1.c.W' (LearnableParameter operation): Initializing Parameter[512 x 1024] <- 0.000000.
-Node 'rn4_1.c1.c.y.b' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_1.c1.c.y.sc' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_1.c1.c.y.m' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_1.c1.c.y.isd' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_1.c2.c.W' (LearnableParameter operation): Initializing Parameter[512 x 4608] <- 0.000000.
-Node 'rn4_1.c2.c.y.b' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_1.c2.c.y.sc' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_1.c2.c.y.m' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_1.c2.c.y.isd' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_1.c3.W' (LearnableParameter operation): Initializing Parameter[2048 x 512] <- 0.000000.
-Node 'rn4_1.c3.y.b' (LearnableParameter operation): Initializing Parameter[2048 x 1] <- 0.000000.
-Node 'rn4_1.c3.y.sc' (LearnableParameter operation): Initializing Parameter[2048 x 1] <- 0.000000.
-Node 'rn4_1.c3.y.m' (LearnableParameter operation): Initializing Parameter[2048 x 1] <- 0.000000.
-Node 'rn4_1.c3.y.isd' (LearnableParameter operation): Initializing Parameter[2048 x 1] <- 0.000000.
-Node 'rn4_1.c_proj.W' (LearnableParameter operation): Initializing Parameter[2048 x 1024] <- 0.000000.
-Node 'rn4_1.c_proj.y.b' (LearnableParameter operation): Initializing Parameter[2048 x 1] <- 0.000000.
-Node 'rn4_1.c_proj.y.sc' (LearnableParameter operation): Initializing Parameter[2048 x 1] <- 0.000000.
-Node 'rn4_1.c_proj.y.m' (LearnableParameter operation): Initializing Parameter[2048 x 1] <- 0.000000.
-Node 'rn4_1.c_proj.y.isd' (LearnableParameter operation): Initializing Parameter[2048 x 1] <- 0.000000.
-Node 'rn4_2.c1.c.W' (LearnableParameter operation): Initializing Parameter[512 x 2048] <- 0.000000.
-Node 'rn4_2.c1.c.y.b' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_2.c1.c.y.sc' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_2.c1.c.y.m' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_2.c1.c.y.isd' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_2.c2.c.W' (LearnableParameter operation): Initializing Parameter[512 x 4608] <- 0.000000.
-Node 'rn4_2.c2.c.y.b' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_2.c2.c.y.sc' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_2.c2.c.y.m' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_2.c2.c.y.isd' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_2.c3.W' (LearnableParameter operation): Initializing Parameter[2048 x 512] <- 0.000000.
-Node 'rn4_2.c3.y.b' (LearnableParameter operation): Initializing Parameter[2048 x 1] <- 0.000000.
-Node 'rn4_2.c3.y.sc' (LearnableParameter operation): Initializing Parameter[2048 x 1] <- 0.000000.
-Node 'rn4_2.c3.y.m' (LearnableParameter operation): Initializing Parameter[2048 x 1] <- 0.000000.
-Node 'rn4_2.c3.y.isd' (LearnableParameter operation): Initializing Parameter[2048 x 1] <- 0.000000.
-Node 'rn4_3.c1.c.W' (LearnableParameter operation): Initializing Parameter[512 x 2048] <- 0.000000.
-Node 'rn4_3.c1.c.y.b' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_3.c1.c.y.sc' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_3.c1.c.y.m' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_3.c1.c.y.isd' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_3.c2.c.W' (LearnableParameter operation): Initializing Parameter[512 x 4608] <- 0.000000.
-Node 'rn4_3.c2.c.y.b' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_3.c2.c.y.sc' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_3.c2.c.y.m' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_3.c2.c.y.isd' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_3.c3.W' (LearnableParameter operation): Initializing Parameter[2048 x 512] <- 0.000000.
-Node 'rn4_3.c3.y.b' (LearnableParameter operation): Initializing Parameter[2048 x 1] <- 0.000000.
-Node 'rn4_3.c3.y.sc' (LearnableParameter operation): Initializing Parameter[2048 x 1] <- 0.000000.
-Node 'rn4_3.c3.y.m' (LearnableParameter operation): Initializing Parameter[2048 x 1] <- 0.000000.
-Node 'rn4_3.c3.y.isd' (LearnableParameter operation): Initializing Parameter[2048 x 1] <- 0.000000.
-Node 'OutputNodes.W' (LearnableParameter operation): Initializing Parameter[1000 x 2048] <- 0.000000.
-Node 'OutputNodes.b' (LearnableParameter operation): Initializing Parameter[1000] <- 0.000000.
-Node 'conv1.c.W' (LearnableParameter operation): Initializing Parameter[64 x 147] <- gaussian(seed=1, init dims=[64 x 147], range=0.016496*0.600000, onCPU=true).
-Node 'conv1.c.y.b' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'conv1.c.y.sc' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 1.000000.
-Node 'conv1.c.y.m' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'conv1.c.y.isd' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_1.c1.c.W' (LearnableParameter operation): Initializing Parameter[64 x 64] <- gaussian(seed=2, init dims=[64 x 64], range=0.025000*7.070000, onCPU=true).
-Node 'rn1_1.c1.c.y.b' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_1.c1.c.y.sc' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 1.000000.
-Node 'rn1_1.c1.c.y.m' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_1.c1.c.y.isd' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_1.c2.c.W' (LearnableParameter operation): Initializing Parameter[64 x 576] <- gaussian(seed=3, init dims=[64 x 576], range=0.008333*7.070000, onCPU=true).
-Node 'rn1_1.c2.c.y.b' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_1.c2.c.y.sc' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 1.000000.
-Node 'rn1_1.c2.c.y.m' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_1.c2.c.y.isd' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_1.c3.W' (LearnableParameter operation): Initializing Parameter[256 x 64] <- gaussian(seed=4, init dims=[256 x 64], range=0.025000*7.070000, onCPU=true).
-Node 'rn1_1.c3.y.b' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn1_1.c3.y.sc' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 1.000000.
-Node 'rn1_1.c3.y.m' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn1_1.c3.y.isd' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn1_1.c_proj.W' (LearnableParameter operation): Initializing Parameter[256 x 64] <- gaussian(seed=5, init dims=[256 x 64], range=0.025000*7.070000, onCPU=true).
-Node 'rn1_1.c_proj.y.b' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn1_1.c_proj.y.sc' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 1.000000.
-Node 'rn1_1.c_proj.y.m' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn1_1.c_proj.y.isd' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn1_2.c1.c.W' (LearnableParameter operation): Initializing Parameter[64 x 256] <- gaussian(seed=6, init dims=[64 x 256], range=0.012500*7.070000, onCPU=true).
-Node 'rn1_2.c1.c.y.b' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_2.c1.c.y.sc' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 1.000000.
-Node 'rn1_2.c1.c.y.m' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_2.c1.c.y.isd' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_2.c2.c.W' (LearnableParameter operation): Initializing Parameter[64 x 576] <- gaussian(seed=7, init dims=[64 x 576], range=0.008333*7.070000, onCPU=true).
-Node 'rn1_2.c2.c.y.b' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_2.c2.c.y.sc' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 1.000000.
-Node 'rn1_2.c2.c.y.m' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_2.c2.c.y.isd' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_2.c3.W' (LearnableParameter operation): Initializing Parameter[256 x 64] <- gaussian(seed=8, init dims=[256 x 64], range=0.025000*7.070000, onCPU=true).
-Node 'rn1_2.c3.y.b' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn1_2.c3.y.sc' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 1.000000.
-Node 'rn1_2.c3.y.m' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn1_2.c3.y.isd' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn1_3.c1.c.W' (LearnableParameter operation): Initializing Parameter[64 x 256] <- gaussian(seed=9, init dims=[64 x 256], range=0.012500*7.070000, onCPU=true).
-Node 'rn1_3.c1.c.y.b' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_3.c1.c.y.sc' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 1.000000.
-Node 'rn1_3.c1.c.y.m' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_3.c1.c.y.isd' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_3.c2.c.W' (LearnableParameter operation): Initializing Parameter[64 x 576] <- gaussian(seed=10, init dims=[64 x 576], range=0.008333*7.070000, onCPU=true).
-Node 'rn1_3.c2.c.y.b' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_3.c2.c.y.sc' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 1.000000.
-Node 'rn1_3.c2.c.y.m' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_3.c2.c.y.isd' (LearnableParameter operation): Initializing Parameter[64 x 1] <- 0.000000.
-Node 'rn1_3.c3.W' (LearnableParameter operation): Initializing Parameter[256 x 64] <- gaussian(seed=11, init dims=[256 x 64], range=0.025000*7.070000, onCPU=true).
-Node 'rn1_3.c3.y.b' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn1_3.c3.y.sc' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 1.000000.
-Node 'rn1_3.c3.y.m' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn1_3.c3.y.isd' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn2_1.c1.c.W' (LearnableParameter operation): Initializing Parameter[128 x 256] <- gaussian(seed=12, init dims=[128 x 256], range=0.012500*7.070000, onCPU=true).
-Node 'rn2_1.c1.c.y.b' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_1.c1.c.y.sc' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 1.000000.
-Node 'rn2_1.c1.c.y.m' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_1.c1.c.y.isd' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_1.c2.c.W' (LearnableParameter operation): Initializing Parameter[128 x 1152] <- gaussian(seed=13, init dims=[128 x 1152], range=0.005893*7.070000, onCPU=true).
-Node 'rn2_1.c2.c.y.b' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_1.c2.c.y.sc' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 1.000000.
-Node 'rn2_1.c2.c.y.m' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_1.c2.c.y.isd' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_1.c3.W' (LearnableParameter operation): Initializing Parameter[512 x 128] <- gaussian(seed=14, init dims=[512 x 128], range=0.017678*7.070000, onCPU=true).
-Node 'rn2_1.c3.y.b' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn2_1.c3.y.sc' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 1.000000.
-Node 'rn2_1.c3.y.m' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn2_1.c3.y.isd' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn2_1.c_proj.W' (LearnableParameter operation): Initializing Parameter[512 x 256] <- gaussian(seed=15, init dims=[512 x 256], range=0.012500*7.070000, onCPU=true).
-Node 'rn2_1.c_proj.y.b' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn2_1.c_proj.y.sc' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 1.000000.
-Node 'rn2_1.c_proj.y.m' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn2_1.c_proj.y.isd' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn2_2.c1.c.W' (LearnableParameter operation): Initializing Parameter[128 x 512] <- gaussian(seed=16, init dims=[128 x 512], range=0.008839*7.070000, onCPU=true).
-Node 'rn2_2.c1.c.y.b' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_2.c1.c.y.sc' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 1.000000.
-Node 'rn2_2.c1.c.y.m' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_2.c1.c.y.isd' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_2.c2.c.W' (LearnableParameter operation): Initializing Parameter[128 x 1152] <- gaussian(seed=17, init dims=[128 x 1152], range=0.005893*7.070000, onCPU=true).
-Node 'rn2_2.c2.c.y.b' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_2.c2.c.y.sc' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 1.000000.
-Node 'rn2_2.c2.c.y.m' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_2.c2.c.y.isd' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_2.c3.W' (LearnableParameter operation): Initializing Parameter[512 x 128] <- gaussian(seed=18, init dims=[512 x 128], range=0.017678*7.070000, onCPU=true).
-Node 'rn2_2.c3.y.b' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn2_2.c3.y.sc' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 1.000000.
-Node 'rn2_2.c3.y.m' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn2_2.c3.y.isd' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn2_3.c1.c.W' (LearnableParameter operation): Initializing Parameter[128 x 512] <- gaussian(seed=19, init dims=[128 x 512], range=0.008839*7.070000, onCPU=true).
-Node 'rn2_3.c1.c.y.b' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_3.c1.c.y.sc' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 1.000000.
-Node 'rn2_3.c1.c.y.m' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_3.c1.c.y.isd' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_3.c2.c.W' (LearnableParameter operation): Initializing Parameter[128 x 1152] <- gaussian(seed=20, init dims=[128 x 1152], range=0.005893*7.070000, onCPU=true).
-Node 'rn2_3.c2.c.y.b' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_3.c2.c.y.sc' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 1.000000.
-Node 'rn2_3.c2.c.y.m' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_3.c2.c.y.isd' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_3.c3.W' (LearnableParameter operation): Initializing Parameter[512 x 128] <- gaussian(seed=21, init dims=[512 x 128], range=0.017678*7.070000, onCPU=true).
-Node 'rn2_3.c3.y.b' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn2_3.c3.y.sc' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 1.000000.
-Node 'rn2_3.c3.y.m' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn2_3.c3.y.isd' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn2_4.c1.c.W' (LearnableParameter operation): Initializing Parameter[128 x 512] <- gaussian(seed=22, init dims=[128 x 512], range=0.008839*7.070000, onCPU=true).
-Node 'rn2_4.c1.c.y.b' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_4.c1.c.y.sc' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 1.000000.
-Node 'rn2_4.c1.c.y.m' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_4.c1.c.y.isd' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_4.c2.c.W' (LearnableParameter operation): Initializing Parameter[128 x 1152] <- gaussian(seed=23, init dims=[128 x 1152], range=0.005893*7.070000, onCPU=true).
-Node 'rn2_4.c2.c.y.b' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_4.c2.c.y.sc' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 1.000000.
-Node 'rn2_4.c2.c.y.m' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_4.c2.c.y.isd' (LearnableParameter operation): Initializing Parameter[128 x 1] <- 0.000000.
-Node 'rn2_4.c3.W' (LearnableParameter operation): Initializing Parameter[512 x 128] <- gaussian(seed=24, init dims=[512 x 128], range=0.017678*7.070000, onCPU=true).
-Node 'rn2_4.c3.y.b' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn2_4.c3.y.sc' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 1.000000.
-Node 'rn2_4.c3.y.m' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn2_4.c3.y.isd' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn3_1.c1.c.W' (LearnableParameter operation): Initializing Parameter[256 x 512] <- gaussian(seed=25, init dims=[256 x 512], range=0.008839*7.070000, onCPU=true).
-Node 'rn3_1.c1.c.y.b' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_1.c1.c.y.sc' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 1.000000.
-Node 'rn3_1.c1.c.y.m' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_1.c1.c.y.isd' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_1.c2.c.W' (LearnableParameter operation): Initializing Parameter[256 x 2304] <- gaussian(seed=26, init dims=[256 x 2304], range=0.004167*7.070000, onCPU=true).
-Node 'rn3_1.c2.c.y.b' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_1.c2.c.y.sc' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 1.000000.
-Node 'rn3_1.c2.c.y.m' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_1.c2.c.y.isd' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_1.c3.W' (LearnableParameter operation): Initializing Parameter[1024 x 256] <- gaussian(seed=27, init dims=[1024 x 256], range=0.012500*7.070000, onCPU=true).
-Node 'rn3_1.c3.y.b' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_1.c3.y.sc' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 1.000000.
-Node 'rn3_1.c3.y.m' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_1.c3.y.isd' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_1.c_proj.W' (LearnableParameter operation): Initializing Parameter[1024 x 512] <- gaussian(seed=28, init dims=[1024 x 512], range=0.008839*7.070000, onCPU=true).
-Node 'rn3_1.c_proj.y.b' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_1.c_proj.y.sc' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 1.000000.
-Node 'rn3_1.c_proj.y.m' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_1.c_proj.y.isd' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_2.c1.c.W' (LearnableParameter operation): Initializing Parameter[256 x 1024] <- gaussian(seed=29, init dims=[256 x 1024], range=0.006250*7.070000, onCPU=true).
-Node 'rn3_2.c1.c.y.b' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_2.c1.c.y.sc' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 1.000000.
-Node 'rn3_2.c1.c.y.m' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_2.c1.c.y.isd' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_2.c2.c.W' (LearnableParameter operation): Initializing Parameter[256 x 2304] <- gaussian(seed=30, init dims=[256 x 2304], range=0.004167*7.070000, onCPU=true).
-Node 'rn3_2.c2.c.y.b' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_2.c2.c.y.sc' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 1.000000.
-Node 'rn3_2.c2.c.y.m' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_2.c2.c.y.isd' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_2.c3.W' (LearnableParameter operation): Initializing Parameter[1024 x 256] <- gaussian(seed=31, init dims=[1024 x 256], range=0.012500*7.070000, onCPU=true).
-Node 'rn3_2.c3.y.b' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_2.c3.y.sc' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 1.000000.
-Node 'rn3_2.c3.y.m' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_2.c3.y.isd' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_3.c1.c.W' (LearnableParameter operation): Initializing Parameter[256 x 1024] <- gaussian(seed=32, init dims=[256 x 1024], range=0.006250*7.070000, onCPU=true).
-Node 'rn3_3.c1.c.y.b' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_3.c1.c.y.sc' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 1.000000.
-Node 'rn3_3.c1.c.y.m' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_3.c1.c.y.isd' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_3.c2.c.W' (LearnableParameter operation): Initializing Parameter[256 x 2304] <- gaussian(seed=33, init dims=[256 x 2304], range=0.004167*7.070000, onCPU=true).
-Node 'rn3_3.c2.c.y.b' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_3.c2.c.y.sc' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 1.000000.
-Node 'rn3_3.c2.c.y.m' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_3.c2.c.y.isd' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_3.c3.W' (LearnableParameter operation): Initializing Parameter[1024 x 256] <- gaussian(seed=34, init dims=[1024 x 256], range=0.012500*7.070000, onCPU=true).
-Node 'rn3_3.c3.y.b' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_3.c3.y.sc' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 1.000000.
-Node 'rn3_3.c3.y.m' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_3.c3.y.isd' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_4.c1.c.W' (LearnableParameter operation): Initializing Parameter[256 x 1024] <- gaussian(seed=35, init dims=[256 x 1024], range=0.006250*7.070000, onCPU=true).
-Node 'rn3_4.c1.c.y.b' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_4.c1.c.y.sc' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 1.000000.
-Node 'rn3_4.c1.c.y.m' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_4.c1.c.y.isd' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_4.c2.c.W' (LearnableParameter operation): Initializing Parameter[256 x 2304] <- gaussian(seed=36, init dims=[256 x 2304], range=0.004167*7.070000, onCPU=true).
-Node 'rn3_4.c2.c.y.b' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_4.c2.c.y.sc' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 1.000000.
-Node 'rn3_4.c2.c.y.m' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_4.c2.c.y.isd' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_4.c3.W' (LearnableParameter operation): Initializing Parameter[1024 x 256] <- gaussian(seed=37, init dims=[1024 x 256], range=0.012500*7.070000, onCPU=true).
-Node 'rn3_4.c3.y.b' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_4.c3.y.sc' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 1.000000.
-Node 'rn3_4.c3.y.m' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_4.c3.y.isd' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_5.c1.c.W' (LearnableParameter operation): Initializing Parameter[256 x 1024] <- gaussian(seed=38, init dims=[256 x 1024], range=0.006250*7.070000, onCPU=true).
-Node 'rn3_5.c1.c.y.b' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_5.c1.c.y.sc' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 1.000000.
-Node 'rn3_5.c1.c.y.m' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_5.c1.c.y.isd' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_5.c2.c.W' (LearnableParameter operation): Initializing Parameter[256 x 2304] <- gaussian(seed=39, init dims=[256 x 2304], range=0.004167*7.070000, onCPU=true).
-Node 'rn3_5.c2.c.y.b' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_5.c2.c.y.sc' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 1.000000.
-Node 'rn3_5.c2.c.y.m' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_5.c2.c.y.isd' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_5.c3.W' (LearnableParameter operation): Initializing Parameter[1024 x 256] <- gaussian(seed=40, init dims=[1024 x 256], range=0.012500*7.070000, onCPU=true).
-Node 'rn3_5.c3.y.b' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_5.c3.y.sc' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 1.000000.
-Node 'rn3_5.c3.y.m' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_5.c3.y.isd' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_6.c1.c.W' (LearnableParameter operation): Initializing Parameter[256 x 1024] <- gaussian(seed=41, init dims=[256 x 1024], range=0.006250*7.070000, onCPU=true).
-Node 'rn3_6.c1.c.y.b' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_6.c1.c.y.sc' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 1.000000.
-Node 'rn3_6.c1.c.y.m' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_6.c1.c.y.isd' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_6.c2.c.W' (LearnableParameter operation): Initializing Parameter[256 x 2304] <- gaussian(seed=42, init dims=[256 x 2304], range=0.004167*7.070000, onCPU=true).
-Node 'rn3_6.c2.c.y.b' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_6.c2.c.y.sc' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 1.000000.
-Node 'rn3_6.c2.c.y.m' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_6.c2.c.y.isd' (LearnableParameter operation): Initializing Parameter[256 x 1] <- 0.000000.
-Node 'rn3_6.c3.W' (LearnableParameter operation): Initializing Parameter[1024 x 256] <- gaussian(seed=43, init dims=[1024 x 256], range=0.012500*7.070000, onCPU=true).
-Node 'rn3_6.c3.y.b' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_6.c3.y.sc' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 1.000000.
-Node 'rn3_6.c3.y.m' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn3_6.c3.y.isd' (LearnableParameter operation): Initializing Parameter[1024 x 1] <- 0.000000.
-Node 'rn4_1.c1.c.W' (LearnableParameter operation): Initializing Parameter[512 x 1024] <- gaussian(seed=44, init dims=[512 x 1024], range=0.006250*7.070000, onCPU=true).
-Node 'rn4_1.c1.c.y.b' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_1.c1.c.y.sc' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 1.000000.
-Node 'rn4_1.c1.c.y.m' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_1.c1.c.y.isd' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_1.c2.c.W' (LearnableParameter operation): Initializing Parameter[512 x 4608] <- gaussian(seed=45, init dims=[512 x 4608], range=0.002946*7.070000, onCPU=true).
-Node 'rn4_1.c2.c.y.b' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_1.c2.c.y.sc' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 1.000000.
-Node 'rn4_1.c2.c.y.m' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_1.c2.c.y.isd' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_1.c3.W' (LearnableParameter operation): Initializing Parameter[2048 x 512] <- gaussian(seed=46, init dims=[2048 x 512], range=0.008839*7.070000, onCPU=true).
-Node 'rn4_1.c3.y.b' (LearnableParameter operation): Initializing Parameter[2048 x 1] <- 0.000000.
-Node 'rn4_1.c3.y.sc' (LearnableParameter operation): Initializing Parameter[2048 x 1] <- 1.000000.
-Node 'rn4_1.c3.y.m' (LearnableParameter operation): Initializing Parameter[2048 x 1] <- 0.000000.
-Node 'rn4_1.c3.y.isd' (LearnableParameter operation): Initializing Parameter[2048 x 1] <- 0.000000.
-Node 'rn4_1.c_proj.W' (LearnableParameter operation): Initializing Parameter[2048 x 1024] <- gaussian(seed=47, init dims=[2048 x 1024], range=0.006250*7.070000, onCPU=true).
-Node 'rn4_1.c_proj.y.b' (LearnableParameter operation): Initializing Parameter[2048 x 1] <- 0.000000.
-Node 'rn4_1.c_proj.y.sc' (LearnableParameter operation): Initializing Parameter[2048 x 1] <- 1.000000.
-Node 'rn4_1.c_proj.y.m' (LearnableParameter operation): Initializing Parameter[2048 x 1] <- 0.000000.
-Node 'rn4_1.c_proj.y.isd' (LearnableParameter operation): Initializing Parameter[2048 x 1] <- 0.000000.
-Node 'rn4_2.c1.c.W' (LearnableParameter operation): Initializing Parameter[512 x 2048] <- gaussian(seed=48, init dims=[512 x 2048], range=0.004419*7.070000, onCPU=true).
-Node 'rn4_2.c1.c.y.b' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_2.c1.c.y.sc' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 1.000000.
-Node 'rn4_2.c1.c.y.m' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_2.c1.c.y.isd' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_2.c2.c.W' (LearnableParameter operation): Initializing Parameter[512 x 4608] <- gaussian(seed=49, init dims=[512 x 4608], range=0.002946*7.070000, onCPU=true).
-Node 'rn4_2.c2.c.y.b' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_2.c2.c.y.sc' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 1.000000.
-Node 'rn4_2.c2.c.y.m' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_2.c2.c.y.isd' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_2.c3.W' (LearnableParameter operation): Initializing Parameter[2048 x 512] <- gaussian(seed=50, init dims=[2048 x 512], range=0.008839*7.070000, onCPU=true).
-Node 'rn4_2.c3.y.b' (LearnableParameter operation): Initializing Parameter[2048 x 1] <- 0.000000.
-Node 'rn4_2.c3.y.sc' (LearnableParameter operation): Initializing Parameter[2048 x 1] <- 1.000000.
-Node 'rn4_2.c3.y.m' (LearnableParameter operation): Initializing Parameter[2048 x 1] <- 0.000000.
-Node 'rn4_2.c3.y.isd' (LearnableParameter operation): Initializing Parameter[2048 x 1] <- 0.000000.
-Node 'rn4_3.c1.c.W' (LearnableParameter operation): Initializing Parameter[512 x 2048] <- gaussian(seed=51, init dims=[512 x 2048], range=0.004419*7.070000, onCPU=true).
-Node 'rn4_3.c1.c.y.b' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_3.c1.c.y.sc' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 1.000000.
-Node 'rn4_3.c1.c.y.m' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_3.c1.c.y.isd' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_3.c2.c.W' (LearnableParameter operation): Initializing Parameter[512 x 4608] <- gaussian(seed=52, init dims=[512 x 4608], range=0.002946*7.070000, onCPU=true).
-Node 'rn4_3.c2.c.y.b' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_3.c2.c.y.sc' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 1.000000.
-Node 'rn4_3.c2.c.y.m' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_3.c2.c.y.isd' (LearnableParameter operation): Initializing Parameter[512 x 1] <- 0.000000.
-Node 'rn4_3.c3.W' (LearnableParameter operation): Initializing Parameter[2048 x 512] <- gaussian(seed=53, init dims=[2048 x 512], range=0.008839*7.070000, onCPU=true).
-Node 'rn4_3.c3.y.b' (LearnableParameter operation): Initializing Parameter[2048 x 1] <- 0.000000.
-Node 'rn4_3.c3.y.sc' (LearnableParameter operation): Initializing Parameter[2048 x 1] <- 1.000000.
-Node 'rn4_3.c3.y.m' (LearnableParameter operation): Initializing Parameter[2048 x 1] <- 0.000000.
-Node 'rn4_3.c3.y.isd' (LearnableParameter operation): Initializing Parameter[2048 x 1] <- 0.000000.
-Node 'OutputNodes.W' (LearnableParameter operation): Initializing Parameter[1000 x 2048] <- gaussian(seed=54, init dims=[1000 x 2048], range=0.004419*2.260000, onCPU=true).
-Node 'OutputNodes.b' (LearnableParameter operation): Initializing Parameter[1000] <- 0.000000.
-
-Post-processing network...
-
-3 roots:
-	CE = CrossEntropyWithSoftmax()
-	Err = ClassificationError()
-	OutputNodes.z = Plus()
-
-Validating network. 446 nodes to process in pass 1.
-
-Validating --> labels = InputValue() :  -> [1000 x *]
-Validating --> OutputNodes.W = LearnableParameter() :  -> [1000 x 2048]
-Validating --> rn4_3.c3.W = LearnableParameter() :  -> [2048 x 512]
-Validating --> rn4_3.c2.c.W = LearnableParameter() :  -> [512 x 4608]
-Validating --> rn4_3.c1.c.W = LearnableParameter() :  -> [512 x 2048]
-Validating --> rn4_2.c3.W = LearnableParameter() :  -> [2048 x 512]
-Validating --> rn4_2.c2.c.W = LearnableParameter() :  -> [512 x 4608]
-Validating --> rn4_2.c1.c.W = LearnableParameter() :  -> [512 x 2048]
-Validating --> rn4_1.c3.W = LearnableParameter() :  -> [2048 x 512]
-Validating --> rn4_1.c2.c.W = LearnableParameter() :  -> [512 x 4608]
-Validating --> rn4_1.c1.c.W = LearnableParameter() :  -> [512 x 1024]
-Validating --> rn3_6.c3.W = LearnableParameter() :  -> [1024 x 256]
-Validating --> rn3_6.c2.c.W = LearnableParameter() :  -> [256 x 2304]
-Validating --> rn3_6.c1.c.W = LearnableParameter() :  -> [256 x 1024]
-Validating --> rn3_5.c3.W = LearnableParameter() :  -> [1024 x 256]
-Validating --> rn3_5.c2.c.W = LearnableParameter() :  -> [256 x 2304]
-Validating --> rn3_5.c1.c.W = LearnableParameter() :  -> [256 x 1024]
-Validating --> rn3_4.c3.W = LearnableParameter() :  -> [1024 x 256]
-Validating --> rn3_4.c2.c.W = LearnableParameter() :  -> [256 x 2304]
-Validating --> rn3_4.c1.c.W = LearnableParameter() :  -> [256 x 1024]
-Validating --> rn3_3.c3.W = LearnableParameter() :  -> [1024 x 256]
-Validating --> rn3_3.c2.c.W = LearnableParameter() :  -> [256 x 2304]
-Validating --> rn3_3.c1.c.W = LearnableParameter() :  -> [256 x 1024]
-Validating --> rn3_2.c3.W = LearnableParameter() :  -> [1024 x 256]
-Validating --> rn3_2.c2.c.W = LearnableParameter() :  -> [256 x 2304]
-Validating --> rn3_2.c1.c.W = LearnableParameter() :  -> [256 x 1024]
-Validating --> rn3_1.c3.W = LearnableParameter() :  -> [1024 x 256]
-Validating --> rn3_1.c2.c.W = LearnableParameter() :  -> [256 x 2304]
-Validating --> rn3_1.c1.c.W = LearnableParameter() :  -> [256 x 512]
-Validating --> rn2_4.c3.W = LearnableParameter() :  -> [512 x 128]
-Validating --> rn2_4.c2.c.W = LearnableParameter() :  -> [128 x 1152]
-Validating --> rn2_4.c1.c.W = LearnableParameter() :  -> [128 x 512]
-Validating --> rn2_3.c3.W = LearnableParameter() :  -> [512 x 128]
-Validating --> rn2_3.c2.c.W = LearnableParameter() :  -> [128 x 1152]
-Validating --> rn2_3.c1.c.W = LearnableParameter() :  -> [128 x 512]
-Validating --> rn2_2.c3.W = LearnableParameter() :  -> [512 x 128]
-Validating --> rn2_2.c2.c.W = LearnableParameter() :  -> [128 x 1152]
-Validating --> rn2_2.c1.c.W = LearnableParameter() :  -> [128 x 512]
-Validating --> rn2_1.c3.W = LearnableParameter() :  -> [512 x 128]
-Validating --> rn2_1.c2.c.W = LearnableParameter() :  -> [128 x 1152]
-Validating --> rn2_1.c1.c.W = LearnableParameter() :  -> [128 x 256]
-Validating --> rn1_3.c3.W = LearnableParameter() :  -> [256 x 64]
-Validating --> rn1_3.c2.c.W = LearnableParameter() :  -> [64 x 576]
-Validating --> rn1_3.c1.c.W = LearnableParameter() :  -> [64 x 256]
-Validating --> rn1_2.c3.W = LearnableParameter() :  -> [256 x 64]
-Validating --> rn1_2.c2.c.W = LearnableParameter() :  -> [64 x 576]
-Validating --> rn1_2.c1.c.W = LearnableParameter() :  -> [64 x 256]
-Validating --> rn1_1.c3.W = LearnableParameter() :  -> [256 x 64]
-Validating --> rn1_1.c2.c.W = LearnableParameter() :  -> [64 x 576]
-Validating --> rn1_1.c1.c.W = LearnableParameter() :  -> [64 x 64]
-Validating --> conv1.c.W = LearnableParameter() :  -> [64 x 147]
-Validating --> features = InputValue() :  -> [224 x 224 x 3 x *]
-Validating --> conv1.c.c.c = Convolution (conv1.c.W, features) : [64 x 147], [224 x 224 x 3 x *] -> [112 x 112 x 64 x *]
-Validating --> conv1.c.y.sc = LearnableParameter() :  -> [64 x 1]
-Validating --> conv1.c.y.b = LearnableParameter() :  -> [64 x 1]
-Validating --> conv1.c.y.m = LearnableParameter() :  -> [64 x 1]
-Validating --> conv1.c.y.isd = LearnableParameter() :  -> [64 x 1]
-Validating --> conv1.c.y.y = BatchNormalization (conv1.c.c.c, conv1.c.y.sc, conv1.c.y.b, conv1.c.y.m, conv1.c.y.isd) : [112 x 112 x 64 x *], [64 x 1], [64 x 1], [64 x 1], [64 x 1] -> [112 x 112 x 64 x *]
-Validating --> conv1.y = RectifiedLinear (conv1.c.y.y) : [112 x 112 x 64 x *] -> [112 x 112 x 64 x *]
-Validating --> pool1.p = Pooling (conv1.y) : [112 x 112 x 64 x *] -> [56 x 56 x 64 x *]
-Validating --> rn1_1.c1.c.c = Convolution (rn1_1.c1.c.W, pool1.p) : [64 x 64], [56 x 56 x 64 x *] -> [56 x 56 x 64 x *]
-Validating --> rn1_1.c1.c.y.sc = LearnableParameter() :  -> [64 x 1]
-Validating --> rn1_1.c1.c.y.b = LearnableParameter() :  -> [64 x 1]
-Validating --> rn1_1.c1.c.y.m = LearnableParameter() :  -> [64 x 1]
-Validating --> rn1_1.c1.c.y.isd = LearnableParameter() :  -> [64 x 1]
-Validating --> rn1_1.c1.c.y.y = BatchNormalization (rn1_1.c1.c.c, rn1_1.c1.c.y.sc, rn1_1.c1.c.y.b, rn1_1.c1.c.y.m, rn1_1.c1.c.y.isd) : [56 x 56 x 64 x *], [64 x 1], [64 x 1], [64 x 1], [64 x 1] -> [56 x 56 x 64 x *]
-Validating --> rn1_1.c1.y = RectifiedLinear (rn1_1.c1.c.y.y) : [56 x 56 x 64 x *] -> [56 x 56 x 64 x *]
-Validating --> rn1_1.c2.c.c.c = Convolution (rn1_1.c2.c.W, rn1_1.c1.y) : [64 x 576], [56 x 56 x 64 x *] -> [56 x 56 x 64 x *]
-Validating --> rn1_1.c2.c.y.sc = LearnableParameter() :  -> [64 x 1]
-Validating --> rn1_1.c2.c.y.b = LearnableParameter() :  -> [64 x 1]
-Validating --> rn1_1.c2.c.y.m = LearnableParameter() :  -> [64 x 1]
-Validating --> rn1_1.c2.c.y.isd = LearnableParameter() :  -> [64 x 1]
-Validating --> rn1_1.c2.c.y.y = BatchNormalization (rn1_1.c2.c.c.c, rn1_1.c2.c.y.sc, rn1_1.c2.c.y.b, rn1_1.c2.c.y.m, rn1_1.c2.c.y.isd) : [56 x 56 x 64 x *], [64 x 1], [64 x 1], [64 x 1], [64 x 1] -> [56 x 56 x 64 x *]
-Validating --> rn1_1.c2.y = RectifiedLinear (rn1_1.c2.c.y.y) : [56 x 56 x 64 x *] -> [56 x 56 x 64 x *]
-Validating --> rn1_1.c3.c = Convolution (rn1_1.c3.W, rn1_1.c2.y) : [256 x 64], [56 x 56 x 64 x *] -> [56 x 56 x 256 x *]
-Validating --> rn1_1.c3.y.sc = LearnableParameter() :  -> [256 x 1]
-Validating --> rn1_1.c3.y.b = LearnableParameter() :  -> [256 x 1]
-Validating --> rn1_1.c3.y.m = LearnableParameter() :  -> [256 x 1]
-Validating --> rn1_1.c3.y.isd = LearnableParameter() :  -> [256 x 1]
-Validating --> rn1_1.c3.y.y = BatchNormalization (rn1_1.c3.c, rn1_1.c3.y.sc, rn1_1.c3.y.b, rn1_1.c3.y.m, rn1_1.c3.y.isd) : [56 x 56 x 256 x *], [256 x 1], [256 x 1], [256 x 1], [256 x 1] -> [56 x 56 x 256 x *]
-Validating --> rn1_1.c_proj.W = LearnableParameter() :  -> [256 x 64]
-Validating --> rn1_1.c_proj.c = Convolution (rn1_1.c_proj.W, pool1.p) : [256 x 64], [56 x 56 x 64 x *] -> [56 x 56 x 256 x *]
-Validating --> rn1_1.c_proj.y.sc = LearnableParameter() :  -> [256 x 1]
-Validating --> rn1_1.c_proj.y.b = LearnableParameter() :  -> [256 x 1]
-Validating --> rn1_1.c_proj.y.m = LearnableParameter() :  -> [256 x 1]
-Validating --> rn1_1.c_proj.y.isd = LearnableParameter() :  -> [256 x 1]
-Validating --> rn1_1.c_proj.y.y = BatchNormalization (rn1_1.c_proj.c, rn1_1.c_proj.y.sc, rn1_1.c_proj.y.b, rn1_1.c_proj.y.m, rn1_1.c_proj.y.isd) : [56 x 56 x 256 x *], [256 x 1], [256 x 1], [256 x 1], [256 x 1] -> [56 x 56 x 256 x *]
-Validating --> rn1_1.p = Plus (rn1_1.c3.y.y, rn1_1.c_proj.y.y) : [56 x 56 x 256 x *], [56 x 56 x 256 x *] -> [56 x 56 x 256 x *]
-Validating --> rn1_1.y = RectifiedLinear (rn1_1.p) : [56 x 56 x 256 x *] -> [56 x 56 x 256 x *]
-Validating --> rn1_2.c1.c.c = Convolution (rn1_2.c1.c.W, rn1_1.y) : [64 x 256], [56 x 56 x 256 x *] -> [56 x 56 x 64 x *]
-Validating --> rn1_2.c1.c.y.sc = LearnableParameter() :  -> [64 x 1]
-Validating --> rn1_2.c1.c.y.b = LearnableParameter() :  -> [64 x 1]
-Validating --> rn1_2.c1.c.y.m = LearnableParameter() :  -> [64 x 1]
-Validating --> rn1_2.c1.c.y.isd = LearnableParameter() :  -> [64 x 1]
-Validating --> rn1_2.c1.c.y.y = BatchNormalization (rn1_2.c1.c.c, rn1_2.c1.c.y.sc, rn1_2.c1.c.y.b, rn1_2.c1.c.y.m, rn1_2.c1.c.y.isd) : [56 x 56 x 64 x *], [64 x 1], [64 x 1], [64 x 1], [64 x 1] -> [56 x 56 x 64 x *]
-Validating --> rn1_2.c1.y = RectifiedLinear (rn1_2.c1.c.y.y) : [56 x 56 x 64 x *] -> [56 x 56 x 64 x *]
-Validating --> rn1_2.c2.c.c.c = Convolution (rn1_2.c2.c.W, rn1_2.c1.y) : [64 x 576], [56 x 56 x 64 x *] -> [56 x 56 x 64 x *]
-Validating --> rn1_2.c2.c.y.sc = LearnableParameter() :  -> [64 x 1]
-Validating --> rn1_2.c2.c.y.b = LearnableParameter() :  -> [64 x 1]
-Validating --> rn1_2.c2.c.y.m = LearnableParameter() :  -> [64 x 1]
-Validating --> rn1_2.c2.c.y.isd = LearnableParameter() :  -> [64 x 1]
-Validating --> rn1_2.c2.c.y.y = BatchNormalization (rn1_2.c2.c.c.c, rn1_2.c2.c.y.sc, rn1_2.c2.c.y.b, rn1_2.c2.c.y.m, rn1_2.c2.c.y.isd) : [56 x 56 x 64 x *], [64 x 1], [64 x 1], [64 x 1], [64 x 1] -> [56 x 56 x 64 x *]
-Validating --> rn1_2.c2.y = RectifiedLinear (rn1_2.c2.c.y.y) : [56 x 56 x 64 x *] -> [56 x 56 x 64 x *]
-Validating --> rn1_2.c3.c = Convolution (rn1_2.c3.W, rn1_2.c2.y) : [256 x 64], [56 x 56 x 64 x *] -> [56 x 56 x 256 x *]
-Validating --> rn1_2.c3.y.sc = LearnableParameter() :  -> [256 x 1]
-Validating --> rn1_2.c3.y.b = LearnableParameter() :  -> [256 x 1]
-Validating --> rn1_2.c3.y.m = LearnableParameter() :  -> [256 x 1]
-Validating --> rn1_2.c3.y.isd = LearnableParameter() :  -> [256 x 1]
-Validating --> rn1_2.c3.y.y = BatchNormalization (rn1_2.c3.c, rn1_2.c3.y.sc, rn1_2.c3.y.b, rn1_2.c3.y.m, rn1_2.c3.y.isd) : [56 x 56 x 256 x *], [256 x 1], [256 x 1], [256 x 1], [256 x 1] -> [56 x 56 x 256 x *]
-Validating --> rn1_2.p = Plus (rn1_2.c3.y.y, rn1_1.y) : [56 x 56 x 256 x *], [56 x 56 x 256 x *] -> [56 x 56 x 256 x *]
-Validating --> rn1_2.y = RectifiedLinear (rn1_2.p) : [56 x 56 x 256 x *] -> [56 x 56 x 256 x *]
-Validating --> rn1_3.c1.c.c = Convolution (rn1_3.c1.c.W, rn1_2.y) : [64 x 256], [56 x 56 x 256 x *] -> [56 x 56 x 64 x *]
-Validating --> rn1_3.c1.c.y.sc = LearnableParameter() :  -> [64 x 1]
-Validating --> rn1_3.c1.c.y.b = LearnableParameter() :  -> [64 x 1]
-Validating --> rn1_3.c1.c.y.m = LearnableParameter() :  -> [64 x 1]
-Validating --> rn1_3.c1.c.y.isd = LearnableParameter() :  -> [64 x 1]
-Validating --> rn1_3.c1.c.y.y = BatchNormalization (rn1_3.c1.c.c, rn1_3.c1.c.y.sc, rn1_3.c1.c.y.b, rn1_3.c1.c.y.m, rn1_3.c1.c.y.isd) : [56 x 56 x 64 x *], [64 x 1], [64 x 1], [64 x 1], [64 x 1] -> [56 x 56 x 64 x *]
-Validating --> rn1_3.c1.y = RectifiedLinear (rn1_3.c1.c.y.y) : [56 x 56 x 64 x *] -> [56 x 56 x 64 x *]
-Validating --> rn1_3.c2.c.c.c = Convolution (rn1_3.c2.c.W, rn1_3.c1.y) : [64 x 576], [56 x 56 x 64 x *] -> [56 x 56 x 64 x *]
-Validating --> rn1_3.c2.c.y.sc = LearnableParameter() :  -> [64 x 1]
-Validating --> rn1_3.c2.c.y.b = LearnableParameter() :  -> [64 x 1]
-Validating --> rn1_3.c2.c.y.m = LearnableParameter() :  -> [64 x 1]
-Validating --> rn1_3.c2.c.y.isd = LearnableParameter() :  -> [64 x 1]
-Validating --> rn1_3.c2.c.y.y = BatchNormalization (rn1_3.c2.c.c.c, rn1_3.c2.c.y.sc, rn1_3.c2.c.y.b, rn1_3.c2.c.y.m, rn1_3.c2.c.y.isd) : [56 x 56 x 64 x *], [64 x 1], [64 x 1], [64 x 1], [64 x 1] -> [56 x 56 x 64 x *]
-Validating --> rn1_3.c2.y = RectifiedLinear (rn1_3.c2.c.y.y) : [56 x 56 x 64 x *] -> [56 x 56 x 64 x *]
-Validating --> rn1_3.c3.c = Convolution (rn1_3.c3.W, rn1_3.c2.y) : [256 x 64], [56 x 56 x 64 x *] -> [56 x 56 x 256 x *]
-Validating --> rn1_3.c3.y.sc = LearnableParameter() :  -> [256 x 1]
-Validating --> rn1_3.c3.y.b = LearnableParameter() :  -> [256 x 1]
-Validating --> rn1_3.c3.y.m = LearnableParameter() :  -> [256 x 1]
-Validating --> rn1_3.c3.y.isd = LearnableParameter() :  -> [256 x 1]
-Validating --> rn1_3.c3.y.y = BatchNormalization (rn1_3.c3.c, rn1_3.c3.y.sc, rn1_3.c3.y.b, rn1_3.c3.y.m, rn1_3.c3.y.isd) : [56 x 56 x 256 x *], [256 x 1], [256 x 1], [256 x 1], [256 x 1] -> [56 x 56 x 256 x *]
-Validating --> rn1_3.p = Plus (rn1_3.c3.y.y, rn1_2.y) : [56 x 56 x 256 x *], [56 x 56 x 256 x *] -> [56 x 56 x 256 x *]
-Validating --> rn1_3.y = RectifiedLinear (rn1_3.p) : [56 x 56 x 256 x *] -> [56 x 56 x 256 x *]
-Validating --> rn2_1.c1.c.c = Convolution (rn2_1.c1.c.W, rn1_3.y) : [128 x 256], [56 x 56 x 256 x *] -> [56 x 56 x 128 x *]
-Validating --> rn2_1.c1.c.y.sc = LearnableParameter() :  -> [128 x 1]
-Validating --> rn2_1.c1.c.y.b = LearnableParameter() :  -> [128 x 1]
-Validating --> rn2_1.c1.c.y.m = LearnableParameter() :  -> [128 x 1]
-Validating --> rn2_1.c1.c.y.isd = LearnableParameter() :  -> [128 x 1]
-Validating --> rn2_1.c1.c.y.y = BatchNormalization (rn2_1.c1.c.c, rn2_1.c1.c.y.sc, rn2_1.c1.c.y.b, rn2_1.c1.c.y.m, rn2_1.c1.c.y.isd) : [56 x 56 x 128 x *], [128 x 1], [128 x 1], [128 x 1], [128 x 1] -> [56 x 56 x 128 x *]
-Validating --> rn2_1.c1.y = RectifiedLinear (rn2_1.c1.c.y.y) : [56 x 56 x 128 x *] -> [56 x 56 x 128 x *]
-Validating --> rn2_1.c2.c.c.c = Convolution (rn2_1.c2.c.W, rn2_1.c1.y) : [128 x 1152], [56 x 56 x 128 x *] -> [28 x 28 x 128 x *]
-Validating --> rn2_1.c2.c.y.sc = LearnableParameter() :  -> [128 x 1]
-Validating --> rn2_1.c2.c.y.b = LearnableParameter() :  -> [128 x 1]
-Validating --> rn2_1.c2.c.y.m = LearnableParameter() :  -> [128 x 1]
-Validating --> rn2_1.c2.c.y.isd = LearnableParameter() :  -> [128 x 1]
-Validating --> rn2_1.c2.c.y.y = BatchNormalization (rn2_1.c2.c.c.c, rn2_1.c2.c.y.sc, rn2_1.c2.c.y.b, rn2_1.c2.c.y.m, rn2_1.c2.c.y.isd) : [28 x 28 x 128 x *], [128 x 1], [128 x 1], [128 x 1], [128 x 1] -> [28 x 28 x 128 x *]
-Validating --> rn2_1.c2.y = RectifiedLinear (rn2_1.c2.c.y.y) : [28 x 28 x 128 x *] -> [28 x 28 x 128 x *]
-Validating --> rn2_1.c3.c = Convolution (rn2_1.c3.W, rn2_1.c2.y) : [512 x 128], [28 x 28 x 128 x *] -> [28 x 28 x 512 x *]
-Validating --> rn2_1.c3.y.sc = LearnableParameter() :  -> [512 x 1]
-Validating --> rn2_1.c3.y.b = LearnableParameter() :  -> [512 x 1]
-Validating --> rn2_1.c3.y.m = LearnableParameter() :  -> [512 x 1]
-Validating --> rn2_1.c3.y.isd = LearnableParameter() :  -> [512 x 1]
-Validating --> rn2_1.c3.y.y = BatchNormalization (rn2_1.c3.c, rn2_1.c3.y.sc, rn2_1.c3.y.b, rn2_1.c3.y.m, rn2_1.c3.y.isd) : [28 x 28 x 512 x *], [512 x 1], [512 x 1], [512 x 1], [512 x 1] -> [28 x 28 x 512 x *]
-Validating --> rn2_1.c_proj.W = LearnableParameter() :  -> [512 x 256]
-Validating --> rn2_1.c_proj.c = Convolution (rn2_1.c_proj.W, rn1_3.y) : [512 x 256], [56 x 56 x 256 x *] -> [28 x 28 x 512 x *]
-Validating --> rn2_1.c_proj.y.sc = LearnableParameter() :  -> [512 x 1]
-Validating --> rn2_1.c_proj.y.b = LearnableParameter() :  -> [512 x 1]
-Validating --> rn2_1.c_proj.y.m = LearnableParameter() :  -> [512 x 1]
-Validating --> rn2_1.c_proj.y.isd = LearnableParameter() :  -> [512 x 1]
-Validating --> rn2_1.c_proj.y.y = BatchNormalization (rn2_1.c_proj.c, rn2_1.c_proj.y.sc, rn2_1.c_proj.y.b, rn2_1.c_proj.y.m, rn2_1.c_proj.y.isd) : [28 x 28 x 512 x *], [512 x 1], [512 x 1], [512 x 1], [512 x 1] -> [28 x 28 x 512 x *]
-Validating --> rn2_1.p = Plus (rn2_1.c3.y.y, rn2_1.c_proj.y.y) : [28 x 28 x 512 x *], [28 x 28 x 512 x *] -> [28 x 28 x 512 x *]
-Validating --> rn2_1.y = RectifiedLinear (rn2_1.p) : [28 x 28 x 512 x *] -> [28 x 28 x 512 x *]
-Validating --> rn2_2.c1.c.c = Convolution (rn2_2.c1.c.W, rn2_1.y) : [128 x 512], [28 x 28 x 512 x *] -> [28 x 28 x 128 x *]
-Validating --> rn2_2.c1.c.y.sc = LearnableParameter() :  -> [128 x 1]
-Validating --> rn2_2.c1.c.y.b = LearnableParameter() :  -> [128 x 1]
-Validating --> rn2_2.c1.c.y.m = LearnableParameter() :  -> [128 x 1]
-Validating --> rn2_2.c1.c.y.isd = LearnableParameter() :  -> [128 x 1]
-Validating --> rn2_2.c1.c.y.y = BatchNormalization (rn2_2.c1.c.c, rn2_2.c1.c.y.sc, rn2_2.c1.c.y.b, rn2_2.c1.c.y.m, rn2_2.c1.c.y.isd) : [28 x 28 x 128 x *], [128 x 1], [128 x 1], [128 x 1], [128 x 1] -> [28 x 28 x 128 x *]
-Validating --> rn2_2.c1.y = RectifiedLinear (rn2_2.c1.c.y.y) : [28 x 28 x 128 x *] -> [28 x 28 x 128 x *]
-Validating --> rn2_2.c2.c.c.c = Convolution (rn2_2.c2.c.W, rn2_2.c1.y) : [128 x 1152], [28 x 28 x 128 x *] -> [28 x 28 x 128 x *]
-Validating --> rn2_2.c2.c.y.sc = LearnableParameter() :  -> [128 x 1]
-Validating --> rn2_2.c2.c.y.b = LearnableParameter() :  -> [128 x 1]
-Validating --> rn2_2.c2.c.y.m = LearnableParameter() :  -> [128 x 1]
-Validating --> rn2_2.c2.c.y.isd = LearnableParameter() :  -> [128 x 1]
-Validating --> rn2_2.c2.c.y.y = BatchNormalization (rn2_2.c2.c.c.c, rn2_2.c2.c.y.sc, rn2_2.c2.c.y.b, rn2_2.c2.c.y.m, rn2_2.c2.c.y.isd) : [28 x 28 x 128 x *], [128 x 1], [128 x 1], [128 x 1], [128 x 1] -> [28 x 28 x 128 x *]
-Validating --> rn2_2.c2.y = RectifiedLinear (rn2_2.c2.c.y.y) : [28 x 28 x 128 x *] -> [28 x 28 x 128 x *]
-Validating --> rn2_2.c3.c = Convolution (rn2_2.c3.W, rn2_2.c2.y) : [512 x 128], [28 x 28 x 128 x *] -> [28 x 28 x 512 x *]
-Validating --> rn2_2.c3.y.sc = LearnableParameter() :  -> [512 x 1]
-Validating --> rn2_2.c3.y.b = LearnableParameter() :  -> [512 x 1]
-Validating --> rn2_2.c3.y.m = LearnableParameter() :  -> [512 x 1]
-Validating --> rn2_2.c3.y.isd = LearnableParameter() :  -> [512 x 1]
-Validating --> rn2_2.c3.y.y = BatchNormalization (rn2_2.c3.c, rn2_2.c3.y.sc, rn2_2.c3.y.b, rn2_2.c3.y.m, rn2_2.c3.y.isd) : [28 x 28 x 512 x *], [512 x 1], [512 x 1], [512 x 1], [512 x 1] -> [28 x 28 x 512 x *]
-Validating --> rn2_2.p = Plus (rn2_2.c3.y.y, rn2_1.y) : [28 x 28 x 512 x *], [28 x 28 x 512 x *] -> [28 x 28 x 512 x *]
-Validating --> rn2_2.y = RectifiedLinear (rn2_2.p) : [28 x 28 x 512 x *] -> [28 x 28 x 512 x *]
-Validating --> rn2_3.c1.c.c = Convolution (rn2_3.c1.c.W, rn2_2.y) : [128 x 512], [28 x 28 x 512 x *] -> [28 x 28 x 128 x *]
-Validating --> rn2_3.c1.c.y.sc = LearnableParameter() :  -> [128 x 1]
-Validating --> rn2_3.c1.c.y.b = LearnableParameter() :  -> [128 x 1]
-Validating --> rn2_3.c1.c.y.m = LearnableParameter() :  -> [128 x 1]
-Validating --> rn2_3.c1.c.y.isd = LearnableParameter() :  -> [128 x 1]
-Validating --> rn2_3.c1.c.y.y = BatchNormalization (rn2_3.c1.c.c, rn2_3.c1.c.y.sc, rn2_3.c1.c.y.b, rn2_3.c1.c.y.m, rn2_3.c1.c.y.isd) : [28 x 28 x 128 x *], [128 x 1], [128 x 1], [128 x 1], [128 x 1] -> [28 x 28 x 128 x *]
-Validating --> rn2_3.c1.y = RectifiedLinear (rn2_3.c1.c.y.y) : [28 x 28 x 128 x *] -> [28 x 28 x 128 x *]
-Validating --> rn2_3.c2.c.c.c = Convolution (rn2_3.c2.c.W, rn2_3.c1.y) : [128 x 1152], [28 x 28 x 128 x *] -> [28 x 28 x 128 x *]
-Validating --> rn2_3.c2.c.y.sc = LearnableParameter() :  -> [128 x 1]
-Validating --> rn2_3.c2.c.y.b = LearnableParameter() :  -> [128 x 1]
-Validating --> rn2_3.c2.c.y.m = LearnableParameter() :  -> [128 x 1]
-Validating --> rn2_3.c2.c.y.isd = LearnableParameter() :  -> [128 x 1]
-Validating --> rn2_3.c2.c.y.y = BatchNormalization (rn2_3.c2.c.c.c, rn2_3.c2.c.y.sc, rn2_3.c2.c.y.b, rn2_3.c2.c.y.m, rn2_3.c2.c.y.isd) : [28 x 28 x 128 x *], [128 x 1], [128 x 1], [128 x 1], [128 x 1] -> [28 x 28 x 128 x *]
-Validating --> rn2_3.c2.y = RectifiedLinear (rn2_3.c2.c.y.y) : [28 x 28 x 128 x *] -> [28 x 28 x 128 x *]
-Validating --> rn2_3.c3.c = Convolution (rn2_3.c3.W, rn2_3.c2.y) : [512 x 128], [28 x 28 x 128 x *] -> [28 x 28 x 512 x *]
-Validating --> rn2_3.c3.y.sc = LearnableParameter() :  -> [512 x 1]
-Validating --> rn2_3.c3.y.b = LearnableParameter() :  -> [512 x 1]
-Validating --> rn2_3.c3.y.m = LearnableParameter() :  -> [512 x 1]
-Validating --> rn2_3.c3.y.isd = LearnableParameter() :  -> [512 x 1]
-Validating --> rn2_3.c3.y.y = BatchNormalization (rn2_3.c3.c, rn2_3.c3.y.sc, rn2_3.c3.y.b, rn2_3.c3.y.m, rn2_3.c3.y.isd) : [28 x 28 x 512 x *], [512 x 1], [512 x 1], [512 x 1], [512 x 1] -> [28 x 28 x 512 x *]
-Validating --> rn2_3.p = Plus (rn2_3.c3.y.y, rn2_2.y) : [28 x 28 x 512 x *], [28 x 28 x 512 x *] -> [28 x 28 x 512 x *]
-Validating --> rn2_3.y = RectifiedLinear (rn2_3.p) : [28 x 28 x 512 x *] -> [28 x 28 x 512 x *]
-Validating --> rn2_4.c1.c.c = Convolution (rn2_4.c1.c.W, rn2_3.y) : [128 x 512], [28 x 28 x 512 x *] -> [28 x 28 x 128 x *]
-Validating --> rn2_4.c1.c.y.sc = LearnableParameter() :  -> [128 x 1]
-Validating --> rn2_4.c1.c.y.b = LearnableParameter() :  -> [128 x 1]
-Validating --> rn2_4.c1.c.y.m = LearnableParameter() :  -> [128 x 1]
-Validating --> rn2_4.c1.c.y.isd = LearnableParameter() :  -> [128 x 1]
-Validating --> rn2_4.c1.c.y.y = BatchNormalization (rn2_4.c1.c.c, rn2_4.c1.c.y.sc, rn2_4.c1.c.y.b, rn2_4.c1.c.y.m, rn2_4.c1.c.y.isd) : [28 x 28 x 128 x *], [128 x 1], [128 x 1], [128 x 1], [128 x 1] -> [28 x 28 x 128 x *]
-Validating --> rn2_4.c1.y = RectifiedLinear (rn2_4.c1.c.y.y) : [28 x 28 x 128 x *] -> [28 x 28 x 128 x *]
-Validating --> rn2_4.c2.c.c.c = Convolution (rn2_4.c2.c.W, rn2_4.c1.y) : [128 x 1152], [28 x 28 x 128 x *] -> [28 x 28 x 128 x *]
-Validating --> rn2_4.c2.c.y.sc = LearnableParameter() :  -> [128 x 1]
-Validating --> rn2_4.c2.c.y.b = LearnableParameter() :  -> [128 x 1]
-Validating --> rn2_4.c2.c.y.m = LearnableParameter() :  -> [128 x 1]
-Validating --> rn2_4.c2.c.y.isd = LearnableParameter() :  -> [128 x 1]
-Validating --> rn2_4.c2.c.y.y = BatchNormalization (rn2_4.c2.c.c.c, rn2_4.c2.c.y.sc, rn2_4.c2.c.y.b, rn2_4.c2.c.y.m, rn2_4.c2.c.y.isd) : [28 x 28 x 128 x *], [128 x 1], [128 x 1], [128 x 1], [128 x 1] -> [28 x 28 x 128 x *]
-Validating --> rn2_4.c2.y = RectifiedLinear (rn2_4.c2.c.y.y) : [28 x 28 x 128 x *] -> [28 x 28 x 128 x *]
-Validating --> rn2_4.c3.c = Convolution (rn2_4.c3.W, rn2_4.c2.y) : [512 x 128], [28 x 28 x 128 x *] -> [28 x 28 x 512 x *]
-Validating --> rn2_4.c3.y.sc = LearnableParameter() :  -> [512 x 1]
-Validating --> rn2_4.c3.y.b = LearnableParameter() :  -> [512 x 1]
-Validating --> rn2_4.c3.y.m = LearnableParameter() :  -> [512 x 1]
-Validating --> rn2_4.c3.y.isd = LearnableParameter() :  -> [512 x 1]
-Validating --> rn2_4.c3.y.y = BatchNormalization (rn2_4.c3.c, rn2_4.c3.y.sc, rn2_4.c3.y.b, rn2_4.c3.y.m, rn2_4.c3.y.isd) : [28 x 28 x 512 x *], [512 x 1], [512 x 1], [512 x 1], [512 x 1] -> [28 x 28 x 512 x *]
-Validating --> rn2_4.p = Plus (rn2_4.c3.y.y, rn2_3.y) : [28 x 28 x 512 x *], [28 x 28 x 512 x *] -> [28 x 28 x 512 x *]
-Validating --> rn2_4.y = RectifiedLinear (rn2_4.p) : [28 x 28 x 512 x *] -> [28 x 28 x 512 x *]
-Validating --> rn3_1.c1.c.c = Convolution (rn3_1.c1.c.W, rn2_4.y) : [256 x 512], [28 x 28 x 512 x *] -> [28 x 28 x 256 x *]
-Validating --> rn3_1.c1.c.y.sc = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_1.c1.c.y.b = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_1.c1.c.y.m = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_1.c1.c.y.isd = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_1.c1.c.y.y = BatchNormalization (rn3_1.c1.c.c, rn3_1.c1.c.y.sc, rn3_1.c1.c.y.b, rn3_1.c1.c.y.m, rn3_1.c1.c.y.isd) : [28 x 28 x 256 x *], [256 x 1], [256 x 1], [256 x 1], [256 x 1] -> [28 x 28 x 256 x *]
-Validating --> rn3_1.c1.y = RectifiedLinear (rn3_1.c1.c.y.y) : [28 x 28 x 256 x *] -> [28 x 28 x 256 x *]
-Validating --> rn3_1.c2.c.c.c = Convolution (rn3_1.c2.c.W, rn3_1.c1.y) : [256 x 2304], [28 x 28 x 256 x *] -> [14 x 14 x 256 x *]
-Validating --> rn3_1.c2.c.y.sc = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_1.c2.c.y.b = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_1.c2.c.y.m = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_1.c2.c.y.isd = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_1.c2.c.y.y = BatchNormalization (rn3_1.c2.c.c.c, rn3_1.c2.c.y.sc, rn3_1.c2.c.y.b, rn3_1.c2.c.y.m, rn3_1.c2.c.y.isd) : [14 x 14 x 256 x *], [256 x 1], [256 x 1], [256 x 1], [256 x 1] -> [14 x 14 x 256 x *]
-Validating --> rn3_1.c2.y = RectifiedLinear (rn3_1.c2.c.y.y) : [14 x 14 x 256 x *] -> [14 x 14 x 256 x *]
-Validating --> rn3_1.c3.c = Convolution (rn3_1.c3.W, rn3_1.c2.y) : [1024 x 256], [14 x 14 x 256 x *] -> [14 x 14 x 1024 x *]
-Validating --> rn3_1.c3.y.sc = LearnableParameter() :  -> [1024 x 1]
-Validating --> rn3_1.c3.y.b = LearnableParameter() :  -> [1024 x 1]
-Validating --> rn3_1.c3.y.m = LearnableParameter() :  -> [1024 x 1]
-Validating --> rn3_1.c3.y.isd = LearnableParameter() :  -> [1024 x 1]
-Validating --> rn3_1.c3.y.y = BatchNormalization (rn3_1.c3.c, rn3_1.c3.y.sc, rn3_1.c3.y.b, rn3_1.c3.y.m, rn3_1.c3.y.isd) : [14 x 14 x 1024 x *], [1024 x 1], [1024 x 1], [1024 x 1], [1024 x 1] -> [14 x 14 x 1024 x *]
-Validating --> rn3_1.c_proj.W = LearnableParameter() :  -> [1024 x 512]
-Validating --> rn3_1.c_proj.c = Convolution (rn3_1.c_proj.W, rn2_4.y) : [1024 x 512], [28 x 28 x 512 x *] -> [14 x 14 x 1024 x *]
-Validating --> rn3_1.c_proj.y.sc = LearnableParameter() :  -> [1024 x 1]
-Validating --> rn3_1.c_proj.y.b = LearnableParameter() :  -> [1024 x 1]
-Validating --> rn3_1.c_proj.y.m = LearnableParameter() :  -> [1024 x 1]
-Validating --> rn3_1.c_proj.y.isd = LearnableParameter() :  -> [1024 x 1]
-Validating --> rn3_1.c_proj.y.y = BatchNormalization (rn3_1.c_proj.c, rn3_1.c_proj.y.sc, rn3_1.c_proj.y.b, rn3_1.c_proj.y.m, rn3_1.c_proj.y.isd) : [14 x 14 x 1024 x *], [1024 x 1], [1024 x 1], [1024 x 1], [1024 x 1] -> [14 x 14 x 1024 x *]
-Validating --> rn3_1.p = Plus (rn3_1.c3.y.y, rn3_1.c_proj.y.y) : [14 x 14 x 1024 x *], [14 x 14 x 1024 x *] -> [14 x 14 x 1024 x *]
-Validating --> rn3_1.y = RectifiedLinear (rn3_1.p) : [14 x 14 x 1024 x *] -> [14 x 14 x 1024 x *]
-Validating --> rn3_2.c1.c.c = Convolution (rn3_2.c1.c.W, rn3_1.y) : [256 x 1024], [14 x 14 x 1024 x *] -> [14 x 14 x 256 x *]
-Validating --> rn3_2.c1.c.y.sc = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_2.c1.c.y.b = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_2.c1.c.y.m = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_2.c1.c.y.isd = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_2.c1.c.y.y = BatchNormalization (rn3_2.c1.c.c, rn3_2.c1.c.y.sc, rn3_2.c1.c.y.b, rn3_2.c1.c.y.m, rn3_2.c1.c.y.isd) : [14 x 14 x 256 x *], [256 x 1], [256 x 1], [256 x 1], [256 x 1] -> [14 x 14 x 256 x *]
-Validating --> rn3_2.c1.y = RectifiedLinear (rn3_2.c1.c.y.y) : [14 x 14 x 256 x *] -> [14 x 14 x 256 x *]
-Validating --> rn3_2.c2.c.c.c = Convolution (rn3_2.c2.c.W, rn3_2.c1.y) : [256 x 2304], [14 x 14 x 256 x *] -> [14 x 14 x 256 x *]
-Validating --> rn3_2.c2.c.y.sc = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_2.c2.c.y.b = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_2.c2.c.y.m = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_2.c2.c.y.isd = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_2.c2.c.y.y = BatchNormalization (rn3_2.c2.c.c.c, rn3_2.c2.c.y.sc, rn3_2.c2.c.y.b, rn3_2.c2.c.y.m, rn3_2.c2.c.y.isd) : [14 x 14 x 256 x *], [256 x 1], [256 x 1], [256 x 1], [256 x 1] -> [14 x 14 x 256 x *]
-Validating --> rn3_2.c2.y = RectifiedLinear (rn3_2.c2.c.y.y) : [14 x 14 x 256 x *] -> [14 x 14 x 256 x *]
-Validating --> rn3_2.c3.c = Convolution (rn3_2.c3.W, rn3_2.c2.y) : [1024 x 256], [14 x 14 x 256 x *] -> [14 x 14 x 1024 x *]
-Validating --> rn3_2.c3.y.sc = LearnableParameter() :  -> [1024 x 1]
-Validating --> rn3_2.c3.y.b = LearnableParameter() :  -> [1024 x 1]
-Validating --> rn3_2.c3.y.m = LearnableParameter() :  -> [1024 x 1]
-Validating --> rn3_2.c3.y.isd = LearnableParameter() :  -> [1024 x 1]
-Validating --> rn3_2.c3.y.y = BatchNormalization (rn3_2.c3.c, rn3_2.c3.y.sc, rn3_2.c3.y.b, rn3_2.c3.y.m, rn3_2.c3.y.isd) : [14 x 14 x 1024 x *], [1024 x 1], [1024 x 1], [1024 x 1], [1024 x 1] -> [14 x 14 x 1024 x *]
-Validating --> rn3_2.p = Plus (rn3_2.c3.y.y, rn3_1.y) : [14 x 14 x 1024 x *], [14 x 14 x 1024 x *] -> [14 x 14 x 1024 x *]
-Validating --> rn3_2.y = RectifiedLinear (rn3_2.p) : [14 x 14 x 1024 x *] -> [14 x 14 x 1024 x *]
-Validating --> rn3_3.c1.c.c = Convolution (rn3_3.c1.c.W, rn3_2.y) : [256 x 1024], [14 x 14 x 1024 x *] -> [14 x 14 x 256 x *]
-Validating --> rn3_3.c1.c.y.sc = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_3.c1.c.y.b = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_3.c1.c.y.m = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_3.c1.c.y.isd = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_3.c1.c.y.y = BatchNormalization (rn3_3.c1.c.c, rn3_3.c1.c.y.sc, rn3_3.c1.c.y.b, rn3_3.c1.c.y.m, rn3_3.c1.c.y.isd) : [14 x 14 x 256 x *], [256 x 1], [256 x 1], [256 x 1], [256 x 1] -> [14 x 14 x 256 x *]
-Validating --> rn3_3.c1.y = RectifiedLinear (rn3_3.c1.c.y.y) : [14 x 14 x 256 x *] -> [14 x 14 x 256 x *]
-Validating --> rn3_3.c2.c.c.c = Convolution (rn3_3.c2.c.W, rn3_3.c1.y) : [256 x 2304], [14 x 14 x 256 x *] -> [14 x 14 x 256 x *]
-Validating --> rn3_3.c2.c.y.sc = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_3.c2.c.y.b = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_3.c2.c.y.m = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_3.c2.c.y.isd = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_3.c2.c.y.y = BatchNormalization (rn3_3.c2.c.c.c, rn3_3.c2.c.y.sc, rn3_3.c2.c.y.b, rn3_3.c2.c.y.m, rn3_3.c2.c.y.isd) : [14 x 14 x 256 x *], [256 x 1], [256 x 1], [256 x 1], [256 x 1] -> [14 x 14 x 256 x *]
-Validating --> rn3_3.c2.y = RectifiedLinear (rn3_3.c2.c.y.y) : [14 x 14 x 256 x *] -> [14 x 14 x 256 x *]
-Validating --> rn3_3.c3.c = Convolution (rn3_3.c3.W, rn3_3.c2.y) : [1024 x 256], [14 x 14 x 256 x *] -> [14 x 14 x 1024 x *]
-Validating --> rn3_3.c3.y.sc = LearnableParameter() :  -> [1024 x 1]
-Validating --> rn3_3.c3.y.b = LearnableParameter() :  -> [1024 x 1]
-Validating --> rn3_3.c3.y.m = LearnableParameter() :  -> [1024 x 1]
-Validating --> rn3_3.c3.y.isd = LearnableParameter() :  -> [1024 x 1]
-Validating --> rn3_3.c3.y.y = BatchNormalization (rn3_3.c3.c, rn3_3.c3.y.sc, rn3_3.c3.y.b, rn3_3.c3.y.m, rn3_3.c3.y.isd) : [14 x 14 x 1024 x *], [1024 x 1], [1024 x 1], [1024 x 1], [1024 x 1] -> [14 x 14 x 1024 x *]
-Validating --> rn3_3.p = Plus (rn3_3.c3.y.y, rn3_2.y) : [14 x 14 x 1024 x *], [14 x 14 x 1024 x *] -> [14 x 14 x 1024 x *]
-Validating --> rn3_3.y = RectifiedLinear (rn3_3.p) : [14 x 14 x 1024 x *] -> [14 x 14 x 1024 x *]
-Validating --> rn3_4.c1.c.c = Convolution (rn3_4.c1.c.W, rn3_3.y) : [256 x 1024], [14 x 14 x 1024 x *] -> [14 x 14 x 256 x *]
-Validating --> rn3_4.c1.c.y.sc = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_4.c1.c.y.b = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_4.c1.c.y.m = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_4.c1.c.y.isd = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_4.c1.c.y.y = BatchNormalization (rn3_4.c1.c.c, rn3_4.c1.c.y.sc, rn3_4.c1.c.y.b, rn3_4.c1.c.y.m, rn3_4.c1.c.y.isd) : [14 x 14 x 256 x *], [256 x 1], [256 x 1], [256 x 1], [256 x 1] -> [14 x 14 x 256 x *]
-Validating --> rn3_4.c1.y = RectifiedLinear (rn3_4.c1.c.y.y) : [14 x 14 x 256 x *] -> [14 x 14 x 256 x *]
-Validating --> rn3_4.c2.c.c.c = Convolution (rn3_4.c2.c.W, rn3_4.c1.y) : [256 x 2304], [14 x 14 x 256 x *] -> [14 x 14 x 256 x *]
-Validating --> rn3_4.c2.c.y.sc = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_4.c2.c.y.b = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_4.c2.c.y.m = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_4.c2.c.y.isd = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_4.c2.c.y.y = BatchNormalization (rn3_4.c2.c.c.c, rn3_4.c2.c.y.sc, rn3_4.c2.c.y.b, rn3_4.c2.c.y.m, rn3_4.c2.c.y.isd) : [14 x 14 x 256 x *], [256 x 1], [256 x 1], [256 x 1], [256 x 1] -> [14 x 14 x 256 x *]
-Validating --> rn3_4.c2.y = RectifiedLinear (rn3_4.c2.c.y.y) : [14 x 14 x 256 x *] -> [14 x 14 x 256 x *]
-Validating --> rn3_4.c3.c = Convolution (rn3_4.c3.W, rn3_4.c2.y) : [1024 x 256], [14 x 14 x 256 x *] -> [14 x 14 x 1024 x *]
-Validating --> rn3_4.c3.y.sc = LearnableParameter() :  -> [1024 x 1]
-Validating --> rn3_4.c3.y.b = LearnableParameter() :  -> [1024 x 1]
-Validating --> rn3_4.c3.y.m = LearnableParameter() :  -> [1024 x 1]
-Validating --> rn3_4.c3.y.isd = LearnableParameter() :  -> [1024 x 1]
-Validating --> rn3_4.c3.y.y = BatchNormalization (rn3_4.c3.c, rn3_4.c3.y.sc, rn3_4.c3.y.b, rn3_4.c3.y.m, rn3_4.c3.y.isd) : [14 x 14 x 1024 x *], [1024 x 1], [1024 x 1], [1024 x 1], [1024 x 1] -> [14 x 14 x 1024 x *]
-Validating --> rn3_4.p = Plus (rn3_4.c3.y.y, rn3_3.y) : [14 x 14 x 1024 x *], [14 x 14 x 1024 x *] -> [14 x 14 x 1024 x *]
-Validating --> rn3_4.y = RectifiedLinear (rn3_4.p) : [14 x 14 x 1024 x *] -> [14 x 14 x 1024 x *]
-Validating --> rn3_5.c1.c.c = Convolution (rn3_5.c1.c.W, rn3_4.y) : [256 x 1024], [14 x 14 x 1024 x *] -> [14 x 14 x 256 x *]
-Validating --> rn3_5.c1.c.y.sc = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_5.c1.c.y.b = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_5.c1.c.y.m = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_5.c1.c.y.isd = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_5.c1.c.y.y = BatchNormalization (rn3_5.c1.c.c, rn3_5.c1.c.y.sc, rn3_5.c1.c.y.b, rn3_5.c1.c.y.m, rn3_5.c1.c.y.isd) : [14 x 14 x 256 x *], [256 x 1], [256 x 1], [256 x 1], [256 x 1] -> [14 x 14 x 256 x *]
-Validating --> rn3_5.c1.y = RectifiedLinear (rn3_5.c1.c.y.y) : [14 x 14 x 256 x *] -> [14 x 14 x 256 x *]
-Validating --> rn3_5.c2.c.c.c = Convolution (rn3_5.c2.c.W, rn3_5.c1.y) : [256 x 2304], [14 x 14 x 256 x *] -> [14 x 14 x 256 x *]
-Validating --> rn3_5.c2.c.y.sc = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_5.c2.c.y.b = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_5.c2.c.y.m = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_5.c2.c.y.isd = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_5.c2.c.y.y = BatchNormalization (rn3_5.c2.c.c.c, rn3_5.c2.c.y.sc, rn3_5.c2.c.y.b, rn3_5.c2.c.y.m, rn3_5.c2.c.y.isd) : [14 x 14 x 256 x *], [256 x 1], [256 x 1], [256 x 1], [256 x 1] -> [14 x 14 x 256 x *]
-Validating --> rn3_5.c2.y = RectifiedLinear (rn3_5.c2.c.y.y) : [14 x 14 x 256 x *] -> [14 x 14 x 256 x *]
-Validating --> rn3_5.c3.c = Convolution (rn3_5.c3.W, rn3_5.c2.y) : [1024 x 256], [14 x 14 x 256 x *] -> [14 x 14 x 1024 x *]
-Validating --> rn3_5.c3.y.sc = LearnableParameter() :  -> [1024 x 1]
-Validating --> rn3_5.c3.y.b = LearnableParameter() :  -> [1024 x 1]
-Validating --> rn3_5.c3.y.m = LearnableParameter() :  -> [1024 x 1]
-Validating --> rn3_5.c3.y.isd = LearnableParameter() :  -> [1024 x 1]
-Validating --> rn3_5.c3.y.y = BatchNormalization (rn3_5.c3.c, rn3_5.c3.y.sc, rn3_5.c3.y.b, rn3_5.c3.y.m, rn3_5.c3.y.isd) : [14 x 14 x 1024 x *], [1024 x 1], [1024 x 1], [1024 x 1], [1024 x 1] -> [14 x 14 x 1024 x *]
-Validating --> rn3_5.p = Plus (rn3_5.c3.y.y, rn3_4.y) : [14 x 14 x 1024 x *], [14 x 14 x 1024 x *] -> [14 x 14 x 1024 x *]
-Validating --> rn3_5.y = RectifiedLinear (rn3_5.p) : [14 x 14 x 1024 x *] -> [14 x 14 x 1024 x *]
-Validating --> rn3_6.c1.c.c = Convolution (rn3_6.c1.c.W, rn3_5.y) : [256 x 1024], [14 x 14 x 1024 x *] -> [14 x 14 x 256 x *]
-Validating --> rn3_6.c1.c.y.sc = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_6.c1.c.y.b = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_6.c1.c.y.m = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_6.c1.c.y.isd = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_6.c1.c.y.y = BatchNormalization (rn3_6.c1.c.c, rn3_6.c1.c.y.sc, rn3_6.c1.c.y.b, rn3_6.c1.c.y.m, rn3_6.c1.c.y.isd) : [14 x 14 x 256 x *], [256 x 1], [256 x 1], [256 x 1], [256 x 1] -> [14 x 14 x 256 x *]
-Validating --> rn3_6.c1.y = RectifiedLinear (rn3_6.c1.c.y.y) : [14 x 14 x 256 x *] -> [14 x 14 x 256 x *]
-Validating --> rn3_6.c2.c.c.c = Convolution (rn3_6.c2.c.W, rn3_6.c1.y) : [256 x 2304], [14 x 14 x 256 x *] -> [14 x 14 x 256 x *]
-Validating --> rn3_6.c2.c.y.sc = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_6.c2.c.y.b = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_6.c2.c.y.m = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_6.c2.c.y.isd = LearnableParameter() :  -> [256 x 1]
-Validating --> rn3_6.c2.c.y.y = BatchNormalization (rn3_6.c2.c.c.c, rn3_6.c2.c.y.sc, rn3_6.c2.c.y.b, rn3_6.c2.c.y.m, rn3_6.c2.c.y.isd) : [14 x 14 x 256 x *], [256 x 1], [256 x 1], [256 x 1], [256 x 1] -> [14 x 14 x 256 x *]
-Validating --> rn3_6.c2.y = RectifiedLinear (rn3_6.c2.c.y.y) : [14 x 14 x 256 x *] -> [14 x 14 x 256 x *]
-Validating --> rn3_6.c3.c = Convolution (rn3_6.c3.W, rn3_6.c2.y) : [1024 x 256], [14 x 14 x 256 x *] -> [14 x 14 x 1024 x *]
-Validating --> rn3_6.c3.y.sc = LearnableParameter() :  -> [1024 x 1]
-Validating --> rn3_6.c3.y.b = LearnableParameter() :  -> [1024 x 1]
-Validating --> rn3_6.c3.y.m = LearnableParameter() :  -> [1024 x 1]
-Validating --> rn3_6.c3.y.isd = LearnableParameter() :  -> [1024 x 1]
-Validating --> rn3_6.c3.y.y = BatchNormalization (rn3_6.c3.c, rn3_6.c3.y.sc, rn3_6.c3.y.b, rn3_6.c3.y.m, rn3_6.c3.y.isd) : [14 x 14 x 1024 x *], [1024 x 1], [1024 x 1], [1024 x 1], [1024 x 1] -> [14 x 14 x 1024 x *]
-Validating --> rn3_6.p = Plus (rn3_6.c3.y.y, rn3_5.y) : [14 x 14 x 1024 x *], [14 x 14 x 1024 x *] -> [14 x 14 x 1024 x *]
-Validating --> rn3_6.y = RectifiedLinear (rn3_6.p) : [14 x 14 x 1024 x *] -> [14 x 14 x 1024 x *]
-Validating --> rn4_1.c1.c.c = Convolution (rn4_1.c1.c.W, rn3_6.y) : [512 x 1024], [14 x 14 x 1024 x *] -> [14 x 14 x 512 x *]
-Validating --> rn4_1.c1.c.y.sc = LearnableParameter() :  -> [512 x 1]
-Validating --> rn4_1.c1.c.y.b = LearnableParameter() :  -> [512 x 1]
-Validating --> rn4_1.c1.c.y.m = LearnableParameter() :  -> [512 x 1]
-Validating --> rn4_1.c1.c.y.isd = LearnableParameter() :  -> [512 x 1]
-Validating --> rn4_1.c1.c.y.y = BatchNormalization (rn4_1.c1.c.c, rn4_1.c1.c.y.sc, rn4_1.c1.c.y.b, rn4_1.c1.c.y.m, rn4_1.c1.c.y.isd) : [14 x 14 x 512 x *], [512 x 1], [512 x 1], [512 x 1], [512 x 1] -> [14 x 14 x 512 x *]
-Validating --> rn4_1.c1.y = RectifiedLinear (rn4_1.c1.c.y.y) : [14 x 14 x 512 x *] -> [14 x 14 x 512 x *]
-Validating --> rn4_1.c2.c.c.c = Convolution (rn4_1.c2.c.W, rn4_1.c1.y) : [512 x 4608], [14 x 14 x 512 x *] -> [7 x 7 x 512 x *]
-Validating --> rn4_1.c2.c.y.sc = LearnableParameter() :  -> [512 x 1]
-Validating --> rn4_1.c2.c.y.b = LearnableParameter() :  -> [512 x 1]
-Validating --> rn4_1.c2.c.y.m = LearnableParameter() :  -> [512 x 1]
-Validating --> rn4_1.c2.c.y.isd = LearnableParameter() :  -> [512 x 1]
-Validating --> rn4_1.c2.c.y.y = BatchNormalization (rn4_1.c2.c.c.c, rn4_1.c2.c.y.sc, rn4_1.c2.c.y.b, rn4_1.c2.c.y.m, rn4_1.c2.c.y.isd) : [7 x 7 x 512 x *], [512 x 1], [512 x 1], [512 x 1], [512 x 1] -> [7 x 7 x 512 x *]
-Validating --> rn4_1.c2.y = RectifiedLinear (rn4_1.c2.c.y.y) : [7 x 7 x 512 x *] -> [7 x 7 x 512 x *]
-Validating --> rn4_1.c3.c = Convolution (rn4_1.c3.W, rn4_1.c2.y) : [2048 x 512], [7 x 7 x 512 x *] -> [7 x 7 x 2048 x *]
-Validating --> rn4_1.c3.y.sc = LearnableParameter() :  -> [2048 x 1]
-Validating --> rn4_1.c3.y.b = LearnableParameter() :  -> [2048 x 1]
-Validating --> rn4_1.c3.y.m = LearnableParameter() :  -> [2048 x 1]
-Validating --> rn4_1.c3.y.isd = LearnableParameter() :  -> [2048 x 1]
-Validating --> rn4_1.c3.y.y = BatchNormalization (rn4_1.c3.c, rn4_1.c3.y.sc, rn4_1.c3.y.b, rn4_1.c3.y.m, rn4_1.c3.y.isd) : [7 x 7 x 2048 x *], [2048 x 1], [2048 x 1], [2048 x 1], [2048 x 1] -> [7 x 7 x 2048 x *]
-Validating --> rn4_1.c_proj.W = LearnableParameter() :  -> [2048 x 1024]
-Validating --> rn4_1.c_proj.c = Convolution (rn4_1.c_proj.W, rn3_6.y) : [2048 x 1024], [14 x 14 x 1024 x *] -> [7 x 7 x 2048 x *]
-Validating --> rn4_1.c_proj.y.sc = LearnableParameter() :  -> [2048 x 1]
-Validating --> rn4_1.c_proj.y.b = LearnableParameter() :  -> [2048 x 1]
-Validating --> rn4_1.c_proj.y.m = LearnableParameter() :  -> [2048 x 1]
-Validating --> rn4_1.c_proj.y.isd = LearnableParameter() :  -> [2048 x 1]
-Validating --> rn4_1.c_proj.y.y = BatchNormalization (rn4_1.c_proj.c, rn4_1.c_proj.y.sc, rn4_1.c_proj.y.b, rn4_1.c_proj.y.m, rn4_1.c_proj.y.isd) : [7 x 7 x 2048 x *], [2048 x 1], [2048 x 1], [2048 x 1], [2048 x 1] -> [7 x 7 x 2048 x *]
-Validating --> rn4_1.p = Plus (rn4_1.c3.y.y, rn4_1.c_proj.y.y) : [7 x 7 x 2048 x *], [7 x 7 x 2048 x *] -> [7 x 7 x 2048 x *]
-Validating --> rn4_1.y = RectifiedLinear (rn4_1.p) : [7 x 7 x 2048 x *] -> [7 x 7 x 2048 x *]
-Validating --> rn4_2.c1.c.c = Convolution (rn4_2.c1.c.W, rn4_1.y) : [512 x 2048], [7 x 7 x 2048 x *] -> [7 x 7 x 512 x *]
-Validating --> rn4_2.c1.c.y.sc = LearnableParameter() :  -> [512 x 1]
-Validating --> rn4_2.c1.c.y.b = LearnableParameter() :  -> [512 x 1]
-Validating --> rn4_2.c1.c.y.m = LearnableParameter() :  -> [512 x 1]
-Validating --> rn4_2.c1.c.y.isd = LearnableParameter() :  -> [512 x 1]
-Validating --> rn4_2.c1.c.y.y = BatchNormalization (rn4_2.c1.c.c, rn4_2.c1.c.y.sc, rn4_2.c1.c.y.b, rn4_2.c1.c.y.m, rn4_2.c1.c.y.isd) : [7 x 7 x 512 x *], [512 x 1], [512 x 1], [512 x 1], [512 x 1] -> [7 x 7 x 512 x *]
-Validating --> rn4_2.c1.y = RectifiedLinear (rn4_2.c1.c.y.y) : [7 x 7 x 512 x *] -> [7 x 7 x 512 x *]
-Validating --> rn4_2.c2.c.c.c = Convolution (rn4_2.c2.c.W, rn4_2.c1.y) : [512 x 4608], [7 x 7 x 512 x *] -> [7 x 7 x 512 x *]
-Validating --> rn4_2.c2.c.y.sc = LearnableParameter() :  -> [512 x 1]
-Validating --> rn4_2.c2.c.y.b = LearnableParameter() :  -> [512 x 1]
-Validating --> rn4_2.c2.c.y.m = LearnableParameter() :  -> [512 x 1]
-Validating --> rn4_2.c2.c.y.isd = LearnableParameter() :  -> [512 x 1]
-Validating --> rn4_2.c2.c.y.y = BatchNormalization (rn4_2.c2.c.c.c, rn4_2.c2.c.y.sc, rn4_2.c2.c.y.b, rn4_2.c2.c.y.m, rn4_2.c2.c.y.isd) : [7 x 7 x 512 x *], [512 x 1], [512 x 1], [512 x 1], [512 x 1] -> [7 x 7 x 512 x *]
-Validating --> rn4_2.c2.y = RectifiedLinear (rn4_2.c2.c.y.y) : [7 x 7 x 512 x *] -> [7 x 7 x 512 x *]
-Validating --> rn4_2.c3.c = Convolution (rn4_2.c3.W, rn4_2.c2.y) : [2048 x 512], [7 x 7 x 512 x *] -> [7 x 7 x 2048 x *]
-Validating --> rn4_2.c3.y.sc = LearnableParameter() :  -> [2048 x 1]
-Validating --> rn4_2.c3.y.b = LearnableParameter() :  -> [2048 x 1]
-Validating --> rn4_2.c3.y.m = LearnableParameter() :  -> [2048 x 1]
-Validating --> rn4_2.c3.y.isd = LearnableParameter() :  -> [2048 x 1]
-Validating --> rn4_2.c3.y.y = BatchNormalization (rn4_2.c3.c, rn4_2.c3.y.sc, rn4_2.c3.y.b, rn4_2.c3.y.m, rn4_2.c3.y.isd) : [7 x 7 x 2048 x *], [2048 x 1], [2048 x 1], [2048 x 1], [2048 x 1] -> [7 x 7 x 2048 x *]
-Validating --> rn4_2.p = Plus (rn4_2.c3.y.y, rn4_1.y) : [7 x 7 x 2048 x *], [7 x 7 x 2048 x *] -> [7 x 7 x 2048 x *]
-Validating --> rn4_2.y = RectifiedLinear (rn4_2.p) : [7 x 7 x 2048 x *] -> [7 x 7 x 2048 x *]
-Validating --> rn4_3.c1.c.c = Convolution (rn4_3.c1.c.W, rn4_2.y) : [512 x 2048], [7 x 7 x 2048 x *] -> [7 x 7 x 512 x *]
-Validating --> rn4_3.c1.c.y.sc = LearnableParameter() :  -> [512 x 1]
-Validating --> rn4_3.c1.c.y.b = LearnableParameter() :  -> [512 x 1]
-Validating --> rn4_3.c1.c.y.m = LearnableParameter() :  -> [512 x 1]
-Validating --> rn4_3.c1.c.y.isd = LearnableParameter() :  -> [512 x 1]
-Validating --> rn4_3.c1.c.y.y = BatchNormalization (rn4_3.c1.c.c, rn4_3.c1.c.y.sc, rn4_3.c1.c.y.b, rn4_3.c1.c.y.m, rn4_3.c1.c.y.isd) : [7 x 7 x 512 x *], [512 x 1], [512 x 1], [512 x 1], [512 x 1] -> [7 x 7 x 512 x *]
-Validating --> rn4_3.c1.y = RectifiedLinear (rn4_3.c1.c.y.y) : [7 x 7 x 512 x *] -> [7 x 7 x 512 x *]
-Validating --> rn4_3.c2.c.c.c = Convolution (rn4_3.c2.c.W, rn4_3.c1.y) : [512 x 4608], [7 x 7 x 512 x *] -> [7 x 7 x 512 x *]
-Validating --> rn4_3.c2.c.y.sc = LearnableParameter() :  -> [512 x 1]
-Validating --> rn4_3.c2.c.y.b = LearnableParameter() :  -> [512 x 1]
-Validating --> rn4_3.c2.c.y.m = LearnableParameter() :  -> [512 x 1]
-Validating --> rn4_3.c2.c.y.isd = LearnableParameter() :  -> [512 x 1]
-Validating --> rn4_3.c2.c.y.y = BatchNormalization (rn4_3.c2.c.c.c, rn4_3.c2.c.y.sc, rn4_3.c2.c.y.b, rn4_3.c2.c.y.m, rn4_3.c2.c.y.isd) : [7 x 7 x 512 x *], [512 x 1], [512 x 1], [512 x 1], [512 x 1] -> [7 x 7 x 512 x *]
-Validating --> rn4_3.c2.y = RectifiedLinear (rn4_3.c2.c.y.y) : [7 x 7 x 512 x *] -> [7 x 7 x 512 x *]
-Validating --> rn4_3.c3.c = Convolution (rn4_3.c3.W, rn4_3.c2.y) : [2048 x 512], [7 x 7 x 512 x *] -> [7 x 7 x 2048 x *]
-Validating --> rn4_3.c3.y.sc = LearnableParameter() :  -> [2048 x 1]
-Validating --> rn4_3.c3.y.b = LearnableParameter() :  -> [2048 x 1]
-Validating --> rn4_3.c3.y.m = LearnableParameter() :  -> [2048 x 1]
-Validating --> rn4_3.c3.y.isd = LearnableParameter() :  -> [2048 x 1]
-Validating --> rn4_3.c3.y.y = BatchNormalization (rn4_3.c3.c, rn4_3.c3.y.sc, rn4_3.c3.y.b, rn4_3.c3.y.m, rn4_3.c3.y.isd) : [7 x 7 x 2048 x *], [2048 x 1], [2048 x 1], [2048 x 1], [2048 x 1] -> [7 x 7 x 2048 x *]
-Validating --> rn4_3.p = Plus (rn4_3.c3.y.y, rn4_2.y) : [7 x 7 x 2048 x *], [7 x 7 x 2048 x *] -> [7 x 7 x 2048 x *]
-Validating --> rn4_3.y = RectifiedLinear (rn4_3.p) : [7 x 7 x 2048 x *] -> [7 x 7 x 2048 x *]
-Validating --> pool2 = AveragePooling (rn4_3.y) : [7 x 7 x 2048 x *] -> [1 x 1 x 2048 x *]
 
 OutputNodes.t Times operation: For legacy compatibility, the sample layout of left input (OutputNodes.W LearnableParameter operation) was patched to [1000 x 1 x 1 x 2048] (from [1000 x 2048])
-Validating --> OutputNodes.t = Times (OutputNodes.W, pool2) : [1000 x 1 x 1 x 2048], [1 x 1 x 2048 x *] -> [1000 x *]
-Validating --> OutputNodes.b = LearnableParameter() :  -> [1000]
-Validating --> OutputNodes.z = Plus (OutputNodes.t, OutputNodes.b) : [1000 x *], [1000] -> [1000 x *]
-Validating --> CE = CrossEntropyWithSoftmax (labels, OutputNodes.z) : [1000 x *], [1000 x *] -> [1]
-Validating --> Err = ClassificationError (labels, OutputNodes.z) : [1000 x *], [1000 x *] -> [1]
-
-Validating network. 177 nodes to process in pass 2.
-
-
-Validating network, final pass.
-
 conv1.c.c.c: using cuDNN convolution engine for geometry: Input: 224 x 224 x 3, Output: 112 x 112 x 64, Kernel: 7 x 7 x 3, Map: 1 x 1 x 64, Stride: 2 x 2 x 3, Sharing: (1), AutoPad: (1), LowerPad: 0, UpperPad: 0.
 Using CNTK batch normalization engine.
 pool1.p: using cuDNN convolution engine for geometry: Input: 112 x 112 x 64, Output: 56 x 56 x 64, Kernel: 3 x 3 x 1, Map: 1, Stride: 2 x 2 x 1, Sharing: (1, 1, 1), AutoPad: (1, 1, 0), LowerPad: 0 x 0 x 0, UpperPad: 0 x 0 x 0.
@@ -1244,24 +240,16 @@ Using CNTK batch normalization engine.
 rn4_3.c3.c: using cuDNN convolution engine for geometry: Input: 7 x 7 x 512, Output: 7 x 7 x 2048, Kernel: 1 x 1 x 512, Map: 1 x 1 x 2048, Stride: 1 x 1 x 512, Sharing: (1), AutoPad: (0), LowerPad: 0, UpperPad: 0.
 Using CNTK batch normalization engine.
 pool2: using cuDNN convolution engine for geometry: Input: 7 x 7 x 2048, Output: 1 x 1 x 2048, Kernel: 7 x 7 x 1, Map: 1, Stride: 1 x 1 x 1, Sharing: (1), AutoPad: (0), LowerPad: 0, UpperPad: 0.
-
-
-269 out of 446 nodes do not share the minibatch layout with the input data.
-
-Post-processing network complete.
-
 ********** DEPRECATED **********
 UCIFastReader is no longer actively maintained.
 It is known to have defects, proceed with caution (better yet, switch to CNTKTextFormatReader)!
 For more details please see https://github.com/Microsoft/CNTK/wiki 
 Reading UCI file cnn/imagenet_data.txt
-Created model with 446 nodes on GPU 0.
 
-Training criterion node(s):
-	CE = CrossEntropyWithSoftmax
+Model has 446 nodes. Using GPU 0.
 
-Evaluation criterion node(s):
-	Err = ClassificationError
+Training criterion:   CE = CrossEntropyWithSoftmax
+Evaluation criterion: Err = ClassificationError
 
 
 Allocating matrices for forward and/or backward propagation.
@@ -1869,107 +857,107 @@ starting epoch 1 at record count 0, and file position 0
 already there from last epoch
 
 Starting minibatch loop.
- Epoch[ 1 of 2]-Minibatch[   1-   1, 1.00%]: CE = 7.00186872 * 16; Err = 1.00000000 * 16; time = 3.7602s; samplesPerSecond = 4.3
- Epoch[ 1 of 2]-Minibatch[   2-   2, 2.00%]: CE = 15.71626902 * 16; Err = 1.00000000 * 16; time = 0.1857s; samplesPerSecond = 86.1
- Epoch[ 1 of 2]-Minibatch[   3-   3, 3.00%]: CE = 28.78157997 * 16; Err = 1.00000000 * 16; time = 0.2240s; samplesPerSecond = 71.4
- Epoch[ 1 of 2]-Minibatch[   4-   4, 4.00%]: CE = 29.31800079 * 16; Err = 1.00000000 * 16; time = 0.1864s; samplesPerSecond = 85.9
- Epoch[ 1 of 2]-Minibatch[   5-   5, 5.00%]: CE = 32.09939575 * 16; Err = 1.00000000 * 16; time = 0.1861s; samplesPerSecond = 86.0
- Epoch[ 1 of 2]-Minibatch[   6-   6, 6.00%]: CE = 32.38748169 * 16; Err = 1.00000000 * 16; time = 0.1862s; samplesPerSecond = 85.9
- Epoch[ 1 of 2]-Minibatch[   7-   7, 7.00%]: CE = 28.54382324 * 16; Err = 1.00000000 * 16; time = 0.1858s; samplesPerSecond = 86.1
- Epoch[ 1 of 2]-Minibatch[   8-   8, 8.00%]: CE = 24.72306824 * 16; Err = 1.00000000 * 16; time = 0.1863s; samplesPerSecond = 85.9
- Epoch[ 1 of 2]-Minibatch[   9-   9, 9.00%]: CE = 29.95182800 * 16; Err = 1.00000000 * 16; time = 0.1859s; samplesPerSecond = 86.1
- Epoch[ 1 of 2]-Minibatch[  10-  10, 10.00%]: CE = 21.73826599 * 16; Err = 1.00000000 * 16; time = 0.1857s; samplesPerSecond = 86.1
- Epoch[ 1 of 2]-Minibatch[  11-  11, 11.00%]: CE = 19.17253113 * 16; Err = 1.00000000 * 16; time = 0.1856s; samplesPerSecond = 86.2
- Epoch[ 1 of 2]-Minibatch[  12-  12, 12.00%]: CE = 11.78588867 * 16; Err = 1.00000000 * 16; time = 0.1861s; samplesPerSecond = 86.0
- Epoch[ 1 of 2]-Minibatch[  13-  13, 13.00%]: CE = 11.89672852 * 16; Err = 1.00000000 * 16; time = 0.1861s; samplesPerSecond = 86.0
- Epoch[ 1 of 2]-Minibatch[  14-  14, 14.00%]: CE = 17.14416504 * 16; Err = 1.00000000 * 16; time = 0.1857s; samplesPerSecond = 86.2
- Epoch[ 1 of 2]-Minibatch[  15-  15, 15.00%]: CE = 14.75012207 * 16; Err = 1.00000000 * 16; time = 0.1861s; samplesPerSecond = 86.0
- Epoch[ 1 of 2]-Minibatch[  16-  16, 16.00%]: CE = 12.49969482 * 16; Err = 1.00000000 * 16; time = 0.1859s; samplesPerSecond = 86.0
- Epoch[ 1 of 2]-Minibatch[  17-  17, 17.00%]: CE = 13.63217163 * 16; Err = 1.00000000 * 16; time = 0.1863s; samplesPerSecond = 85.9
- Epoch[ 1 of 2]-Minibatch[  18-  18, 18.00%]: CE = 10.07968140 * 16; Err = 1.00000000 * 16; time = 0.1859s; samplesPerSecond = 86.1
- Epoch[ 1 of 2]-Minibatch[  19-  19, 19.00%]: CE = 11.50540161 * 16; Err = 1.00000000 * 16; time = 0.1861s; samplesPerSecond = 86.0
- Epoch[ 1 of 2]-Minibatch[  20-  20, 20.00%]: CE = 9.41625977 * 16; Err = 1.00000000 * 16; time = 0.1862s; samplesPerSecond = 85.9
- Epoch[ 1 of 2]-Minibatch[  21-  21, 21.00%]: CE = 9.56881714 * 16; Err = 1.00000000 * 16; time = 0.1858s; samplesPerSecond = 86.1
- Epoch[ 1 of 2]-Minibatch[  22-  22, 22.00%]: CE = 9.80969238 * 16; Err = 1.00000000 * 16; time = 0.1862s; samplesPerSecond = 85.9
- Epoch[ 1 of 2]-Minibatch[  23-  23, 23.00%]: CE = 8.38769531 * 16; Err = 1.00000000 * 16; time = 0.1858s; samplesPerSecond = 86.1
- Epoch[ 1 of 2]-Minibatch[  24-  24, 24.00%]: CE = 8.20571899 * 16; Err = 1.00000000 * 16; time = 0.1859s; samplesPerSecond = 86.1
- Epoch[ 1 of 2]-Minibatch[  25-  25, 25.00%]: CE = 6.46463013 * 16; Err = 1.00000000 * 16; time = 0.1858s; samplesPerSecond = 86.1
- Epoch[ 1 of 2]-Minibatch[  26-  26, 26.00%]: CE = 7.78512573 * 16; Err = 1.00000000 * 16; time = 0.1858s; samplesPerSecond = 86.1
- Epoch[ 1 of 2]-Minibatch[  27-  27, 27.00%]: CE = 7.99642944 * 16; Err = 1.00000000 * 16; time = 0.1856s; samplesPerSecond = 86.2
- Epoch[ 1 of 2]-Minibatch[  28-  28, 28.00%]: CE = 7.59259033 * 16; Err = 1.00000000 * 16; time = 0.1861s; samplesPerSecond = 86.0
- Epoch[ 1 of 2]-Minibatch[  29-  29, 29.00%]: CE = 7.45730591 * 16; Err = 1.00000000 * 16; time = 0.1865s; samplesPerSecond = 85.8
- Epoch[ 1 of 2]-Minibatch[  30-  30, 30.00%]: CE = 7.34613037 * 16; Err = 1.00000000 * 16; time = 0.1857s; samplesPerSecond = 86.2
- Epoch[ 1 of 2]-Minibatch[  31-  31, 31.00%]: CE = 7.30929565 * 16; Err = 1.00000000 * 16; time = 0.1861s; samplesPerSecond = 86.0
- Epoch[ 1 of 2]-Minibatch[  32-  32, 32.00%]: CE = 7.20816040 * 16; Err = 1.00000000 * 16; time = 0.1860s; samplesPerSecond = 86.0
- Epoch[ 1 of 2]-Minibatch[  33-  33, 33.00%]: CE = 7.18383789 * 16; Err = 1.00000000 * 16; time = 0.1861s; samplesPerSecond = 86.0
- Epoch[ 1 of 2]-Minibatch[  34-  34, 34.00%]: CE = 7.13943481 * 16; Err = 1.00000000 * 16; time = 0.1865s; samplesPerSecond = 85.8
- Epoch[ 1 of 2]-Minibatch[  35-  35, 35.00%]: CE = 7.17276001 * 16; Err = 1.00000000 * 16; time = 0.1862s; samplesPerSecond = 85.9
- Epoch[ 1 of 2]-Minibatch[  36-  36, 36.00%]: CE = 7.50485229 * 16; Err = 1.00000000 * 16; time = 0.1860s; samplesPerSecond = 86.0
- Epoch[ 1 of 2]-Minibatch[  37-  37, 37.00%]: CE = 6.98721313 * 16; Err = 1.00000000 * 16; time = 0.1867s; samplesPerSecond = 85.7
- Epoch[ 1 of 2]-Minibatch[  38-  38, 38.00%]: CE = 6.71386719 * 16; Err = 1.00000000 * 16; time = 0.1859s; samplesPerSecond = 86.1
- Epoch[ 1 of 2]-Minibatch[  39-  39, 39.00%]: CE = 7.03161621 * 16; Err = 1.00000000 * 16; time = 0.1861s; samplesPerSecond = 86.0
- Epoch[ 1 of 2]-Minibatch[  40-  40, 40.00%]: CE = 7.01025391 * 16; Err = 1.00000000 * 16; time = 0.1856s; samplesPerSecond = 86.2
- Epoch[ 1 of 2]-Minibatch[  41-  41, 41.00%]: CE = 7.01519775 * 16; Err = 1.00000000 * 16; time = 0.1930s; samplesPerSecond = 82.9
- Epoch[ 1 of 2]-Minibatch[  42-  42, 42.00%]: CE = 7.02691650 * 16; Err = 1.00000000 * 16; time = 0.1862s; samplesPerSecond = 85.9
- Epoch[ 1 of 2]-Minibatch[  43-  43, 43.00%]: CE = 6.99694824 * 16; Err = 1.00000000 * 16; time = 0.1865s; samplesPerSecond = 85.8
- Epoch[ 1 of 2]-Minibatch[  44-  44, 44.00%]: CE = 7.00909424 * 16; Err = 1.00000000 * 16; time = 0.1868s; samplesPerSecond = 85.7
- Epoch[ 1 of 2]-Minibatch[  45-  45, 45.00%]: CE = 6.94787598 * 16; Err = 1.00000000 * 16; time = 0.1862s; samplesPerSecond = 85.9
- Epoch[ 1 of 2]-Minibatch[  46-  46, 46.00%]: CE = 6.96002197 * 16; Err = 1.00000000 * 16; time = 0.1859s; samplesPerSecond = 86.1
- Epoch[ 1 of 2]-Minibatch[  47-  47, 47.00%]: CE = 6.94042969 * 16; Err = 1.00000000 * 16; time = 0.1863s; samplesPerSecond = 85.9
- Epoch[ 1 of 2]-Minibatch[  48-  48, 48.00%]: CE = 6.84814453 * 16; Err = 1.00000000 * 16; time = 0.1861s; samplesPerSecond = 86.0
- Epoch[ 1 of 2]-Minibatch[  49-  49, 49.00%]: CE = 6.95257568 * 16; Err = 1.00000000 * 16; time = 0.1860s; samplesPerSecond = 86.0
- Epoch[ 1 of 2]-Minibatch[  50-  50, 50.00%]: CE = 6.97845459 * 16; Err = 1.00000000 * 16; time = 0.1865s; samplesPerSecond = 85.8
- Epoch[ 1 of 2]-Minibatch[  51-  51, 51.00%]: CE = 6.97039795 * 16; Err = 1.00000000 * 16; time = 0.1858s; samplesPerSecond = 86.1
- Epoch[ 1 of 2]-Minibatch[  52-  52, 52.00%]: CE = 6.84899902 * 16; Err = 1.00000000 * 16; time = 0.1858s; samplesPerSecond = 86.1
- Epoch[ 1 of 2]-Minibatch[  53-  53, 53.00%]: CE = 6.94250488 * 16; Err = 1.00000000 * 16; time = 0.1862s; samplesPerSecond = 85.9
- Epoch[ 1 of 2]-Minibatch[  54-  54, 54.00%]: CE = 6.98815918 * 16; Err = 1.00000000 * 16; time = 0.1864s; samplesPerSecond = 85.8
- Epoch[ 1 of 2]-Minibatch[  55-  55, 55.00%]: CE = 6.82647705 * 16; Err = 1.00000000 * 16; time = 0.1874s; samplesPerSecond = 85.4
- Epoch[ 1 of 2]-Minibatch[  56-  56, 56.00%]: CE = 6.92022705 * 16; Err = 1.00000000 * 16; time = 0.1856s; samplesPerSecond = 86.2
- Epoch[ 1 of 2]-Minibatch[  57-  57, 57.00%]: CE = 7.03411865 * 16; Err = 1.00000000 * 16; time = 0.1862s; samplesPerSecond = 85.9
- Epoch[ 1 of 2]-Minibatch[  58-  58, 58.00%]: CE = 7.01910400 * 16; Err = 1.00000000 * 16; time = 0.1861s; samplesPerSecond = 86.0
- Epoch[ 1 of 2]-Minibatch[  59-  59, 59.00%]: CE = 6.92614746 * 16; Err = 1.00000000 * 16; time = 0.1866s; samplesPerSecond = 85.7
- Epoch[ 1 of 2]-Minibatch[  60-  60, 60.00%]: CE = 6.91760254 * 16; Err = 1.00000000 * 16; time = 0.1866s; samplesPerSecond = 85.7
- Epoch[ 1 of 2]-Minibatch[  61-  61, 61.00%]: CE = 6.96575928 * 16; Err = 1.00000000 * 16; time = 0.1871s; samplesPerSecond = 85.5
- Epoch[ 1 of 2]-Minibatch[  62-  62, 62.00%]: CE = 6.92553711 * 16; Err = 1.00000000 * 16; time = 0.1871s; samplesPerSecond = 85.5
- Epoch[ 1 of 2]-Minibatch[  63-  63, 63.00%]: CE = 6.94488525 * 16; Err = 1.00000000 * 16; time = 0.1873s; samplesPerSecond = 85.4
- Epoch[ 1 of 2]-Minibatch[  64-  64, 64.00%]: CE = 6.92626953 * 16; Err = 1.00000000 * 16; time = 0.1872s; samplesPerSecond = 85.5
- Epoch[ 1 of 2]-Minibatch[  65-  65, 65.00%]: CE = 6.91137695 * 16; Err = 1.00000000 * 16; time = 0.1871s; samplesPerSecond = 85.5
- Epoch[ 1 of 2]-Minibatch[  66-  66, 66.00%]: CE = 6.95721436 * 16; Err = 1.00000000 * 16; time = 0.1869s; samplesPerSecond = 85.6
- Epoch[ 1 of 2]-Minibatch[  67-  67, 67.00%]: CE = 6.92327881 * 16; Err = 1.00000000 * 16; time = 0.1872s; samplesPerSecond = 85.5
- Epoch[ 1 of 2]-Minibatch[  68-  68, 68.00%]: CE = 6.85186768 * 16; Err = 1.00000000 * 16; time = 0.1876s; samplesPerSecond = 85.3
- Epoch[ 1 of 2]-Minibatch[  69-  69, 69.00%]: CE = 6.89184570 * 16; Err = 1.00000000 * 16; time = 0.1872s; samplesPerSecond = 85.5
- Epoch[ 1 of 2]-Minibatch[  70-  70, 70.00%]: CE = 6.88299561 * 16; Err = 1.00000000 * 16; time = 0.1872s; samplesPerSecond = 85.5
- Epoch[ 1 of 2]-Minibatch[  71-  71, 71.00%]: CE = 7.70245361 * 16; Err = 1.00000000 * 16; time = 0.1875s; samplesPerSecond = 85.3
- Epoch[ 1 of 2]-Minibatch[  72-  72, 72.00%]: CE = 6.93084717 * 16; Err = 1.00000000 * 16; time = 0.1871s; samplesPerSecond = 85.5
- Epoch[ 1 of 2]-Minibatch[  73-  73, 73.00%]: CE = 6.91156006 * 16; Err = 1.00000000 * 16; time = 0.1871s; samplesPerSecond = 85.5
- Epoch[ 1 of 2]-Minibatch[  74-  74, 74.00%]: CE = 6.90527344 * 16; Err = 1.00000000 * 16; time = 0.1869s; samplesPerSecond = 85.6
- Epoch[ 1 of 2]-Minibatch[  75-  75, 75.00%]: CE = 6.90502930 * 16; Err = 1.00000000 * 16; time = 0.1875s; samplesPerSecond = 85.4
- Epoch[ 1 of 2]-Minibatch[  76-  76, 76.00%]: CE = 6.91143799 * 16; Err = 1.00000000 * 16; time = 0.1874s; samplesPerSecond = 85.4
- Epoch[ 1 of 2]-Minibatch[  77-  77, 77.00%]: CE = 7.00048828 * 16; Err = 1.00000000 * 16; time = 0.1867s; samplesPerSecond = 85.7
- Epoch[ 1 of 2]-Minibatch[  78-  78, 78.00%]: CE = 7.06256104 * 16; Err = 1.00000000 * 16; time = 0.1873s; samplesPerSecond = 85.4
- Epoch[ 1 of 2]-Minibatch[  79-  79, 79.00%]: CE = 6.92468262 * 16; Err = 1.00000000 * 16; time = 0.1871s; samplesPerSecond = 85.5
- Epoch[ 1 of 2]-Minibatch[  80-  80, 80.00%]: CE = 6.94360352 * 16; Err = 1.00000000 * 16; time = 0.1871s; samplesPerSecond = 85.5
- Epoch[ 1 of 2]-Minibatch[  81-  81, 81.00%]: CE = 6.89251709 * 16; Err = 1.00000000 * 16; time = 0.1868s; samplesPerSecond = 85.6
- Epoch[ 1 of 2]-Minibatch[  82-  82, 82.00%]: CE = 7.18511963 * 16; Err = 1.00000000 * 16; time = 0.1873s; samplesPerSecond = 85.4
- Epoch[ 1 of 2]-Minibatch[  83-  83, 83.00%]: CE = 6.92755127 * 16; Err = 1.00000000 * 16; time = 0.1866s; samplesPerSecond = 85.7
- Epoch[ 1 of 2]-Minibatch[  84-  84, 84.00%]: CE = 6.94769287 * 16; Err = 1.00000000 * 16; time = 0.1874s; samplesPerSecond = 85.4
- Epoch[ 1 of 2]-Minibatch[  85-  85, 85.00%]: CE = 6.92504883 * 16; Err = 1.00000000 * 16; time = 0.1874s; samplesPerSecond = 85.4
- Epoch[ 1 of 2]-Minibatch[  86-  86, 86.00%]: CE = 6.93066406 * 16; Err = 1.00000000 * 16; time = 0.1873s; samplesPerSecond = 85.4
- Epoch[ 1 of 2]-Minibatch[  87-  87, 87.00%]: CE = 6.93249512 * 16; Err = 1.00000000 * 16; time = 0.1875s; samplesPerSecond = 85.4
- Epoch[ 1 of 2]-Minibatch[  88-  88, 88.00%]: CE = 6.95562744 * 16; Err = 1.00000000 * 16; time = 0.1874s; samplesPerSecond = 85.4
- Epoch[ 1 of 2]-Minibatch[  89-  89, 89.00%]: CE = 6.89685059 * 16; Err = 1.00000000 * 16; time = 0.1871s; samplesPerSecond = 85.5
- Epoch[ 1 of 2]-Minibatch[  90-  90, 90.00%]: CE = 6.92962646 * 16; Err = 1.00000000 * 16; time = 0.1872s; samplesPerSecond = 85.5
- Epoch[ 1 of 2]-Minibatch[  91-  91, 91.00%]: CE = 6.93847656 * 16; Err = 1.00000000 * 16; time = 0.1877s; samplesPerSecond = 85.2
- Epoch[ 1 of 2]-Minibatch[  92-  92, 92.00%]: CE = 6.91839600 * 16; Err = 1.00000000 * 16; time = 0.1872s; samplesPerSecond = 85.4
- Epoch[ 1 of 2]-Minibatch[  93-  93, 93.00%]: CE = 6.90759277 * 16; Err = 1.00000000 * 16; time = 0.1870s; samplesPerSecond = 85.5
- Epoch[ 1 of 2]-Minibatch[  94-  94, 94.00%]: CE = 6.92498779 * 16; Err = 1.00000000 * 16; time = 0.1875s; samplesPerSecond = 85.3
- Epoch[ 1 of 2]-Minibatch[  95-  95, 95.00%]: CE = 6.95404053 * 16; Err = 1.00000000 * 16; time = 0.1872s; samplesPerSecond = 85.5
- Epoch[ 1 of 2]-Minibatch[  96-  96, 96.00%]: CE = 6.90368652 * 16; Err = 1.00000000 * 16; time = 0.1877s; samplesPerSecond = 85.2
- Epoch[ 1 of 2]-Minibatch[  97-  97, 97.00%]: CE = 6.92071533 * 16; Err = 1.00000000 * 16; time = 0.1871s; samplesPerSecond = 85.5
- Epoch[ 1 of 2]-Minibatch[  98-  98, 98.00%]: CE = 6.91748047 * 16; Err = 1.00000000 * 16; time = 0.1871s; samplesPerSecond = 85.5
- Epoch[ 1 of 2]-Minibatch[  99-  99, 99.00%]: CE = 6.91467285 * 16; Err = 1.00000000 * 16; time = 0.1875s; samplesPerSecond = 85.3
- Epoch[ 1 of 2]-Minibatch[ 100- 100, 100.00%]: CE = 6.94110107 * 16; Err = 1.00000000 * 16; time = 0.1869s; samplesPerSecond = 85.6
-Finished Epoch[ 1 of 2]: [Training] CE = 9.51232361 * 1600; Err = 1.00000000 * 1600; totalSamplesSeen = 1600; learningRatePerSample = 0.0625; epochTime=32.2981s
+ Epoch[ 1 of 2]-Minibatch[   1-   1, 1.00%]: CE = 6.97928190 * 16; Err = 1.00000000 * 16; time = 3.7042s; samplesPerSecond = 4.3
+ Epoch[ 1 of 2]-Minibatch[   2-   2, 2.00%]: CE = 16.69382524 * 16; Err = 1.00000000 * 16; time = 0.1850s; samplesPerSecond = 86.5
+ Epoch[ 1 of 2]-Minibatch[   3-   3, 3.00%]: CE = 19.93352509 * 16; Err = 1.00000000 * 16; time = 0.2269s; samplesPerSecond = 70.5
+ Epoch[ 1 of 2]-Minibatch[   4-   4, 4.00%]: CE = 26.13403702 * 16; Err = 1.00000000 * 16; time = 0.1857s; samplesPerSecond = 86.2
+ Epoch[ 1 of 2]-Minibatch[   5-   5, 5.00%]: CE = 40.97284698 * 16; Err = 1.00000000 * 16; time = 0.1860s; samplesPerSecond = 86.0
+ Epoch[ 1 of 2]-Minibatch[   6-   6, 6.00%]: CE = 36.99644470 * 16; Err = 1.00000000 * 16; time = 0.1861s; samplesPerSecond = 86.0
+ Epoch[ 1 of 2]-Minibatch[   7-   7, 7.00%]: CE = 32.62855530 * 16; Err = 1.00000000 * 16; time = 0.1862s; samplesPerSecond = 85.9
+ Epoch[ 1 of 2]-Minibatch[   8-   8, 8.00%]: CE = 31.64830017 * 16; Err = 1.00000000 * 16; time = 0.1877s; samplesPerSecond = 85.3
+ Epoch[ 1 of 2]-Minibatch[   9-   9, 9.00%]: CE = 26.65451050 * 16; Err = 1.00000000 * 16; time = 0.1861s; samplesPerSecond = 86.0
+ Epoch[ 1 of 2]-Minibatch[  10-  10, 10.00%]: CE = 30.24731445 * 16; Err = 1.00000000 * 16; time = 0.1858s; samplesPerSecond = 86.1
+ Epoch[ 1 of 2]-Minibatch[  11-  11, 11.00%]: CE = 20.29187012 * 16; Err = 1.00000000 * 16; time = 0.1858s; samplesPerSecond = 86.1
+ Epoch[ 1 of 2]-Minibatch[  12-  12, 12.00%]: CE = 18.54531860 * 16; Err = 1.00000000 * 16; time = 0.1855s; samplesPerSecond = 86.3
+ Epoch[ 1 of 2]-Minibatch[  13-  13, 13.00%]: CE = 17.76144409 * 16; Err = 1.00000000 * 16; time = 0.1884s; samplesPerSecond = 84.9
+ Epoch[ 1 of 2]-Minibatch[  14-  14, 14.00%]: CE = 15.14697266 * 16; Err = 1.00000000 * 16; time = 0.1851s; samplesPerSecond = 86.4
+ Epoch[ 1 of 2]-Minibatch[  15-  15, 15.00%]: CE = 13.11834717 * 16; Err = 1.00000000 * 16; time = 0.1855s; samplesPerSecond = 86.2
+ Epoch[ 1 of 2]-Minibatch[  16-  16, 16.00%]: CE = 11.23379517 * 16; Err = 1.00000000 * 16; time = 0.1858s; samplesPerSecond = 86.1
+ Epoch[ 1 of 2]-Minibatch[  17-  17, 17.00%]: CE = 7.94598389 * 16; Err = 1.00000000 * 16; time = 0.1859s; samplesPerSecond = 86.1
+ Epoch[ 1 of 2]-Minibatch[  18-  18, 18.00%]: CE = 11.55972290 * 16; Err = 1.00000000 * 16; time = 0.1853s; samplesPerSecond = 86.3
+ Epoch[ 1 of 2]-Minibatch[  19-  19, 19.00%]: CE = 9.42184448 * 16; Err = 1.00000000 * 16; time = 0.1856s; samplesPerSecond = 86.2
+ Epoch[ 1 of 2]-Minibatch[  20-  20, 20.00%]: CE = 9.11801147 * 16; Err = 1.00000000 * 16; time = 0.1853s; samplesPerSecond = 86.3
+ Epoch[ 1 of 2]-Minibatch[  21-  21, 21.00%]: CE = 10.40170288 * 16; Err = 1.00000000 * 16; time = 0.1863s; samplesPerSecond = 85.9
+ Epoch[ 1 of 2]-Minibatch[  22-  22, 22.00%]: CE = 10.80261230 * 16; Err = 1.00000000 * 16; time = 0.1846s; samplesPerSecond = 86.7
+ Epoch[ 1 of 2]-Minibatch[  23-  23, 23.00%]: CE = 9.01806641 * 16; Err = 1.00000000 * 16; time = 0.1855s; samplesPerSecond = 86.3
+ Epoch[ 1 of 2]-Minibatch[  24-  24, 24.00%]: CE = 9.91366577 * 16; Err = 1.00000000 * 16; time = 0.1857s; samplesPerSecond = 86.2
+ Epoch[ 1 of 2]-Minibatch[  25-  25, 25.00%]: CE = 8.41162109 * 16; Err = 1.00000000 * 16; time = 0.1852s; samplesPerSecond = 86.4
+ Epoch[ 1 of 2]-Minibatch[  26-  26, 26.00%]: CE = 9.64526367 * 16; Err = 1.00000000 * 16; time = 0.1856s; samplesPerSecond = 86.2
+ Epoch[ 1 of 2]-Minibatch[  27-  27, 27.00%]: CE = 8.41723633 * 16; Err = 1.00000000 * 16; time = 0.1855s; samplesPerSecond = 86.2
+ Epoch[ 1 of 2]-Minibatch[  28-  28, 28.00%]: CE = 7.90084839 * 16; Err = 1.00000000 * 16; time = 0.1856s; samplesPerSecond = 86.2
+ Epoch[ 1 of 2]-Minibatch[  29-  29, 29.00%]: CE = 7.54248047 * 16; Err = 1.00000000 * 16; time = 0.1940s; samplesPerSecond = 82.5
+ Epoch[ 1 of 2]-Minibatch[  30-  30, 30.00%]: CE = 7.79187012 * 16; Err = 1.00000000 * 16; time = 0.1854s; samplesPerSecond = 86.3
+ Epoch[ 1 of 2]-Minibatch[  31-  31, 31.00%]: CE = 7.68759155 * 16; Err = 1.00000000 * 16; time = 0.1861s; samplesPerSecond = 86.0
+ Epoch[ 1 of 2]-Minibatch[  32-  32, 32.00%]: CE = 7.42089844 * 16; Err = 1.00000000 * 16; time = 0.1858s; samplesPerSecond = 86.1
+ Epoch[ 1 of 2]-Minibatch[  33-  33, 33.00%]: CE = 7.55026245 * 16; Err = 1.00000000 * 16; time = 0.1853s; samplesPerSecond = 86.3
+ Epoch[ 1 of 2]-Minibatch[  34-  34, 34.00%]: CE = 7.34857178 * 16; Err = 1.00000000 * 16; time = 0.1857s; samplesPerSecond = 86.1
+ Epoch[ 1 of 2]-Minibatch[  35-  35, 35.00%]: CE = 7.28167725 * 16; Err = 1.00000000 * 16; time = 0.1857s; samplesPerSecond = 86.2
+ Epoch[ 1 of 2]-Minibatch[  36-  36, 36.00%]: CE = 7.07397461 * 16; Err = 1.00000000 * 16; time = 0.1856s; samplesPerSecond = 86.2
+ Epoch[ 1 of 2]-Minibatch[  37-  37, 37.00%]: CE = 6.91729736 * 16; Err = 1.00000000 * 16; time = 0.1858s; samplesPerSecond = 86.1
+ Epoch[ 1 of 2]-Minibatch[  38-  38, 38.00%]: CE = 6.98150635 * 16; Err = 1.00000000 * 16; time = 0.1855s; samplesPerSecond = 86.3
+ Epoch[ 1 of 2]-Minibatch[  39-  39, 39.00%]: CE = 7.17535400 * 16; Err = 1.00000000 * 16; time = 0.1859s; samplesPerSecond = 86.1
+ Epoch[ 1 of 2]-Minibatch[  40-  40, 40.00%]: CE = 6.99884033 * 16; Err = 1.00000000 * 16; time = 0.1851s; samplesPerSecond = 86.4
+ Epoch[ 1 of 2]-Minibatch[  41-  41, 41.00%]: CE = 6.98809814 * 16; Err = 1.00000000 * 16; time = 0.1859s; samplesPerSecond = 86.1
+ Epoch[ 1 of 2]-Minibatch[  42-  42, 42.00%]: CE = 7.04321289 * 16; Err = 1.00000000 * 16; time = 0.1856s; samplesPerSecond = 86.2
+ Epoch[ 1 of 2]-Minibatch[  43-  43, 43.00%]: CE = 7.01367188 * 16; Err = 1.00000000 * 16; time = 0.1855s; samplesPerSecond = 86.3
+ Epoch[ 1 of 2]-Minibatch[  44-  44, 44.00%]: CE = 6.91717529 * 16; Err = 1.00000000 * 16; time = 0.1853s; samplesPerSecond = 86.3
+ Epoch[ 1 of 2]-Minibatch[  45-  45, 45.00%]: CE = 6.93670654 * 16; Err = 1.00000000 * 16; time = 0.1857s; samplesPerSecond = 86.1
+ Epoch[ 1 of 2]-Minibatch[  46-  46, 46.00%]: CE = 7.00970459 * 16; Err = 1.00000000 * 16; time = 0.1857s; samplesPerSecond = 86.2
+ Epoch[ 1 of 2]-Minibatch[  47-  47, 47.00%]: CE = 7.04083252 * 16; Err = 1.00000000 * 16; time = 0.1867s; samplesPerSecond = 85.7
+ Epoch[ 1 of 2]-Minibatch[  48-  48, 48.00%]: CE = 7.00488281 * 16; Err = 1.00000000 * 16; time = 0.1848s; samplesPerSecond = 86.6
+ Epoch[ 1 of 2]-Minibatch[  49-  49, 49.00%]: CE = 6.82421875 * 16; Err = 1.00000000 * 16; time = 0.1861s; samplesPerSecond = 86.0
+ Epoch[ 1 of 2]-Minibatch[  50-  50, 50.00%]: CE = 6.94665527 * 16; Err = 1.00000000 * 16; time = 0.1882s; samplesPerSecond = 85.0
+ Epoch[ 1 of 2]-Minibatch[  51-  51, 51.00%]: CE = 6.96569824 * 16; Err = 1.00000000 * 16; time = 0.1856s; samplesPerSecond = 86.2
+ Epoch[ 1 of 2]-Minibatch[  52-  52, 52.00%]: CE = 6.92309570 * 16; Err = 1.00000000 * 16; time = 0.1856s; samplesPerSecond = 86.2
+ Epoch[ 1 of 2]-Minibatch[  53-  53, 53.00%]: CE = 6.96453857 * 16; Err = 1.00000000 * 16; time = 0.1854s; samplesPerSecond = 86.3
+ Epoch[ 1 of 2]-Minibatch[  54-  54, 54.00%]: CE = 6.94488525 * 16; Err = 1.00000000 * 16; time = 0.1858s; samplesPerSecond = 86.1
+ Epoch[ 1 of 2]-Minibatch[  55-  55, 55.00%]: CE = 6.94384766 * 16; Err = 1.00000000 * 16; time = 0.1857s; samplesPerSecond = 86.2
+ Epoch[ 1 of 2]-Minibatch[  56-  56, 56.00%]: CE = 6.94201660 * 16; Err = 1.00000000 * 16; time = 0.1860s; samplesPerSecond = 86.0
+ Epoch[ 1 of 2]-Minibatch[  57-  57, 57.00%]: CE = 6.94897461 * 16; Err = 1.00000000 * 16; time = 0.1852s; samplesPerSecond = 86.4
+ Epoch[ 1 of 2]-Minibatch[  58-  58, 58.00%]: CE = 6.95196533 * 16; Err = 1.00000000 * 16; time = 0.1859s; samplesPerSecond = 86.1
+ Epoch[ 1 of 2]-Minibatch[  59-  59, 59.00%]: CE = 6.87829590 * 16; Err = 1.00000000 * 16; time = 0.1860s; samplesPerSecond = 86.0
+ Epoch[ 1 of 2]-Minibatch[  60-  60, 60.00%]: CE = 6.95520020 * 16; Err = 1.00000000 * 16; time = 0.1854s; samplesPerSecond = 86.3
+ Epoch[ 1 of 2]-Minibatch[  61-  61, 61.00%]: CE = 6.92382812 * 16; Err = 1.00000000 * 16; time = 0.1856s; samplesPerSecond = 86.2
+ Epoch[ 1 of 2]-Minibatch[  62-  62, 62.00%]: CE = 6.96002197 * 16; Err = 1.00000000 * 16; time = 0.1862s; samplesPerSecond = 85.9
+ Epoch[ 1 of 2]-Minibatch[  63-  63, 63.00%]: CE = 6.87268066 * 16; Err = 1.00000000 * 16; time = 0.1857s; samplesPerSecond = 86.2
+ Epoch[ 1 of 2]-Minibatch[  64-  64, 64.00%]: CE = 6.89508057 * 16; Err = 1.00000000 * 16; time = 0.1860s; samplesPerSecond = 86.0
+ Epoch[ 1 of 2]-Minibatch[  65-  65, 65.00%]: CE = 6.91241455 * 16; Err = 1.00000000 * 16; time = 0.1857s; samplesPerSecond = 86.1
+ Epoch[ 1 of 2]-Minibatch[  66-  66, 66.00%]: CE = 6.95861816 * 16; Err = 1.00000000 * 16; time = 0.1858s; samplesPerSecond = 86.1
+ Epoch[ 1 of 2]-Minibatch[  67-  67, 67.00%]: CE = 6.98638916 * 16; Err = 1.00000000 * 16; time = 0.1860s; samplesPerSecond = 86.0
+ Epoch[ 1 of 2]-Minibatch[  68-  68, 68.00%]: CE = 6.84362793 * 16; Err = 1.00000000 * 16; time = 0.1853s; samplesPerSecond = 86.4
+ Epoch[ 1 of 2]-Minibatch[  69-  69, 69.00%]: CE = 6.95477295 * 16; Err = 1.00000000 * 16; time = 0.1852s; samplesPerSecond = 86.4
+ Epoch[ 1 of 2]-Minibatch[  70-  70, 70.00%]: CE = 6.90887451 * 16; Err = 1.00000000 * 16; time = 0.1855s; samplesPerSecond = 86.3
+ Epoch[ 1 of 2]-Minibatch[  71-  71, 71.00%]: CE = 6.87792969 * 16; Err = 1.00000000 * 16; time = 0.1857s; samplesPerSecond = 86.2
+ Epoch[ 1 of 2]-Minibatch[  72-  72, 72.00%]: CE = 6.82452393 * 16; Err = 1.00000000 * 16; time = 0.1858s; samplesPerSecond = 86.1
+ Epoch[ 1 of 2]-Minibatch[  73-  73, 73.00%]: CE = 6.88726807 * 16; Err = 1.00000000 * 16; time = 0.1860s; samplesPerSecond = 86.0
+ Epoch[ 1 of 2]-Minibatch[  74-  74, 74.00%]: CE = 6.93426514 * 16; Err = 1.00000000 * 16; time = 0.1926s; samplesPerSecond = 83.1
+ Epoch[ 1 of 2]-Minibatch[  75-  75, 75.00%]: CE = 6.88378906 * 16; Err = 1.00000000 * 16; time = 0.1856s; samplesPerSecond = 86.2
+ Epoch[ 1 of 2]-Minibatch[  76-  76, 76.00%]: CE = 6.93194580 * 16; Err = 1.00000000 * 16; time = 0.1857s; samplesPerSecond = 86.2
+ Epoch[ 1 of 2]-Minibatch[  77-  77, 77.00%]: CE = 6.92694092 * 16; Err = 1.00000000 * 16; time = 0.1854s; samplesPerSecond = 86.3
+ Epoch[ 1 of 2]-Minibatch[  78-  78, 78.00%]: CE = 6.93371582 * 16; Err = 1.00000000 * 16; time = 0.1853s; samplesPerSecond = 86.4
+ Epoch[ 1 of 2]-Minibatch[  79-  79, 79.00%]: CE = 6.94110107 * 16; Err = 1.00000000 * 16; time = 0.1852s; samplesPerSecond = 86.4
+ Epoch[ 1 of 2]-Minibatch[  80-  80, 80.00%]: CE = 6.95239258 * 16; Err = 1.00000000 * 16; time = 0.1857s; samplesPerSecond = 86.1
+ Epoch[ 1 of 2]-Minibatch[  81-  81, 81.00%]: CE = 6.89788818 * 16; Err = 1.00000000 * 16; time = 0.1854s; samplesPerSecond = 86.3
+ Epoch[ 1 of 2]-Minibatch[  82-  82, 82.00%]: CE = 6.94793701 * 16; Err = 1.00000000 * 16; time = 0.1887s; samplesPerSecond = 84.8
+ Epoch[ 1 of 2]-Minibatch[  83-  83, 83.00%]: CE = 6.98248291 * 16; Err = 1.00000000 * 16; time = 0.1858s; samplesPerSecond = 86.1
+ Epoch[ 1 of 2]-Minibatch[  84-  84, 84.00%]: CE = 6.90118408 * 16; Err = 1.00000000 * 16; time = 0.1861s; samplesPerSecond = 86.0
+ Epoch[ 1 of 2]-Minibatch[  85-  85, 85.00%]: CE = 6.80438232 * 16; Err = 1.00000000 * 16; time = 0.1855s; samplesPerSecond = 86.3
+ Epoch[ 1 of 2]-Minibatch[  86-  86, 86.00%]: CE = 6.92022705 * 16; Err = 1.00000000 * 16; time = 0.1856s; samplesPerSecond = 86.2
+ Epoch[ 1 of 2]-Minibatch[  87-  87, 87.00%]: CE = 6.94500732 * 16; Err = 1.00000000 * 16; time = 0.1925s; samplesPerSecond = 83.1
+ Epoch[ 1 of 2]-Minibatch[  88-  88, 88.00%]: CE = 6.87634277 * 16; Err = 0.93750000 * 16; time = 0.1859s; samplesPerSecond = 86.1
+ Epoch[ 1 of 2]-Minibatch[  89-  89, 89.00%]: CE = 6.93011475 * 16; Err = 1.00000000 * 16; time = 0.1856s; samplesPerSecond = 86.2
+ Epoch[ 1 of 2]-Minibatch[  90-  90, 90.00%]: CE = 6.85742188 * 16; Err = 1.00000000 * 16; time = 0.1857s; samplesPerSecond = 86.2
+ Epoch[ 1 of 2]-Minibatch[  91-  91, 91.00%]: CE = 6.88226318 * 16; Err = 1.00000000 * 16; time = 0.1858s; samplesPerSecond = 86.1
+ Epoch[ 1 of 2]-Minibatch[  92-  92, 92.00%]: CE = 6.84924316 * 16; Err = 1.00000000 * 16; time = 0.1857s; samplesPerSecond = 86.1
+ Epoch[ 1 of 2]-Minibatch[  93-  93, 93.00%]: CE = 6.93316650 * 16; Err = 1.00000000 * 16; time = 0.1857s; samplesPerSecond = 86.2
+ Epoch[ 1 of 2]-Minibatch[  94-  94, 94.00%]: CE = 6.91949463 * 16; Err = 1.00000000 * 16; time = 0.1859s; samplesPerSecond = 86.1
+ Epoch[ 1 of 2]-Minibatch[  95-  95, 95.00%]: CE = 6.94329834 * 16; Err = 1.00000000 * 16; time = 0.1857s; samplesPerSecond = 86.1
+ Epoch[ 1 of 2]-Minibatch[  96-  96, 96.00%]: CE = 6.90777588 * 16; Err = 1.00000000 * 16; time = 0.1856s; samplesPerSecond = 86.2
+ Epoch[ 1 of 2]-Minibatch[  97-  97, 97.00%]: CE = 6.91259766 * 16; Err = 1.00000000 * 16; time = 0.1854s; samplesPerSecond = 86.3
+ Epoch[ 1 of 2]-Minibatch[  98-  98, 98.00%]: CE = 6.92535400 * 16; Err = 1.00000000 * 16; time = 0.1855s; samplesPerSecond = 86.3
+ Epoch[ 1 of 2]-Minibatch[  99-  99, 99.00%]: CE = 6.92059326 * 16; Err = 1.00000000 * 16; time = 0.1858s; samplesPerSecond = 86.1
+ Epoch[ 1 of 2]-Minibatch[ 100- 100, 100.00%]: CE = 6.94335938 * 16; Err = 1.00000000 * 16; time = 0.1853s; samplesPerSecond = 86.3
+Finished Epoch[ 1 of 2]: [Training] CE = 9.80967285 * 1600; Err = 0.99937500 * 1600; totalSamplesSeen = 1600; learningRatePerSample = 0.0625; epochTime=31.951s
 SGD: Saving checkpoint model './Output/resnet/ResNet_50.1'
 
 Starting Epoch 2: learning rate per sample = 0.062500  effective momentum = 0.900000  momentum as time constant = 151.9 samples
@@ -1977,110 +965,109 @@ starting epoch 2 at record count 1600, and file position 0
 already there from last epoch
 
 Starting minibatch loop.
- Epoch[ 2 of 2]-Minibatch[   1-   1, 1.00%]: CE = 7.04095173 * 16; Err = 1.00000000 * 16; time = 0.1870s; samplesPerSecond = 85.5
- Epoch[ 2 of 2]-Minibatch[   2-   2, 2.00%]: CE = 7.00047398 * 16; Err = 1.00000000 * 16; time = 0.1852s; samplesPerSecond = 86.4
- Epoch[ 2 of 2]-Minibatch[   3-   3, 3.00%]: CE = 6.99294090 * 16; Err = 1.00000000 * 16; time = 0.1835s; samplesPerSecond = 87.2
- Epoch[ 2 of 2]-Minibatch[   4-   4, 4.00%]: CE = 6.92875290 * 16; Err = 1.00000000 * 16; time = 0.1835s; samplesPerSecond = 87.2
- Epoch[ 2 of 2]-Minibatch[   5-   5, 5.00%]: CE = 7.32910919 * 16; Err = 1.00000000 * 16; time = 0.1836s; samplesPerSecond = 87.1
- Epoch[ 2 of 2]-Minibatch[   6-   6, 6.00%]: CE = 6.92047501 * 16; Err = 1.00000000 * 16; time = 0.1838s; samplesPerSecond = 87.1
- Epoch[ 2 of 2]-Minibatch[   7-   7, 7.00%]: CE = 7.07832336 * 16; Err = 1.00000000 * 16; time = 0.1833s; samplesPerSecond = 87.3
- Epoch[ 2 of 2]-Minibatch[   8-   8, 8.00%]: CE = 6.89056015 * 16; Err = 1.00000000 * 16; time = 0.1841s; samplesPerSecond = 86.9
- Epoch[ 2 of 2]-Minibatch[   9-   9, 9.00%]: CE = 6.88137436 * 16; Err = 1.00000000 * 16; time = 0.1835s; samplesPerSecond = 87.2
- Epoch[ 2 of 2]-Minibatch[  10-  10, 10.00%]: CE = 6.84122849 * 16; Err = 1.00000000 * 16; time = 0.1839s; samplesPerSecond = 87.0
- Epoch[ 2 of 2]-Minibatch[  11-  11, 11.00%]: CE = 6.90483856 * 16; Err = 1.00000000 * 16; time = 0.1837s; samplesPerSecond = 87.1
- Epoch[ 2 of 2]-Minibatch[  12-  12, 12.00%]: CE = 6.91336823 * 16; Err = 1.00000000 * 16; time = 0.1839s; samplesPerSecond = 87.0
- Epoch[ 2 of 2]-Minibatch[  13-  13, 13.00%]: CE = 6.86324310 * 16; Err = 1.00000000 * 16; time = 0.1841s; samplesPerSecond = 86.9
- Epoch[ 2 of 2]-Minibatch[  14-  14, 14.00%]: CE = 6.89525604 * 16; Err = 1.00000000 * 16; time = 0.1835s; samplesPerSecond = 87.2
- Epoch[ 2 of 2]-Minibatch[  15-  15, 15.00%]: CE = 6.84137726 * 16; Err = 1.00000000 * 16; time = 0.1829s; samplesPerSecond = 87.5
- Epoch[ 2 of 2]-Minibatch[  16-  16, 16.00%]: CE = 6.89344025 * 16; Err = 1.00000000 * 16; time = 0.1834s; samplesPerSecond = 87.3
- Epoch[ 2 of 2]-Minibatch[  17-  17, 17.00%]: CE = 6.85427856 * 16; Err = 1.00000000 * 16; time = 0.1832s; samplesPerSecond = 87.3
- Epoch[ 2 of 2]-Minibatch[  18-  18, 18.00%]: CE = 6.83911133 * 16; Err = 1.00000000 * 16; time = 0.1831s; samplesPerSecond = 87.4
- Epoch[ 2 of 2]-Minibatch[  19-  19, 19.00%]: CE = 6.80842590 * 16; Err = 0.93750000 * 16; time = 0.1839s; samplesPerSecond = 87.0
- Epoch[ 2 of 2]-Minibatch[  20-  20, 20.00%]: CE = 6.84803772 * 16; Err = 1.00000000 * 16; time = 0.1837s; samplesPerSecond = 87.1
- Epoch[ 2 of 2]-Minibatch[  21-  21, 21.00%]: CE = 6.83810425 * 16; Err = 1.00000000 * 16; time = 0.1842s; samplesPerSecond = 86.9
- Epoch[ 2 of 2]-Minibatch[  22-  22, 22.00%]: CE = 6.85504150 * 16; Err = 1.00000000 * 16; time = 0.1835s; samplesPerSecond = 87.2
- Epoch[ 2 of 2]-Minibatch[  23-  23, 23.00%]: CE = 6.86114502 * 16; Err = 1.00000000 * 16; time = 0.1843s; samplesPerSecond = 86.8
- Epoch[ 2 of 2]-Minibatch[  24-  24, 24.00%]: CE = 6.93472290 * 16; Err = 1.00000000 * 16; time = 0.1845s; samplesPerSecond = 86.7
- Epoch[ 2 of 2]-Minibatch[  25-  25, 25.00%]: CE = 6.74822998 * 16; Err = 1.00000000 * 16; time = 0.1841s; samplesPerSecond = 86.9
- Epoch[ 2 of 2]-Minibatch[  26-  26, 26.00%]: CE = 6.82734680 * 16; Err = 1.00000000 * 16; time = 0.1838s; samplesPerSecond = 87.1
- Epoch[ 2 of 2]-Minibatch[  27-  27, 27.00%]: CE = 6.83970642 * 16; Err = 1.00000000 * 16; time = 0.1847s; samplesPerSecond = 86.6
- Epoch[ 2 of 2]-Minibatch[  28-  28, 28.00%]: CE = 6.74853516 * 16; Err = 1.00000000 * 16; time = 0.1847s; samplesPerSecond = 86.6
- Epoch[ 2 of 2]-Minibatch[  29-  29, 29.00%]: CE = 6.86242676 * 16; Err = 1.00000000 * 16; time = 0.1851s; samplesPerSecond = 86.4
- Epoch[ 2 of 2]-Minibatch[  30-  30, 30.00%]: CE = 6.90162659 * 16; Err = 1.00000000 * 16; time = 0.1843s; samplesPerSecond = 86.8
- Epoch[ 2 of 2]-Minibatch[  31-  31, 31.00%]: CE = 6.89450073 * 16; Err = 1.00000000 * 16; time = 0.1850s; samplesPerSecond = 86.5
- Epoch[ 2 of 2]-Minibatch[  32-  32, 32.00%]: CE = 6.89907837 * 16; Err = 1.00000000 * 16; time = 0.1846s; samplesPerSecond = 86.7
- Epoch[ 2 of 2]-Minibatch[  33-  33, 33.00%]: CE = 6.80749512 * 16; Err = 1.00000000 * 16; time = 0.1845s; samplesPerSecond = 86.7
- Epoch[ 2 of 2]-Minibatch[  34-  34, 34.00%]: CE = 6.80528259 * 16; Err = 1.00000000 * 16; time = 0.1843s; samplesPerSecond = 86.8
- Epoch[ 2 of 2]-Minibatch[  35-  35, 35.00%]: CE = 6.83174133 * 16; Err = 1.00000000 * 16; time = 0.1845s; samplesPerSecond = 86.7
- Epoch[ 2 of 2]-Minibatch[  36-  36, 36.00%]: CE = 6.87403870 * 16; Err = 1.00000000 * 16; time = 0.1847s; samplesPerSecond = 86.6
- Epoch[ 2 of 2]-Minibatch[  37-  37, 37.00%]: CE = 6.82427979 * 16; Err = 1.00000000 * 16; time = 0.1838s; samplesPerSecond = 87.0
- Epoch[ 2 of 2]-Minibatch[  38-  38, 38.00%]: CE = 6.77555847 * 16; Err = 1.00000000 * 16; time = 0.1840s; samplesPerSecond = 86.9
- Epoch[ 2 of 2]-Minibatch[  39-  39, 39.00%]: CE = 6.87542725 * 16; Err = 1.00000000 * 16; time = 0.1840s; samplesPerSecond = 87.0
- Epoch[ 2 of 2]-Minibatch[  40-  40, 40.00%]: CE = 6.81732178 * 16; Err = 1.00000000 * 16; time = 0.1842s; samplesPerSecond = 86.9
- Epoch[ 2 of 2]-Minibatch[  41-  41, 41.00%]: CE = 6.82617188 * 16; Err = 1.00000000 * 16; time = 0.1844s; samplesPerSecond = 86.8
- Epoch[ 2 of 2]-Minibatch[  42-  42, 42.00%]: CE = 6.87371826 * 16; Err = 1.00000000 * 16; time = 0.1841s; samplesPerSecond = 86.9
- Epoch[ 2 of 2]-Minibatch[  43-  43, 43.00%]: CE = 6.82400513 * 16; Err = 1.00000000 * 16; time = 0.1837s; samplesPerSecond = 87.1
- Epoch[ 2 of 2]-Minibatch[  44-  44, 44.00%]: CE = 6.87213135 * 16; Err = 1.00000000 * 16; time = 0.1843s; samplesPerSecond = 86.8
- Epoch[ 2 of 2]-Minibatch[  45-  45, 45.00%]: CE = 6.82586670 * 16; Err = 1.00000000 * 16; time = 0.1850s; samplesPerSecond = 86.5
- Epoch[ 2 of 2]-Minibatch[  46-  46, 46.00%]: CE = 6.87182617 * 16; Err = 1.00000000 * 16; time = 0.1842s; samplesPerSecond = 86.9
- Epoch[ 2 of 2]-Minibatch[  47-  47, 47.00%]: CE = 6.78671265 * 16; Err = 0.93750000 * 16; time = 0.1837s; samplesPerSecond = 87.1
- Epoch[ 2 of 2]-Minibatch[  48-  48, 48.00%]: CE = 6.77401733 * 16; Err = 1.00000000 * 16; time = 0.1840s; samplesPerSecond = 87.0
- Epoch[ 2 of 2]-Minibatch[  49-  49, 49.00%]: CE = 6.87014771 * 16; Err = 1.00000000 * 16; time = 0.1842s; samplesPerSecond = 86.9
- Epoch[ 2 of 2]-Minibatch[  50-  50, 50.00%]: CE = 6.81298828 * 16; Err = 1.00000000 * 16; time = 0.1845s; samplesPerSecond = 86.7
- Epoch[ 2 of 2]-Minibatch[  51-  51, 51.00%]: CE = 6.85943604 * 16; Err = 1.00000000 * 16; time = 0.1849s; samplesPerSecond = 86.6
- Epoch[ 2 of 2]-Minibatch[  52-  52, 52.00%]: CE = 6.84411621 * 16; Err = 1.00000000 * 16; time = 0.1846s; samplesPerSecond = 86.7
- Epoch[ 2 of 2]-Minibatch[  53-  53, 53.00%]: CE = 6.84942627 * 16; Err = 1.00000000 * 16; time = 0.1847s; samplesPerSecond = 86.6
- Epoch[ 2 of 2]-Minibatch[  54-  54, 54.00%]: CE = 6.82562256 * 16; Err = 1.00000000 * 16; time = 0.1844s; samplesPerSecond = 86.8
- Epoch[ 2 of 2]-Minibatch[  55-  55, 55.00%]: CE = 6.80252075 * 16; Err = 0.93750000 * 16; time = 0.1842s; samplesPerSecond = 86.8
- Epoch[ 2 of 2]-Minibatch[  56-  56, 56.00%]: CE = 6.85162354 * 16; Err = 1.00000000 * 16; time = 0.1843s; samplesPerSecond = 86.8
- Epoch[ 2 of 2]-Minibatch[  57-  57, 57.00%]: CE = 6.86416626 * 16; Err = 1.00000000 * 16; time = 0.1846s; samplesPerSecond = 86.7
- Epoch[ 2 of 2]-Minibatch[  58-  58, 58.00%]: CE = 6.87280273 * 16; Err = 1.00000000 * 16; time = 0.1844s; samplesPerSecond = 86.8
- Epoch[ 2 of 2]-Minibatch[  59-  59, 59.00%]: CE = 6.86944580 * 16; Err = 1.00000000 * 16; time = 0.1841s; samplesPerSecond = 86.9
- Epoch[ 2 of 2]-Minibatch[  60-  60, 60.00%]: CE = 6.78930664 * 16; Err = 1.00000000 * 16; time = 0.1837s; samplesPerSecond = 87.1
- Epoch[ 2 of 2]-Minibatch[  61-  61, 61.00%]: CE = 6.87942505 * 16; Err = 1.00000000 * 16; time = 0.1843s; samplesPerSecond = 86.8
- Epoch[ 2 of 2]-Minibatch[  62-  62, 62.00%]: CE = 6.80587769 * 16; Err = 0.93750000 * 16; time = 0.1844s; samplesPerSecond = 86.8
- Epoch[ 2 of 2]-Minibatch[  63-  63, 63.00%]: CE = 6.87847900 * 16; Err = 1.00000000 * 16; time = 0.1843s; samplesPerSecond = 86.8
- Epoch[ 2 of 2]-Minibatch[  64-  64, 64.00%]: CE = 6.84518433 * 16; Err = 1.00000000 * 16; time = 0.1841s; samplesPerSecond = 86.9
- Epoch[ 2 of 2]-Minibatch[  65-  65, 65.00%]: CE = 6.84747314 * 16; Err = 1.00000000 * 16; time = 0.1850s; samplesPerSecond = 86.5
- Epoch[ 2 of 2]-Minibatch[  66-  66, 66.00%]: CE = 6.86834717 * 16; Err = 1.00000000 * 16; time = 0.1854s; samplesPerSecond = 86.3
- Epoch[ 2 of 2]-Minibatch[  67-  67, 67.00%]: CE = 6.86734009 * 16; Err = 1.00000000 * 16; time = 0.1875s; samplesPerSecond = 85.3
- Epoch[ 2 of 2]-Minibatch[  68-  68, 68.00%]: CE = 6.81216431 * 16; Err = 1.00000000 * 16; time = 0.1880s; samplesPerSecond = 85.1
- Epoch[ 2 of 2]-Minibatch[  69-  69, 69.00%]: CE = 6.81964111 * 16; Err = 1.00000000 * 16; time = 0.1890s; samplesPerSecond = 84.7
- Epoch[ 2 of 2]-Minibatch[  70-  70, 70.00%]: CE = 6.74923706 * 16; Err = 1.00000000 * 16; time = 0.1893s; samplesPerSecond = 84.5
- Epoch[ 2 of 2]-Minibatch[  71-  71, 71.00%]: CE = 6.79699707 * 16; Err = 1.00000000 * 16; time = 0.1906s; samplesPerSecond = 84.0
- Epoch[ 2 of 2]-Minibatch[  72-  72, 72.00%]: CE = 6.82910156 * 16; Err = 1.00000000 * 16; time = 0.1920s; samplesPerSecond = 83.4
- Epoch[ 2 of 2]-Minibatch[  73-  73, 73.00%]: CE = 6.82086182 * 16; Err = 1.00000000 * 16; time = 0.1939s; samplesPerSecond = 82.5
- Epoch[ 2 of 2]-Minibatch[  74-  74, 74.00%]: CE = 6.84048462 * 16; Err = 1.00000000 * 16; time = 0.1944s; samplesPerSecond = 82.3
- Epoch[ 2 of 2]-Minibatch[  75-  75, 75.00%]: CE = 6.83361816 * 16; Err = 1.00000000 * 16; time = 0.1965s; samplesPerSecond = 81.4
- Epoch[ 2 of 2]-Minibatch[  76-  76, 76.00%]: CE = 6.74835205 * 16; Err = 0.93750000 * 16; time = 0.1969s; samplesPerSecond = 81.3
- Epoch[ 2 of 2]-Minibatch[  77-  77, 77.00%]: CE = 6.86529541 * 16; Err = 1.00000000 * 16; time = 0.1965s; samplesPerSecond = 81.4
- Epoch[ 2 of 2]-Minibatch[  78-  78, 78.00%]: CE = 6.88824463 * 16; Err = 1.00000000 * 16; time = 0.1967s; samplesPerSecond = 81.3
- Epoch[ 2 of 2]-Minibatch[  79-  79, 79.00%]: CE = 6.73345947 * 16; Err = 1.00000000 * 16; time = 0.1970s; samplesPerSecond = 81.2
- Epoch[ 2 of 2]-Minibatch[  80-  80, 80.00%]: CE = 6.85565186 * 16; Err = 0.93750000 * 16; time = 0.1965s; samplesPerSecond = 81.4
- Epoch[ 2 of 2]-Minibatch[  81-  81, 81.00%]: CE = 6.78088379 * 16; Err = 1.00000000 * 16; time = 0.1963s; samplesPerSecond = 81.5
- Epoch[ 2 of 2]-Minibatch[  82-  82, 82.00%]: CE = 7.04656982 * 16; Err = 1.00000000 * 16; time = 0.1958s; samplesPerSecond = 81.7
- Epoch[ 2 of 2]-Minibatch[  83-  83, 83.00%]: CE = 6.81414795 * 16; Err = 1.00000000 * 16; time = 0.1964s; samplesPerSecond = 81.5
- Epoch[ 2 of 2]-Minibatch[  84-  84, 84.00%]: CE = 6.89172363 * 16; Err = 1.00000000 * 16; time = 0.1969s; samplesPerSecond = 81.3
- Epoch[ 2 of 2]-Minibatch[  85-  85, 85.00%]: CE = 6.84161377 * 16; Err = 1.00000000 * 16; time = 0.1962s; samplesPerSecond = 81.5
- Epoch[ 2 of 2]-Minibatch[  86-  86, 86.00%]: CE = 6.88867188 * 16; Err = 1.00000000 * 16; time = 0.1959s; samplesPerSecond = 81.7
- Epoch[ 2 of 2]-Minibatch[  87-  87, 87.00%]: CE = 6.85046387 * 16; Err = 1.00000000 * 16; time = 0.1966s; samplesPerSecond = 81.4
- Epoch[ 2 of 2]-Minibatch[  88-  88, 88.00%]: CE = 6.85321045 * 16; Err = 1.00000000 * 16; time = 0.1970s; samplesPerSecond = 81.2
- Epoch[ 2 of 2]-Minibatch[  89-  89, 89.00%]: CE = 6.90435791 * 16; Err = 1.00000000 * 16; time = 0.1968s; samplesPerSecond = 81.3
- Epoch[ 2 of 2]-Minibatch[  90-  90, 90.00%]: CE = 6.85302734 * 16; Err = 1.00000000 * 16; time = 0.1966s; samplesPerSecond = 81.4
- Epoch[ 2 of 2]-Minibatch[  91-  91, 91.00%]: CE = 6.79663086 * 16; Err = 1.00000000 * 16; time = 0.1964s; samplesPerSecond = 81.5
- Epoch[ 2 of 2]-Minibatch[  92-  92, 92.00%]: CE = 6.80053711 * 16; Err = 1.00000000 * 16; time = 0.1961s; samplesPerSecond = 81.6
- Epoch[ 2 of 2]-Minibatch[  93-  93, 93.00%]: CE = 6.84729004 * 16; Err = 1.00000000 * 16; time = 0.1956s; samplesPerSecond = 81.8
- Epoch[ 2 of 2]-Minibatch[  94-  94, 94.00%]: CE = 6.82312012 * 16; Err = 1.00000000 * 16; time = 0.1961s; samplesPerSecond = 81.6
- Epoch[ 2 of 2]-Minibatch[  95-  95, 95.00%]: CE = 6.90911865 * 16; Err = 1.00000000 * 16; time = 0.1969s; samplesPerSecond = 81.3
- Epoch[ 2 of 2]-Minibatch[  96-  96, 96.00%]: CE = 6.80194092 * 16; Err = 0.93750000 * 16; time = 0.1966s; samplesPerSecond = 81.4
- Epoch[ 2 of 2]-Minibatch[  97-  97, 97.00%]: CE = 6.79913330 * 16; Err = 1.00000000 * 16; time = 0.1973s; samplesPerSecond = 81.1
- Epoch[ 2 of 2]-Minibatch[  98-  98, 98.00%]: CE = 6.84179688 * 16; Err = 1.00000000 * 16; time = 0.1970s; samplesPerSecond = 81.2
- Epoch[ 2 of 2]-Minibatch[  99-  99, 99.00%]: CE = 6.86791992 * 16; Err = 1.00000000 * 16; time = 0.1967s; samplesPerSecond = 81.3
- Epoch[ 2 of 2]-Minibatch[ 100- 100, 100.00%]: CE = 6.86791992 * 16; Err = 1.00000000 * 16; time = 0.1992s; samplesPerSecond = 80.3
-Finished Epoch[ 2 of 2]: [Training] CE = 6.85818542 * 1600; Err = 0.99562500 * 1600; totalSamplesSeen = 3200; learningRatePerSample = 0.0625; epochTime=18.8003s
+ Epoch[ 2 of 2]-Minibatch[   1-   1, 1.00%]: CE = 7.03999138 * 16; Err = 1.00000000 * 16; time = 0.1851s; samplesPerSecond = 86.4
+ Epoch[ 2 of 2]-Minibatch[   2-   2, 2.00%]: CE = 6.87202358 * 16; Err = 1.00000000 * 16; time = 0.1845s; samplesPerSecond = 86.7
+ Epoch[ 2 of 2]-Minibatch[   3-   3, 3.00%]: CE = 6.84373379 * 16; Err = 1.00000000 * 16; time = 0.1824s; samplesPerSecond = 87.7
+ Epoch[ 2 of 2]-Minibatch[   4-   4, 4.00%]: CE = 8.51107788 * 16; Err = 1.00000000 * 16; time = 0.1823s; samplesPerSecond = 87.8
+ Epoch[ 2 of 2]-Minibatch[   5-   5, 5.00%]: CE = 6.96596527 * 16; Err = 1.00000000 * 16; time = 0.1826s; samplesPerSecond = 87.6
+ Epoch[ 2 of 2]-Minibatch[   6-   6, 6.00%]: CE = 6.98961639 * 16; Err = 1.00000000 * 16; time = 0.1829s; samplesPerSecond = 87.5
+ Epoch[ 2 of 2]-Minibatch[   7-   7, 7.00%]: CE = 7.57900620 * 16; Err = 1.00000000 * 16; time = 0.1830s; samplesPerSecond = 87.4
+ Epoch[ 2 of 2]-Minibatch[   8-   8, 8.00%]: CE = 6.79143143 * 16; Err = 1.00000000 * 16; time = 0.1827s; samplesPerSecond = 87.6
+ Epoch[ 2 of 2]-Minibatch[   9-   9, 9.00%]: CE = 6.85155106 * 16; Err = 1.00000000 * 16; time = 0.1827s; samplesPerSecond = 87.6
+ Epoch[ 2 of 2]-Minibatch[  10-  10, 10.00%]: CE = 6.89163971 * 16; Err = 1.00000000 * 16; time = 0.1823s; samplesPerSecond = 87.8
+ Epoch[ 2 of 2]-Minibatch[  11-  11, 11.00%]: CE = 6.83958435 * 16; Err = 1.00000000 * 16; time = 0.1830s; samplesPerSecond = 87.4
+ Epoch[ 2 of 2]-Minibatch[  12-  12, 12.00%]: CE = 6.85250854 * 16; Err = 1.00000000 * 16; time = 0.1828s; samplesPerSecond = 87.5
+ Epoch[ 2 of 2]-Minibatch[  13-  13, 13.00%]: CE = 6.84613800 * 16; Err = 1.00000000 * 16; time = 0.1826s; samplesPerSecond = 87.6
+ Epoch[ 2 of 2]-Minibatch[  14-  14, 14.00%]: CE = 6.86853027 * 16; Err = 1.00000000 * 16; time = 0.1825s; samplesPerSecond = 87.7
+ Epoch[ 2 of 2]-Minibatch[  15-  15, 15.00%]: CE = 6.86850739 * 16; Err = 1.00000000 * 16; time = 0.1820s; samplesPerSecond = 87.9
+ Epoch[ 2 of 2]-Minibatch[  16-  16, 16.00%]: CE = 6.89654541 * 16; Err = 1.00000000 * 16; time = 0.1819s; samplesPerSecond = 88.0
+ Epoch[ 2 of 2]-Minibatch[  17-  17, 17.00%]: CE = 6.87174988 * 16; Err = 1.00000000 * 16; time = 0.1826s; samplesPerSecond = 87.6
+ Epoch[ 2 of 2]-Minibatch[  18-  18, 18.00%]: CE = 6.87804413 * 16; Err = 1.00000000 * 16; time = 0.1825s; samplesPerSecond = 87.7
+ Epoch[ 2 of 2]-Minibatch[  19-  19, 19.00%]: CE = 6.84579468 * 16; Err = 1.00000000 * 16; time = 0.1827s; samplesPerSecond = 87.6
+ Epoch[ 2 of 2]-Minibatch[  20-  20, 20.00%]: CE = 6.89349365 * 16; Err = 1.00000000 * 16; time = 0.1829s; samplesPerSecond = 87.5
+ Epoch[ 2 of 2]-Minibatch[  21-  21, 21.00%]: CE = 6.93988037 * 16; Err = 0.93750000 * 16; time = 0.1829s; samplesPerSecond = 87.5
+ Epoch[ 2 of 2]-Minibatch[  22-  22, 22.00%]: CE = 6.83172607 * 16; Err = 1.00000000 * 16; time = 0.1824s; samplesPerSecond = 87.7
+ Epoch[ 2 of 2]-Minibatch[  23-  23, 23.00%]: CE = 6.85566711 * 16; Err = 1.00000000 * 16; time = 0.1828s; samplesPerSecond = 87.5
+ Epoch[ 2 of 2]-Minibatch[  24-  24, 24.00%]: CE = 6.83097839 * 16; Err = 1.00000000 * 16; time = 0.1826s; samplesPerSecond = 87.6
+ Epoch[ 2 of 2]-Minibatch[  25-  25, 25.00%]: CE = 6.85401917 * 16; Err = 1.00000000 * 16; time = 0.1820s; samplesPerSecond = 87.9
+ Epoch[ 2 of 2]-Minibatch[  26-  26, 26.00%]: CE = 6.83618164 * 16; Err = 1.00000000 * 16; time = 0.1827s; samplesPerSecond = 87.6
+ Epoch[ 2 of 2]-Minibatch[  27-  27, 27.00%]: CE = 6.83265686 * 16; Err = 1.00000000 * 16; time = 0.1821s; samplesPerSecond = 87.9
+ Epoch[ 2 of 2]-Minibatch[  28-  28, 28.00%]: CE = 6.81781006 * 16; Err = 1.00000000 * 16; time = 0.1826s; samplesPerSecond = 87.6
+ Epoch[ 2 of 2]-Minibatch[  29-  29, 29.00%]: CE = 6.74182129 * 16; Err = 1.00000000 * 16; time = 0.1828s; samplesPerSecond = 87.5
+ Epoch[ 2 of 2]-Minibatch[  30-  30, 30.00%]: CE = 6.85375977 * 16; Err = 1.00000000 * 16; time = 0.1828s; samplesPerSecond = 87.5
+ Epoch[ 2 of 2]-Minibatch[  31-  31, 31.00%]: CE = 6.81358337 * 16; Err = 1.00000000 * 16; time = 0.1829s; samplesPerSecond = 87.5
+ Epoch[ 2 of 2]-Minibatch[  32-  32, 32.00%]: CE = 6.78991699 * 16; Err = 0.93750000 * 16; time = 0.1830s; samplesPerSecond = 87.4
+ Epoch[ 2 of 2]-Minibatch[  33-  33, 33.00%]: CE = 6.81898499 * 16; Err = 1.00000000 * 16; time = 0.1842s; samplesPerSecond = 86.9
+ Epoch[ 2 of 2]-Minibatch[  34-  34, 34.00%]: CE = 6.84947205 * 16; Err = 1.00000000 * 16; time = 0.1836s; samplesPerSecond = 87.2
+ Epoch[ 2 of 2]-Minibatch[  35-  35, 35.00%]: CE = 6.83549500 * 16; Err = 1.00000000 * 16; time = 0.1836s; samplesPerSecond = 87.1
+ Epoch[ 2 of 2]-Minibatch[  36-  36, 36.00%]: CE = 6.82926941 * 16; Err = 1.00000000 * 16; time = 0.1842s; samplesPerSecond = 86.9
+ Epoch[ 2 of 2]-Minibatch[  37-  37, 37.00%]: CE = 6.79776001 * 16; Err = 1.00000000 * 16; time = 0.1833s; samplesPerSecond = 87.3
+ Epoch[ 2 of 2]-Minibatch[  38-  38, 38.00%]: CE = 6.85156250 * 16; Err = 1.00000000 * 16; time = 0.1834s; samplesPerSecond = 87.3
+ Epoch[ 2 of 2]-Minibatch[  39-  39, 39.00%]: CE = 6.84661865 * 16; Err = 1.00000000 * 16; time = 0.1838s; samplesPerSecond = 87.1
+ Epoch[ 2 of 2]-Minibatch[  40-  40, 40.00%]: CE = 6.81106567 * 16; Err = 1.00000000 * 16; time = 0.1831s; samplesPerSecond = 87.4
+ Epoch[ 2 of 2]-Minibatch[  41-  41, 41.00%]: CE = 6.78695679 * 16; Err = 1.00000000 * 16; time = 0.1841s; samplesPerSecond = 86.9
+ Epoch[ 2 of 2]-Minibatch[  42-  42, 42.00%]: CE = 6.80090332 * 16; Err = 1.00000000 * 16; time = 0.1842s; samplesPerSecond = 86.9
+ Epoch[ 2 of 2]-Minibatch[  43-  43, 43.00%]: CE = 6.81082153 * 16; Err = 1.00000000 * 16; time = 0.1838s; samplesPerSecond = 87.1
+ Epoch[ 2 of 2]-Minibatch[  44-  44, 44.00%]: CE = 6.74938965 * 16; Err = 1.00000000 * 16; time = 0.1836s; samplesPerSecond = 87.1
+ Epoch[ 2 of 2]-Minibatch[  45-  45, 45.00%]: CE = 6.80184937 * 16; Err = 1.00000000 * 16; time = 0.1838s; samplesPerSecond = 87.1
+ Epoch[ 2 of 2]-Minibatch[  46-  46, 46.00%]: CE = 6.84356689 * 16; Err = 1.00000000 * 16; time = 0.1840s; samplesPerSecond = 86.9
+ Epoch[ 2 of 2]-Minibatch[  47-  47, 47.00%]: CE = 6.91296387 * 16; Err = 1.00000000 * 16; time = 0.1841s; samplesPerSecond = 86.9
+ Epoch[ 2 of 2]-Minibatch[  48-  48, 48.00%]: CE = 6.84408569 * 16; Err = 1.00000000 * 16; time = 0.1842s; samplesPerSecond = 86.9
+ Epoch[ 2 of 2]-Minibatch[  49-  49, 49.00%]: CE = 6.80108643 * 16; Err = 1.00000000 * 16; time = 0.1840s; samplesPerSecond = 87.0
+ Epoch[ 2 of 2]-Minibatch[  50-  50, 50.00%]: CE = 6.80636597 * 16; Err = 1.00000000 * 16; time = 0.1842s; samplesPerSecond = 86.8
+ Epoch[ 2 of 2]-Minibatch[  51-  51, 51.00%]: CE = 6.78692627 * 16; Err = 1.00000000 * 16; time = 0.1839s; samplesPerSecond = 87.0
+ Epoch[ 2 of 2]-Minibatch[  52-  52, 52.00%]: CE = 6.81451416 * 16; Err = 1.00000000 * 16; time = 0.1839s; samplesPerSecond = 87.0
+ Epoch[ 2 of 2]-Minibatch[  53-  53, 53.00%]: CE = 6.80517578 * 16; Err = 1.00000000 * 16; time = 0.1844s; samplesPerSecond = 86.8
+ Epoch[ 2 of 2]-Minibatch[  54-  54, 54.00%]: CE = 6.79782104 * 16; Err = 0.93750000 * 16; time = 0.1833s; samplesPerSecond = 87.3
+ Epoch[ 2 of 2]-Minibatch[  55-  55, 55.00%]: CE = 6.80166626 * 16; Err = 1.00000000 * 16; time = 0.1835s; samplesPerSecond = 87.2
+ Epoch[ 2 of 2]-Minibatch[  56-  56, 56.00%]: CE = 6.82189941 * 16; Err = 1.00000000 * 16; time = 0.1837s; samplesPerSecond = 87.1
+ Epoch[ 2 of 2]-Minibatch[  57-  57, 57.00%]: CE = 6.84393311 * 16; Err = 1.00000000 * 16; time = 0.1841s; samplesPerSecond = 86.9
+ Epoch[ 2 of 2]-Minibatch[  58-  58, 58.00%]: CE = 6.79754639 * 16; Err = 1.00000000 * 16; time = 0.1843s; samplesPerSecond = 86.8
+ Epoch[ 2 of 2]-Minibatch[  59-  59, 59.00%]: CE = 6.77929688 * 16; Err = 1.00000000 * 16; time = 0.1839s; samplesPerSecond = 87.0
+ Epoch[ 2 of 2]-Minibatch[  60-  60, 60.00%]: CE = 6.86300659 * 16; Err = 1.00000000 * 16; time = 0.1829s; samplesPerSecond = 87.5
+ Epoch[ 2 of 2]-Minibatch[  61-  61, 61.00%]: CE = 6.76556396 * 16; Err = 1.00000000 * 16; time = 0.1834s; samplesPerSecond = 87.2
+ Epoch[ 2 of 2]-Minibatch[  62-  62, 62.00%]: CE = 6.85549927 * 16; Err = 1.00000000 * 16; time = 0.1843s; samplesPerSecond = 86.8
+ Epoch[ 2 of 2]-Minibatch[  63-  63, 63.00%]: CE = 6.80001831 * 16; Err = 1.00000000 * 16; time = 0.1840s; samplesPerSecond = 87.0
+ Epoch[ 2 of 2]-Minibatch[  64-  64, 64.00%]: CE = 6.78189087 * 16; Err = 1.00000000 * 16; time = 0.1840s; samplesPerSecond = 87.0
+ Epoch[ 2 of 2]-Minibatch[  65-  65, 65.00%]: CE = 6.79537964 * 16; Err = 1.00000000 * 16; time = 0.1841s; samplesPerSecond = 86.9
+ Epoch[ 2 of 2]-Minibatch[  66-  66, 66.00%]: CE = 6.86642456 * 16; Err = 1.00000000 * 16; time = 0.1839s; samplesPerSecond = 87.0
+ Epoch[ 2 of 2]-Minibatch[  67-  67, 67.00%]: CE = 6.84509277 * 16; Err = 1.00000000 * 16; time = 0.1834s; samplesPerSecond = 87.2
+ Epoch[ 2 of 2]-Minibatch[  68-  68, 68.00%]: CE = 6.78262329 * 16; Err = 1.00000000 * 16; time = 0.1837s; samplesPerSecond = 87.1
+ Epoch[ 2 of 2]-Minibatch[  69-  69, 69.00%]: CE = 6.84356689 * 16; Err = 1.00000000 * 16; time = 0.1833s; samplesPerSecond = 87.3
+ Epoch[ 2 of 2]-Minibatch[  70-  70, 70.00%]: CE = 6.81372070 * 16; Err = 1.00000000 * 16; time = 0.1831s; samplesPerSecond = 87.4
+ Epoch[ 2 of 2]-Minibatch[  71-  71, 71.00%]: CE = 6.75006104 * 16; Err = 1.00000000 * 16; time = 0.1833s; samplesPerSecond = 87.3
+ Epoch[ 2 of 2]-Minibatch[  72-  72, 72.00%]: CE = 6.69360352 * 16; Err = 1.00000000 * 16; time = 0.1836s; samplesPerSecond = 87.1
+ Epoch[ 2 of 2]-Minibatch[  73-  73, 73.00%]: CE = 6.82366943 * 16; Err = 1.00000000 * 16; time = 0.1838s; samplesPerSecond = 87.0
+ Epoch[ 2 of 2]-Minibatch[  74-  74, 74.00%]: CE = 6.81967163 * 16; Err = 1.00000000 * 16; time = 0.1835s; samplesPerSecond = 87.2
+ Epoch[ 2 of 2]-Minibatch[  75-  75, 75.00%]: CE = 6.77716064 * 16; Err = 1.00000000 * 16; time = 0.1844s; samplesPerSecond = 86.8
+ Epoch[ 2 of 2]-Minibatch[  76-  76, 76.00%]: CE = 6.83380127 * 16; Err = 1.00000000 * 16; time = 0.1842s; samplesPerSecond = 86.8
+ Epoch[ 2 of 2]-Minibatch[  77-  77, 77.00%]: CE = 6.83837891 * 16; Err = 1.00000000 * 16; time = 0.1841s; samplesPerSecond = 86.9
+ Epoch[ 2 of 2]-Minibatch[  78-  78, 78.00%]: CE = 6.84930420 * 16; Err = 1.00000000 * 16; time = 0.1841s; samplesPerSecond = 86.9
+ Epoch[ 2 of 2]-Minibatch[  79-  79, 79.00%]: CE = 6.86541748 * 16; Err = 1.00000000 * 16; time = 0.1837s; samplesPerSecond = 87.1
+ Epoch[ 2 of 2]-Minibatch[  80-  80, 80.00%]: CE = 6.87738037 * 16; Err = 1.00000000 * 16; time = 0.1845s; samplesPerSecond = 86.7
+ Epoch[ 2 of 2]-Minibatch[  81-  81, 81.00%]: CE = 6.84124756 * 16; Err = 1.00000000 * 16; time = 0.1846s; samplesPerSecond = 86.7
+ Epoch[ 2 of 2]-Minibatch[  82-  82, 82.00%]: CE = 6.85876465 * 16; Err = 1.00000000 * 16; time = 0.1831s; samplesPerSecond = 87.4
+ Epoch[ 2 of 2]-Minibatch[  83-  83, 83.00%]: CE = 6.88598633 * 16; Err = 1.00000000 * 16; time = 0.1832s; samplesPerSecond = 87.3
+ Epoch[ 2 of 2]-Minibatch[  84-  84, 84.00%]: CE = 6.76910400 * 16; Err = 1.00000000 * 16; time = 0.1841s; samplesPerSecond = 86.9
+ Epoch[ 2 of 2]-Minibatch[  85-  85, 85.00%]: CE = 6.66162109 * 16; Err = 0.93750000 * 16; time = 0.1846s; samplesPerSecond = 86.7
+ Epoch[ 2 of 2]-Minibatch[  86-  86, 86.00%]: CE = 6.80181885 * 16; Err = 1.00000000 * 16; time = 0.1841s; samplesPerSecond = 86.9
+ Epoch[ 2 of 2]-Minibatch[  87-  87, 87.00%]: CE = 6.86395264 * 16; Err = 1.00000000 * 16; time = 0.1840s; samplesPerSecond = 86.9
+ Epoch[ 2 of 2]-Minibatch[  88-  88, 88.00%]: CE = 6.79516602 * 16; Err = 0.93750000 * 16; time = 0.1835s; samplesPerSecond = 87.2
+ Epoch[ 2 of 2]-Minibatch[  89-  89, 89.00%]: CE = 6.83654785 * 16; Err = 1.00000000 * 16; time = 0.1839s; samplesPerSecond = 87.0
+ Epoch[ 2 of 2]-Minibatch[  90-  90, 90.00%]: CE = 6.70605469 * 16; Err = 1.00000000 * 16; time = 0.1836s; samplesPerSecond = 87.2
+ Epoch[ 2 of 2]-Minibatch[  91-  91, 91.00%]: CE = 6.79632568 * 16; Err = 1.00000000 * 16; time = 0.1839s; samplesPerSecond = 87.0
+ Epoch[ 2 of 2]-Minibatch[  92-  92, 92.00%]: CE = 6.72705078 * 16; Err = 1.00000000 * 16; time = 0.1837s; samplesPerSecond = 87.1
+ Epoch[ 2 of 2]-Minibatch[  93-  93, 93.00%]: CE = 6.81805420 * 16; Err = 1.00000000 * 16; time = 0.1845s; samplesPerSecond = 86.7
+ Epoch[ 2 of 2]-Minibatch[  94-  94, 94.00%]: CE = 6.78851318 * 16; Err = 1.00000000 * 16; time = 0.1844s; samplesPerSecond = 86.8
+ Epoch[ 2 of 2]-Minibatch[  95-  95, 95.00%]: CE = 6.87237549 * 16; Err = 1.00000000 * 16; time = 0.1839s; samplesPerSecond = 87.0
+ Epoch[ 2 of 2]-Minibatch[  96-  96, 96.00%]: CE = 6.76708984 * 16; Err = 1.00000000 * 16; time = 0.1834s; samplesPerSecond = 87.2
+ Epoch[ 2 of 2]-Minibatch[  97-  97, 97.00%]: CE = 6.84356689 * 16; Err = 1.00000000 * 16; time = 0.1843s; samplesPerSecond = 86.8
+ Epoch[ 2 of 2]-Minibatch[  98-  98, 98.00%]: CE = 6.82098389 * 16; Err = 1.00000000 * 16; time = 0.1833s; samplesPerSecond = 87.3
+ Epoch[ 2 of 2]-Minibatch[  99-  99, 99.00%]: CE = 6.83111572 * 16; Err = 1.00000000 * 16; time = 0.1838s; samplesPerSecond = 87.1
+ Epoch[ 2 of 2]-Minibatch[ 100- 100, 100.00%]: CE = 6.82769775 * 16; Err = 1.00000000 * 16; time = 0.1862s; samplesPerSecond = 85.9
+Finished Epoch[ 2 of 2]: [Training] CE = 6.85296204 * 1600; Err = 0.99687500 * 1600; totalSamplesSeen = 3200; learningRatePerSample = 0.0625; epochTime=18.3575s
 SGD: Saving checkpoint model './Output/resnet/ResNet_50'
-CNTKCommandTrainEnd: Train
 
 Action "train" complete.
 
-__COMPLETED__
+COMPLETED.
