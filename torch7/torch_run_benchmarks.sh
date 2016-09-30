@@ -60,14 +60,14 @@ sudo rm -f output_fcn8.log
 sudo rm -f output_lstm32.log
 sudo rm -f output_lstm64.log
 
-th benchmark.lua -arch alexnet -batchSize ${CMBS} -nIterations ${CNB} -deviceId 1 2>&1 | tee output_alexnet.log
-th benchmark.lua -arch resnet -batchSize ${CMBS} -nIterations ${CNB} -deviceId 1 2>&1 | tee output_resnet.log
-th benchmark.lua -arch fcn5 -batchSize ${FMBS} -nIterations ${FNB} -deviceId 1 2>&1 | tee output_fcn5.log
-th benchmark.lua -arch fcn8 -batchSize ${FMBS} -nIterations ${FNB} -deviceId 1 2>&1 | tee output_fcn8.log
+th benchmark.lua -arch alexnet -batchSize ${CMBS} -nIterations ${CNB} -deviceId 0 2>&1 | tee output_alexnet.log
+th benchmark.lua -arch resnet -batchSize ${CMBS} -nIterations ${CNB} -deviceId 0 2>&1 | tee output_resnet.log
+th benchmark.lua -arch fcn5 -batchSize ${FMBS} -nIterations ${FNB} -deviceId 0 2>&1 | tee output_fcn5.log
+th benchmark.lua -arch fcn8 -batchSize ${FMBS} -nIterations ${FNB} -deviceId 0 2>&1 | tee output_fcn8.log
 
 luarocks install rnn
 luarocks install dataload
 pushd ./rnn/lstm/
-th  lstm.lua --seqlen 32 --batchsize ${RMBS} --iters ${RNB} --hiddensize '{256,256}' --cuda --lstm --startlr 1 --cutoff 5 --maxepoch 1 --device 1 2>&1 | tee ../../output_lstm32.log
-th  lstm.lua --seqlen 64 --batchsize ${RMBS} --iters ${RNB} --hiddensize '{256,256}' --cuda --lstm --startlr 1 --cutoff 5 --maxepoch 1 --device 1 2>&1 | tee ../../output_lstm64.log
+th  lstm.lua --seqlen 32 --batchsize ${RMBS} --iters ${RNB} --hiddensize '{256,256}' --cuda --lstm --startlr 1 --cutoff 5 --maxepoch 1 --device 0 2>&1 | tee ../../output_lstm32.log
+th  lstm.lua --seqlen 64 --batchsize ${RMBS} --iters ${RNB} --hiddensize '{256,256}' --cuda --lstm --startlr 1 --cutoff 5 --maxepoch 1 --device 0 2>&1 | tee ../../output_lstm64.log
 popd

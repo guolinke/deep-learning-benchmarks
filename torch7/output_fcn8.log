@@ -1,124 +1,25 @@
 Running on device: GeForce GTX TITAN X	
 Model Parameters: 	130586752	
 All shape: 	{
-  1 : DoubleTensor - size: 2048x26752
-  2 : DoubleTensor - size: 2048
-  3 : DoubleTensor - size: 2048x2048
-  4 : DoubleTensor - size: 2048
-  5 : DoubleTensor - size: 2048x2048
-  6 : DoubleTensor - size: 2048
-  7 : DoubleTensor - size: 2048x2048
-  8 : DoubleTensor - size: 2048
-  9 : DoubleTensor - size: 2048x2048
-  10 : DoubleTensor - size: 2048
-  11 : DoubleTensor - size: 2048x2048
-  12 : DoubleTensor - size: 2048
-  13 : DoubleTensor - size: 26752x2048
-  14 : DoubleTensor - size: 26752
+  1 : CudaTensor - size: 2048x26752
+  2 : CudaTensor - size: 2048
+  3 : CudaTensor - size: 2048x2048
+  4 : CudaTensor - size: 2048
+  5 : CudaTensor - size: 2048x2048
+  6 : CudaTensor - size: 2048
+  7 : CudaTensor - size: 2048x2048
+  8 : CudaTensor - size: 2048
+  9 : CudaTensor - size: 2048x2048
+  10 : CudaTensor - size: 2048
+  11 : CudaTensor - size: 2048x2048
+  12 : CudaTensor - size: 2048
+  13 : CudaTensor - size: 26752x2048
+  14 : CudaTensor - size: 26752
 }
 ModelType: FCN8	
-Used time for [copy] :   0.002040	
-Used time for [copy + forward] :   0.010873	
-Used time for [copy + forward + backward] :   0.020548	
-Error at 1 iter :   8.572260	
-Error at 2 iter :   8.487977	
-Error at 3 iter :   8.403578	
-Error at 4 iter :   8.319069	
-Error at 5 iter :   8.234452	
-Error at 6 iter :   8.149735	
-Error at 7 iter :   8.064929	
-Error at 8 iter :   7.980042	
-Error at 9 iter :   7.895092	
-Error at 10 iter :   7.810095	
-Error at 11 iter :   7.725068	
-Error at 12 iter :   7.640040	
-Error at 13 iter :   7.555036	
-Error at 14 iter :   7.470086	
-Error at 15 iter :   7.385224	
-Error at 16 iter :   7.300492	
-Error at 17 iter :   7.215933	
-Error at 18 iter :   7.131597	
-Error at 19 iter :   7.047533	
-Error at 20 iter :   6.963805	
-Error at 21 iter :   6.880475	
-Error at 22 iter :   6.797609	
-Error at 23 iter :   6.715285	
-Error at 24 iter :   6.633580	
-Error at 25 iter :   6.552577	
-Error at 26 iter :   6.472368	
-Error at 27 iter :   6.393039	
-Error at 28 iter :   6.314689	
-Error at 29 iter :   6.237414	
-Error at 30 iter :   6.161318	
-Error at 31 iter :   6.086494	
-Error at 32 iter :   6.013046	
-Error at 33 iter :   5.941070	
-Error at 34 iter :   5.870663	
-Error at 35 iter :   5.801916	
-Error at 36 iter :   5.734910	
-Error at 37 iter :   5.669728	
-Error at 38 iter :   5.606437	
-Error at 39 iter :   5.545100	
-Error at 40 iter :   5.485770	
-Error at 41 iter :   5.428486	
-Error at 42 iter :   5.373280	
-Error at 43 iter :   5.320170	
-Error at 44 iter :   5.269164	
-Error at 45 iter :   5.220263	
-Error at 46 iter :   5.173449	
-Error at 47 iter :   5.128701	
-Error at 48 iter :   5.085988	
-Error at 49 iter :   5.045270	
-Error at 50 iter :   5.006499	
-Error at 51 iter :   4.969623	
-Error at 52 iter :   4.934583	
-Error at 53 iter :   4.901312	
-Error at 54 iter :   4.869753	
-Error at 55 iter :   4.839830	
-Error at 56 iter :   4.811475	
-Error at 57 iter :   4.784621	
-Error at 58 iter :   4.759192	
-Error at 59 iter :   4.735124	
-Error at 60 iter :   4.712344	
-Error at 61 iter :   4.690784	
-Error at 62 iter :   4.670380	
-Error at 63 iter :   4.651069	
-Error at 64 iter :   4.632787	
-Error at 65 iter :   4.615479	
-Error at 66 iter :   4.599086	
-Error at 67 iter :   4.583554	
-Error at 68 iter :   4.568835	
-Error at 69 iter :   4.554878	
-Error at 70 iter :   4.541637	
-Error at 71 iter :   4.529071	
-Error at 72 iter :   4.517138	
-Error at 73 iter :   4.505802	
-Error at 74 iter :   4.495023	
-Error at 75 iter :   4.484772	
-Error at 76 iter :   4.475013	
-Error at 77 iter :   4.465720	
-Error at 78 iter :   4.456863	
-Error at 79 iter :   4.448418	
-Error at 80 iter :   4.440359	
-Error at 81 iter :   4.432663	
-Error at 82 iter :   4.425312	
-Error at 83 iter :   4.418285	
-Error at 84 iter :   4.411562	
-Error at 85 iter :   4.405127	
-Error at 86 iter :   4.398965	
-Error at 87 iter :   4.393058	
-Error at 88 iter :   4.387395	
-Error at 89 iter :   4.381961	
-Error at 90 iter :   4.376743	
-Error at 91 iter :   4.371731	
-Error at 92 iter :   4.366915	
-Error at 93 iter :   4.362285	
-Error at 94 iter :   4.357827	
-Error at 95 iter :   4.353536	
-Error at 96 iter :   4.349405	
-Error at 97 iter :   4.345423	
-Error at 98 iter :   4.341584	
-Error at 99 iter :   4.337880	
-Error at 100 iter :   4.334307	
-Avg elasped time per mini-batch (sec/mini-batch):   0.028964	
-Avg samples per second (samples/sec): 2209.603013	
+Used time for 	[copy]	 : 	0.0020784497261047	
+Used time for 	[copy + forward]	 : 	0.010780317783356	
+Used time for 	[copy + forward + backward]	 : 	0.02050892829895	
+Used time for 	[copy + forward + backward + update]	 : 	0.028762409687042	
+Avg elasped time per mini-batch (sec/mini-batch):   0.028762	
+Avg samples per second (samples/sec): 2225.126500	

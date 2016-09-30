@@ -42,7 +42,7 @@ nn.Sequential {
 }
 	
 Epoch #1 :	
-Time elapsed for 100 iters: 8.8131029605865 seconds	
+Time elapsed for 100 iters: 9.6020488739014 seconds	
 Model parameters: 	6180624	
 All shape: 	{
   1 : CudaTensor - size: 10000x256
