@@ -52,7 +52,7 @@ seconds/num_batches:
 |CNTK| 0.031 | 0.035 | 0.035 | 0.184 | 0.061 | 0.120 |
 |MXNet| 0.027 | 0.030 | 0.032 | 0.157 | 0.137 | 0.190 |
 |TensorFlow| 0.024 | 0.026 | 0.031 | 0.236 | 0.074 | 0.137 |
-|Theano|  |  |  |  |  |  |
+|Theano| 0.016 | 0.018 | 0.026 | 0.595 | 0.089 | 0.173 |
 |Torch| 0.025 | 0.029 | 0.028 | 0.158 | 0.088 | 0.174 |
 
 ( Note: Samples of one mini batch for LSTM is SequenceLenght*MiniBatchSize. )
@@ -65,13 +65,12 @@ samples/second:
 |CNTK| 2095 | 1854 | 461 | 87 | 66838 | 68312 |
 |MXNet| 2404 | 2155 | 504 | 101 | 29921 | 43216 |
 |TensorFlow| 2722 | 2441 | 514 | 67 | 55328 | 59856 |
-|Theano|  |  |  |  |  |  |
+|Theano| 4000 | 3555 | 615 | 26 | 46022 | 47352 |
 |Torch| 2517 | 2231 | 564 | 101 | 46476 | 47074 |
 
+Note:
 
-####Issues
-
-1. We have some bugs on Theano, will update the result when fixed.
+1. Theano with lasagne is faster than keras
 
 
 ### References
