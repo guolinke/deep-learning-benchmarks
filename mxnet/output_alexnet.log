@@ -1,6 +1,6 @@
 ************** Config Message **************
 model: alexnet
-gpu: 0
+gpu: 1
 Mini_batch_size: 16
 Num_batch: 100
 ********************************************
@@ -22,7 +22,11 @@ Network shape checking:
 (1000L, 4096L)
 (1000L,)
 Parameter Number: 62378344
-********************** Training on GPU(0) **********************
-Avg elasped time per mini-batch (sec/mini-batch): 0.031722
-Avg samples per second (samples/sec): 504
+Used time for [copy] : 0.001208
+Used time for [copy + forward] : 0.009543
+Used time for [copy + forward + backward] : 0.027068
+Used time for [copy + forward + backward + update] : 0.031995
+********************** Training on GPU(1) **********************
+Avg elasped time per mini-batch (sec/mini-batch): 0.031995
+Avg samples per second (samples/sec): 500
 ****************************************************************

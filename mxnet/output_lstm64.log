@@ -8,20 +8,20 @@ Num_lstm_layer: 2
 ********************************************
 Summary of dataset ==================
 bucket of len  64 : 56106 samples
-[16:36:50] src/operator/./reshape-inl.h:270: Using target_shape will be deprecated.
-2016-09-24 16:36:50,186 Start training with [gpu(0)]
-[16:36:50] src/operator/./reshape-inl.h:270: Using target_shape will be deprecated.
-[16:36:50] src/operator/./reshape-inl.h:270: Using target_shape will be deprecated.
-[16:36:50] src/operator/./reshape-inl.h:270: Using target_shape will be deprecated.
-2016-09-24 16:36:53,156 Epoch[0] Batch [10]	Speed: 42860.29 samples/sec	Train-Perplexity=1730.699255
-2016-09-24 16:36:55,088 Epoch[0] Batch [20]	Speed: 42393.50 samples/sec	Train-Perplexity=11.709742
-2016-09-24 16:36:56,967 Epoch[0] Batch [30]	Speed: 43602.25 samples/sec	Train-Perplexity=10.889575
-2016-09-24 16:36:58,894 Epoch[0] Batch [40]	Speed: 42531.70 samples/sec	Train-Perplexity=10.331816
-2016-09-24 16:37:00,789 Epoch[0] Batch [50]	Speed: 43216.28 samples/sec	Train-Perplexity=9.473266
-2016-09-24 16:37:02,673 Epoch[0] Batch [60]	Speed: 43501.03 samples/sec	Train-Perplexity=8.827793
-2016-09-24 16:37:04,550 Epoch[0] Batch [70]	Speed: 43640.65 samples/sec	Train-Perplexity=7.960417
-2016-09-24 16:37:06,436 Epoch[0] Batch [80]	Speed: 43436.70 samples/sec	Train-Perplexity=7.491545
-2016-09-24 16:37:08,320 Epoch[0] Batch [90]	Speed: 43488.83 samples/sec	Train-Perplexity=7.308276
-2016-09-24 16:37:10,213 Epoch[0] Batch [100]	Speed: 43279.29 samples/sec	Train-Perplexity=6.991965
-2016-09-24 16:37:10,394 Epoch[0] Resetting Data Iterator
-2016-09-24 16:37:10,394 Epoch[0] Time cost=19.425
+[16:08:05] src/operator/./reshape-inl.h:270: Using target_shape will be deprecated.
+2016-09-30 16:08:05,723 Start training with [gpu(0)]
+[16:08:05] src/operator/./reshape-inl.h:270: Using target_shape will be deprecated.
+[16:08:06] src/operator/./reshape-inl.h:270: Using target_shape will be deprecated.
+[16:08:06] src/operator/./reshape-inl.h:270: Using target_shape will be deprecated.
+2016-09-30 16:08:08,867 Epoch[0] Batch [10]	Speed: 38481.93 samples/sec	Train-Perplexity=1773.732322
+2016-09-30 16:08:11,384 Epoch[0] Batch [20]	Speed: 32559.68 samples/sec	Train-Perplexity=11.420566
+2016-09-30 16:08:13,933 Epoch[0] Batch [30]	Speed: 32130.35 samples/sec	Train-Perplexity=10.889998
+2016-09-30 16:08:16,480 Epoch[0] Batch [40]	Speed: 32164.50 samples/sec	Train-Perplexity=10.113284
+2016-09-30 16:08:19,045 Epoch[0] Batch [50]	Speed: 31943.28 samples/sec	Train-Perplexity=9.711301
+2016-09-30 16:08:21,605 Epoch[0] Batch [60]	Speed: 32005.68 samples/sec	Train-Perplexity=8.545323
+2016-09-30 16:08:24,158 Epoch[0] Batch [70]	Speed: 32091.35 samples/sec	Train-Perplexity=8.316142
+2016-09-30 16:08:26,729 Epoch[0] Batch [80]	Speed: 31864.29 samples/sec	Train-Perplexity=7.600930
+2016-09-30 16:08:29,279 Epoch[0] Batch [90]	Speed: 32130.09 samples/sec	Train-Perplexity=7.364929
+2016-09-30 16:08:31,830 Epoch[0] Batch [100]	Speed: 32112.72 samples/sec	Train-Perplexity=7.275396
+2016-09-30 16:08:32,090 Epoch[0] Resetting Data Iterator
+2016-09-30 16:08:32,090 Epoch[0] Time cost=25.754

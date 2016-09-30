@@ -53,34 +53,15 @@ def PrintShapes(symbol, executor):
         total_para += tmp_para
     return total_para
 
-def LogLoss(preb, label):
-    s = 0
-    for i in range(len(label)):
-        s -= math.log(preb[i][label[i]])
-    return s/len(label)
 
-def TimeMxnetRun(symbol, executor, iter, data, label, lr):
-    arg, grad = GetTrainableParameters(symbol, executor)
-    kBurnIn = 20
-    for i in range(kBurnIn):
-        executor.arg_dict['data'][:] = data
-        executor.arg_dict['label'][:] = label
-        executor.forward(is_train = True)
-        executor.backward()
-        for i in range(len(arg)):
-            arg[i][:] -= lr * grad[i]
-    mx.nd.waitall()
+def TimeMxnetRun(func, iter, info = None):
     tic = time.time()
     for i in range(iter):
-        executor.arg_dict['data'][:] = data
-        executor.arg_dict['label'][:] = label
-        executor.forward(is_train = True)
-        #print LogLoss(executor.outputs[0].asnumpy(), label)
-        executor.backward()
-        for i in range(len(arg)):
-            arg[i][:] -= lr * grad[i]
+        func(i)
     mx.nd.waitall()
     toc = time.time()
+    if info:
+        print ('Used time for %s : %f' %(info, (toc - tic) / iter))
     return (toc - tic)
 
 
@@ -107,19 +88,53 @@ executor = symbol.simple_bind(ctx = dev, grad_req = 'write', **input_shapes)
 # Parameter counting
 print 'Parameter Number: '+str(PrintShapes(symbol, executor))
 
-# Init
-for arg in executor.arg_arrays:
-    arg[:] = mx.rnd.uniform(-0.01, 0.01, arg.shape)
+
 
 # Genarate fake data
-data = np.random.uniform(-1, 1, data_shape).astype(np.float32)
+data = np.random.uniform(0, 1, data_shape).astype(np.float32)
 label = np.random.randint(0, numClasses, label_shape).astype(np.int32)
 
 # Block all async all
 mx.nd.waitall()
 
-# Test
-elasped_time = float(TimeMxnetRun(symbol, executor, args.num_batch, data, label, args.lr))
+arg, grad = GetTrainableParameters(symbol, executor)
+
+def BurnIn(cur_iter):
+    executor.arg_dict['data'][:] = data
+    executor.arg_dict['label'][:] = label
+    executor.forward(is_train = True)
+
+def Copy(cur_iter):
+    executor.arg_dict['data'][:] = data
+    executor.arg_dict['label'][:] = label
+
+def Forward(cur_iter):
+    executor.arg_dict['data'][:] = data
+    executor.arg_dict['label'][:] = label
+    executor.forward(is_train = True)
+
+def Backward(cur_iter):
+    executor.arg_dict['data'][:] = data
+    executor.arg_dict['label'][:] = label
+    executor.forward(is_train = True)
+    executor.backward()
+
+def Full(cur_iter):
+    executor.arg_dict['data'][:] = data
+    executor.arg_dict['label'][:] = label
+    executor.forward(is_train = True)
+    executor.backward()
+    for j in range(len(arg)):
+        arg[j][:] -= args.lr * grad[j]
+
+
+TimeMxnetRun(BurnIn, 20)
+TimeMxnetRun(Copy, args.num_batch, '[copy]')
+TimeMxnetRun(Forward, args.num_batch, '[copy + forward]')
+TimeMxnetRun(Backward, args.num_batch, '[copy + forward + backward]')
+
+elasped_time = TimeMxnetRun(Full, args.num_batch, '[copy + forward + backward + update]')
+
 
 print '********************** Training on GPU('+str(args.gpu)+') **********************'
 print 'Avg elasped time per mini-batch (sec/mini-batch): '+str(round(elasped_time/args.num_batch, 6))

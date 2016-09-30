@@ -1,6 +1,6 @@
 ************** Config Message **************
 model: fcn5
-gpu: 0
+gpu: 1
 Mini_batch_size: 64
 Num_batch: 100
 ********************************************
@@ -14,7 +14,11 @@ Network shape checking:
 (26752L, 2048L)
 (26752L,)
 Parameter Number: 117997696
-********************** Training on GPU(0) **********************
-Avg elasped time per mini-batch (sec/mini-batch): 0.02662
-Avg samples per second (samples/sec): 2404
+Used time for [copy] : 0.000686
+Used time for [copy + forward] : 0.008358
+Used time for [copy + forward + backward] : 0.017309
+Used time for [copy + forward + backward + update] : 0.026681
+********************** Training on GPU(1) **********************
+Avg elasped time per mini-batch (sec/mini-batch): 0.026681
+Avg samples per second (samples/sec): 2399
 ****************************************************************
