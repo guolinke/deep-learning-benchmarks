@@ -94,7 +94,7 @@ def main():
 
     print('Compiling theano functions...')
     forward_func = theano.function([input_var], output)
-    full_func = theano.function([input_var, labels_var], output, updates=updates)
+    full_func = theano.function([input_var, labels_var], loss, updates=updates)
     print('Functions are compiled')
 
     print('input_size:', (batch_size,) + featureDim)
@@ -121,7 +121,7 @@ def main():
     else:
         labels = [[np.random.randint(0, labelDim, size=output_size).astype(np.int32)] for i in xrange(num_batches + NUM_STEPS_BURN_IN)]
 
-    time_theano_run(forward_func, inputs, 'Forward')
+    # time_theano_run(forward_func, inputs, 'Forward')
     time_theano_run(full_func, [(ipt + lab) for ipt, lab  in zip(inputs, labels)], 'Forward-Backward')
 
 if __name__ == '__main__':

@@ -1,0 +1,256 @@
+Using gpu device 1: GeForce GTX TITAN X (CNMeM is enabled with initial size: 45.0% of memory, cuDNN 5103)
+/usr/local/lib/python2.7/dist-packages/theano/sandbox/cuda/__init__.py:600: UserWarning: Your cuDNN version is more recent than the one Theano officially supports. If you see any problems, try updating Theano or downgrading cuDNN to version 5.
+  warnings.warn(warn)
+Function profiling
+==================
+  Message: fcn5_raw_theano.py:84
+  Time in 200 calls to Function.__call__: 3.950503e+00s
+  Time in Function.fn.__call__: 3.939550e+00s (99.723%)
+  Time in thunks: 3.931025e+00s (99.507%)
+  Total compile time: 5.615561e-01s
+    Number of Apply nodes: 60
+    Theano Optimizer time: 3.267758e-01s
+       Theano validate time: 1.465392e-02s
+    Theano Linker time (includes C, CUDA code generation/compiling): 2.161911e-01s
+       Import time 1.625218e-01s
+
+Time in all call to theano.grad() 1.680398e-02s
+Time since theano import 14.955s
+Class
+---
+<% time> <sum %> <apply time> <time per call> <type> <#call> <#apply> <Class name>
+  49.6%    49.6%       1.948s       1.39e-03s     C     1400       7   theano.sandbox.cuda.blas.GpuDot22
+  22.3%    71.8%       0.876s       1.09e-03s     C      800       4   theano.sandbox.cuda.blas.GpuGemm
+  14.9%    86.7%       0.585s       2.93e-03s     C      200       1   theano.sandbox.cuda.dnn.GpuDnnSoftmaxGrad
+   6.7%    93.4%       0.263s       4.39e-04s     C      600       3   theano.sandbox.cuda.basic_ops.GpuFromHost
+   3.9%    97.3%       0.153s       5.48e-05s     C     2800      14   theano.sandbox.cuda.basic_ops.GpuElemwise
+   0.9%    98.2%       0.036s       3.02e-05s     C     1200       6   theano.sandbox.cuda.basic_ops.GpuCAReduce
+   0.9%    99.1%       0.035s       1.73e-04s     C      200       1   theano.sandbox.cuda.dnn.GpuDnnSoftmax
+   0.7%    99.8%       0.028s       1.40e-04s     C      200       1   theano.sandbox.cuda.nnet.GpuSoftmaxWithBias
+   0.1%    99.9%       0.003s       1.35e-05s     C      200       1   theano.sandbox.cuda.basic_ops.HostFromGpu
+   0.1%   100.0%       0.003s       7.71e-07s     C     3400      17   theano.sandbox.cuda.basic_ops.GpuDimShuffle
+   0.0%   100.0%       0.000s       2.08e-06s     C      200       1   theano.compile.ops.Shape_i
+   0.0%   100.0%       0.000s       1.38e-06s     C      200       1   theano.tensor.elemwise.Elemwise
+   0.0%   100.0%       0.000s       4.20e-07s     C      600       3   theano.sandbox.cuda.basic_ops.GpuContiguous
+   ... (remaining 0 Classes account for   0.00%(0.00s) of the runtime)
+
+Ops
+---
+<% time> <sum %> <apply time> <time per call> <type> <#call> <#apply> <Op name>
+  49.6%    49.6%       1.948s       1.39e-03s     C     1400        7   GpuDot22
+  22.3%    71.8%       0.876s       1.09e-03s     C      800        4   GpuGemm{inplace}
+  14.9%    86.7%       0.585s       2.93e-03s     C      200        1   GpuDnnSoftmaxGrad{tensor_format='bc01', mode='channel', algo='accurate'}
+   6.7%    93.4%       0.263s       4.39e-04s     C      600        3   GpuFromHost
+   1.2%    94.6%       0.045s       2.27e-04s     C      200        1   GpuElemwise{Mul}[(0, 1)]
+   0.9%    95.5%       0.037s       1.86e-04s     C      200        1   GpuElemwise{Composite{((-i0) / (i1 * i2))}}[(0, 0)]
+   0.9%    96.4%       0.035s       1.73e-04s     C      200        1   GpuDnnSoftmax{tensor_format='bc01', mode='channel', algo='log'}
+   0.8%    97.2%       0.031s       1.54e-04s     C      200        1   GpuElemwise{Add}[(0, 0)]
+   0.7%    97.9%       0.028s       1.40e-04s     C      200        1   GpuSoftmaxWithBias
+   0.5%    98.4%       0.021s       2.58e-05s     C      800        4   GpuCAReduce{add}{1,0}
+   0.4%    98.8%       0.016s       2.74e-05s     C      600        3   GpuElemwise{Composite{scalar_sigmoid((i0 + i1))}}[(0, 0)]
+   0.3%    99.2%       0.013s       6.44e-05s     C      200        1   GpuCAReduce{add}{0,1}
+   0.3%    99.5%       0.011s       1.91e-05s     C      600        3   GpuElemwise{Composite{((i0 * i1) * (i2 - i1))}}[(0, 0)]
+   0.2%    99.7%       0.009s       1.19e-05s     C      800        4   GpuElemwise{Composite{(i0 - (i1 * i2))}}[(0, 0)]
+   0.1%    99.8%       0.003s       1.37e-05s     C      200        1   GpuCAReduce{add}{1}
+   0.1%    99.8%       0.003s       1.35e-05s     C      200        1   HostFromGpu
+   0.1%    99.9%       0.003s       1.28e-05s     C      200        1   GpuElemwise{Composite{((-i0) / i1)}}[(0, 0)]
+   0.0%    99.9%       0.001s       7.60e-07s     C     1400        7   GpuDimShuffle{1,0}
+   0.0%   100.0%       0.001s       7.27e-07s     C      800        4   GpuDimShuffle{x,0}
+   0.0%   100.0%       0.000s       2.08e-06s     C      200        1   Shape_i{0}
+   ... (remaining 5 Ops account for   0.04%(0.00s) of the runtime)
+
+Apply
+------
+<% time> <sum %> <apply time> <time per call> <#call> <id> <Apply name>
+  20.9%    20.9%       0.821s       4.10e-03s    200    43   GpuDot22(GpuDimShuffle{0,1}.0, GpuDimShuffle{1,0}.0)
+  16.6%    37.5%       0.652s       3.26e-03s    200    10   GpuDot22(GpuFromHost.0, w_1)
+  14.9%    52.4%       0.585s       2.93e-03s    200    39   GpuDnnSoftmaxGrad{tensor_format='bc01', mode='channel', algo='accurate'}(GpuContiguous.0, GpuContiguous.0)
+  11.2%    63.6%       0.440s       2.20e-03s    200    44   GpuGemm{inplace}(w_4, TensorConstant{-0.10000000149}, GpuDimShuffle{1,0}.0, GpuDimShuffle{0,1}.0, TensorConstant{1.0})
+   9.2%    72.8%       0.363s       1.81e-03s    200    58   GpuGemm{inplace}(w_1, TensorConstant{-0.10000000149}, GpuDimShuffle{1,0}.0, GpuElemwise{Composite{((i0 * i1) * (i2 - i1))}}[(0, 0)].0, TensorConstant{1.0})
+   6.7%    79.5%       0.265s       1.33e-03s    200    22   GpuDot22(GpuElemwise{Composite{scalar_sigmoid((i0 + i1))}}[(0, 0)].0, w_4)
+   3.5%    83.1%       0.138s       6.91e-04s    200     7   GpuFromHost(input)
+   3.2%    86.2%       0.124s       6.19e-04s    200     8   GpuFromHost(labels)
+   1.4%    87.6%       0.057s       2.83e-04s    200    53   GpuDot22(GpuElemwise{Composite{((i0 * i1) * (i2 - i1))}}[(0, 0)].0, GpuDimShuffle{1,0}.0)
+   1.3%    89.0%       0.053s       2.63e-04s    200    48   GpuDot22(GpuElemwise{Composite{((i0 * i1) * (i2 - i1))}}[(0, 0)].0, GpuDimShuffle{1,0}.0)
+   1.3%    90.3%       0.051s       2.54e-04s    200    19   GpuDot22(GpuElemwise{Composite{scalar_sigmoid((i0 + i1))}}[(0, 0)].0, w_3)
+   1.3%    91.5%       0.050s       2.49e-04s    200    15   GpuDot22(GpuElemwise{Composite{scalar_sigmoid((i0 + i1))}}[(0, 0)].0, w_2)
+   1.2%    92.7%       0.045s       2.27e-04s    200    32   GpuElemwise{Mul}[(0, 1)](GpuFromHost.0, GpuDimShuffle{0,1}.0)
+   0.9%    93.6%       0.037s       1.86e-04s    200    33   GpuElemwise{Composite{((-i0) / (i1 * i2))}}[(0, 0)](GpuFromHost.0, GpuDimShuffle{x,x}.0, GpuSoftmaxWithBias.0)
+   0.9%    94.6%       0.037s       1.83e-04s    200    49   GpuGemm{inplace}(w_3, TensorConstant{-0.10000000149}, GpuDimShuffle{1,0}.0, GpuElemwise{Composite{((i0 * i1) * (i2 - i1))}}[(0, 0)].0, TensorConstant{1.0})
+   0.9%    95.5%       0.037s       1.83e-04s    200    54   GpuGemm{inplace}(w_2, TensorConstant{-0.10000000149}, GpuDimShuffle{1,0}.0, GpuElemwise{Composite{((i0 * i1) * (i2 - i1))}}[(0, 0)].0, TensorConstant{1.0})
+   0.9%    96.4%       0.035s       1.73e-04s    200    30   GpuDnnSoftmax{tensor_format='bc01', mode='channel', algo='log'}(GpuContiguous.0)
+   0.8%    97.2%       0.031s       1.54e-04s    200    25   GpuElemwise{Add}[(0, 0)](GpuDot22.0, GpuDimShuffle{x,0}.0)
+   0.7%    97.9%       0.028s       1.40e-04s    200    24   GpuSoftmaxWithBias(GpuDot22.0, b_4)
+   0.3%    98.2%       0.013s       6.44e-05s    200    34   GpuCAReduce{add}{0,1}(GpuElemwise{Mul}[(0, 1)].0)
+   ... (remaining 40 Apply instances account for 1.80%(0.07s) of the runtime)
+
+Here are tips to potentially make your code run faster
+                 (if you think of new ones, suggest them on the mailing list).
+                 Test them first, as they are not guaranteed to always provide a speedup.
+  Sorry, no tip for today.
+Function profiling
+==================
+  Message: fcn5_raw_theano.py:93
+  Time in 1 calls to Function.__call__: 4.291534e-05s
+  Time in Function.fn.__call__: 3.194809e-05s (74.444%)
+  Time in thunks: 1.263618e-05s (29.444%)
+  Total compile time: 5.188489e-02s
+    Number of Apply nodes: 21
+    Theano Optimizer time: 2.538586e-02s
+       Theano validate time: 2.973080e-04s
+    Theano Linker time (includes C, CUDA code generation/compiling): 1.461887e-02s
+       Import time 1.033068e-03s
+
+Time in all call to theano.grad() 1.680398e-02s
+Time since theano import 14.958s
+Class
+---
+<% time> <sum %> <apply time> <time per call> <type> <#call> <#apply> <Class name>
+  54.7%    54.7%       0.000s       5.76e-07s     C       12      12   theano.compile.ops.Shape_i
+  22.6%    77.4%       0.000s       7.15e-07s     C        4       4   theano.tensor.opt.MakeVector
+  15.1%    92.5%       0.000s       1.91e-06s     C        1       1   theano.tensor.elemwise.Elemwise
+   7.5%   100.0%       0.000s       2.38e-07s     C        4       4   theano.tensor.elemwise.Prod
+   ... (remaining 0 Classes account for   0.00%(0.00s) of the runtime)
+
+Ops
+---
+<% time> <sum %> <apply time> <time per call> <type> <#call> <#apply> <Op name>
+  37.7%    37.7%       0.000s       5.96e-07s     C        8        8   Shape_i{0}
+  22.6%    60.4%       0.000s       7.15e-07s     C        4        4   MakeVector{dtype='int64'}
+  17.0%    77.4%       0.000s       5.36e-07s     C        4        4   Shape_i{1}
+  15.1%    92.5%       0.000s       1.91e-06s     C        1        1   Elemwise{Add}[(0, 0)]
+   7.5%   100.0%       0.000s       2.38e-07s     C        4        4   Prod{acc_dtype=int64}
+   ... (remaining 0 Ops account for   0.00%(0.00s) of the runtime)
+
+Apply
+------
+<% time> <sum %> <apply time> <time per call> <#call> <id> <Apply name>
+  22.6%    22.6%       0.000s       2.86e-06s      1    15   MakeVector{dtype='int64'}(Shape_i{0}.0, Shape_i{1}.0)
+  15.1%    37.7%       0.000s       1.91e-06s      1    20   Elemwise{Add}[(0, 0)](Prod{acc_dtype=int64}.0, Shape_i{0}.0, Prod{acc_dtype=int64}.0, Shape_i{0}.0, Prod{acc_dtype=int64}.0, Shape_i{0}.0, Prod{acc_dtype=int64}.0, Shape_i{0}.0)
+  15.1%    52.8%       0.000s       1.91e-06s      1    11   Shape_i{0}(w_1)
+   9.4%    62.3%       0.000s       1.19e-06s      1    10   Shape_i{1}(w_1)
+   7.5%    69.8%       0.000s       9.54e-07s      1    18   Prod{acc_dtype=int64}(MakeVector{dtype='int64'}.0)
+   7.5%    77.4%       0.000s       9.54e-07s      1     9   Shape_i{0}(b_1)
+   7.5%    84.9%       0.000s       9.54e-07s      1     7   Shape_i{1}(w_2)
+   7.5%    92.5%       0.000s       9.54e-07s      1     5   Shape_i{0}(w_3)
+   7.5%   100.0%       0.000s       9.54e-07s      1     2   Shape_i{0}(w_4)
+   0.0%   100.0%       0.000s       0.00e+00s      1    19   Prod{acc_dtype=int64}(MakeVector{dtype='int64'}.0)
+   0.0%   100.0%       0.000s       0.00e+00s      1    17   Prod{acc_dtype=int64}(MakeVector{dtype='int64'}.0)
+   0.0%   100.0%       0.000s       0.00e+00s      1    16   Prod{acc_dtype=int64}(MakeVector{dtype='int64'}.0)
+   0.0%   100.0%       0.000s       0.00e+00s      1    14   MakeVector{dtype='int64'}(Shape_i{0}.0, Shape_i{1}.0)
+   0.0%   100.0%       0.000s       0.00e+00s      1    13   MakeVector{dtype='int64'}(Shape_i{0}.0, Shape_i{1}.0)
+   0.0%   100.0%       0.000s       0.00e+00s      1    12   MakeVector{dtype='int64'}(Shape_i{0}.0, Shape_i{1}.0)
+   0.0%   100.0%       0.000s       0.00e+00s      1     8   Shape_i{0}(w_2)
+   0.0%   100.0%       0.000s       0.00e+00s      1     6   Shape_i{0}(b_2)
+   0.0%   100.0%       0.000s       0.00e+00s      1     4   Shape_i{1}(w_3)
+   0.0%   100.0%       0.000s       0.00e+00s      1     3   Shape_i{0}(b_3)
+   0.0%   100.0%       0.000s       0.00e+00s      1     1   Shape_i{1}(w_4)
+   ... (remaining 1 Apply instances account for 0.00%(0.00s) of the runtime)
+
+Here are tips to potentially make your code run faster
+                 (if you think of new ones, suggest them on the mailing list).
+                 Test them first, as they are not guaranteed to always provide a speedup.
+  Sorry, no tip for today.
+Function profiling
+==================
+  Message: Sum of all(2) printed profiles at exit excluding Scan op profile.
+  Time in 201 calls to Function.__call__: 3.950546e+00s
+  Time in Function.fn.__call__: 3.939582e+00s (99.722%)
+  Time in thunks: 3.931037e+00s (99.506%)
+  Total compile time: 6.134410e-01s
+    Number of Apply nodes: 60
+    Theano Optimizer time: 3.521616e-01s
+       Theano validate time: 1.495123e-02s
+    Theano Linker time (includes C, CUDA code generation/compiling): 2.308099e-01s
+       Import time 1.635549e-01s
+
+Time in all call to theano.grad() 1.680398e-02s
+Time since theano import 14.959s
+Class
+---
+<% time> <sum %> <apply time> <time per call> <type> <#call> <#apply> <Class name>
+  49.6%    49.6%       1.948s       1.39e-03s     C     1400       7   theano.sandbox.cuda.blas.GpuDot22
+  22.3%    71.8%       0.876s       1.09e-03s     C      800       4   theano.sandbox.cuda.blas.GpuGemm
+  14.9%    86.7%       0.585s       2.93e-03s     C      200       1   theano.sandbox.cuda.dnn.GpuDnnSoftmaxGrad
+   6.7%    93.4%       0.263s       4.39e-04s     C      600       3   theano.sandbox.cuda.basic_ops.GpuFromHost
+   3.9%    97.3%       0.153s       5.48e-05s     C     2800      14   theano.sandbox.cuda.basic_ops.GpuElemwise
+   0.9%    98.2%       0.036s       3.02e-05s     C     1200       6   theano.sandbox.cuda.basic_ops.GpuCAReduce
+   0.9%    99.1%       0.035s       1.73e-04s     C      200       1   theano.sandbox.cuda.dnn.GpuDnnSoftmax
+   0.7%    99.8%       0.028s       1.40e-04s     C      200       1   theano.sandbox.cuda.nnet.GpuSoftmaxWithBias
+   0.1%    99.9%       0.003s       1.35e-05s     C      200       1   theano.sandbox.cuda.basic_ops.HostFromGpu
+   0.1%   100.0%       0.003s       7.71e-07s     C     3400      17   theano.sandbox.cuda.basic_ops.GpuDimShuffle
+   0.0%   100.0%       0.000s       1.99e-06s     C      212      13   theano.compile.ops.Shape_i
+   0.0%   100.0%       0.000s       1.38e-06s     C      201       2   theano.tensor.elemwise.Elemwise
+   0.0%   100.0%       0.000s       4.20e-07s     C      600       3   theano.sandbox.cuda.basic_ops.GpuContiguous
+   0.0%   100.0%       0.000s       7.15e-07s     C        4       4   theano.tensor.opt.MakeVector
+   0.0%   100.0%       0.000s       2.38e-07s     C        4       4   theano.tensor.elemwise.Prod
+   ... (remaining 0 Classes account for   0.00%(0.00s) of the runtime)
+
+Ops
+---
+<% time> <sum %> <apply time> <time per call> <type> <#call> <#apply> <Op name>
+  49.6%    49.6%       1.948s       1.39e-03s     C     1400        7   GpuDot22
+  22.3%    71.8%       0.876s       1.09e-03s     C      800        4   GpuGemm{inplace}
+  14.9%    86.7%       0.585s       2.93e-03s     C      200        1   GpuDnnSoftmaxGrad{tensor_format='bc01', mode='channel', algo='accurate'}
+   6.7%    93.4%       0.263s       4.39e-04s     C      600        3   GpuFromHost
+   1.2%    94.6%       0.045s       2.27e-04s     C      200        1   GpuElemwise{Mul}[(0, 1)]
+   0.9%    95.5%       0.037s       1.86e-04s     C      200        1   GpuElemwise{Composite{((-i0) / (i1 * i2))}}[(0, 0)]
+   0.9%    96.4%       0.035s       1.73e-04s     C      200        1   GpuDnnSoftmax{tensor_format='bc01', mode='channel', algo='log'}
+   0.8%    97.2%       0.031s       1.54e-04s     C      200        1   GpuElemwise{Add}[(0, 0)]
+   0.7%    97.9%       0.028s       1.40e-04s     C      200        1   GpuSoftmaxWithBias
+   0.5%    98.4%       0.021s       2.58e-05s     C      800        4   GpuCAReduce{add}{1,0}
+   0.4%    98.8%       0.016s       2.74e-05s     C      600        3   GpuElemwise{Composite{scalar_sigmoid((i0 + i1))}}[(0, 0)]
+   0.3%    99.2%       0.013s       6.44e-05s     C      200        1   GpuCAReduce{add}{0,1}
+   0.3%    99.5%       0.011s       1.91e-05s     C      600        3   GpuElemwise{Composite{((i0 * i1) * (i2 - i1))}}[(0, 0)]
+   0.2%    99.7%       0.009s       1.19e-05s     C      800        4   GpuElemwise{Composite{(i0 - (i1 * i2))}}[(0, 0)]
+   0.1%    99.8%       0.003s       1.37e-05s     C      200        1   GpuCAReduce{add}{1}
+   0.1%    99.8%       0.003s       1.35e-05s     C      200        1   HostFromGpu
+   0.1%    99.9%       0.003s       1.28e-05s     C      200        1   GpuElemwise{Composite{((-i0) / i1)}}[(0, 0)]
+   0.0%    99.9%       0.001s       7.60e-07s     C     1400        7   GpuDimShuffle{1,0}
+   0.0%   100.0%       0.001s       7.27e-07s     C      800        4   GpuDimShuffle{x,0}
+   0.0%   100.0%       0.000s       2.02e-06s     C      208        9   Shape_i{0}
+   ... (remaining 9 Ops account for   0.04%(0.00s) of the runtime)
+
+Apply
+------
+<% time> <sum %> <apply time> <time per call> <#call> <id> <Apply name>
+  20.9%    20.9%       0.821s       4.10e-03s    200    43   GpuDot22(GpuDimShuffle{0,1}.0, GpuDimShuffle{1,0}.0)
+  16.6%    37.5%       0.652s       3.26e-03s    200    10   GpuDot22(GpuFromHost.0, w_1)
+  14.9%    52.4%       0.585s       2.93e-03s    200    39   GpuDnnSoftmaxGrad{tensor_format='bc01', mode='channel', algo='accurate'}(GpuContiguous.0, GpuContiguous.0)
+  11.2%    63.6%       0.440s       2.20e-03s    200    44   GpuGemm{inplace}(w_4, TensorConstant{-0.10000000149}, GpuDimShuffle{1,0}.0, GpuDimShuffle{0,1}.0, TensorConstant{1.0})
+   9.2%    72.8%       0.363s       1.81e-03s    200    58   GpuGemm{inplace}(w_1, TensorConstant{-0.10000000149}, GpuDimShuffle{1,0}.0, GpuElemwise{Composite{((i0 * i1) * (i2 - i1))}}[(0, 0)].0, TensorConstant{1.0})
+   6.7%    79.5%       0.265s       1.33e-03s    200    22   GpuDot22(GpuElemwise{Composite{scalar_sigmoid((i0 + i1))}}[(0, 0)].0, w_4)
+   3.5%    83.1%       0.138s       6.91e-04s    200     7   GpuFromHost(input)
+   3.2%    86.2%       0.124s       6.19e-04s    200     8   GpuFromHost(labels)
+   1.4%    87.6%       0.057s       2.83e-04s    200    53   GpuDot22(GpuElemwise{Composite{((i0 * i1) * (i2 - i1))}}[(0, 0)].0, GpuDimShuffle{1,0}.0)
+   1.3%    89.0%       0.053s       2.63e-04s    200    48   GpuDot22(GpuElemwise{Composite{((i0 * i1) * (i2 - i1))}}[(0, 0)].0, GpuDimShuffle{1,0}.0)
+   1.3%    90.3%       0.051s       2.54e-04s    200    19   GpuDot22(GpuElemwise{Composite{scalar_sigmoid((i0 + i1))}}[(0, 0)].0, w_3)
+   1.3%    91.5%       0.050s       2.49e-04s    200    15   GpuDot22(GpuElemwise{Composite{scalar_sigmoid((i0 + i1))}}[(0, 0)].0, w_2)
+   1.2%    92.7%       0.045s       2.27e-04s    200    32   GpuElemwise{Mul}[(0, 1)](GpuFromHost.0, GpuDimShuffle{0,1}.0)
+   0.9%    93.6%       0.037s       1.86e-04s    200    33   GpuElemwise{Composite{((-i0) / (i1 * i2))}}[(0, 0)](GpuFromHost.0, GpuDimShuffle{x,x}.0, GpuSoftmaxWithBias.0)
+   0.9%    94.6%       0.037s       1.83e-04s    200    49   GpuGemm{inplace}(w_3, TensorConstant{-0.10000000149}, GpuDimShuffle{1,0}.0, GpuElemwise{Composite{((i0 * i1) * (i2 - i1))}}[(0, 0)].0, TensorConstant{1.0})
+   0.9%    95.5%       0.037s       1.83e-04s    200    54   GpuGemm{inplace}(w_2, TensorConstant{-0.10000000149}, GpuDimShuffle{1,0}.0, GpuElemwise{Composite{((i0 * i1) * (i2 - i1))}}[(0, 0)].0, TensorConstant{1.0})
+   0.9%    96.4%       0.035s       1.73e-04s    200    30   GpuDnnSoftmax{tensor_format='bc01', mode='channel', algo='log'}(GpuContiguous.0)
+   0.8%    97.2%       0.031s       1.54e-04s    200    25   GpuElemwise{Add}[(0, 0)](GpuDot22.0, GpuDimShuffle{x,0}.0)
+   0.7%    97.9%       0.028s       1.40e-04s    200    24   GpuSoftmaxWithBias(GpuDot22.0, b_4)
+   0.3%    98.2%       0.013s       6.44e-05s    200    34   GpuCAReduce{add}{0,1}(GpuElemwise{Mul}[(0, 1)].0)
+   ... (remaining 61 Apply instances account for 1.80%(0.07s) of the runtime)
+
+Here are tips to potentially make your code run faster
+                 (if you think of new ones, suggest them on the mailing list).
+                 Test them first, as they are not guaranteed to always provide a speedup.
+  Sorry, no tip for today.
+Parameter number: 117997696
+1 GPU: 3224.7046058 samples per sec
+1 GPU: 0.019846779108s per batch
+Losses:
+10.2078313828
+9.390376091
+8.57145309448
+7.74340820312
+6.91147661209
+6.10982227325
+5.41795492172
+4.92621803284
+4.63990783691
+4.48549079895
