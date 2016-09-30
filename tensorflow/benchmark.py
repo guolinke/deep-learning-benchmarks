@@ -52,29 +52,43 @@ def PrintParameterCount():
     print "Parameter Number:" + str(total_parameters)
 
 
-def time_tensorflow_run(session, target, num_steps):
-    num_steps_burn_in = 10
-    total_duration = 0.0
-
-    for i in xrange(num_steps_burn_in):
+def time_tensorflow_run(session, target, num_steps, info=None):
+    num_burn_in = 10
+    for i in xrange(num_burn_in):
         session.run(target)
     start_time = time.time()
     for i in xrange(num_steps):
         session.run(target)
     duration = time.time() - start_time
+    if info:
+        print ('Used time for %s : %f' %(info, duration / num_steps))
+    return duration
 
-    print('********************** Training on GPU('+str(args.gpu)+') **********************')
-    print('Avg elasped time per mini-batch (sec/mini-batch): '+str(round(duration/num_steps, 6)) )
-    print('Avg samples per second (samples/sec): '+str(int(round((args.batch_size * num_steps)/duration))))
+
 
 
 batch_size = args.batch_size
 data_shape = (batch_size, ) + featureDim
 label_shape = (batch_size, )
 
-# feature = np.random.uniform(-1, 1, data_shape).astype("float32")
-# label = np.random.randint(0, numClasses, label_shape, dtype=np.int32)
 
+forward_time_data_in_gpu = 0.0
+
+with tf.Graph().as_default(), tf.device(device_str):
+    feature = tf.Variable(np.random.uniform(0, 1, data_shape).astype(np.float32), trainable=False)
+    label = tf.Variable(np.random.randint(0, numClasses, label_shape, dtype=np.int32), trainable=False)
+
+    last_layer = build_model(feature)
+
+    init = tf.initialize_all_variables()
+
+    config = tf.ConfigProto(allow_soft_placement=True)
+    sess = tf.Session(config=config)
+    sess.run(init)
+    
+    forward_time_data_in_gpu = time_tensorflow_run(sess, [last_layer], args.num_batches)
+
+tf.reset_default_graph()
 
 with tf.Graph().as_default(), tf.device(device_str):
     with tf.device('/cpu:0'):
@@ -85,6 +99,7 @@ with tf.Graph().as_default(), tf.device(device_str):
 
     cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(last_layer, label)
     loss = tf.reduce_mean(cross_entropy)
+    
     train_step = tf.train.GradientDescentOptimizer(args.lr).minimize(loss)
 
     init = tf.initialize_all_variables()
@@ -95,5 +110,19 @@ with tf.Graph().as_default(), tf.device(device_str):
     sess = tf.Session(config=config)
     sess.run(init)
 
-    time_tensorflow_run(sess, [train_step], args.num_batches)
+    var_refs = [v.ref() for v in tf.trainable_variables()]
 
+    grad = tf.gradients(loss, var_refs)
+
+
+    forward_time_data_in_cpu = time_tensorflow_run(sess, [last_layer], args.num_batches, '[copy + forward]')
+
+    print ('Used time for %s : %f' %('[copy]', (forward_time_data_in_cpu - forward_time_data_in_gpu) / args.num_batches))
+
+    time_tensorflow_run(sess, [grad], args.num_batches, '[copy + forward + backward]')
+
+    duration = time_tensorflow_run(sess, [train_step], args.num_batches, '[copy + forward + backward + update]')
+
+    print('********************** Training on GPU('+str(args.gpu)+') **********************')
+    print('Avg elasped time per mini-batch (sec/mini-batch): '+str(round(duration / args.num_batches, 6)) )
+    print('Avg samples per second (samples/sec): '+str(int(round((args.batch_size * args.num_batches)/duration))))
