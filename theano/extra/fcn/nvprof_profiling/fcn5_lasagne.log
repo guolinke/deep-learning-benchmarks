@@ -1,0 +1,75 @@
+==21965== NVPROF is profiling process 21965, command: python ../../benchmark.py -a fcn5 -B 64 -n 190
+Using gpu device 1: GeForce GTX TITAN X (CNMeM is enabled with initial size: 45.0% of memory, cuDNN 5103)
+/usr/local/lib/python2.7/dist-packages/theano/sandbox/cuda/__init__.py:600: UserWarning: Your cuDNN version is more recent than the one Theano officially supports. If you see any problems, try updating Theano or downgrading cuDNN to version 5.
+  warnings.warn(warn)
+Building model...
+number of parameters in model: 117997696
+Compiling theano functions...
+Functions are compiled
+('input_size:', (64, 26752))
+2016-09-30 16:25:09.056164: step 10, duration = 0.015
+2016-09-30 16:25:09.209299: step 20, duration = 0.015
+2016-09-30 16:25:09.362248: step 30, duration = 0.015
+2016-09-30 16:25:09.515027: step 40, duration = 0.015
+2016-09-30 16:25:09.668048: step 50, duration = 0.015
+2016-09-30 16:25:09.820968: step 60, duration = 0.015
+2016-09-30 16:25:09.973944: step 70, duration = 0.015
+2016-09-30 16:25:10.126436: step 80, duration = 0.015
+2016-09-30 16:25:10.279233: step 90, duration = 0.015
+2016-09-30 16:25:10.431829: step 100, duration = 0.015
+2016-09-30 16:25:10.584651: step 110, duration = 0.015
+2016-09-30 16:25:10.737375: step 120, duration = 0.015
+2016-09-30 16:25:10.890310: step 130, duration = 0.015
+2016-09-30 16:25:11.043246: step 140, duration = 0.015
+2016-09-30 16:25:11.196084: step 150, duration = 0.015
+2016-09-30 16:25:11.349457: step 160, duration = 0.015
+2016-09-30 16:25:11.502308: step 170, duration = 0.015
+2016-09-30 16:25:11.655047: step 180, duration = 0.015
+2016-09-30 16:25:11.792446: Forward-Backward across 190 steps, 0.015 +/- 0.000 sec / batch
+==21965== Profiling application: python ../../benchmark.py -a fcn5 -B 64 -n 190
+==21965== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 31.81%  994.99ms       800  1.2437ms  234.84us  3.1729ms  maxwell_sgemm_128x64_nn
+ 29.62%  926.48ms       600  1.5441ms  253.34us  4.0928ms  maxwell_sgemm_128x64_tn
+ 27.50%  860.09ms       800  1.0751ms  156.28us  2.1958ms  maxwell_sgemm_128x128_nt
+  5.78%  180.83ms       617  293.08us     927ns  22.078ms  [CUDA memcpy HtoD]
+  2.60%  81.171ms       224  362.37us  2.0160us  39.029ms  [CUDA memcpy DtoH]
+  1.18%  37.033ms       200  185.16us  182.62us  187.93us  k_xent_sm_1hot_bias(int, int, float const *, int, int, float const *, int, float const *, int, float*, int, float*, int, int, float*, int)
+  0.52%  16.154ms       200  80.769us  79.582us  83.550us  kCrossEntropySoftmax1HotWithBiasDx_node_fc8617eaa67c6e4cd1d56022bff53ca1_0(int, int, float const *, int, float const *, int, int, float const *, int, float*, int, int)
+  0.39%  12.142ms       800  15.177us  8.1600us  33.951us  kernel_reduce_010_AD_node_49998ffbdefdf18d464596bd95591cdb_0(int, int, int, int, float const *, int, int, int, float*, int, int)
+  0.32%  9.9341ms       600  16.556us  15.999us  17.632us  kernel_Composite_node_9288b8ee31d282e2d2d5ef0a8780cd0e_0_2(unsigned int, int, int, float const *, int, int, float const *, int, int, float*, int, int)
+  0.17%  5.2342ms       600  8.7230us  8.1600us  9.5680us  kernel_Composite_node_9b4ae2e635a229dc8610a6447361d378_0_Ccontiguous(unsigned int, float const *, float const *, float const *, float*)
+  0.07%  2.1677ms       800  2.7090us  2.2080us  4.2560us  kernel_Composite_node_b6437dbe3a70d5ad2b089b5e10d3d274_0_Ccontiguous(unsigned int, float const *, float const *, float const *, float*)
+  0.02%  606.45us       201  3.0170us  2.8160us  11.167us  kernel_reduce_ccontig_node_97496c4d3cf9a06dc4082cc141f918d2_0(unsigned int, float const *, float*)
+  0.02%  485.04us       200  2.4250us  2.3990us  2.5590us  kernel_Inv_node_e8108d35283b0bb52fa79596390806d0_0_Ccontiguous(unsigned int, float const *, float*)
+  0.02%  479.60us       200  2.3970us  2.3670us  2.4960us  kernel_TrueDiv_node_470efad226875fcc7f533ccfb3ff4710_0_Ccontiguous(unsigned int, float const *, float const *, float*)
+  0.00%  2.1760us         1  2.1760us  2.1760us  2.1760us  get_gpu_ptr_size(int*)
+
+==21965== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 79.84%  3.09333s       841  3.6782ms  13.959us  39.744ms  cudaMemcpy
+ 11.21%  434.46ms         5  86.893ms  54.012us  431.76ms  cudaFree
+  6.73%  260.84ms         1  260.84ms  260.84ms  260.84ms  cudaThreadExit
+  0.92%  35.823ms      6002  5.9680us  4.1040us  332.65us  cudaLaunch
+  0.66%  25.578ms        74  345.65us  328.40us  407.72us  cudaGetDeviceProperties
+  0.22%  8.6273ms     57004     151ns     112ns  268.88us  cudaSetupArgument
+  0.14%  5.5867ms         4  1.3967ms  9.0210us  5.2369ms  cudaMalloc
+  0.07%  2.6500ms      7627     347ns     214ns  11.885us  cudaGetDevice
+  0.04%  1.7127ms         4  428.18us  362.54us  487.50us  cuDeviceTotalMem
+  0.04%  1.5278ms       332  4.6010us     107ns  182.33us  cuDeviceGetAttribute
+  0.04%  1.5045ms      6002     250ns     123ns  12.120us  cudaConfigureCall
+  0.04%  1.4156ms         1  1.4156ms  1.4156ms  1.4156ms  cudaMemGetInfo
+  0.03%  1.3266ms      6002     221ns     117ns  268.65us  cudaGetLastError
+  0.00%  155.99us         4  38.997us  32.319us  45.536us  cuDeviceGetName
+  0.00%  14.882us         6  2.4800us     285ns  10.022us  cudaSetDevice
+  0.00%  13.694us        71     192ns     110ns  1.7880us  cudaDriverGetVersion
+  0.00%  10.874us        71     153ns     111ns  1.7740us  cudaRuntimeGetVersion
+  0.00%  9.4730us        16     592ns     432ns  1.7790us  cudaEventCreateWithFlags
+  0.00%  8.9560us        16     559ns     347ns  2.1080us  cudaEventDestroy
+  0.00%  6.2010us         2  3.1000us  2.7980us  3.4030us  cudaThreadSynchronize
+  0.00%  3.9680us        10     396ns     248ns  1.1160us  cudaDeviceGetAttribute
+  0.00%  3.8200us         3  1.2730us     275ns  2.3820us  cudaGetDeviceCount
+  0.00%  3.2530us         1  3.2530us  3.2530us  3.2530us  cuInit
+  0.00%  1.7330us         3     577ns     157ns  1.3800us  cuDeviceGetCount
+  0.00%  1.3870us         6     231ns     155ns     355ns  cuDeviceGet
+  0.00%     393ns         1     393ns     393ns     393ns  cuDriverGetVersion

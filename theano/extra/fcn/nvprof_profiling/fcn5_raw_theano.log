@@ -1,0 +1,71 @@
+==21852== NVPROF is profiling process 21852, command: python fcn5_raw_theano.py
+Using gpu device 1: GeForce GTX TITAN X (CNMeM is enabled with initial size: 45.0% of memory, cuDNN 5103)
+/usr/local/lib/python2.7/dist-packages/theano/sandbox/cuda/__init__.py:600: UserWarning: Your cuDNN version is more recent than the one Theano officially supports. If you see any problems, try updating Theano or downgrading cuDNN to version 5.
+  warnings.warn(warn)
+Parameter number: 117997696
+1 GPU: 3269.91907958 samples per sec
+1 GPU: 0.0195723497868s per batch
+Losses:
+10.2021369934
+9.34073162079
+8.47843742371
+7.61154603958
+6.76387882233
+5.9781088829
+5.31177902222
+4.84932994843
+4.58600330353
+4.44455242157
+==21852== Profiling application: python fcn5_raw_theano.py
+==21852== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 25.57%  997.05ms       800  1.2463ms  234.94us  3.4411ms  maxwell_sgemm_128x64_nn
+ 24.26%  946.02ms       600  1.5767ms  265.59us  4.4386ms  maxwell_sgemm_128x64_tn
+ 22.24%  867.42ms       800  1.0843ms  160.86us  2.4785ms  maxwell_sgemm_128x128_nt
+ 14.97%  583.78ms       200  2.9189ms  2.8936ms  3.3768ms  void cudnn::detail::softmax_bw_kernel<int=2, float, float, int=256, int=1, int=0, int=1>(cudnnTensorStruct, float const *, cudnn::detail::softmax_bw_kernel<int=2, float, float, int=256, int=1, int=0, int=1>, float const , cudnn::detail::softmax_bw_kernel<int=2, float, float, int=256, int=1, int=0, int=1>, cudnnTensorStruct*, int, float, cudnnTensorStruct*, int, int)
+  8.22%  320.45ms       619  517.68us     928ns  22.117ms  [CUDA memcpy HtoD]
+  0.90%  34.926ms       200  174.63us  171.87us  205.47us  kernel_Composite_node_65b78bc06aad84f1b18cadcd55819008_0_Ccontiguous(unsigned int, float const *, float const *, float const *, float*)
+  0.80%  31.048ms       200  155.24us  153.05us  165.21us  void cudnn::detail::softmax_fw_kernel<int=2, float, float, int=256, int=2, int=1, int=0>(cudnnTensorStruct, float const *, cudnn::detail::softmax_fw_kernel<int=2, float, float, int=256, int=2, int=1, int=0>, cudnnTensorStruct*, int, float, cudnnTensorStruct*, int, int)
+  0.73%  28.604ms       200  143.02us  141.18us  163.23us  kernel_Add_node_19eaed16bbe8051baf484ccf1bd89231_0_2(unsigned int, int, int, float const *, int, int, float const *, int, int, float*, int, int)
+  0.66%  25.628ms       200  128.14us  125.73us  139.16us  kSoftmaxWithBias_fixed_sharednode_88b4f8c09b81504243de03738d23d308_0(int, int, float const *, int, int, float const *, int, float*, int, int)
+  0.59%  22.937ms       200  114.68us  113.15us  125.44us  kernel_Mul_node_7c9069cbf2b9b8bac41f69eb285e5c78_0_Ccontiguous(unsigned int, float const *, float const *, float*)
+  0.31%  12.221ms       800  15.276us  8.1600us  34.751us  kernel_reduce_010_AD_node_49998ffbdefdf18d464596bd95591cdb_0(int, int, int, int, float const *, int, int, int, float*, int, int)
+  0.27%  10.484ms       200  52.419us  51.391us  57.566us  kernel_reduce_01_node_d549294894e03459b55591663557c9bd_0(int, int, float const *, int, int, float*, int)
+  0.26%  10.229ms       600  17.047us  16.383us  20.800us  kernel_Composite_node_9288b8ee31d282e2d2d5ef0a8780cd0e_0_2(unsigned int, int, int, float const *, int, int, float const *, int, int, float*, int, int)
+  0.14%  5.2647ms       600  8.7740us  8.1590us  10.880us  kernel_Composite_node_9b4ae2e635a229dc8610a6447361d378_0_Ccontiguous(unsigned int, float const *, float const *, float const *, float*)
+  0.05%  2.0032ms       800  2.5030us  1.9840us  4.2240us  kernel_Composite_node_b6437dbe3a70d5ad2b089b5e10d3d274_0_Ccontiguous(unsigned int, float const *, float const *, float const *, float*)
+  0.01%  559.28us       201  2.7820us  2.5920us  13.152us  kernel_reduce_ccontig_node_97496c4d3cf9a06dc4082cc141f918d2_0(unsigned int, float const *, float*)
+  0.01%  527.79us       216  2.4430us  2.1760us  9.5360us  [CUDA memcpy DtoH]
+  0.01%  505.84us       200  2.5290us  2.4630us  2.9760us  kernel_Composite_node_2a497f5fb4f5e38fddb1770c6f90a7eb_0_Ccontiguous(unsigned int, float const *, float const *, float*)
+  0.00%  2.3040us         1  2.3040us  2.3040us  2.3040us  get_gpu_ptr_size(int*)
+
+==21852== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 77.07%  3.84458s       835  4.6043ms  13.131us  22.185ms  cudaMemcpy
+  8.39%  418.53ms         9  46.503ms     145ns  415.90ms  cudaFree
+  6.45%  321.83ms         1  321.83ms  321.83ms  321.83ms  cudaThreadExit
+  5.86%  292.35ms        16  18.272ms  9.5690us  291.89ms  cudaStreamCreateWithFlags
+  1.07%  53.235ms      6802  7.8260us  4.5590us  360.20us  cudaLaunch
+  0.60%  29.734ms        85  349.81us  329.14us  536.70us  cudaGetDeviceProperties
+  0.19%  9.5316ms     62404     152ns     113ns  262.93us  cudaSetupArgument
+  0.12%  5.7820ms        10  578.20us  6.0860us  5.3696ms  cudaMalloc
+  0.06%  2.8616ms      7631     374ns     211ns  11.614us  cudaGetDevice
+  0.05%  2.5776ms         6  429.60us  211.77us  617.65us  cuDeviceTotalMem
+  0.05%  2.3287ms       498  4.6760us      91ns  212.29us  cuDeviceGetAttribute
+  0.04%  2.0203ms      6802     297ns     126ns  11.839us  cudaConfigureCall
+  0.03%  1.3826ms         1  1.3826ms  1.3826ms  1.3826ms  cudaMemGetInfo
+  0.03%  1.2962ms      6802     190ns     121ns  4.7150us  cudaGetLastError
+  0.00%  245.56us         6  40.926us  30.755us  54.392us  cuDeviceGetName
+  0.00%  34.056us        64     532ns     378ns  2.5470us  cudaEventCreateWithFlags
+  0.00%  16.683us        50     333ns     209ns  1.0900us  cudaDeviceGetAttribute
+  0.00%  14.944us         6  2.4900us     316ns  9.4060us  cudaSetDevice
+  0.00%  14.604us        82     178ns     106ns     568ns  cudaDriverGetVersion
+  0.00%  11.401us        82     139ns     110ns     418ns  cudaRuntimeGetVersion
+  0.00%  8.3700us        16     523ns     343ns  2.2420us  cudaEventDestroy
+  0.00%  4.3150us         2  2.1570us  1.2420us  3.0730us  cudaThreadSynchronize
+  0.00%  3.4510us         3  1.1500us     258ns  2.3270us  cudaGetDeviceCount
+  0.00%  2.7520us         1  2.7520us  2.7520us  2.7520us  cuDevicePrimaryCtxRelease
+  0.00%  2.6780us         2  1.3390us  1.0470us  1.6310us  cuInit
+  0.00%  2.4110us         8     301ns     206ns     451ns  cuDeviceGet
+  0.00%  2.1660us         4     541ns     274ns  1.1200us  cuDeviceGetCount
+  0.00%  1.0310us         2     515ns     436ns     595ns  cuDriverGetVersion
