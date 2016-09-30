@@ -1,0 +1,102 @@
+Using gpu device 1: GeForce GTX TITAN X (CNMeM is enabled with initial size: 45.0% of memory, cuDNN 5103)
+/usr/local/lib/python2.7/dist-packages/theano/sandbox/cuda/__init__.py:600: UserWarning: Your cuDNN version is more recent than the one Theano officially supports. If you see any problems, try updating Theano or downgrading cuDNN to version 5.
+  warnings.warn(warn)
+Using Theano backend.
+Function profiling
+==================
+  Message: /usr/local/lib/python2.7/dist-packages/keras/backend/theano_backend.py:558
+  Time in 200 calls to Function.__call__: 8.298254e+00s
+  Time in Function.fn.__call__: 8.284410e+00s (99.833%)
+  Time in thunks: 8.269010e+00s (99.648%)
+  Total compile time: 8.020411e-01s
+    Number of Apply nodes: 92
+    Theano Optimizer time: 5.402839e-01s
+       Theano validate time: 2.929044e-02s
+    Theano Linker time (includes C, CUDA code generation/compiling): 2.393019e-01s
+       Import time 1.558485e-01s
+
+Time in all call to theano.grad() 2.422285e-02s
+Time since theano import 16.092s
+Class
+---
+<% time> <sum %> <apply time> <time per call> <type> <#call> <#apply> <Class name>
+  56.3%    56.3%       4.657s       7.06e-04s     C     6600      33   theano.sandbox.cuda.basic_ops.GpuElemwise
+  23.8%    80.1%       1.967s       1.41e-03s     C     1400       7   theano.sandbox.cuda.blas.GpuDot22
+   7.9%    88.0%       0.652s       8.15e-04s     C      800       4   theano.sandbox.cuda.blas.GpuDot22Scalar
+   7.1%    95.1%       0.586s       2.93e-03s     C      200       1   theano.sandbox.cuda.dnn.GpuDnnSoftmaxGrad
+   3.7%    98.8%       0.305s       3.05e-04s     C     1000       5   theano.sandbox.cuda.basic_ops.GpuFromHost
+   0.8%    99.5%       0.063s       3.51e-05s     C     1800       9   theano.sandbox.cuda.basic_ops.GpuCAReduce
+   0.3%    99.9%       0.028s       1.40e-04s     C      200       1   theano.sandbox.cuda.nnet.GpuSoftmaxWithBias
+   0.1%    99.9%       0.006s       1.42e-05s     C      400       2   theano.sandbox.cuda.basic_ops.HostFromGpu
+   0.0%   100.0%       0.004s       7.78e-07s     C     4800      24   theano.sandbox.cuda.basic_ops.GpuDimShuffle
+   0.0%   100.0%       0.000s       1.16e-06s     C      400       2   theano.compile.ops.Shape_i
+   0.0%   100.0%       0.000s       8.07e-07s     C      400       2   theano.tensor.elemwise.Elemwise
+   0.0%   100.0%       0.000s       5.32e-07s     C      400       2   theano.sandbox.cuda.basic_ops.GpuContiguous
+   ... (remaining 0 Classes account for   0.00%(0.00s) of the runtime)
+
+Ops
+---
+<% time> <sum %> <apply time> <time per call> <type> <#call> <#apply> <Op name>
+  33.6%    33.6%       2.779s       3.47e-03s     C      800        4   GpuElemwise{Composite{((i0 * i1) - (i2 / i3))}}[(0, 1)]
+  23.8%    57.4%       1.967s       1.41e-03s     C     1400        7   GpuDot22
+  19.1%    76.5%       1.576s       9.85e-04s     C     1600        8   GpuElemwise{Add}[(0, 0)]
+   7.9%    84.3%       0.652s       8.15e-04s     C      800        4   GpuDot22Scalar
+   7.1%    91.4%       0.586s       2.93e-03s     C      200        1   GpuDnnSoftmaxGrad{tensor_format='bc01', mode='channel', algo='accurate'}
+   3.7%    95.1%       0.305s       3.05e-04s     C     1000        5   GpuFromHost
+   0.8%    95.9%       0.065s       3.23e-04s     C      200        1   GpuElemwise{Composite{(((i0 * i1 * i2 * i3 * i4) / (i5 * i6 * i7 * i8)) + i9)}}[(0, 1)]
+   0.7%    96.6%       0.056s       2.80e-04s     C      200        1   GpuElemwise{Composite{((i0 * i1 * i2 * i3 * i4) / (i5 * i6 * i7 * i8 * i8))},no_inplace}
+   0.5%    97.1%       0.045s       2.23e-04s     C      200        1   GpuElemwise{Composite{(i0 * log(i1))}}[(0, 0)]
+   0.4%    97.6%       0.037s       6.15e-05s     C      600        3   GpuCAReduce{add}{0,1}
+   0.4%    98.0%       0.037s       1.83e-04s     C      200        1   GpuElemwise{true_div,no_inplace}
+   0.3%    98.3%       0.028s       1.40e-04s     C      200        1   GpuSoftmaxWithBias
+   0.3%    98.6%       0.025s       1.25e-04s     C      200        1   GpuElemwise{Clip}[(0, 0)]
+   0.3%    98.9%       0.024s       1.21e-04s     C      200        1   GpuElemwise{Composite{Cast{float32}(AND(GE(i0, i1), LE(i0, i2)))},no_inplace}
+   0.3%    99.2%       0.021s       2.64e-05s     C      800        4   GpuCAReduce{add}{1,0}
+   0.2%    99.4%       0.017s       2.76e-05s     C      600        3   GpuElemwise{Composite{scalar_sigmoid((i0 + i1))}}[(0, 0)]
+   0.1%    99.5%       0.012s       1.94e-05s     C      600        3   GpuElemwise{Composite{((i0 * i1) * (i2 - i1))}}[(0, 0)]
+   0.1%    99.7%       0.010s       1.31e-05s     C      800        4   GpuElemwise{Composite{((i0 * i1) - ((i2 * i3) / i4))}}[(0, 1)]
+   0.1%    99.7%       0.006s       1.42e-05s     C      400        2   HostFromGpu
+   0.1%    99.8%       0.005s       1.30e-05s     C      400        2   GpuCAReduce{add}{1}
+   ... (remaining 15 Ops account for   0.22%(0.02s) of the runtime)
+
+Apply
+------
+<% time> <sum %> <apply time> <time per call> <#call> <id> <Apply name>
+  15.6%    15.6%       1.289s       6.45e-03s    200    89   GpuElemwise{Composite{((i0 * i1) - (i2 / i3))}}[(0, 1)](GpuDimShuffle{x,x}.0, <CudaNdarrayType(float32, matrix)>, GpuDot22Scalar.0, GpuDimShuffle{x,x}.0)
+  15.6%    31.2%       1.288s       6.44e-03s    200    66   GpuElemwise{Composite{((i0 * i1) - (i2 / i3))}}[(0, 1)](GpuDimShuffle{x,x}.0, <CudaNdarrayType(float32, matrix)>, GpuDot22Scalar.0, GpuDimShuffle{x,x}.0)
+  10.1%    41.2%       0.833s       4.16e-03s    200    63   GpuDot22(GpuDimShuffle{0,1}.0, GpuDimShuffle{1,0}.0)
+   8.8%    50.0%       0.726s       3.63e-03s    200    91   GpuElemwise{Add}[(0, 0)](dense_1_W, GpuElemwise{Composite{((i0 * i1) - (i2 / i3))}}[(0, 1)].0)
+   8.8%    58.8%       0.725s       3.63e-03s    200    69   GpuElemwise{Add}[(0, 0)](dense_4_W, GpuElemwise{Composite{((i0 * i1) - (i2 / i3))}}[(0, 1)].0)
+   7.9%    66.7%       0.652s       3.26e-03s    200    17   GpuDot22(GpuFromHost.0, dense_1_W)
+   7.1%    73.7%       0.586s       2.93e-03s    200    57   GpuDnnSoftmaxGrad{tensor_format='bc01', mode='channel', algo='accurate'}(GpuContiguous.0, GpuContiguous.0)
+   3.8%    77.6%       0.315s       1.57e-03s    200    62   GpuDot22Scalar(GpuDimShuffle{1,0}.0, GpuDimShuffle{0,1}.0, HostFromGpu.0)
+   3.4%    80.9%       0.280s       1.40e-03s    200    87   GpuDot22Scalar(GpuDimShuffle{1,0}.0, GpuElemwise{Composite{((i0 * i1) * (i2 - i1))}}[(0, 0)].0, HostFromGpu.0)
+   3.2%    84.1%       0.265s       1.32e-03s    200    38   GpuDot22(GpuElemwise{Composite{scalar_sigmoid((i0 + i1))}}[(0, 0)].0, dense_4_W)
+   1.7%    85.9%       0.144s       7.19e-04s    200     7   GpuFromHost(dense_input_1)
+   1.7%    87.6%       0.144s       7.18e-04s    200    11   GpuFromHost(activation_4_target)
+   1.2%    88.8%       0.101s       5.05e-04s    200    74   GpuElemwise{Composite{((i0 * i1) - (i2 / i3))}}[(0, 1)](GpuDimShuffle{x,x}.0, <CudaNdarrayType(float32, matrix)>, GpuDot22Scalar.0, GpuDimShuffle{x,x}.0)
+   1.2%    90.1%       0.101s       5.04e-04s    200    82   GpuElemwise{Composite{((i0 * i1) - (i2 / i3))}}[(0, 1)](GpuDimShuffle{x,x}.0, <CudaNdarrayType(float32, matrix)>, GpuDot22Scalar.0, GpuDimShuffle{x,x}.0)
+   0.8%    90.8%       0.065s       3.23e-04s    200    51   GpuElemwise{Composite{(((i0 * i1 * i2 * i3 * i4) / (i5 * i6 * i7 * i8)) + i9)}}[(0, 1)](CudaNdarrayConstant{[[-1.]]}, GpuElemwise{Composite{Cast{float32}(AND(GE(i0, i1), LE(i0, i2)))},no_inplace}.0, GpuDimShuffle{x,x}.0, GpuDimShuffle{0,x}.0, GpuFromHost.0, GpuDimShuffle{x,x}.0, GpuDimShuffle{x,x}.0, GpuElemwise{Clip}[(0, 0)].0, GpuDimShuffle{0,x}.0, GpuDimShuffle{0,x}.0)
+   0.7%    91.6%       0.061s       3.03e-04s    200    72   GpuDot22(GpuElemwise{Composite{((i0 * i1) * (i2 - i1))}}[(0, 0)].0, GpuDimShuffle{1,0}.0)
+   0.7%    92.3%       0.058s       2.88e-04s    200    85   GpuElemwise{Add}[(0, 0)](dense_2_W, GpuElemwise{Composite{((i0 * i1) - (i2 / i3))}}[(0, 1)].0)
+   0.7%    93.0%       0.058s       2.88e-04s    200    77   GpuElemwise{Add}[(0, 0)](dense_3_W, GpuElemwise{Composite{((i0 * i1) - (i2 / i3))}}[(0, 1)].0)
+   0.7%    93.7%       0.057s       2.85e-04s    200    80   GpuDot22(GpuElemwise{Composite{((i0 * i1) * (i2 - i1))}}[(0, 0)].0, GpuDimShuffle{1,0}.0)
+   0.7%    94.3%       0.056s       2.80e-04s    200    48   GpuElemwise{Composite{((i0 * i1 * i2 * i3 * i4) / (i5 * i6 * i7 * i8 * i8))},no_inplace}(GpuElemwise{Composite{Cast{float32}(AND(GE(i0, i1), LE(i0, i2)))},no_inplace}.0, GpuDimShuffle{x,x}.0, GpuDimShuffle{0,x}.0, GpuFromHost.0, GpuSoftmaxWithBias.0, GpuDimShuffle{x,x}.0, GpuDimShuffle{x,x}.0, GpuElemwise{Clip}[(0, 0)].0, GpuDimShuffle{0,x}.0)
+   ... (remaining 72 Apply instances account for 5.67%(0.47s) of the runtime)
+
+Here are tips to potentially make your code run faster
+                 (if you think of new ones, suggest them on the mailing list).
+                 Test them first, as they are not guaranteed to always provide a speedup.
+  Sorry, no tip for today.
+1 GPU: 1361.29099672 samples per sec
+1 GPU: 0.0470141947269s per batch
+10.1879196167
+9.31114864349
+8.43341159821
+7.55104207993
+6.69003486633
+5.90077066422
+5.24625873566
+4.80565738678
+4.56000995636
+4.42853927612
