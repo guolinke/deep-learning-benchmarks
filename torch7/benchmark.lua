@@ -66,7 +66,6 @@ for i=1,nDryRuns do
     criterion:forward(preb, label)
     model:zeroGradParameters()
     model:backward(input, criterion:backward(preb, label))
-    model:updateParameters(opt.LR)
 end
 cutorch.synchronize()
 collectgarbage()
