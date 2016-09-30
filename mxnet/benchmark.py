@@ -55,9 +55,12 @@ def PrintShapes(symbol, executor):
 
 
 def TimeMxnetRun(func, iter, info = None):
+    n_burn_in = 10
+    for i in range(n_burn_in):
+        func()
     tic = time.time()
     for i in range(iter):
-        func(i)
+        func()
     mx.nd.waitall()
     toc = time.time()
     if info:
@@ -99,27 +102,24 @@ mx.nd.waitall()
 
 arg, grad = GetTrainableParameters(symbol, executor)
 
-def BurnIn(cur_iter):
+
+
+def Copy():
+    executor.arg_dict['data'][:] = data
+    executor.arg_dict['label'][:] = label
+
+def Forward():
     executor.arg_dict['data'][:] = data
     executor.arg_dict['label'][:] = label
     executor.forward(is_train = True)
 
-def Copy(cur_iter):
-    executor.arg_dict['data'][:] = data
-    executor.arg_dict['label'][:] = label
-
-def Forward(cur_iter):
-    executor.arg_dict['data'][:] = data
-    executor.arg_dict['label'][:] = label
-    executor.forward(is_train = True)
-
-def Backward(cur_iter):
+def Backward():
     executor.arg_dict['data'][:] = data
     executor.arg_dict['label'][:] = label
     executor.forward(is_train = True)
     executor.backward()
 
-def Full(cur_iter):
+def Full():
     executor.arg_dict['data'][:] = data
     executor.arg_dict['label'][:] = label
     executor.forward(is_train = True)
@@ -127,8 +127,6 @@ def Full(cur_iter):
     for j in range(len(arg)):
         arg[j][:] -= args.lr * grad[j]
 
-
-TimeMxnetRun(BurnIn, 20)
 TimeMxnetRun(Copy, args.num_batch, '[copy]')
 TimeMxnetRun(Forward, args.num_batch, '[copy + forward]')
 TimeMxnetRun(Backward, args.num_batch, '[copy + forward + backward]')

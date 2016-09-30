@@ -1,6 +1,6 @@
 ************** Config Message **************
 model: resnet
-gpu: 1
+gpu: 0
 Mini_batch_size: 16
 Num_batch: 100
 ********************************************
@@ -167,11 +167,11 @@ Network shape checking:
 (1000L, 2048L)
 (1000L,)
 Parameter Number: 25557032
-Used time for [copy] : 0.001341
-Used time for [copy + forward] : 0.048178
-Used time for [copy + forward + backward] : 0.153307
-Used time for [copy + forward + backward + update] : 0.158863
-********************** Training on GPU(1) **********************
-Avg elasped time per mini-batch (sec/mini-batch): 0.158863
-Avg samples per second (samples/sec): 101
+Used time for [copy] : 0.000856
+Used time for [copy + forward] : 0.048018
+Used time for [copy + forward + backward] : 0.153041
+Used time for [copy + forward + backward + update] : 0.153481
+********************** Training on GPU(0) **********************
+Avg elasped time per mini-batch (sec/mini-batch): 0.153481
+Avg samples per second (samples/sec): 104
 ****************************************************************
