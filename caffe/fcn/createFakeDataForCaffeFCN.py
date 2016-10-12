@@ -4,7 +4,7 @@ import caffe as c
 
 featDim = 26752 
 labDim = 26752 
-mbSize = 64
+mbSize = 256
 totalCount = mbSize * 100
 
 features = np.random.randn(totalCount, 1, 1, featDim)

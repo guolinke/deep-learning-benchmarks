@@ -6,7 +6,7 @@ CNB=100
 RMBS=128
 RNB=100
 
-FMBS=64
+FMBS=256
 FNB=100
 
 CNTK_HOME=cntk/cntk/bin
