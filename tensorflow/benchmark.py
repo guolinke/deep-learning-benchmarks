@@ -86,7 +86,7 @@ with tf.Graph().as_default(), tf.device(device_str):
     sess = tf.Session(config=config)
     sess.run(init)
     
-    forward_time_data_in_gpu = time_tensorflow_run(sess, [last_layer], args.num_batches)
+    forward_time_data_in_gpu = time_tensorflow_run(sess, tf.group(last_layer), args.num_batches)
 
 tf.reset_default_graph()
 
@@ -98,9 +98,15 @@ with tf.Graph().as_default(), tf.device(device_str):
     last_layer = build_model(feature)
 
     cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(last_layer, label)
+
     loss = tf.reduce_mean(cross_entropy)
-    
-    train_step = tf.train.GradientDescentOptimizer(args.lr).minimize(loss)
+
+    optimizer = tf.train.GradientDescentOptimizer(args.lr)
+
+    grads_vars = optimizer.compute_gradients(loss)
+
+    grad = [ x[0] for x in grads_vars ]
+    train_step = optimizer.apply_gradients(grads_vars)
 
     init = tf.initialize_all_variables()
 
@@ -110,16 +116,11 @@ with tf.Graph().as_default(), tf.device(device_str):
     sess = tf.Session(config=config)
     sess.run(init)
 
-    var_refs = [v.ref() for v in tf.trainable_variables()]
-
-    grad = tf.gradients(loss, var_refs)
-
-
-    forward_time_data_in_cpu = time_tensorflow_run(sess, [last_layer], args.num_batches, '[copy + forward]')
+    forward_time_data_in_cpu = time_tensorflow_run(sess, tf.group(last_layer) , args.num_batches, '[copy + forward]')
 
     print ('Used time for %s : %f' %('[copy]', (forward_time_data_in_cpu - forward_time_data_in_gpu) / args.num_batches))
 
-    time_tensorflow_run(sess, [grad], args.num_batches, '[copy + forward + backward]')
+    time_tensorflow_run(sess, tf.group(*grad), args.num_batches, '[copy + forward + backward]')
 
     duration = time_tensorflow_run(sess, [train_step], args.num_batches, '[copy + forward + backward + update]')
 
