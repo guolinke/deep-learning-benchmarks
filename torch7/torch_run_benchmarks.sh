@@ -68,6 +68,6 @@ th benchmark.lua -arch fcn8 -batchSize ${FMBS} -nIterations ${FNB} -deviceId 0 2
 luarocks install rnn
 luarocks install dataload
 pushd ./rnn/lstm/
-th  lstm.lua --seqlen 32 --batchsize ${RMBS} --iters ${RNB} --hiddensize '{256,256}' --cuda --lstm --startlr 1 --cutoff 5 --maxepoch 1 --device 0 2>&1 | tee ../../output_lstm32.log
-th  lstm.lua --seqlen 64 --batchsize ${RMBS} --iters ${RNB} --hiddensize '{256,256}' --cuda --lstm --startlr 1 --cutoff 5 --maxepoch 1 --device 0 2>&1 | tee ../../output_lstm64.log
+th  lstm.lua --seqlen 32 --batchsize ${RMBS} --iters ${RNB} --hiddensize '{256,256}' --cuda --lstm --startlr 1 --cutoff 5 --maxepoch 1 --device 1 2>&1 | tee ../../output_lstm32.log
+th  lstm.lua --seqlen 64 --batchsize ${RMBS} --iters ${RNB} --hiddensize '{256,256}' --cuda --lstm --startlr 1 --cutoff 5 --maxepoch 1 --device 1 2>&1 | tee ../../output_lstm64.log
 popd
