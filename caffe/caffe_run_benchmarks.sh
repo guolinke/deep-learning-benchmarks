@@ -17,8 +17,8 @@ python createFakeImageNetForCaffeCNN.py
 cd ..
 
 cd fcn
-../caffe/build/tools/caffe train -solver=ffn26752-b256-solver-GPU.prototxt -gpu=0 2>&1 | tee ../output_fcn5.log
-../caffe/build/tools/caffe train -solver=ffn26752l6-b256-solver-GPU.prototxt -gpu=0 2>&1 | tee ../output_fcn8.log
+../caffe/build/tools/caffe train -solver=ffn26752-b64-solver-GPU.prototxt -gpu=0 2>&1 | tee ../output_fcn5.log
+../caffe/build/tools/caffe train -solver=ffn26752l6-b64-solver-GPU.prototxt -gpu=0 2>&1 | tee ../output_fcn8.log
 cd ..
 
 cd cnn

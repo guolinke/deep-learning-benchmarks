@@ -6,7 +6,7 @@ CNB=100
 LMBS=128
 LNB=100
 
-FMBS=256
+FMBS=64
 FNB=100
 
 for i in "$@"
