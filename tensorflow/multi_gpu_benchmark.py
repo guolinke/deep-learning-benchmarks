@@ -51,7 +51,6 @@ def PrintParameterCount():
         total_parameters += variable_parametes
     print "Parameter Number:" + str(total_parameters)
 
-    grads = []
 def aggregateGradients(subMinibatchGradients):
     aggGrads = []
     for gradAndVars in zip(*subMinibatchGradients):
@@ -89,9 +88,6 @@ def time_tensorflow_run(session, target, num_steps, info=None):
     if info:
         print ('Used time for %s : %f' %(info, duration / num_steps))
     return duration
-
-
-
 
 batch_size = args.batch_size / len(used_gpus)
 data_shape = (batch_size, ) + featureDim
