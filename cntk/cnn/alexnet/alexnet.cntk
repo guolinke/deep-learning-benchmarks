@@ -8,7 +8,7 @@ precision=float
 deviceId=1
 minibatchSize=16
 epochSize=320 #2560
-maxEpochs=3
+maxEpochs=2
 
 command=Train
 

@@ -27,12 +27,13 @@ def GetTimeFromCaffeLog(filename):
 	end_iter = 0
 
 	max_iter = -1
+	min_start_iter = 5
 	for line in file_in.readlines():
 		if 'max_iter' in line and max_iter == -1:
 			max_iter = int( line.split(':')[1] )
 		if 'sgd_solver.cpp' in line and 'Iteration' in line:
 			cur_iter = int(line.split('Iteration')[1].strip().split(',')[0])
-			if start_iter == -1 and cur_iter > 0:
+			if start_iter == -1 and cur_iter >= min_start_iter:
 				start_iter = cur_iter
 				start_time = GetTimeStamp(line)
 			elif cur_iter > 0 and cur_iter < max_iter:

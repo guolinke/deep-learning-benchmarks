@@ -13,8 +13,8 @@ output_solver = open('cnn/alexnet-solver.prototxt','w')
 out_solver_str = '''
 base_lr: 0.01
 lr_policy: "fixed"
-max_iter: 200 
-display: 50
+max_iter: 20 
+display: 1
 #solver_mode: GPU
 net: "alexnet.prototxt"
 solver_mode: GPU

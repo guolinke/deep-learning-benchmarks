@@ -8,7 +8,7 @@ labDim = 26752
 mbSize = 64
 if len(sys.argv) > 1:
 	mbSize = int(sys.argv[1])
-totalCount = mbSize * 200
+totalCount = mbSize * 20
 
 features = np.random.randn(totalCount, 1, 1, featDim)
 labels = np.random.randint(0, labDim, size=(totalCount,))
