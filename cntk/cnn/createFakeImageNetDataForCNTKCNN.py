@@ -2,7 +2,7 @@ import numpy as np
 import sys
 featDim = 224 * 224 * 3
 labDim = 1000
-totalCount =  int(sys.argv[1]) * 20
+totalCount =  int(sys.argv[1]) * 40
 
 def createFakeData(count):
     features = np.random.randn(count, featDim)

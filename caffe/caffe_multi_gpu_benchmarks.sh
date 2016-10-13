@@ -5,10 +5,10 @@ BASEDIR=$(pwd)
 export PYTHONPATH=$PYTHONPATH:$BASEDIR/caffe/python
 
 
-CMBS=256
+CMBS=64
 CNB=100
 
-FMBS=512
+FMBS=256
 FNB=100
 
 for i in "$@"

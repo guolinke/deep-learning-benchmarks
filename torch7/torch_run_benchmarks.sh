@@ -4,13 +4,13 @@ source $(pwd)'/torch/install/bin/torch-activate'
 echo $PATH
 which th
 
-CMBS=16
+CMBS=64
 CNB=100
 
 RMBS=128
 RNB=100
 
-FMBS=64
+FMBS=256
 FNB=100
 
 for i in "$@"

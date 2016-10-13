@@ -6,7 +6,7 @@ import sys
 mbSize = 16
 if len(sys.argv) > 1:
 	mbSize = int(sys.argv[1])
-totalCount = mbSize * 20
+totalCount = mbSize * 40
 
 features = np.random.randn(totalCount, 3, 224, 224)
 labels = np.random.randint(0, 1000, size=(totalCount,))

@@ -1,13 +1,13 @@
 #!/bin/bash
 
-CMBS=256
-CNB=20
+CMBS=64
+CNB=40
 
 RMBS=128
-RNB=50
+RNB=40
 
-FMBS=512
-FNB=20
+FMBS=256
+FNB=40
 
 CNTK_HOME=cntk/cntk/bin
 
