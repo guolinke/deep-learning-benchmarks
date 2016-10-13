@@ -22,7 +22,6 @@ function MakeFakeData(data_size, label_size, n_classes)
     return torch.randn(torch.LongStorage(data_size)), torch.IntTensor(label_size):random(1, n_classes)
 end
 
-
 function TimeRun(exec_fun, iter, info)
     nDryRuns = 10
     for i=1,nDryRuns do
