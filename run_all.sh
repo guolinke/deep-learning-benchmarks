@@ -6,6 +6,10 @@ cd cntk
 ./cntk_auto.sh "$@"
 cd ..
 
+cd mxnet
+./mxnet_auto.sh "$@"
+cd ..
+
 cd tensorflow
 ./tensorflow_auto.sh "$@"
 cd ..
