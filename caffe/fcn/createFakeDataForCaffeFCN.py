@@ -1,11 +1,14 @@
 import numpy as np
 import lmdb
 import caffe as c
+import sys
 
 featDim = 26752 
 labDim = 26752 
 mbSize = 64
-totalCount = mbSize * 100
+if len(sys.argv) > 1:
+	mbSize = int(sys.argv[1])
+totalCount = mbSize * 200
 
 features = np.random.randn(totalCount, 1, 1, featDim)
 labels = np.random.randint(0, labDim, size=(totalCount,))

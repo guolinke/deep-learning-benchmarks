@@ -1,4 +1,27 @@
-name: "AlexNet"
+#!/usr/bin/python
+
+import sys
+
+batch_size = int(sys.argv[1])
+if len(sys.argv) > 2:
+	# for multi gpu
+	batch_size /= int(sys.argv[2])
+
+output = open('cnn/alexnet.prototxt','w')
+output_solver = open('cnn/alexnet-solver.prototxt','w')
+
+out_solver_str = '''
+base_lr: 0.01
+lr_policy: "fixed"
+max_iter: 200 
+display: 50
+#solver_mode: GPU
+net: "alexnet.prototxt"
+solver_mode: GPU
+
+'''
+
+out_str = '''name: "AlexNet"
 layer {
   name: "data"
   type: "Data"
@@ -8,8 +31,8 @@ layer {
     phase: TRAIN
   }
   data_param {
-    source: "../fake_image_net.lmdb"
-    batch_size: 64 
+    source: "fake_image_net.lmdb"
+    batch_size: %d 
     backend: LMDB
   }
 }
@@ -311,5 +334,10 @@ layer {
   bottom: "fc8"
   bottom: "label"
   top: "loss"
-}
+}'''  %(batch_size)
 
+
+output.write(out_str)
+output.close()
+output_solver.write(out_solver_str)
+output_solver.close()
