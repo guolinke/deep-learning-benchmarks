@@ -21,6 +21,8 @@ prefetch=true
 
 traceLevel=1
 
+parallelTrain=false
+
 Train=[
     action=train
     modelPath=$ModelDir$/AlexNet
@@ -37,6 +39,14 @@ Train=[
         momentumPerMB=0
         dropoutRate=0
 	    numMBsToShowResult=1
+        ParallelTrain=[
+            parallelizationMethod="DataParallelSGD"
+            distributedMBReading="true"
+            parallelizationStartEpoch=1
+            DataParallelSGD=[
+                gradientBits=1
+            ]
+        ]
     ]
 
     reader=[
