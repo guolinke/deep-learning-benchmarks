@@ -1,12 +1,12 @@
 #!/bin/bash
 
-CMBS=16
+CMBS=256
 CNB=100
 
 RMBS=128
 RNB=100
 
-FMBS=64
+FMBS=512
 FNB=100
 
 CNTK_HOME=cntk/cntk/bin
@@ -52,12 +52,12 @@ esac
 done
 
 cd fcn
-python createDataForCNTKFCN.py
+python createDataForCNTKFCN.py ${FMBS}
 python createLabelMapForCNTKFCN.py
 cd ..
 
 cd cnn
-python createFakeImageNetDataForCNTKCNN.py
+python createFakeImageNetDataForCNTKCNN.py ${CMBS}
 python createLabelMapForCNTKCNN.py
 cd ..
 
