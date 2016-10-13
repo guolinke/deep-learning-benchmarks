@@ -15,7 +15,7 @@ cd tensorflow
 cd ..
 
 cd theano
-./auto_benchmarks.sh "$@"
+./auto_benchmark.sh "$@"
 cd ..
 
 cd torch7
