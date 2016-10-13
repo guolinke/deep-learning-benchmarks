@@ -11,7 +11,7 @@ totalCount = mbSize * 40
 features = np.random.randn(totalCount, 3, 224, 224)
 labels = np.random.randint(0, 1000, size=(totalCount,))
 
-db = lmdb.open('./fake_image_net.lmdb', map_size=features.nbytes * 10)
+db = lmdb.open('./fake_image_net.lmdb', map_size=features.nbytes * 40)
 
 with db.begin(write = True) as txn:
   for i in range(totalCount):
