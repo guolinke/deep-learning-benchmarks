@@ -20,6 +20,7 @@ function M.parse(arg)
    cmd:option('-nIterations',  100,          'Number of iterations for each epoch')
    cmd:option('-batchSize',       16,      'mini-batch size (1 = pure stochastic)')
    cmd:option('-LR',              0.01,   'initial learning rate')
+   cmd:option('-gpus',          '0,1' , 'gpus')
 
    cmd:text()
 
