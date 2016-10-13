@@ -4,7 +4,7 @@ source $(pwd)'/torch/install/bin/torch-activate'
 echo $PATH
 which th
 
-CMBS=64
+CMBS=16
 CNB=100
 
 RMBS=128
@@ -53,22 +53,14 @@ case $i in
 esac
 done
 
-sudo rm -f output_alexnet_2gpu.log
-sudo rm -f output_resnet_2gpu.log
 sudo rm -f output_fcn5_2gpu.log
 sudo rm -f output_fcn8_2gpu.log
 
-th multi_gpu_benchmark.lua -gpus 0,1 -arch alexnet -batchSize ${CMBS} -nIterations ${CNB} -deviceId 0 2>&1 | tee output_alexnet_2gpu.log
-th multi_gpu_benchmark.lua -gpus 0,1 -arch resnet -batchSize ${CMBS} -nIterations ${CNB} -deviceId 0 2>&1 | tee output_resnet_2gpu.log
 th multi_gpu_benchmark.lua -gpus 0,1 -arch fcn5 -batchSize ${FMBS} -nIterations ${FNB} -deviceId 0 2>&1 | tee output_fcn5_2gpu.log
 th multi_gpu_benchmark.lua -gpus 0,1 -arch fcn8 -batchSize ${FMBS} -nIterations ${FNB} -deviceId 0 2>&1 | tee output_fcn8_2gpu.log
 
-sudo rm -f output_alexnet_4gpu.log
-sudo rm -f output_resnet_4gpu.log
 sudo rm -f output_fcn5_4gpu.log
 sudo rm -f output_fcn8_4gpu.log
 
-th multi_gpu_benchmark.lua -gpus 0,1,2,3 -arch alexnet -batchSize ${CMBS} -nIterations ${CNB} -deviceId 0 2>&1 | tee output_alexnet_4gpu.log
-th multi_gpu_benchmark.lua -gpus 0,1,2,3 -arch resnet -batchSize ${CMBS} -nIterations ${CNB} -deviceId 0 2>&1 | tee output_resnet_4gpu.log
 th multi_gpu_benchmark.lua -gpus 0,1,2,3 -arch fcn5 -batchSize ${FMBS} -nIterations ${FNB} -deviceId 0 2>&1 | tee output_fcn5_4gpu.log
 th multi_gpu_benchmark.lua -gpus 0,1,2,3 -arch fcn8 -batchSize ${FMBS} -nIterations ${FNB} -deviceId 0 2>&1 | tee output_fcn8_4gpu.log

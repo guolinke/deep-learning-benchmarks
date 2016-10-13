@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CMBS=64
+CMBS=16
 CNB=100
 
 RMBS=128
@@ -49,22 +49,14 @@ case $i in
 esac
 done
 
-sudo rm -f output_alexnet_2gpu.log
-sudo rm -f output_resnet_2gpu.log
 sudo rm -f output_fcn5_2gpu.log
 sudo rm -f output_fcn8_2gpu.log
 
 python multi_gpu_benchmark.py --gpu 0,1 --arch fcn5 --batch-size ${FMBS} --num-batches ${FNB} 2>&1 | tee output_fcn5_2gpu.log
 python multi_gpu_benchmark.py --gpu 0,1 --arch fcn8 --batch-size ${FMBS} --num-batches ${FNB} 2>&1 | tee output_fcn8_2gpu.log
-python multi_gpu_benchmark.py --gpu 0,1 --arch alexnet --batch-size ${CMBS} --num-batches ${CNB} 2>&1 | tee output_alexnet_2gpu.log
-python multi_gpu_benchmark.py --gpu 0,1 --arch resnet --batch-size ${CMBS} --num-batches ${CNB} 2>&1 | tee output_resnet_2gpu.log
 
-sudo rm -f output_alexnet_4gpu.log
-sudo rm -f output_resnet_4gpu.log
 sudo rm -f output_fcn5_4gpu.log
 sudo rm -f output_fcn8_4gpu.log
 
 python multi_gpu_benchmark.py --gpu 0,1,2,3 --arch fcn5 --batch-size ${FMBS} --num-batches ${FNB} 2>&1 | tee output_fcn5_4gpu.log
 python multi_gpu_benchmark.py --gpu 0,1,2,3 --arch fcn8 --batch-size ${FMBS} --num-batches ${FNB} 2>&1 | tee output_fcn8_4gpu.log
-python multi_gpu_benchmark.py --gpu 0,1,2,3 --arch alexnet --batch-size ${CMBS} --num-batches ${CNB} 2>&1 | tee output_alexnet_4gpu.log
-python multi_gpu_benchmark.py --gpu 0,1,2,3 --arch resnet --batch-size ${CMBS} --num-batches ${CNB} 2>&1 | tee output_resnet_4gpu.log

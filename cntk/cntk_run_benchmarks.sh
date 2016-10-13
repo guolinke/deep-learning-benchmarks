@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CMBS=64
+CMBS=16
 CNB=40
 
 RMBS=128

@@ -4,7 +4,7 @@ source $(pwd)'/torch/install/bin/torch-activate'
 echo $PATH
 which th
 
-CMBS=64
+CMBS=16
 CNB=100
 
 RMBS=128

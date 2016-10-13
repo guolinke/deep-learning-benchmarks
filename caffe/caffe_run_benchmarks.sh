@@ -5,7 +5,7 @@ BASEDIR=$(pwd)
 export PYTHONPATH=$PYTHONPATH:$BASEDIR/caffe/python
 
 
-CMBS=64
+CMBS=16
 CNB=100
 
 FMBS=256

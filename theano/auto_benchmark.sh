@@ -3,7 +3,7 @@
 # set env var
 CUR_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
 
-CMBS=64
+CMBS=16
 CNB=100
 
 RMBS=128
