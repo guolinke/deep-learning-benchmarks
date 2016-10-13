@@ -3,13 +3,13 @@
 # set env var
 CUR_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
 
-CMBS=16
+CMBS=256
 CNB=100
 
 RMBS=128
 RNB=100
 
-FMBS=64
+FMBS=512
 FNB=100
 
 for i in "$@"
