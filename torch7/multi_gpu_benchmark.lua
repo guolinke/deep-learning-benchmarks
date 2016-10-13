@@ -77,7 +77,7 @@ if #used_gpus > 1 then
         dp_model:add(model:clone():cuda(), used_gpus[i])
     end
     cutorch.setDevice(1)
-else:
+else
     dp_model = model:cuda()
 end
 
