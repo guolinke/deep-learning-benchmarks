@@ -1,13 +1,14 @@
+#!/bin/bash
 
 BASEDIR=$(pwd)
 
 export PYTHONPATH=$PYTHONPATH:$BASEDIR/caffe/python
 
 
-CMBS=16
+CMBS=256
 CNB=100
 
-FMBS=64
+FMBS=512
 FNB=100
 
 for i in "$@"

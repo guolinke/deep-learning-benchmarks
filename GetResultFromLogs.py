@@ -1,5 +1,5 @@
-FCN_batch_size = 64
-CNN_batch_size = 16
+FCN_batch_size = 512
+CNN_batch_size = 256
 RNN_batch_size = 128
 
 def GetTimeStamp(line):
