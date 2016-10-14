@@ -1,8 +1,14 @@
 import numpy as np
 import theano
 import theano.tensor as T
-import lasagne
-from lasagne.layers import get_output, get_all_params
+
+from keras.models import Sequential
+from keras.layers.core import Dense, Activation
+from keras.optimizers import SGD
+
+from keras.utils import np_utils
+
+
 import time
 from datetime import datetime
 import argparse
@@ -20,7 +26,6 @@ parser.add_argument('--num_batches', '-n', type=int, default=100,
 args = parser.parse_args()
 
 input_generator = None
-use_onehot_label = False
 
 def get_output_size(batch_size):
     '''
@@ -30,32 +35,30 @@ def get_output_size(batch_size):
     return (batch_size, )
 
 if args.arch == 'alexnet':
-    from models.alexnet import build_model, featureDim, labelDim
+    from keras_models.alexnet import build_model, featureDim, labelDim
 elif args.arch == 'resnet':
-    from models.resnet50 import build_model, featureDim, labelDim
+    from keras_models.resnet50 import build_model, featureDim, labelDim
 elif args.arch == 'fcn5':
-    from models.fcn5 import build_model, featureDim, labelDim
-    #use_onehot_label = True
+    from keras_models.fcn5 import build_model, featureDim, labelDim
 elif args.arch == 'fcn8':
-    from models.fcn8 import build_model, featureDim, labelDim
-    #use_onehot_label = True
+    from keras_models.fcn8 import build_model, featureDim, labelDim
 elif args.arch == 'lstm32':
-    from models.lstm import build_model32 as build_model, featureDim32 as featureDim, \
+    from keras_models.lstm import build_model32 as build_model, featureDim32 as featureDim, \
         labelDim32 as labelDim, input_generator32 as input_generator, get_output_size32 as get_output_size
 elif args.arch == 'lstm64':
-    from models.lstm import build_model64 as build_model, featureDim64 as featureDim, \
+    from keras_models.lstm import build_model64 as build_model, featureDim64 as featureDim, \
         labelDim64 as labelDim, input_generator64 as input_generator, get_output_size64 as get_output_size
 else:
     raise ValueError('Invalid architecture name')
 
 NUM_STEPS_BURN_IN = 10
 
-def time_theano_run(func, fargs, info_string):
+def time_theano_run(model, inputs, labels, info_string):
     num_batches = args.num_batches
     durations = []
     for i in range(num_batches + NUM_STEPS_BURN_IN):
         start_time = time.time()
-        _ = func(*fargs)
+        _ = model.train_on_batch(inputs,labels)
         duration = time.time() - start_time
         if i > NUM_STEPS_BURN_IN:
             if not i % 10:
@@ -71,30 +74,11 @@ def time_theano_run(func, fargs, info_string):
 def main():
     batch_size = args.batch_size
     print('Building model...')
-    layer, input_var = build_model(batch_size=batch_size)
-    print("number of parameters in model: %d" % lasagne.layers.count_params(layer, trainable=True))
-
-    output_dim = 1 # get the output dimensions
-    dtype = 'int32'
-    if use_onehot_label:
-        output_dim += 1
-        dtype = 'float32'
-    labels_var = T.TensorType(dtype=dtype, broadcastable=[False] * output_dim)('labels')
-
-    output = get_output(layer)
-
-    loss = T.nnet.categorical_crossentropy(
-        T.nnet.softmax(output), labels_var).mean(
-        dtype=theano.config.floatX)
-    params = lasagne.layers.get_all_params(layer, trainable=True)
-    updates = lasagne.updates.sgd(loss, params, learning_rate=0.1)
-
-    # gradient = T.grad(loss, params, disconnected_inputs="warn")
-    # We add update, so we don't have to calc the gradient now.
+    model = build_model(batch_size=batch_size)
+    print("number of parameters in model: %d" % model.count_params())
 
     print('Compiling theano functions...')
-    forward_func = theano.function([input_var], output)
-    full_func = theano.function([input_var, labels_var], loss, updates=updates)
+    model.compile(loss='categorical_crossentropy', optimizer=SGD(lr=0.01))
     print('Functions are compiled')
 
     print('input_size:', (batch_size,) + featureDim)
@@ -110,16 +94,12 @@ def main():
 
     # generate label
     output_size = get_output_size(batch_size)
-    if use_onehot_label:
-        # convert the random labels to one-hot format
-        labels = np.zeros((batch_size, labelDim)).astype(np.float32)
-        for j, v in enumerate(np.random.randint(0, labelDim, size=output_size)):
-            labels[j][v] = 1
-    else:
-        labels = np.random.randint(0, labelDim, size=output_size).astype(np.int32)
+    
+    inp_labels = np.random.randint(0, labelDim, size=output_size).astype(np.int32)
 
-    # time_theano_run(forward_func, inputs, 'Forward')
-    time_theano_run(full_func, inputs + labels, 'Forward-Backward')
+    labels = np_utils.to_categorical(inp_labels, labelDim).astype(np.float32)
+    
+    time_theano_run(model, inputs, labels, 'Forward-Backward')
 
 if __name__ == '__main__':
     main()
