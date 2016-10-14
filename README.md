@@ -23,8 +23,8 @@
 
 |Name | Batch Size | Input | Output | Layers | #Parameters |
 |-----|------------|------|------|------|-------|
-| FCN-5 | 64 | 26752 | 26752 | 5 | ~118 millions |
-| FCN-8 | 64 | 26752 | 26752 | 8 | ~131 millions |
+| FCN-5 | 8192 | 512 | 1000 | 5 | ~11 millions |
+| FCN-8 | 8192 | 512 | 1000 | 8 | ~24millions |
 | AlexNet | 16 | 150528 | 1000 | 4 | ~62 millions |
 | ResNet-50 | 16 | 150528 | 1000 | 50 | ~25 millions |
 | LSTM-32 | 128 | 10000 | 10000 | 2 | ~6 millions |
