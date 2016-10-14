@@ -145,7 +145,7 @@ layer {
   bottom: "H6"
   top: "L"
   inner_product_param {
-    num_output: 26752 
+    num_output: 1000 
   }
 }
 

@@ -1,9 +1,9 @@
 import tensorflow as tf
 import numpy as np
 
-input_size = 26752
+input_size = 512
 featureDim = (input_size, )
-numClasses = 26752
+numClasses = 1000
 hiddenLayDim = 2048
 
 def getParameters(name, shape):

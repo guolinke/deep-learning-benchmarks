@@ -3,8 +3,8 @@ import lasagne
 from lasagne.layers import InputLayer, DenseLayer
 
 
-featureDim = (26752, )
-labelDim = 26752
+featureDim = (512, )
+labelDim = 1000
 hiddenLayDim = 2048
 
 

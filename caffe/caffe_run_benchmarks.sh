@@ -8,7 +8,7 @@ export PYTHONPATH=$PYTHONPATH:$BASEDIR/caffe/python
 CMBS=16
 CNB=100
 
-FMBS=256
+FMBS=8192
 FNB=100
 
 for i in "$@"

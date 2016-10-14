@@ -1,7 +1,7 @@
 function fcn8(batch_size, deviceId)
-    local input_size = 26752 
+    local input_size = 512 
     local hidden_size = 2048
-    local output_size = 26752 
+    local output_size = 1000 
     require 'nn'
     -- Network definition
     local Linear = nn.Linear

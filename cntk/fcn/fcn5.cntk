@@ -13,8 +13,8 @@ makeMode=false
 
 command=Train
 
-featureDim = 26752 
-labelDim = 26752 
+featureDim = 512 
+labelDim = 1000 
 hiddenDim = 2048
 
 initOnCPUOnly=true

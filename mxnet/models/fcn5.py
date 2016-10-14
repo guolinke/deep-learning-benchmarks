@@ -4,8 +4,8 @@ import numpy as np
 
 
 
-featureDim = (26752, )
-numClasses = 26752
+featureDim = (512, )
+numClasses = 1000
 hiddenLayDim = 2048
 
 def build_model():

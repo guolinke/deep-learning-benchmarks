@@ -1,8 +1,8 @@
 import numpy as np
 import sys
 
-featDim = 26752
-labDim = 26752 
+featDim = 512
+labDim = 1000 
 totalCount =  int(sys.argv[1]) * 40
 
 def createFakeData(count):

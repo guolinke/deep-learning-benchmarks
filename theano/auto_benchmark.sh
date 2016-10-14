@@ -9,7 +9,7 @@ CNB=100
 RMBS=128
 RNB=100
 
-FMBS=256
+FMBS=8192
 FNB=100
 
 for i in "$@"

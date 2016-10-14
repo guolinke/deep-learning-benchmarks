@@ -3,8 +3,8 @@ import lmdb
 import caffe as c
 import sys
 
-featDim = 26752 
-labDim = 26752 
+featDim = 512 
+labDim = 1000 
 mbSize = 64
 if len(sys.argv) > 1:
 	mbSize = int(sys.argv[1])
