@@ -34,8 +34,8 @@ stride3x3=2
 Train=[
     action="train"
     modelPath="$ModelDir$/ResNet_50"
-
-     NDLNetworkBuilder=[
+    deviceId=Auto
+    NDLNetworkBuilder=[
         networkDescription="$ConfigDir$/ResNet_50.ndl"
     ]
     

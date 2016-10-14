@@ -25,7 +25,7 @@ traceLevel=1
 Train=[
     action=train
     modelPath=$ModelDir$/fc26752
-    #deviceId=1
+    deviceId=Auto
     traceLevel=1
 
     SimpleNetworkBuilder=[

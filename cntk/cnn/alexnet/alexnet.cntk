@@ -26,7 +26,7 @@ parallelTrain=false
 Train=[
     action=train
     modelPath=$ModelDir$/AlexNet
-
+    deviceId=Auto
     NDLNetworkBuilder=[
         networkDescription=$ConfigDir$/AlexNet.ndl
     ]
