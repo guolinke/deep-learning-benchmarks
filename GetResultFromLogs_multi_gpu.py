@@ -47,10 +47,11 @@ def GetTimeFromCaffeLog(filename):
 	return [time, sps]
 def GetCaffeResult():
 	return [GetTimeFromCaffeLog("caffe/output_fcn5.log"),
+	GetTimeFromCaffeLog("caffe/output_fcn5_2gpu.log"),
+	GetTimeFromCaffeLog("caffe/output_fcn5_4gpu.log"),
 	GetTimeFromCaffeLog("caffe/output_fcn8.log"),
-	GetTimeFromCaffeLog("caffe/output_alexnet.log"),
-	GetTimeFromCaffeLog("caffe/output_resnet.log"),
-	[0,0],[0,0]]
+	GetTimeFromCaffeLog("caffe/output_fcn8_2gpu.log"),
+	GetTimeFromCaffeLog("caffe/output_fcn8_4gpu.log")]
 
 def GetTimeFromCNTKLog(filename):
 	file_in = open(filename,"r")
@@ -72,11 +73,12 @@ def GetTimeFromCNTKLog(filename):
 				return[epo_time / num_batches, epoch_size / epo_time]
 def GetCNTKResult():
 	return [GetTimeFromCNTKLog("cntk/output_fcn5_Train.log"),
+	GetTimeFromCNTKLog("cntk/output_fcn5_2gpu_Train.log"),
+	GetTimeFromCNTKLog("cntk/output_fcn5_4gpu_Train.log"),
 	GetTimeFromCNTKLog("cntk/output_fcn8_Train.log"),
-	GetTimeFromCNTKLog("cntk/output_alexnet_Train.log"),
-	GetTimeFromCNTKLog("cntk/output_resnet_Train.log"),
-	GetTimeFromCNTKLog("cntk/output_lstm32_Train.log"),
-	GetTimeFromCNTKLog("cntk/output_lstm64_Train.log")]
+	GetTimeFromCNTKLog("cntk/output_fcn8_2gpu_Train.log"),
+	GetTimeFromCNTKLog("cntk/output_fcn8_4gpu_Train.log"),
+]
 
 def GetTimeFromTensorflowLog(filename):
 	file_in = open(filename,"r")
@@ -104,38 +106,12 @@ def GetTimeFromTensorflowLog(filename):
 				return [time, batch_size * 1.0 / time]
 def GetTersonflowResult():
 	return[GetTimeFromTensorflowLog('tensorflow/output_fcn5.log'),
+	GetTimeFromTensorflowLog('tensorflow/output_fcn5_2gpu.log'),
+	GetTimeFromTensorflowLog('tensorflow/output_fcn5_4gpu.log'),
 	GetTimeFromTensorflowLog('tensorflow/output_fcn8.log'),
-	GetTimeFromTensorflowLog('tensorflow/output_alexnet.log'),
-	GetTimeFromTensorflowLog('tensorflow/output_resnet.log'),
-	GetTimeFromTensorflowLog('tensorflow/output_lstm32.log'),
-	GetTimeFromTensorflowLog('tensorflow/output_lstm64.log')]
+	GetTimeFromTensorflowLog('tensorflow/output_fcn8_2gpu.log'),
+	GetTimeFromTensorflowLog('tensorflow/output_fcn8_4gpu.log')]
 
-
-def GetTimeFromTheanoLog(filename):
-	file_in = open(filename,"r")
-	batch_size = -1
-	if 'alexnet' in filename or 'resnet' in filename:
-		batch_size = CNN_batch_size
-	elif 'lstm' in filename:
-		batch_size = RNN_batch_size
-	else:
-		batch_size = FCN_batch_size
-	for line in file_in.readlines():
-		if 'Forward-Backward across' in line:
-			time = float(line.split(',')[-1].split('+/-')[0])
-	if 'lstm32' in filename:
-		return [time, batch_size * 32.0 / time]
-	elif 'lstm64' in filename:
-		return [time, batch_size * 64.0 / time]
-	else:
-		return [time, batch_size / time]
-def GetTheanoResult():
-	return [GetTimeFromTheanoLog('theano/log/fcn5.log'),
-	GetTimeFromTheanoLog('theano/log/fcn8.log'),
-	GetTimeFromTheanoLog('theano/log/alexnet.log'),
-	GetTimeFromTheanoLog('theano/log/resnet.log'),
-	GetTimeFromTheanoLog('theano/log/lstm32.log'),
-	GetTimeFromTheanoLog('theano/log/lstm64.log')]
 
 def GetTimeFromTorchLog(filename):
 	file_in = open(filename,"r")
@@ -164,53 +140,21 @@ def GetTimeFromTorchLog(filename):
 
 def GetTorchResult():
 	return[GetTimeFromTorchLog('torch7/output_fcn5.log'),
+	GetTimeFromTorchLog('torch7/output_fcn5_2gpu.log'),
+	GetTimeFromTorchLog('torch7/output_fcn5_4gpu.log'),
 	GetTimeFromTorchLog('torch7/output_fcn8.log'),
-	GetTimeFromTorchLog('torch7/output_alexnet.log'),
-	GetTimeFromTorchLog('torch7/output_resnet.log'),
-	GetTimeFromTorchLog('torch7/output_lstm32.log'),
-	GetTimeFromTorchLog('torch7/output_lstm64.log')]
-
-def GetTimeFromMxnetLog(filename):
-	file_in = open(filename,"r")
-	batch_size = -1
-	if 'alexnet' in filename or 'resnet' in filename:
-		batch_size = CNN_batch_size
-	elif 'lstm' in filename:
-		batch_size = RNN_batch_size
-	else:
-		batch_size = FCN_batch_size
-	if 'lstm' in filename:
-		for line in file_in.readlines():
-			if 'Batch [50]' in line:
-				sps = float(line.split('Speed:')[1].split('samples/sec')[0])
-		if 'lstm32' in filename:
-			return [batch_size * 32.0 / sps, sps]
-		else:
-			return [batch_size * 64.0 / sps, sps]
-	else:	
-		for line in file_in.readlines():
-			if '(sec/mini-batch)' in line:
-				time = float(line.split(':')[-1])
-				return [time, batch_size * 1.0 / time]
-def GetMxnetResult():
-	return[GetTimeFromMxnetLog('mxnet/output_fcn5.log'),
-	GetTimeFromMxnetLog('mxnet/output_fcn8.log'),
-	GetTimeFromMxnetLog('mxnet/output_alexnet.log'),
-	GetTimeFromMxnetLog('mxnet/output_resnet.log'),
-	GetTimeFromMxnetLog('mxnet/output_lstm32.log'),
-	GetTimeFromMxnetLog('mxnet/output_lstm64.log')]
+	GetTimeFromTorchLog('torch7/output_fcn8_2gpu.log'),
+	GetTimeFromTorchLog('torch7/output_fcn8_4gpu.log')]
 
 caffe_result = GetCaffeResult()
 cntk_result = GetCNTKResult()
-mxnet_resutl = GetMxnetResult()
 tf_result = GetTersonflowResult()
-th_result = GetTheanoResult()
 to_result = GetTorchResult()
-names = ['Caffe','CNTK', 'MXNet' ,'TensorFlow','Theano','Torch']
-result = [caffe_result, cntk_result, mxnet_resutl, tf_result, th_result, to_result] 
-file_out = open('result.md','w')
+names = ['Caffe','CNTK','TensorFlow','Torch']
+result = [caffe_result, cntk_result, tf_result, to_result] 
+file_out = open('result_multi_gpu.md','w')
 file_out.write('seconds/num_batches:\n\n')
-file_out.write('| Tool | FCN-5 | FCN-8 | AlexNet | ResNet | LSTM-32 | LSTM-64 |\n')
+file_out.write('| Tool | FCN-5 | FCN-5, 2 GPUs | FCN-5, 4 GPUs | FCN-8 | FCN-8, 2 GPUs | FCN-8, 4 GPUs |\n')
 file_out.write('|------|-------|-------|---------|--------|---------|---------|\n')
 for i in xrange(len(names)):
 	file_out.write('|' + names[i])
@@ -219,7 +163,7 @@ for i in xrange(len(names)):
 	file_out.write('|\n')
 
 file_out.write('\n\nsamples/second:\n\n')
-file_out.write('| Tool | FCN-5 | FCN-8 | AlexNet | ResNet | LSTM-32 | LSTM-64 |\n')
+file_out.write('| Tool | FCN-5 | FCN-5, 2 GPUs | FCN-5, 4 GPUs | FCN-8 | FCN-8, 2 GPUs | FCN-8, 4 GPUs |\n')
 file_out.write('|------|-------|-------|---------|--------|---------|---------|\n')
 for i in xrange(len(names)):
 	file_out.write('|' + names[i])
