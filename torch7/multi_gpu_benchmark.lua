@@ -102,7 +102,7 @@ function RunFull()
     dp_model:zeroGradParameters()
     dp_model:backward(input, criterion:backward(preb, label))
     dp_model:updateParameters(opt.LR)
-    if dp_model.syncParameters then 
+    if #used_gpus > 1 then 
         dp_model:syncParameters() 
     end
 end
