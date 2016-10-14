@@ -4,7 +4,7 @@ DataDir=/home/dl/data/cntk
 precision=float
 stderr  = "./output_$ConfigName$_Train.log"
 
-deviceId=0
+deviceId=Auto
 minibatchSize=1024
 epochSize=4096
 maxEpochs=2

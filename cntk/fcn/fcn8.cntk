@@ -4,7 +4,7 @@ DataDir=/home/dl/data/cntk
 precision=float
 stderr  = "./output_$ConfigName$_Train.log"
 
-deviceId=0
+deviceId=Auto
 minibatchSize=1024
 epochSize=4096
 maxEpochs=2
@@ -13,8 +13,8 @@ makeMode=false
 
 command=Train
 
-featureDim = 26752 
-labelDim = 26752 
+featureDim = 512 
+labelDim = 1000 
 hiddenDim = 2048
 
 initOnCPUOnly=true
