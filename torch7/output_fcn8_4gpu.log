@@ -1,0 +1,22 @@
+Running on device: GeForce GTX TITAN X	
+Model Parameters: 	24081384	
+All shape: 	{
+  1 : CudaTensor - size: 2048x512
+  2 : CudaTensor - size: 2048
+  3 : CudaTensor - size: 2048x2048
+  4 : CudaTensor - size: 2048
+  5 : CudaTensor - size: 2048x2048
+  6 : CudaTensor - size: 2048
+  7 : CudaTensor - size: 2048x2048
+  8 : CudaTensor - size: 2048
+  9 : CudaTensor - size: 2048x2048
+  10 : CudaTensor - size: 2048
+  11 : CudaTensor - size: 2048x2048
+  12 : CudaTensor - size: 2048
+  13 : CudaTensor - size: 1000x2048
+  14 : CudaTensor - size: 1000
+}
+ModelType: FCN8	
+Used time for 	[copy + forward + backward + update]	 : 	0.10465581893921	
+Avg elasped time per mini-batch (sec/mini-batch):   0.104656	
+Avg samples per second (samples/sec): 78275.628465	

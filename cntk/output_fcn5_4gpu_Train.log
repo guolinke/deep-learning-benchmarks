@@ -1,0 +1,279 @@
+-------------------------------------------------------------------
+Build info: 
+
+		Built time: Sep 27 2016 14:05:01
+		Last modified date: Tue Sep 27 07:19:56 2016
+		Build type: release
+		Build target: GPU
+		With 1bit-SGD: yes
+		Math lib: mkl
+		CUDA_PATH: /usr/local/cuda-7.5
+		CUB_PATH: /usr/local/cub-1.4.1
+		CUDNN_PATH: /usr/local/cudnn-5.1
+		Build Branch: HEAD
+		Build SHA1: 2e4a773398b5ee84e1695abe73eb831c3cca1e36
+		Built by philly on 9ab719fcc26d
+		Build Path: /home/philly/jenkins/workspace/CNTK-Build-Linux
+-------------------------------------------------------------------
+-------------------------------------------------------------------
+GPU info:
+
+		Device[0]: cores = 4608; computeCapability = 5.2; type = "GeForce GTX TITAN X"; memory = 12205 MB
+		Device[1]: cores = 4608; computeCapability = 5.2; type = "GeForce GTX TITAN X"; memory = 12206 MB
+		Device[2]: cores = 4608; computeCapability = 5.2; type = "GeForce GTX TITAN X"; memory = 12206 MB
+		Device[3]: cores = 4608; computeCapability = 5.2; type = "GeForce GTX TITAN X"; memory = 12206 MB
+-------------------------------------------------------------------
+
+Configuration After Processing and Variable Resolution:
+
+configparameters: fcn5.cntk:command=Train
+configparameters: fcn5.cntk:configName=fcn5_4gpu
+configparameters: fcn5.cntk:DataDir=fcn
+configparameters: fcn5.cntk:deviceId=Auto
+configparameters: fcn5.cntk:epochSize=327680
+configparameters: fcn5.cntk:featureDim=512
+configparameters: fcn5.cntk:hiddenDim=2048
+configparameters: fcn5.cntk:initOnCPUOnly=true
+configparameters: fcn5.cntk:labelDim=1000
+configparameters: fcn5.cntk:makeMode=false
+configparameters: fcn5.cntk:maxEpochs=2
+configparameters: fcn5.cntk:minibatchSize=8192
+configparameters: fcn5.cntk:ModelDir=./Output/fcn5_4gpu
+configparameters: fcn5.cntk:parallelTrain=true
+configparameters: fcn5.cntk:precision=float
+configparameters: fcn5.cntk:prefetch=true
+configparameters: fcn5.cntk:reader=[
+    readerType=UCIFastReader
+    file=fcn/data26752.txt
+    features=[
+        dim=512
+        start=1
+    ]
+    labels=[
+        dim=1
+        start=0
+        labelDim=1000
+        labelMappingFile=fcn/labelmap26752.txt
+    ]
+]
+
+configparameters: fcn5.cntk:stderr=./output_fcn5_4gpu_Train.log
+configparameters: fcn5.cntk:traceLevel=1
+configparameters: fcn5.cntk:Train=[
+    action=train
+    modelPath=./Output/fcn5_4gpu/fc26752
+    deviceId=Auto
+    traceLevel=1
+    SimpleNetworkBuilder=[
+        layerSizes=512:2048:2048:2048:1000
+        initOnCPUOnly=true
+        trainingCriterion=CrossEntropyWithSoftmax
+        evalCriterion=ErrorPrediction
+        layerTypes=Sigmoid
+        applyMeanVarNorm=false
+        initValueScale=1.0
+        uniformInit=true
+        needPrior=false
+    ]
+    SGD=[
+        epochSize=327680
+        minibatchSize=8192
+        maxEpochs=2
+        learningRatesPerMB=0.01
+        numMBsToShowResult=1
+        momentumPerSample=0
+        dropoutRate=0.0
+        ParallelTrain=[
+            parallelizationMethod=DataParallelSGD
+            distributedMBReading=true
+            parallelizationStartEpoch=1
+            DataParallelSGD=[
+                gradientBits=1
+            ]
+        ]
+        gradUpdateType=None
+        normWithAveMultiplier=true
+        clippingThresholdPerSample=1#INF
+    ]
+]
+
+configparameters: fcn5.cntk:WorkDir=.
+Commands: Train
+precision = "float"
+
+##############################################################################
+#                                                                            #
+# Train command (train action)                                               #
+#                                                                            #
+##############################################################################
+
+
+Creating virgin network.
+SimpleNetworkBuilder Using GPU 3
+SetUniformRandomValue (GPU): creating curand object with seed 1, sizeof(ElemType)==4
+********** DEPRECATED **********
+UCIFastReader is no longer actively maintained.
+It is known to have defects, proceed with caution (better yet, switch to CNTKTextFormatReader)!
+For more details please see https://github.com/Microsoft/CNTK/wiki 
+Reading UCI file fcn/data26752.txt
+
+Model has 24 nodes. Using GPU 3.
+
+Training criterion:   CrossEntropyWithSoftmax = CrossEntropyWithSoftmax
+Evaluation criterion: EvalClassificationError = ClassificationError
+
+
+Allocating matrices for forward and/or backward propagation.
+
+Memory Sharing: Out of 44 matrices, 26 are shared as 11, and 18 are not shared.
+
+	{ W0 : [2048 x 512] (gradient)
+	  W0*features+B0 : [2048 x 1 x *] }
+	{ H1 : [2048 x 1 x *]
+	  W0*features : [2048 x *] (gradient) }
+	{ W0*features+B0 : [2048 x 1 x *] (gradient)
+	  W1*H1 : [2048 x 1 x *] }
+	{ W1 : [2048 x 2048] (gradient)
+	  W1*H1+B1 : [2048 x 1 x *] }
+	{ H2 : [2048 x 1 x *]
+	  W1*H1 : [2048 x 1 x *] (gradient) }
+	{ B0 : [2048 x 1] (gradient)
+	  H1 : [2048 x 1 x *] (gradient)
+	  W1*H1+B1 : [2048 x 1 x *] (gradient)
+	  W2*H2 : [2048 x 1 x *] }
+	{ W2 : [2048 x 2048] (gradient)
+	  W2*H2+B2 : [2048 x 1 x *] }
+	{ H3 : [2048 x 1 x *]
+	  W2*H2 : [2048 x 1 x *] (gradient) }
+	{ B1 : [2048 x 1] (gradient)
+	  H2 : [2048 x 1 x *] (gradient)
+	  W2*H2+B2 : [2048 x 1 x *] (gradient)
+	  W3*H2 : [1000 x 1 x *] }
+	{ HLast : [1000 x 1 x *] (gradient)
+	  W3 : [1000 x 2048] (gradient) }
+	{ B2 : [2048 x 1] (gradient)
+	  H3 : [2048 x 1 x *] (gradient) }
+
+
+Training 11492328 parameters in 8 out of 8 parameter tensors and 20 nodes with gradient:
+
+	Node 'B0' (LearnableParameter operation) : [2048 x 1]
+	Node 'B1' (LearnableParameter operation) : [2048 x 1]
+	Node 'B2' (LearnableParameter operation) : [2048 x 1]
+	Node 'B3' (LearnableParameter operation) : [1000 x 1]
+	Node 'W0' (LearnableParameter operation) : [2048 x 512]
+	Node 'W1' (LearnableParameter operation) : [2048 x 2048]
+	Node 'W2' (LearnableParameter operation) : [2048 x 2048]
+	Node 'W3' (LearnableParameter operation) : [1000 x 2048]
+
+Initializing dataParallelSGD for 1-bit quantization.
+No PreCompute nodes found, or all already computed. Skipping pre-computation step.
+
+Starting Epoch 1: learning rate per sample = 0.000001  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+UCIFastReader: Starting at epoch 0, counting lines to determine record count...
+ 327680 records found.
+starting epoch 1 at record count 0, and file position 0
+already there from last epoch
+
+Starting minibatch loop, DataParallelSGD training (myRank = 0, numNodes = 4, numGradientBits = 1), distributed reading is ENABLED.
+RandomOrdering: 64298 retries for 327680 elements (19.6%) to ensure window condition
+RandomOrdering: recached sequence for seed 0: 155231, 44603, ...
+ Epoch[ 1 of 2]-Minibatch[   1-   1, 2.50%]: CrossEntropyWithSoftmax = 7.15584016 * 8192; EvalClassificationError = 0.99877930 * 8192; time = 10.0836s; samplesPerSecond = 812.4
+ Epoch[ 1 of 2]-Minibatch[   2-   2, 5.00%]: CrossEntropyWithSoftmax = 7.13747847 * 8192; EvalClassificationError = 0.99902344 * 8192; time = 0.0427s; samplesPerSecond = 191859.1
+ Epoch[ 1 of 2]-Minibatch[   3-   3, 7.50%]: CrossEntropyWithSoftmax = 7.13813579 * 8192; EvalClassificationError = 0.99902344 * 8192; time = 0.0423s; samplesPerSecond = 193655.1
+ Epoch[ 1 of 2]-Minibatch[   4-   4, 10.00%]: CrossEntropyWithSoftmax = 7.15439868 * 8192; EvalClassificationError = 0.99841309 * 8192; time = 0.0427s; samplesPerSecond = 191958.0
+ Epoch[ 1 of 2]-Minibatch[   5-   5, 12.50%]: CrossEntropyWithSoftmax = 7.15778065 * 8192; EvalClassificationError = 0.99926758 * 8192; time = 0.0397s; samplesPerSecond = 206197.0
+ Epoch[ 1 of 2]-Minibatch[   6-   6, 15.00%]: CrossEntropyWithSoftmax = 7.14686394 * 8192; EvalClassificationError = 0.99877930 * 8192; time = 0.0397s; samplesPerSecond = 206280.1
+ Epoch[ 1 of 2]-Minibatch[   7-   7, 17.50%]: CrossEntropyWithSoftmax = 7.16354787 * 8192; EvalClassificationError = 0.99902344 * 8192; time = 0.0391s; samplesPerSecond = 209476.6
+ Epoch[ 1 of 2]-Minibatch[   8-   8, 20.00%]: CrossEntropyWithSoftmax = 7.13766694 * 8192; EvalClassificationError = 0.99890137 * 8192; time = 0.0393s; samplesPerSecond = 208368.3
+ Epoch[ 1 of 2]-Minibatch[   9-   9, 22.50%]: CrossEntropyWithSoftmax = 7.12692022 * 8192; EvalClassificationError = 0.99902344 * 8192; time = 0.0377s; samplesPerSecond = 217484.8
+ Epoch[ 1 of 2]-Minibatch[  10-  10, 25.00%]: CrossEntropyWithSoftmax = 7.12186158 * 8192; EvalClassificationError = 0.99914551 * 8192; time = 0.0375s; samplesPerSecond = 218243.8
+ Epoch[ 1 of 2]-Minibatch[  11-  11, 27.50%]: CrossEntropyWithSoftmax = 7.12906754 * 8192; EvalClassificationError = 0.99877930 * 8192; time = 0.0373s; samplesPerSecond = 219742.5
+ Epoch[ 1 of 2]-Minibatch[  12-  12, 30.00%]: CrossEntropyWithSoftmax = 7.13029814 * 8192; EvalClassificationError = 0.99926758 * 8192; time = 0.0376s; samplesPerSecond = 217878.1
+ Epoch[ 1 of 2]-Minibatch[  13-  13, 32.50%]: CrossEntropyWithSoftmax = 7.13690996 * 8192; EvalClassificationError = 0.99914551 * 8192; time = 0.0374s; samplesPerSecond = 219101.9
+ Epoch[ 1 of 2]-Minibatch[  14-  14, 35.00%]: CrossEntropyWithSoftmax = 7.12804556 * 8192; EvalClassificationError = 0.99877930 * 8192; time = 0.0374s; samplesPerSecond = 218984.7
+ Epoch[ 1 of 2]-Minibatch[  15-  15, 37.50%]: CrossEntropyWithSoftmax = 7.11623538 * 8192; EvalClassificationError = 0.99877930 * 8192; time = 0.0376s; samplesPerSecond = 217930.3
+ Epoch[ 1 of 2]-Minibatch[  16-  16, 40.00%]: CrossEntropyWithSoftmax = 7.11010337 * 8192; EvalClassificationError = 0.99902344 * 8192; time = 0.0374s; samplesPerSecond = 218908.7
+ Epoch[ 1 of 2]-Minibatch[  17-  17, 42.50%]: CrossEntropyWithSoftmax = 7.11737430 * 8192; EvalClassificationError = 0.99975586 * 8192; time = 0.0374s; samplesPerSecond = 219096.0
+ Epoch[ 1 of 2]-Minibatch[  18-  18, 45.00%]: CrossEntropyWithSoftmax = 7.11156964 * 8192; EvalClassificationError = 0.99853516 * 8192; time = 0.0375s; samplesPerSecond = 218214.8
+ Epoch[ 1 of 2]-Minibatch[  19-  19, 47.50%]: CrossEntropyWithSoftmax = 7.10214913 * 8192; EvalClassificationError = 0.99877930 * 8192; time = 0.0376s; samplesPerSecond = 217959.3
+ Epoch[ 1 of 2]-Minibatch[  20-  20, 50.00%]: CrossEntropyWithSoftmax = 7.10683024 * 8192; EvalClassificationError = 0.99938965 * 8192; time = 0.0375s; samplesPerSecond = 218674.9
+ Epoch[ 1 of 2]-Minibatch[  21-  21, 52.50%]: CrossEntropyWithSoftmax = 7.10688341 * 8192; EvalClassificationError = 0.99926758 * 8192; time = 0.0376s; samplesPerSecond = 217808.6
+ Epoch[ 1 of 2]-Minibatch[  22-  22, 55.00%]: CrossEntropyWithSoftmax = 7.10254729 * 8192; EvalClassificationError = 0.99816895 * 8192; time = 0.0374s; samplesPerSecond = 219142.9
+ Epoch[ 1 of 2]-Minibatch[  23-  23, 57.50%]: CrossEntropyWithSoftmax = 7.09476936 * 8192; EvalClassificationError = 0.99877930 * 8192; time = 0.0377s; samplesPerSecond = 217173.5
+ Epoch[ 1 of 2]-Minibatch[  24-  24, 60.00%]: CrossEntropyWithSoftmax = 7.09779561 * 8192; EvalClassificationError = 0.99877930 * 8192; time = 0.0376s; samplesPerSecond = 218127.6
+ Epoch[ 1 of 2]-Minibatch[  25-  25, 62.50%]: CrossEntropyWithSoftmax = 7.10935581 * 8192; EvalClassificationError = 0.99890137 * 8192; time = 0.0375s; samplesPerSecond = 218377.6
+ Epoch[ 1 of 2]-Minibatch[  26-  26, 65.00%]: CrossEntropyWithSoftmax = 7.09946525 * 8192; EvalClassificationError = 0.99926758 * 8192; time = 0.0378s; samplesPerSecond = 216931.9
+ Epoch[ 1 of 2]-Minibatch[  27-  27, 67.50%]: CrossEntropyWithSoftmax = 7.08518040 * 8192; EvalClassificationError = 0.99926758 * 8192; time = 0.0373s; samplesPerSecond = 219542.3
+ Epoch[ 1 of 2]-Minibatch[  28-  28, 70.00%]: CrossEntropyWithSoftmax = 7.09233642 * 8192; EvalClassificationError = 0.99926758 * 8192; time = 0.0376s; samplesPerSecond = 217733.4
+ Epoch[ 1 of 2]-Minibatch[  29-  29, 72.50%]: CrossEntropyWithSoftmax = 7.07456458 * 8192; EvalClassificationError = 0.99853516 * 8192; time = 0.0375s; samplesPerSecond = 218639.9
+ Epoch[ 1 of 2]-Minibatch[  30-  30, 75.00%]: CrossEntropyWithSoftmax = 7.08451569 * 8192; EvalClassificationError = 0.99926758 * 8192; time = 0.0376s; samplesPerSecond = 217779.7
+ Epoch[ 1 of 2]-Minibatch[  31-  31, 77.50%]: CrossEntropyWithSoftmax = 7.08459961 * 8192; EvalClassificationError = 0.99902344 * 8192; time = 0.0375s; samplesPerSecond = 218377.6
+ Epoch[ 1 of 2]-Minibatch[  32-  32, 80.00%]: CrossEntropyWithSoftmax = 7.07575595 * 8192; EvalClassificationError = 0.99853516 * 8192; time = 0.0373s; samplesPerSecond = 219554.0
+ Epoch[ 1 of 2]-Minibatch[  33-  33, 82.50%]: CrossEntropyWithSoftmax = 7.07219422 * 8192; EvalClassificationError = 0.99902344 * 8192; time = 0.0376s; samplesPerSecond = 218075.3
+ Epoch[ 1 of 2]-Minibatch[  34-  34, 85.00%]: CrossEntropyWithSoftmax = 7.07448912 * 8192; EvalClassificationError = 0.99902344 * 8192; time = 0.0376s; samplesPerSecond = 217872.3
+ Epoch[ 1 of 2]-Minibatch[  35-  35, 87.50%]: CrossEntropyWithSoftmax = 7.06400740 * 8192; EvalClassificationError = 0.99877930 * 8192; time = 0.0374s; samplesPerSecond = 219096.0
+ Epoch[ 1 of 2]-Minibatch[  36-  36, 90.00%]: CrossEntropyWithSoftmax = 7.06189442 * 8192; EvalClassificationError = 0.99926758 * 8192; time = 0.0378s; samplesPerSecond = 216587.8
+ Epoch[ 1 of 2]-Minibatch[  37-  37, 92.50%]: CrossEntropyWithSoftmax = 7.08269203 * 8192; EvalClassificationError = 0.99865723 * 8192; time = 0.0377s; samplesPerSecond = 217467.5
+ Epoch[ 1 of 2]-Minibatch[  38-  38, 95.00%]: CrossEntropyWithSoftmax = 7.06031942 * 8192; EvalClassificationError = 0.99902344 * 8192; time = 0.0372s; samplesPerSecond = 220108.5
+ Epoch[ 1 of 2]-Minibatch[  39-  39, 97.50%]: CrossEntropyWithSoftmax = 7.07890522 * 8192; EvalClassificationError = 0.99938965 * 8192; time = 0.0376s; samplesPerSecond = 218075.3
+ Epoch[ 1 of 2]-Minibatch[  40-  40, 100.00%]: CrossEntropyWithSoftmax = 7.06381166 * 8192; EvalClassificationError = 0.99841309 * 8192; time = 0.0365s; samplesPerSecond = 224456.8
+ Epoch[ 1 of 2]-Minibatch[  41-  41, 102.50%]: CrossEntropyWithSoftmax = 0.00000000 * 0; EvalClassificationError = 0.00000000 * 0; time = 0.0050s; samplesPerSecond = 0.0
+Finished Epoch[ 1 of 2]: [Training] CrossEntropyWithSoftmax = 7.10737901 * 327680; EvalClassificationError = 0.99895630 * 327680; totalSamplesSeen = 327680; learningRatePerSample = 1.2207031e-06; epochTime=18.7718s
+SGD: Saving checkpoint model './Output/fcn5_4gpu/fc26752.1'
+
+Starting Epoch 2: learning rate per sample = 0.000001  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+starting epoch 2 at record count 327680, and file position 0
+already there from last epoch
+
+Starting minibatch loop, DataParallelSGD training (myRank = 0, numNodes = 4, numGradientBits = 1), distributed reading is ENABLED.
+RandomOrdering: 64298 retries for 327680 elements (19.6%) to ensure window condition
+RandomOrdering: recached sequence for seed 1: 155231, 44603, ...
+ Epoch[ 2 of 2]-Minibatch[   1-   1, 2.50%]: CrossEntropyWithSoftmax = 7.06195867 * 8192; EvalClassificationError = 0.99877930 * 8192; time = 0.0658s; samplesPerSecond = 124513.6
+ Epoch[ 2 of 2]-Minibatch[   2-   2, 5.00%]: CrossEntropyWithSoftmax = 7.04782593 * 8192; EvalClassificationError = 0.99902344 * 8192; time = 0.0377s; samplesPerSecond = 217254.1
+ Epoch[ 2 of 2]-Minibatch[   3-   3, 7.50%]: CrossEntropyWithSoftmax = 7.04903424 * 8192; EvalClassificationError = 0.99902344 * 8192; time = 0.0377s; samplesPerSecond = 217018.1
+ Epoch[ 2 of 2]-Minibatch[   4-   4, 10.00%]: CrossEntropyWithSoftmax = 7.06217992 * 8192; EvalClassificationError = 0.99841309 * 8192; time = 0.0374s; samplesPerSecond = 219201.5
+ Epoch[ 2 of 2]-Minibatch[   5-   5, 12.50%]: CrossEntropyWithSoftmax = 7.06571007 * 8192; EvalClassificationError = 0.99926758 * 8192; time = 0.0374s; samplesPerSecond = 219113.6
+ Epoch[ 2 of 2]-Minibatch[   6-   6, 15.00%]: CrossEntropyWithSoftmax = 7.05721629 * 8192; EvalClassificationError = 0.99877930 * 8192; time = 0.0376s; samplesPerSecond = 217744.9
+ Epoch[ 2 of 2]-Minibatch[   7-   7, 17.50%]: CrossEntropyWithSoftmax = 7.07183051 * 8192; EvalClassificationError = 0.99902344 * 8192; time = 0.0378s; samplesPerSecond = 216880.2
+ Epoch[ 2 of 2]-Minibatch[   8-   8, 20.00%]: CrossEntropyWithSoftmax = 7.05167842 * 8192; EvalClassificationError = 0.99890137 * 8192; time = 0.0377s; samplesPerSecond = 217231.0
+ Epoch[ 2 of 2]-Minibatch[   9-   9, 22.50%]: CrossEntropyWithSoftmax = 7.04371905 * 8192; EvalClassificationError = 0.99902344 * 8192; time = 0.0376s; samplesPerSecond = 217982.5
+ Epoch[ 2 of 2]-Minibatch[  10-  10, 25.00%]: CrossEntropyWithSoftmax = 7.04035783 * 8192; EvalClassificationError = 0.99914551 * 8192; time = 0.0376s; samplesPerSecond = 217947.7
+ Epoch[ 2 of 2]-Minibatch[  11-  11, 27.50%]: CrossEntropyWithSoftmax = 7.04482710 * 8192; EvalClassificationError = 0.99877930 * 8192; time = 0.0375s; samplesPerSecond = 218552.4
+ Epoch[ 2 of 2]-Minibatch[  12-  12, 30.00%]: CrossEntropyWithSoftmax = 7.04758596 * 8192; EvalClassificationError = 0.99926758 * 8192; time = 0.0376s; samplesPerSecond = 217947.7
+ Epoch[ 2 of 2]-Minibatch[  13-  13, 32.50%]: CrossEntropyWithSoftmax = 7.05391014 * 8192; EvalClassificationError = 0.99914551 * 8192; time = 0.0375s; samplesPerSecond = 218704.1
+ Epoch[ 2 of 2]-Minibatch[  14-  14, 35.00%]: CrossEntropyWithSoftmax = 7.04731357 * 8192; EvalClassificationError = 0.99877930 * 8192; time = 0.0376s; samplesPerSecond = 217629.2
+ Epoch[ 2 of 2]-Minibatch[  15-  15, 37.50%]: CrossEntropyWithSoftmax = 7.03834152 * 8192; EvalClassificationError = 0.99877930 * 8192; time = 0.0374s; samplesPerSecond = 218984.7
+ Epoch[ 2 of 2]-Minibatch[  16-  16, 40.00%]: CrossEntropyWithSoftmax = 7.03406370 * 8192; EvalClassificationError = 0.99902344 * 8192; time = 0.0377s; samplesPerSecond = 217064.1
+ Epoch[ 2 of 2]-Minibatch[  17-  17, 42.50%]: CrossEntropyWithSoftmax = 7.03997588 * 8192; EvalClassificationError = 0.99975586 * 8192; time = 0.0375s; samplesPerSecond = 218435.9
+ Epoch[ 2 of 2]-Minibatch[  18-  18, 45.00%]: CrossEntropyWithSoftmax = 7.03699994 * 8192; EvalClassificationError = 0.99853516 * 8192; time = 0.0375s; samplesPerSecond = 218645.7
+ Epoch[ 2 of 2]-Minibatch[  19-  19, 47.50%]: CrossEntropyWithSoftmax = 7.03019309 * 8192; EvalClassificationError = 0.99877930 * 8192; time = 0.0376s; samplesPerSecond = 217878.1
+ Epoch[ 2 of 2]-Minibatch[  20-  20, 50.00%]: CrossEntropyWithSoftmax = 7.03411531 * 8192; EvalClassificationError = 0.99938965 * 8192; time = 0.0375s; samplesPerSecond = 218383.5
+ Epoch[ 2 of 2]-Minibatch[  21-  21, 52.50%]: CrossEntropyWithSoftmax = 7.03491759 * 8192; EvalClassificationError = 0.99926758 * 8192; time = 0.0377s; samplesPerSecond = 217398.2
+ Epoch[ 2 of 2]-Minibatch[  22-  22, 55.00%]: CrossEntropyWithSoftmax = 7.03181899 * 8192; EvalClassificationError = 0.99816895 * 8192; time = 0.0375s; samplesPerSecond = 218371.8
+ Epoch[ 2 of 2]-Minibatch[  23-  23, 57.50%]: CrossEntropyWithSoftmax = 7.02585995 * 8192; EvalClassificationError = 0.99877930 * 8192; time = 0.0379s; samplesPerSecond = 216227.6
+ Epoch[ 2 of 2]-Minibatch[  24-  24, 60.00%]: CrossEntropyWithSoftmax = 7.02971470 * 8192; EvalClassificationError = 0.99877930 * 8192; time = 0.0377s; samplesPerSecond = 217513.7
+ Epoch[ 2 of 2]-Minibatch[  25-  25, 62.50%]: CrossEntropyWithSoftmax = 7.03877866 * 8192; EvalClassificationError = 0.99890137 * 8192; time = 0.0377s; samplesPerSecond = 217536.8
+ Epoch[ 2 of 2]-Minibatch[  26-  26, 65.00%]: CrossEntropyWithSoftmax = 7.03181291 * 8192; EvalClassificationError = 0.99926758 * 8192; time = 0.0373s; samplesPerSecond = 219713.0
+ Epoch[ 2 of 2]-Minibatch[  27-  27, 67.50%]: CrossEntropyWithSoftmax = 7.02094257 * 8192; EvalClassificationError = 0.99926758 * 8192; time = 0.0374s; samplesPerSecond = 219207.4
+ Epoch[ 2 of 2]-Minibatch[  28-  28, 70.00%]: CrossEntropyWithSoftmax = 7.02712512 * 8192; EvalClassificationError = 0.99926758 * 8192; time = 0.0376s; samplesPerSecond = 217750.7
+ Epoch[ 2 of 2]-Minibatch[  29-  29, 72.50%]: CrossEntropyWithSoftmax = 7.01341629 * 8192; EvalClassificationError = 0.99853516 * 8192; time = 0.0375s; samplesPerSecond = 218208.9
+ Epoch[ 2 of 2]-Minibatch[  30-  30, 75.00%]: CrossEntropyWithSoftmax = 7.02187908 * 8192; EvalClassificationError = 0.99926758 * 8192; time = 0.0373s; samplesPerSecond = 219571.7
+ Epoch[ 2 of 2]-Minibatch[  31-  31, 77.50%]: CrossEntropyWithSoftmax = 7.02201521 * 8192; EvalClassificationError = 0.99902344 * 8192; time = 0.0376s; samplesPerSecond = 217988.3
+ Epoch[ 2 of 2]-Minibatch[  32-  32, 80.00%]: CrossEntropyWithSoftmax = 7.01566970 * 8192; EvalClassificationError = 0.99853516 * 8192; time = 0.0375s; samplesPerSecond = 218715.8
+ Epoch[ 2 of 2]-Minibatch[  33-  33, 82.50%]: CrossEntropyWithSoftmax = 7.01326299 * 8192; EvalClassificationError = 0.99902344 * 8192; time = 0.0372s; samplesPerSecond = 219960.8
+ Epoch[ 2 of 2]-Minibatch[  34-  34, 85.00%]: CrossEntropyWithSoftmax = 7.01514614 * 8192; EvalClassificationError = 0.99902344 * 8192; time = 0.0376s; samplesPerSecond = 218052.1
+ Epoch[ 2 of 2]-Minibatch[  35-  35, 87.50%]: CrossEntropyWithSoftmax = 7.00758922 * 8192; EvalClassificationError = 0.99877930 * 8192; time = 0.0375s; samplesPerSecond = 218639.9
+ Epoch[ 2 of 2]-Minibatch[  36-  36, 90.00%]: CrossEntropyWithSoftmax = 7.00627363 * 8192; EvalClassificationError = 0.99926758 * 8192; time = 0.0377s; samplesPerSecond = 217277.1
+ Epoch[ 2 of 2]-Minibatch[  37-  37, 92.50%]: CrossEntropyWithSoftmax = 7.02358294 * 8192; EvalClassificationError = 0.99865723 * 8192; time = 0.0377s; samplesPerSecond = 217398.2
+ Epoch[ 2 of 2]-Minibatch[  38-  38, 95.00%]: CrossEntropyWithSoftmax = 7.00620139 * 8192; EvalClassificationError = 0.99902344 * 8192; time = 0.0381s; samplesPerSecond = 214934.1
+ Epoch[ 2 of 2]-Minibatch[  39-  39, 97.50%]: CrossEntropyWithSoftmax = 7.02203918 * 8192; EvalClassificationError = 0.99938965 * 8192; time = 0.0376s; samplesPerSecond = 217750.7
+ Epoch[ 2 of 2]-Minibatch[  40-  40, 100.00%]: CrossEntropyWithSoftmax = 7.00973189 * 8192; EvalClassificationError = 0.99841309 * 8192; time = 0.0362s; samplesPerSecond = 226523.6
+ Epoch[ 2 of 2]-Minibatch[  41-  41, 102.50%]: CrossEntropyWithSoftmax = 0.00000000 * 0; EvalClassificationError = 0.00000000 * 0; time = 0.0049s; samplesPerSecond = 0.0
+Finished Epoch[ 2 of 2]: [Training] CrossEntropyWithSoftmax = 7.03441538 * 327680; EvalClassificationError = 0.99895630 * 327680; totalSamplesSeen = 655360; learningRatePerSample = 1.2207031e-06; epochTime=1.53688s
+SGD: Saving checkpoint model './Output/fcn5_4gpu/fc26752'
+
+Action "train" complete.
+
+COMPLETED.
+~MPIWrapper

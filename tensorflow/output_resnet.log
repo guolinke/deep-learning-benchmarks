@@ -1,0 +1,220 @@
+I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library libcublas.so locally
+I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library libcudnn.so locally
+I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library libcufft.so locally
+I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library libcuda.so.1 locally
+I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library libcurand.so locally
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:102] Found device 0 with properties: 
+name: GeForce GTX TITAN X
+major: 5 minor: 2 memoryClockRate (GHz) 1.076
+pciBusID 0000:04:00.0
+Total memory: 11.92GiB
+Free memory: 11.81GiB
+W tensorflow/stream_executor/cuda/cuda_driver.cc:572] creating context when one is currently active; existing: 0x5457df0
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:102] Found device 1 with properties: 
+name: GeForce GTX TITAN X
+major: 5 minor: 2 memoryClockRate (GHz) 1.076
+pciBusID 0000:05:00.0
+Total memory: 11.92GiB
+Free memory: 11.81GiB
+W tensorflow/stream_executor/cuda/cuda_driver.cc:572] creating context when one is currently active; existing: 0x58e52f0
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:102] Found device 2 with properties: 
+name: GeForce GTX TITAN X
+major: 5 minor: 2 memoryClockRate (GHz) 1.076
+pciBusID 0000:08:00.0
+Total memory: 11.92GiB
+Free memory: 11.81GiB
+W tensorflow/stream_executor/cuda/cuda_driver.cc:572] creating context when one is currently active; existing: 0x5d72410
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:102] Found device 3 with properties: 
+name: GeForce GTX TITAN X
+major: 5 minor: 2 memoryClockRate (GHz) 1.076
+pciBusID 0000:09:00.0
+Total memory: 11.92GiB
+Free memory: 11.81GiB
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:126] DMA: 0 1 2 3 
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:136] 0:   Y Y Y Y 
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:136] 1:   Y Y Y Y 
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:136] 2:   Y Y Y Y 
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:136] 3:   Y Y Y Y 
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:838] Creating TensorFlow device (/gpu:0) -> (device: 0, name: GeForce GTX TITAN X, pci bus id: 0000:04:00.0)
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:838] Creating TensorFlow device (/gpu:1) -> (device: 1, name: GeForce GTX TITAN X, pci bus id: 0000:05:00.0)
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:838] Creating TensorFlow device (/gpu:2) -> (device: 2, name: GeForce GTX TITAN X, pci bus id: 0000:08:00.0)
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:838] Creating TensorFlow device (/gpu:3) -> (device: 3, name: GeForce GTX TITAN X, pci bus id: 0000:09:00.0)
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:838] Creating TensorFlow device (/gpu:0) -> (device: 0, name: GeForce GTX TITAN X, pci bus id: 0000:04:00.0)
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:838] Creating TensorFlow device (/gpu:1) -> (device: 1, name: GeForce GTX TITAN X, pci bus id: 0000:05:00.0)
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:838] Creating TensorFlow device (/gpu:2) -> (device: 2, name: GeForce GTX TITAN X, pci bus id: 0000:08:00.0)
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:838] Creating TensorFlow device (/gpu:3) -> (device: 3, name: GeForce GTX TITAN X, pci bus id: 0000:09:00.0)
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:244] PoolAllocator: After 25659 get requests, put_count=25409 evicted_count=1000 eviction_rate=0.0393561 and unsatisfied allocation rate=0.0526131
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:256] Raising pool_size_limit_ from 100 to 110
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:244] PoolAllocator: After 2349 get requests, put_count=2254 evicted_count=1000 eviction_rate=0.443656 and unsatisfied allocation rate=0.475096
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:256] Raising pool_size_limit_ from 233 to 256
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:244] PoolAllocator: After 4682 get requests, put_count=4230 evicted_count=1000 eviction_rate=0.236407 and unsatisfied allocation rate=0.321657
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:256] Raising pool_size_limit_ from 596 to 655
+(7, 7, 3, 64)
+(64,)
+(64,)
+(1, 1, 64, 64)
+(64,)
+(64,)
+(3, 3, 64, 64)
+(64,)
+(64,)
+(1, 1, 64, 256)
+(256,)
+(256,)
+(1, 1, 64, 256)
+(256,)
+(256,)
+(1, 1, 256, 64)
+(64,)
+(64,)
+(3, 3, 64, 64)
+(64,)
+(64,)
+(1, 1, 64, 256)
+(256,)
+(256,)
+(1, 1, 256, 64)
+(64,)
+(64,)
+(3, 3, 64, 64)
+(64,)
+(64,)
+(1, 1, 64, 256)
+(256,)
+(256,)
+(1, 1, 256, 128)
+(128,)
+(128,)
+(3, 3, 128, 128)
+(128,)
+(128,)
+(1, 1, 128, 512)
+(512,)
+(512,)
+(1, 1, 256, 512)
+(512,)
+(512,)
+(1, 1, 512, 128)
+(128,)
+(128,)
+(3, 3, 128, 128)
+(128,)
+(128,)
+(1, 1, 128, 512)
+(512,)
+(512,)
+(1, 1, 512, 128)
+(128,)
+(128,)
+(3, 3, 128, 128)
+(128,)
+(128,)
+(1, 1, 128, 512)
+(512,)
+(512,)
+(1, 1, 512, 128)
+(128,)
+(128,)
+(3, 3, 128, 128)
+(128,)
+(128,)
+(1, 1, 128, 512)
+(512,)
+(512,)
+(1, 1, 512, 256)
+(256,)
+(256,)
+(3, 3, 256, 256)
+(256,)
+(256,)
+(1, 1, 256, 1024)
+(1024,)
+(1024,)
+(1, 1, 512, 1024)
+(1024,)
+(1024,)
+(1, 1, 1024, 256)
+(256,)
+(256,)
+(3, 3, 256, 256)
+(256,)
+(256,)
+(1, 1, 256, 1024)
+(1024,)
+(1024,)
+(1, 1, 1024, 256)
+(256,)
+(256,)
+(3, 3, 256, 256)
+(256,)
+(256,)
+(1, 1, 256, 1024)
+(1024,)
+(1024,)
+(1, 1, 1024, 256)
+(256,)
+(256,)
+(3, 3, 256, 256)
+(256,)
+(256,)
+(1, 1, 256, 1024)
+(1024,)
+(1024,)
+(1, 1, 1024, 256)
+(256,)
+(256,)
+(3, 3, 256, 256)
+(256,)
+(256,)
+(1, 1, 256, 1024)
+(1024,)
+(1024,)
+(1, 1, 1024, 256)
+(256,)
+(256,)
+(3, 3, 256, 256)
+(256,)
+(256,)
+(1, 1, 256, 1024)
+(1024,)
+(1024,)
+(1, 1, 1024, 512)
+(512,)
+(512,)
+(3, 3, 512, 512)
+(512,)
+(512,)
+(1, 1, 512, 2048)
+(2048,)
+(2048,)
+(1, 1, 1024, 2048)
+(2048,)
+(2048,)
+(1, 1, 2048, 512)
+(512,)
+(512,)
+(3, 3, 512, 512)
+(512,)
+(512,)
+(1, 1, 512, 2048)
+(2048,)
+(2048,)
+(1, 1, 2048, 512)
+(512,)
+(512,)
+(3, 3, 512, 512)
+(512,)
+(512,)
+(1, 1, 512, 2048)
+(2048,)
+(2048,)
+(2048, 1000)
+(1000,)
+Parameter Number:25557032
+Used time for [copy + forward] : 0.074046
+Used time for [copy] : -0.000970
+Used time for [copy + forward + backward] : 0.236505
+Used time for [copy + forward + backward + update] : 0.250034
+********************** Training on GPU(0) **********************
+Avg elasped time per mini-batch (sec/mini-batch): 0.250034
+Avg samples per second (samples/sec): 64
