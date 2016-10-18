@@ -55,7 +55,7 @@ def time_theano_run(func, fargs, info_string):
     durations = []
     for i in range(num_batches + NUM_STEPS_BURN_IN):
         start_time = time.time()
-        _ = func(*fargs)
+        _ = func(*fargs[i])
         duration = time.time() - start_time
         if i > NUM_STEPS_BURN_IN:
             if not i % 10:
@@ -103,23 +103,26 @@ def main():
 
     # generate input
     if input_generator is None:
-        inputs = np.random.rand(batch_size, *featureDim).astype(np.float32)
+        inputs = [[np.random.rand(batch_size, *featureDim).astype(np.float32)] for i in xrange(num_batches + NUM_STEPS_BURN_IN)]
     else:
-        inputs = input_generator(batch_size)
+        inputs = [[input_generator(batch_size)] for i in xrange(num_batches + NUM_STEPS_BURN_IN)]
 
 
     # generate label
     output_size = get_output_size(batch_size)
     if use_onehot_label:
         # convert the random labels to one-hot format
-        labels = np.zeros((batch_size, labelDim)).astype(np.float32)
-        for j, v in enumerate(np.random.randint(0, labelDim, size=output_size)):
-            labels[j][v] = 1
+        labels = []
+        for i in xrange(num_batches + NUM_STEPS_BURN_IN):
+            batch_label = np.zeros((batch_size, labelDim)).astype(np.float32)
+            for j, v in enumerate(np.random.randint(0, labelDim, size=output_size)):
+                batch_label[j][v] = 1.
+            labels.append([batch_label])
     else:
-        labels = np.random.randint(0, labelDim, size=output_size).astype(np.int32)
+        labels = [[np.random.randint(0, labelDim, size=output_size).astype(np.int32)] for i in xrange(num_batches + NUM_STEPS_BURN_IN)]
 
     # time_theano_run(forward_func, inputs, 'Forward')
-    time_theano_run(full_func, inputs + labels, 'Forward-Backward')
+    time_theano_run(full_func, [(ipt + lab) for ipt, lab  in zip(inputs, labels)], 'Forward-Backward')
 
 if __name__ == '__main__':
     main()
