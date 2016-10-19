@@ -28,6 +28,10 @@ parser.add_argument('--gpu', type=int, default=0)
 
 parser.add_argument('--worker_hosts',  default="")
 
+parser.add_argument('--ps_hosts',  default="")
+
+parser.add_argument('--job_name',  default="worker")
+
 parser.add_argument('--task_index', type=int, default=0)
 
 
@@ -90,7 +94,9 @@ def time_tensorflow_run(session, target, num_steps, info=None):
         session.run(target)
     start_time = time.time()
     for i in xrange(num_steps):
-        session.run(target)
+        _, step = session.run(target)
+        print("Worker %d: training step %d done (global step: %d)" %
+            (args.task_index, i, step))
     duration = time.time() - start_time
     if info:
         print ('Used time for %s : %f' %(info, duration / num_steps))
@@ -98,91 +104,95 @@ def time_tensorflow_run(session, target, num_steps, info=None):
 
 os.environ["CUDA_VISIBLE_DEVICES"]=str(used_gpus)
 
+ps_hosts = args.ps_hosts.split(",")
 worker_hosts = args.worker_hosts.split(",")
 # Create a cluster from the parameter server and worker hosts.
-cluster = tf.train.ClusterSpec({"worker": worker_hosts})
+cluster = tf.train.ClusterSpec({"ps":ps_hosts, "worker": worker_hosts})
 
 server = tf.train.Server(cluster,
-                       job_name="worker",
+                       job_name=args.job_name,
                        task_index=args.task_index)
+if args.job_name == "ps":
+    server.join()
+else:
+    is_chief = (args.task_index == 0)
 
-is_chief = (args.task_index == 0)
+    worker_device = "/job:worker/task:%d/gpu:%d" % (args.task_index, 0)
 
-worker_device = "/job:worker/task:%d/gpu:%d" % (args.task_index, 0)
+    with tf.device(
+            tf.train.replica_device_setter(
+            worker_device=worker_device,
+            ps_device="/job:ps/cpu:0",
+            cluster=cluster)):
 
-with tf.device(
-        tf.train.replica_device_setter(
-        worker_device=worker_device,
-        cluster=cluster)):
+        batch_size = args.batch_size / len(worker_hosts)
+        data_shape = (batch_size, ) + featureDim
+        label_shape = (batch_size, )
+        global_step = tf.Variable(0, name="global_step", trainable=False)
 
-    batch_size = args.batch_size / len(worker_hosts)
-    data_shape = (batch_size, ) + featureDim
-    label_shape = (batch_size, )
-    global_step = tf.Variable(0, name="global_step")
 
-    with tf.device('/cpu:0'):
         feature = tf.Variable(np.random.uniform(0, 1, data_shape).astype(np.float32), trainable=False)
         label = tf.Variable(np.random.randint(0, numClasses, label_shape, dtype=np.int32), trainable=False)
 
-    
+        
 
-    optimizer = tf.train.GradientDescentOptimizer(args.lr)
-    replicas_to_aggregate = len(worker_hosts)
-    global_opt = tf.train.SyncReplicasOptimizer(
-        optimizer,
-        replicas_to_aggregate=replicas_to_aggregate,
-        total_num_replicas=len(worker_hosts),
-        replica_id=args.task_index,
-        name="mnist_sync_replicas")
+        optimizer = tf.train.GradientDescentOptimizer(args.lr)
+        replicas_to_aggregate = len(worker_hosts)
+        global_opt = tf.train.SyncReplicasOptimizer(
+            optimizer,
+            replicas_to_aggregate=replicas_to_aggregate,
+            total_num_replicas=len(worker_hosts),
+            replica_id=args.task_index,
+            name="mnist_sync_replicas")
 
-    last_layer = build_model(feature)
-    cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(last_layer, label)
-    loss = tf.reduce_mean(cross_entropy)
+        last_layer = build_model(feature)
+        cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(last_layer, label)
+        loss = tf.reduce_mean(cross_entropy)
 
-    train_step = global_opt.minimize(loss, global_step=global_step)
+        train_step = global_opt.minimize(loss, global_step=global_step)
 
-    if is_chief:
-        # Initial token and chief queue runners required by the sync_replicas mode
-        chief_queue_runner = global_opt.get_chief_queue_runner()
-        init_tokens_op = global_opt.get_init_tokens_op()
+        if is_chief:
+            # Initial token and chief queue runners required by the sync_replicas mode
+            chief_queue_runner = global_opt.get_chief_queue_runner()
+            init_tokens_op = global_opt.get_init_tokens_op()
 
-    init = tf.initialize_all_variables()
+        init = tf.initialize_all_variables()
 
-    PrintParameterCount()
+        PrintParameterCount()
 
-    sv = None
+        sv = None
 
-    train_dir = tempfile.mkdtemp()
+        train_dir = tempfile.mkdtemp()
 
-    sv = tf.train.Supervisor(
-        is_chief=is_chief,
-        logdir=train_dir,
-        init_op=init, 
-        recovery_wait_secs=1,
-        global_step=global_step)
+        sv = tf.train.Supervisor(
+            is_chief=is_chief,
+            logdir=train_dir,
+            init_op=init, 
+            recovery_wait_secs=1,
+            global_step=global_step)
 
-    sess_config = tf.ConfigProto(allow_soft_placement=True, log_device_placement=False,
-                           device_filters=["/job:worker/task:%d" % args.task_index])
+        sess_config = tf.ConfigProto(allow_soft_placement=True, log_device_placement=False,
+                               device_filters=["/job:ps","/job:worker/task:%d" % args.task_index])
 
-    if is_chief:
-      print("Worker %d: Initializing session..." % args.task_index)
-    else:
-      print("Worker %d: Waiting for session to be initialized..." %
-            args.task_index)
+        if is_chief:
+          print("Worker %d: Initializing session..." % args.task_index)
+        else:
+          print("Worker %d: Waiting for session to be initialized..." %
+                args.task_index)
 
-    sess = sv.prepare_or_wait_for_session(server.target, config=sess_config)
+        sess = sv.prepare_or_wait_for_session(server.target, config=sess_config)
 
-    print("Worker %d: Session initialization complete." % args.task_index)
+        print("Worker %d: Session initialization complete." % args.task_index)
 
-    if is_chief:
-        # Chief worker will start the chief queue runner and call the init op
-        print("Starting chief queue runner and running init_tokens_op")
-        sv.start_queue_runners(sess, [chief_queue_runner])
-        sess.run(init_tokens_op)
+        if is_chief:
+            # Chief worker will start the chief queue runner and call the init op
+            print("Starting chief queue runner and running init_tokens_op")
+            sv.start_queue_runners(sess, [chief_queue_runner])
+            sess.run(init_tokens_op)
 
 
-    duration = time_tensorflow_run(sess, [train_step, global_step], args.num_batches, '[copy + forward + backward + update]')
+        duration = time_tensorflow_run(sess, [train_step, global_step], args.num_batches, '[copy + forward + backward + update]')
 
-    print('********************** Training on GPU('+str(args.gpu)+') **********************')
-    print('Avg elasped time per mini-batch (sec/mini-batch): '+str(round(duration / args.num_batches, 6)) )
-    print('Avg samples per second (samples/sec): '+str(int(round((args.batch_size * args.num_batches)/duration))))
+        print('********************** Training on GPU('+str(args.gpu)+') **********************')
+        print('Avg elasped time per mini-batch (sec/mini-batch): '+str(round(duration / args.num_batches, 6)) )
+        print('Avg samples per second (samples/sec): '+str(int(round((args.batch_size * args.num_batches)/duration))))
