@@ -24,7 +24,7 @@ parser.add_argument('--num-batches', '-n', type=int, default=100,
 
 parser.add_argument("--lr", type=float, default=0.01)
 
-parser.add_argument('--gpu', type=int, default=0)
+parser.add_argument('--gpu',  default="0")
 
 parser.add_argument('--worker_hosts',  default="")
 
@@ -48,7 +48,7 @@ elif args.arch == 'fcn5':
 elif args.arch == 'fcn8':
     from models.fcn8 import build_model, featureDim, numClasses
 
-used_gpus = args.gpu
+used_gpus = [int(x) for x in args.gpu.split(',')]
 
 def PrintParameterCount():
     total_parameters = 0
@@ -102,7 +102,7 @@ def time_tensorflow_run(session, target, num_steps, info=None):
         print ('Used time for %s : %f' %(info, duration / num_steps))
     return duration
 
-os.environ["CUDA_VISIBLE_DEVICES"]=str(used_gpus)
+os.environ["CUDA_VISIBLE_DEVICES"]=args.gpu
 
 ps_hosts = args.ps_hosts.split(",")
 worker_hosts = args.worker_hosts.split(",")
@@ -117,7 +117,7 @@ if args.job_name == "ps":
 else:
     is_chief = (args.task_index == 0)
 
-    worker_device = "/job:worker/task:%d/gpu:%d" % (args.task_index, 0)
+    worker_device = "/job:worker/task:%d" % (args.task_index)
 
     with tf.device(
             tf.train.replica_device_setter(
@@ -125,14 +125,15 @@ else:
             ps_device="/job:ps/cpu:0",
             cluster=cluster)):
 
-        batch_size = args.batch_size / len(worker_hosts)
+        batch_size = args.batch_size / (len(worker_hosts) * len(used_gpus))
         data_shape = (batch_size, ) + featureDim
         label_shape = (batch_size, )
         global_step = tf.Variable(0, name="global_step", trainable=False)
 
 
-        feature = tf.Variable(np.random.uniform(0, 1, data_shape).astype(np.float32), trainable=False)
-        label = tf.Variable(np.random.randint(0, numClasses, label_shape, dtype=np.int32), trainable=False)
+        with tf.device('/cpu:0'):
+            feature = tf.Variable(np.random.uniform(0, 1, data_shape).astype(np.float32), trainable=False)
+            label = tf.Variable(np.random.randint(0, numClasses, label_shape, dtype=np.int32), trainable=False)
 
         
 
@@ -145,11 +146,23 @@ else:
             replica_id=args.task_index,
             name="mnist_sync_replicas")
 
-        last_layer = build_model(feature)
-        cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(last_layer, label)
-        loss = tf.reduce_mean(cross_entropy)
+        subMinibatchGradients = []
+        for i in used_gpus:
+            with  tf.device('/gpu:%d' % i):
+                with tf.name_scope('%s_%d' % ("replica", i)) as scope:
+                    last_layer = build_model(feature)
+                    cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(last_layer, label)
+                    loss = tf.reduce_mean(cross_entropy)
 
-        train_step = global_opt.minimize(loss, global_step=global_step)
+                    tf.get_variable_scope().reuse_variables()
+
+                    grads = optimizer.compute_gradients(loss)
+
+                    subMinibatchGradients.append(grads)
+
+        grads = aggregateGradients(subMinibatchGradients)
+
+        train_step = global_opt.apply_gradients(grads, global_step=global_step)
 
         if is_chief:
             # Initial token and chief queue runners required by the sync_replicas mode
@@ -173,7 +186,7 @@ else:
 
         sess_config = tf.ConfigProto(allow_soft_placement=True, log_device_placement=False,
                                device_filters=["/job:ps","/job:worker/task:%d" % args.task_index])
-
+        sess_config.gpu_options.allow_growth = True
         if is_chief:
           print("Worker %d: Initializing session..." % args.task_index)
         else:
