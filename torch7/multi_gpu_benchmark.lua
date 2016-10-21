@@ -63,7 +63,7 @@ collectgarbage()
 
 
 
-local model, model_name, data_size, label_size, n_classes = GetModel(opt.batchSize / #used_gpus, used_gpus[1])
+local model, model_name, data_size, label_size, n_classes = GetModel(opt.batchSize, used_gpus[1])
 
 local inputCPU, labelCPU = MakeFakeData(data_size, label_size, n_classes)
 
