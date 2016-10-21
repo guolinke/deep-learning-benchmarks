@@ -49,7 +49,7 @@ Train=[
         numMBsToShowResult=1
         momentumPerSample=0
         dropoutRate=0.0
-
+        perfTraceLevel = 1
         #epochSize=4096
         #minibatchSize=256
         #maxEpochs=2
