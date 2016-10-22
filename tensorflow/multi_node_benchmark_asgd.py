@@ -189,7 +189,6 @@ else:
         if is_chief:
             # Chief worker will start the chief queue runner and call the init op
             print("Starting chief queue runner and running init_tokens_op")
-            sv.start_queue_runners(sess, [chief_queue_runner])
             sess.run(init_tokens_op)
 
 
