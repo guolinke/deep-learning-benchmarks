@@ -54,11 +54,11 @@ esac
 done
 
 
-sudo rm -f prof_output_fcn5.log
-sudo rm -f prof_output_fcn8.log
+sudo rm -f torch_prof_output_fcn5.log
+sudo rm -f torch_prof_output_fcn8.log
 
 
-nvprof th benchmark.lua -arch fcn5 -batchSize ${FMBS} -nIterations ${FNB} -deviceId 0 2>&1 | tee prof_output_fcn5.log
-nvprof th benchmark.lua -arch fcn8 -batchSize ${FMBS} -nIterations ${FNB} -deviceId 0 2>&1 | tee prof_output_fcn8.log
+nvprof th benchmark_full.lua -arch fcn5 -batchSize ${FMBS} -nIterations ${FNB} -deviceId 0 2>&1 | tee torch_prof_output_fcn5.log
+nvprof th benchmark_full.lua -arch fcn8 -batchSize ${FMBS} -nIterations ${FNB} -deviceId 0 2>&1 | tee torch_prof_output_fcn8.log
 
 

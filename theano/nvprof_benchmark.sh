@@ -59,8 +59,8 @@ cd $CUR_DIR
 sudo rm -rf log
 run_benchmark () {
     mkdir -p log
-    cat ~/.theanorc > log/prof_${1}.log
-    nvprof python benchmark.py -a $1 -B $2 -n $3 2>&1 | tee log/prof_${1}.log 
+    cat ~/.theanorc > log/theano_prof_${1}.log
+    nvprof python benchmark.py -a $1 -B $2 -n $3 2>&1 | tee log/theano_prof_${1}.log 
 }
 
 run_benchmark fcn5 $FMBS $FNB

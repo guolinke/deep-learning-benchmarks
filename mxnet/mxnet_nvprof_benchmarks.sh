@@ -49,8 +49,8 @@ case $i in
 esac
 done
 
-sudo rm -f prof_output_fcn5.log
-sudo rm -f prof_output_fcn8.log
+sudo rm -f mxnet_prof_output_fcn5.log
+sudo rm -f mxnet_prof_output_fcn8.log
 
-nvprof python benchmark.py --arch fcn5 --batch-size ${FMBS} --num-batch ${FNB} 2>&1 | tee prof_output_fcn5.log
-nvprof python benchmark.py --arch fcn8 --batch-size ${FMBS} --num-batch ${FNB} 2>&1 | tee prof_output_fcn8.log
+nvprof python benchmark_full.py --arch fcn5 --batch-size ${FMBS} --num-batch ${FNB} 2>&1 | tee mxnet_prof_output_fcn5.log
+nvprof python benchmark_full.py --arch fcn8 --batch-size ${FMBS} --num-batch ${FNB} 2>&1 | tee mxnet_prof_output_fcn8.log

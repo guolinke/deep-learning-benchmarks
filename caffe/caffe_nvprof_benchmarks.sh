@@ -44,8 +44,8 @@ esac
 done
 
 
-sudo rm -f prof_output_fcn5.log
-sudo rm -f prof_output_fcn8.log
+sudo rm -f caffe_prof_output_fcn5.log
+sudo rm -f caffe_prof_output_fcn8.log
 
 cd fcn
 python createFakeDataForCaffeFCN.py ${FMBS}
@@ -59,7 +59,7 @@ python Generate_alexnet.py ${CMBS}
 python Generate_resnet.py ${CMBS}
 
 cd fcn
-nvprof ../caffe/build/tools/caffe train -solver=fcn5-solver.prototxt -gpu=0 2>&1 | tee ../prof_output_fcn5.log
-nvprof ../caffe/build/tools/caffe train -solver=fcn8-solver.prototxt -gpu=0 2>&1 | tee ../prof_output_fcn8.log
+nvprof ../caffe/build/tools/caffe train -solver=fcn5-solver.prototxt -gpu=0 2>&1 | tee ../caffe_prof_output_fcn5.log
+nvprof ../caffe/build/tools/caffe train -solver=fcn8-solver.prototxt -gpu=0 2>&1 | tee ../caffe_prof_output_fcn8.log
 cd ..
 

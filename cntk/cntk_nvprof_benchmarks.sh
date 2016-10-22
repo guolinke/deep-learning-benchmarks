@@ -58,8 +58,7 @@ cd ..
 
 
 sudo rm -rf Output
-sudo rm -f prof_fcn5_Train.log
-sudo rm -f prof_fcn8_Train.log
 
-nvprof ${CNTK_HOME}/cntk configFile=fcn/fcn5.cntk configName=prof_fcn5 minibatchSize=${FMBS} epochSize=$((${FMBS}*${FNB})) DataDir=fcn 
-nvprof ${CNTK_HOME}/cntk configFile=fcn/fcn8.cntk configName=prof_fcn8 minibatchSize=${FMBS} epochSize=$((${FMBS}*${FNB})) DataDir=fcn 
+
+nvprof ${CNTK_HOME}/cntk configFile=fcn/fcn5.cntk configName=prof_fcn5 minibatchSize=${FMBS} epochSize=$((${FMBS}*${FNB})) DataDir=fcn  > cntk_prof_fcn5.log
+nvprof ${CNTK_HOME}/cntk configFile=fcn/fcn8.cntk configName=prof_fcn8 minibatchSize=${FMBS} epochSize=$((${FMBS}*${FNB})) DataDir=fcn  > cntk_prof_fcn8.log
