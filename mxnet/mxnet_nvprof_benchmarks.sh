@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# set env var
-CUR_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
-
 CMBS=16
 CNB=100
 
@@ -34,7 +31,7 @@ case $i in
     ;;
 
     -fm=*|--fcn_mini_batch_size=*)
-    FMBS="${i#*=}"
+    fMBS="${i#*=}"
     shift # past argument=value
     ;;
     -fn=*|--fcn_num_batch=*)
@@ -52,24 +49,8 @@ case $i in
 esac
 done
 
+sudo rm -f prof_output_fcn5.log
+sudo rm -f prof_output_fcn8.log
 
-
-# run benchmark
-cd $CUR_DIR
-sudo rm -rf keras_log
-run_benchmark () {
-    mkdir -p keras_log
-    cat ~/.theanorc > keras_log/${1}.log
-    python benchmark_keras.py -a $1 -B $2 -n $3 >> keras_log/${1}.log 2>&1
-}
-
-run_benchmark alexnet $CMBS $CNB
-run_benchmark resnet $CMBS $CNB
-run_benchmark fcn5 $FMBS $FNB
-run_benchmark fcn8 $FMBS $FNB
-#run_benchmark lstm32 $RMBS $RNB
-#run_benchmark lstm64 $RMBS $RNB
-
-
-# grep the result
-# sh produce_result.sh > result.txt
+nvprof python benchmark.py --arch fcn5 --batch-size ${FMBS} --num-batch ${FNB} 2>&1 | tee prof_output_fcn5.log
+nvprof python benchmark.py --arch fcn8 --batch-size ${FMBS} --num-batch ${FNB} 2>&1 | tee prof_output_fcn8.log

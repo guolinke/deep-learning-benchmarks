@@ -56,19 +56,15 @@ done
 
 # run benchmark
 cd $CUR_DIR
-sudo rm -rf keras_log
+sudo rm -rf log
 run_benchmark () {
-    mkdir -p keras_log
-    cat ~/.theanorc > keras_log/${1}.log
-    python benchmark_keras.py -a $1 -B $2 -n $3 >> keras_log/${1}.log 2>&1
+    mkdir -p log
+    cat ~/.theanorc > log/prof_${1}.log
+    nvprof python benchmark.py -a $1 -B $2 -n $3 2>&1 | tee log/prof_${1}.log 
 }
 
-run_benchmark alexnet $CMBS $CNB
-run_benchmark resnet $CMBS $CNB
 run_benchmark fcn5 $FMBS $FNB
 run_benchmark fcn8 $FMBS $FNB
-#run_benchmark lstm32 $RMBS $RNB
-#run_benchmark lstm64 $RMBS $RNB
 
 
 # grep the result

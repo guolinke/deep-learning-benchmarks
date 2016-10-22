@@ -1,16 +1,15 @@
 #!/bin/bash
 
-# set env var
-CUR_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
-
 CMBS=16
-CNB=100
+CNB=40
 
 RMBS=128
-RNB=100
+RNB=40
 
 FMBS=8192
-FNB=100
+FNB=40
+
+CNTK_HOME=cntk/cntk/bin
 
 for i in "$@"
 do
@@ -52,24 +51,15 @@ case $i in
 esac
 done
 
+cd fcn
+python createDataForCNTKFCN.py ${FMBS}
+python createLabelMapForCNTKFCN.py
+cd ..
 
 
-# run benchmark
-cd $CUR_DIR
-sudo rm -rf keras_log
-run_benchmark () {
-    mkdir -p keras_log
-    cat ~/.theanorc > keras_log/${1}.log
-    python benchmark_keras.py -a $1 -B $2 -n $3 >> keras_log/${1}.log 2>&1
-}
+sudo rm -rf Output
+sudo rm -f prof_fcn5_Train.log
+sudo rm -f prof_fcn8_Train.log
 
-run_benchmark alexnet $CMBS $CNB
-run_benchmark resnet $CMBS $CNB
-run_benchmark fcn5 $FMBS $FNB
-run_benchmark fcn8 $FMBS $FNB
-#run_benchmark lstm32 $RMBS $RNB
-#run_benchmark lstm64 $RMBS $RNB
-
-
-# grep the result
-# sh produce_result.sh > result.txt
+nvprof ${CNTK_HOME}/cntk configFile=fcn/fcn5.cntk configName=prof_fcn5 minibatchSize=${FMBS} epochSize=$((${FMBS}*${FNB})) DataDir=fcn 
+nvprof ${CNTK_HOME}/cntk configFile=fcn/fcn8.cntk configName=prof_fcn8 minibatchSize=${FMBS} epochSize=$((${FMBS}*${FNB})) DataDir=fcn 
