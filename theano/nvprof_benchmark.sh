@@ -4,13 +4,13 @@
 CUR_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
 
 CMBS=16
-CNB=100
+CNB=70
 
 RMBS=128
-RNB=100
+RNB=70
 
 FMBS=8192
-FNB=100
+FNB=70
 
 for i in "$@"
 do
