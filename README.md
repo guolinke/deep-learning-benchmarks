@@ -33,9 +33,9 @@
 
 | Tool     | Version |
 |----------|---------|
-| Caffe | [d208b71](https://github.com/BVLC/caffe/commit/d208b714abb8425f1b96793e04508ad21724ae3f) |
+| Caffe | [4ba654f](https://github.com/BVLC/caffe/tree/4ba654f5c88c36ee8ba53964b7faf25c6d7010b4) |
 | CNTK |[v1.7.1](https://cntk.ai/dll1-1.7.1.html)|
-| MXNet | [2d0e3ac](https://github.com/dmlc/mxnet/tree/2d0e3ac8f017b15abf171f7acf0a3631fc4e2970)
+| MXNet | [32cb6bc](https://github.com/dmlc/mxnet/tree/32cb6bc0a95fb351763ad82f1deca8a9024d5027)
 | TensorFlow |  [r0.10](https://github.com/tensorflow/tensorflow/tree/r0.10) |
 | Theano | [0.8.X](https://github.com/Theano/Theano/tree/0.8.X) |
 | Torch | [95f137f](https://github.com/torch/torch7/tree/95f137f635c3b01d89b9c008b68a9321ca28e59b) |
