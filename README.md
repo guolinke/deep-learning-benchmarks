@@ -5,7 +5,7 @@
 | Name | Value |
 |------|-------|
 | CPU	| E5-2680 v2 | 
-| GPU	| GTX K40m | 
+| GPU	| K40m | 
 | Memory |	DDR3, 256GB @ 1600Mhz |
 
 ### Software Config
