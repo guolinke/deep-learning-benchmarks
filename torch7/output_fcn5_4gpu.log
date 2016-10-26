@@ -1,0 +1,16 @@
+Running on device: Tesla K40m	
+Model Parameters: 	11492328	
+All shape: 	{
+  1 : CudaTensor - size: 2048x512
+  2 : CudaTensor - size: 2048
+  3 : CudaTensor - size: 2048x2048
+  4 : CudaTensor - size: 2048
+  5 : CudaTensor - size: 2048x2048
+  6 : CudaTensor - size: 2048
+  7 : CudaTensor - size: 1000x2048
+  8 : CudaTensor - size: 1000
+}
+ModelType: FCN5	
+Used time for 	[copy + forward + backward + update]	 : 	0.12102909088135	
+Avg elasped time per mini-batch (sec/mini-batch):   0.121029	
+Avg samples per second (samples/sec): 67686.206187	
