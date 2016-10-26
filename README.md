@@ -4,10 +4,9 @@
 
 | Name | Value |
 |------|-------|
-| CPU	| Intel i7 5960X, 8 Cores @ 3.00GHZ | 
-| GPU	| GTX Titan X(Maxwell) | 
-| Memory |	DDR4, 8 * 16GB @ 2133MHZ |
-| Hard Drive |	256GB SSD | 
+| CPU	| E5-2680 v2 | 
+| GPU	| GTX K40m | 
+| Memory |	DDR3, 256GB @ 1600Mhz |
 
 ### Software Config
 
