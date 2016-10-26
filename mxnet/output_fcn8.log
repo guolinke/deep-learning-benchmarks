@@ -1,0 +1,30 @@
+************** Config Message **************
+model: fcn8
+gpu: 0
+Mini_batch_size: 8192
+Num_batch: 100
+********************************************
+Network shape checking:
+(2048L, 512L)
+(2048L,)
+(2048L, 2048L)
+(2048L,)
+(2048L, 2048L)
+(2048L,)
+(2048L, 2048L)
+(2048L,)
+(2048L, 2048L)
+(2048L,)
+(2048L, 2048L)
+(2048L,)
+(1000L, 2048L)
+(1000L,)
+Parameter Number: 24081384
+Used time for [copy] : 0.004661
+Used time for [copy + forward] : 0.175822
+Used time for [copy + forward + backward] : 0.454037
+Used time for [copy + forward + backward + update] : 0.456708
+********************** Training on GPU(0) **********************
+Avg elasped time per mini-batch (sec/mini-batch): 0.456708
+Avg samples per second (samples/sec): 17937
+****************************************************************

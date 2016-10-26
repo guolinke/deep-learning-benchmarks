@@ -1,0 +1,455 @@
+-------------------------------------------------------------------
+Build info: 
+
+		Built time: Sep 27 2016 14:05:01
+		Last modified date: Tue Sep 27 07:19:56 2016
+		Build type: release
+		Build target: GPU
+		With 1bit-SGD: yes
+		Math lib: mkl
+		CUDA_PATH: /usr/local/cuda-7.5
+		CUB_PATH: /usr/local/cub-1.4.1
+		CUDNN_PATH: /usr/local/cudnn-5.1
+		Build Branch: HEAD
+		Build SHA1: 2e4a773398b5ee84e1695abe73eb831c3cca1e36
+		Built by philly on 9ab719fcc26d
+		Build Path: /home/philly/jenkins/workspace/CNTK-Build-Linux
+-------------------------------------------------------------------
+-------------------------------------------------------------------
+GPU info:
+
+		Device[0]: cores = 2880; computeCapability = 3.5; type = "Tesla K40m"; memory = 11439 MB
+		Device[1]: cores = 2880; computeCapability = 3.5; type = "Tesla K40m"; memory = 11439 MB
+		Device[2]: cores = 2880; computeCapability = 3.5; type = "Tesla K40m"; memory = 11439 MB
+		Device[3]: cores = 2880; computeCapability = 3.5; type = "Tesla K40m"; memory = 11439 MB
+		Device[4]: cores = 2880; computeCapability = 3.5; type = "Tesla K40m"; memory = 11439 MB
+		Device[5]: cores = 2880; computeCapability = 3.5; type = "Tesla K40m"; memory = 11439 MB
+		Device[6]: cores = 2880; computeCapability = 3.5; type = "Tesla K40m"; memory = 11439 MB
+		Device[7]: cores = 2880; computeCapability = 3.5; type = "Tesla K40m"; memory = 11439 MB
+-------------------------------------------------------------------
+
+Configuration After Processing and Variable Resolution:
+
+configparameters: rnn.cntk:command=train
+configparameters: rnn.cntk:ConfigDir=rnn/PennTreebank/Config
+configparameters: rnn.cntk:configName=lstm32
+configparameters: rnn.cntk:confVocabSize=10000
+configparameters: rnn.cntk:DataDir=rnn/PennTreebank/Data
+configparameters: rnn.cntk:deviceId=0
+configparameters: rnn.cntk:epochSize=163840
+configparameters: rnn.cntk:maxEpochs=3
+configparameters: rnn.cntk:maxTempMemSizeInSamplesForCNN=1
+configparameters: rnn.cntk:minibatchSize=4096
+configparameters: rnn.cntk:ModelDir=./Output/lstm32
+configparameters: rnn.cntk:modelPath=./Output/lstm32/lstm32.dnn
+configparameters: rnn.cntk:OutputDir=./Output
+configparameters: rnn.cntk:precision=float
+configparameters: rnn.cntk:RootDir=.
+configparameters: rnn.cntk:shareNodeValueMatrices=true
+configparameters: rnn.cntk:stderr=./output_lstm32_Train.log
+configparameters: rnn.cntk:traceLevel=1
+configparameters: rnn.cntk:train=[
+    action = "train"
+    traceLevel = 1
+epochSize = 0               
+    BrainScriptNetworkBuilder = [
+        inputDim = 10000
+        labelDim = 10000
+        embedDim = 256
+        hiddenDim = (256:256)
+        model(x) = [
+            E = ParameterTensor (embedDim:inputDim)
+            e = E * x
+            h = RecurrentLSTMLayerStack (hiddenDim, cellShapes=hiddenDim, allowOptimizedEngine = true)(e)
+            W = ParameterTensor (labelDim:hiddenDim[1]) 
+            b = ParameterTensor (labelDim,init='fixedValue',value=0);
+            z = W * h + b
+        ].z
+        words  = if deviceId >= 0 then SparseInput (inputDim) else Input (inputDim)
+        labels = Input (inputDim)
+        z = model(words)
+        crossEntropy = CrossEntropyWithSoftmax(labels, z)
+        featureNodes    = (words)
+        labelNodes      = (labels)
+        criterionNodes  = (crossEntropy)
+        evaluationNodes = (crossEntropy)
+        outputNodes     = (z)
+    ]
+    reader = [
+        readerType = "CNTKTextFormatReader"
+        file = "rnn/PennTreebank/Data/ptb.train.32.ctf"
+        randomize = false
+        traceLevel = 0
+        input = [
+            words  = [ alias = "S0"; dim = 10000; format = "sparse" ]
+            labels = [ alias = "S1"; dim = 10000; format = "sparse" ]
+        ]
+    ]
+    SGD = [
+        epochSize=163840
+        minibatchSize = 4096 
+        learningRatesPerSample = 0.0001
+        momentumPerMB = 0
+        gradientClippingWithTruncation = true
+        clippingThresholdPerSample = 15.0
+        maxEpochs = 3 
+        numMBsToShowResult = 1
+        gradUpdateType = "none"
+        loadBestModel = true
+        dropoutRate = 0.0
+        AutoAdjust = [
+            autoAdjustLR = "adjustAfterEpoch"
+            reduceLearnRateIfImproveLessThan = 0.001
+            continueReduce = false
+            increaseLearnRateIfImproveMoreThan = 1000000000
+            learnRateDecreaseFactor = 0.5
+            learnRateIncreaseFactor = 1.382
+            numMiniBatch4LRSearch = 100
+            numPrevLearnRates = 5
+            numBestSearchEpoch = 1
+        ]
+    ]
+]
+
+configparameters: rnn.cntk:trainFile=ptb.train.32.ctf
+Commands: train
+precision = "float"
+
+##############################################################################
+#                                                                            #
+# train command (train action)                                               #
+#                                                                            #
+##############################################################################
+
+
+Creating virgin network.
+Node '<placeholder>' (LearnableParameter operation): Initializating Parameter[1024 x 0] as glorotUniform later when dimensions are fully known.
+Node '<placeholder>' (LearnableParameter operation): Initializating Parameter[1024 x 0] as glorotUniform later when dimensions are fully known.
+
+Post-processing network...
+
+2 roots:
+	crossEntropy = CrossEntropyWithSoftmax()
+	z = Plus()
+
+Loop[0] --> Loop_z.h.x.lstmState._.ht -> 17 nodes
+
+	z.h.x.prevState.h	z.h.x.lstmState._.proj4.PlusArgs[1]	z.h.x.lstmState._.proj4
+	z.h.x.lstmState._.otProj	z.h.x.lstmState._.ot	z.h.x.lstmState._.ftProj
+	z.h.x.lstmState._.ft	z.h.x.prevState.c	z.h.x.lstmState._.bft
+	z.h.x.lstmState._.itProj	z.h.x.lstmState._.it	z.h.x.lstmState._.bitProj
+	z.h.x.lstmState._.bit.ElementTimesArgs[1]	z.h.x.lstmState._.bit	z.h.x.lstmState._.ct
+	z.h.x.lstmState._.ht.ElementTimesArgs[1]	z.h.x.lstmState._.ht
+
+Loop[1] --> Loop_z.h.lstmState._.ht -> 17 nodes
+
+	z.h.prevState.h	z.h.lstmState._.proj4.PlusArgs[1]	z.h.lstmState._.proj4
+	z.h.lstmState._.otProj	z.h.lstmState._.ot	z.h.lstmState._.ftProj
+	z.h.lstmState._.ft	z.h.prevState.c	z.h.lstmState._.bft
+	z.h.lstmState._.itProj	z.h.lstmState._.it	z.h.lstmState._.bitProj
+	z.h.lstmState._.bit.ElementTimesArgs[1]	z.h.lstmState._.bit	z.h.lstmState._.ct
+	z.h.lstmState._.ht.ElementTimesArgs[1]	z.h.lstmState._.ht
+
+Validating network. 53 nodes to process in pass 1.
+
+Validating --> labels = InputValue() :  -> [10000 x *]
+Validating --> z.W = LearnableParameter() :  -> [10000 x 256]
+Validating --> z.h.arrayOfFunctions[1].lstm.B = LearnableParameter() :  -> [1024]
+Validating --> z.h.arrayOfFunctions[1].lstm.W = LearnableParameter() :  -> [1024 x 0]
+Validating --> z.h.arrayOfFunctions[0].lstm.B = LearnableParameter() :  -> [1024]
+Validating --> z.h.arrayOfFunctions[0].lstm.W = LearnableParameter() :  -> [1024 x 0]
+Validating --> _z.E = LearnableParameter() :  -> [256 x 10000]
+Validating --> words = SparseInputValue() :  -> [10000 x *]
+Validating --> z.e = Times (_z.E, words) : [256 x 10000], [10000 x *] -> [256 x *]
+Node 'z.h.arrayOfFunctions[0].lstm.W' (LearnableParameter operation) operation: Tensor shape was inferred as [1024 x 256].
+Node 'z.h.arrayOfFunctions[0].lstm.W' (LearnableParameter operation): Initializing Parameter[1024 x 256] <- glorotUniform(seed=3, init dims=[1024 x 256], range=0.068465*1.000000, onCPU=true.
+)Validating --> z.h.x.lstmState._.proj4.PlusArgs[0].PlusArgs[1] = Times (z.h.arrayOfFunctions[0].lstm.W, z.e) : [1024 x 256], [256 x *] -> [1024 x *]
+Validating --> z.h.x.lstmState._.proj4.PlusArgs[0] = Plus (z.h.arrayOfFunctions[0].lstm.B, z.h.x.lstmState._.proj4.PlusArgs[0].PlusArgs[1]) : [1024], [1024 x *] -> [1024 x *]
+Validating --> z.h.arrayOfFunctions[0].lstm.H = LearnableParameter() :  -> [1024 x 256]
+Validating --> z.h.x.lstmState._.proj4.PlusArgs[1] = Times (z.h.arrayOfFunctions[0].lstm.H, z.h.x.prevState.h) : [1024 x 256], [0] -> [1024]
+Validating --> z.h.x.lstmState._.proj4 = Plus (z.h.x.lstmState._.proj4.PlusArgs[0], z.h.x.lstmState._.proj4.PlusArgs[1]) : [1024 x *], [1024] -> [1024 x *]
+Validating --> z.h.x.lstmState._.otProj = Slice (z.h.x.lstmState._.proj4) : [1024 x *] -> [256 x *]
+Validating --> z.h.x.lstmState._.ot = Sigmoid (z.h.x.lstmState._.otProj) : [256 x *] -> [256 x *]
+Validating --> z.h.x.lstmState._.ftProj = Slice (z.h.x.lstmState._.proj4) : [1024 x *] -> [256 x *]
+Validating --> z.h.x.lstmState._.ft = Sigmoid (z.h.x.lstmState._.ftProj) : [256 x *] -> [256 x *]
+Validating --> z.h.x.lstmState._.bft = ElementTimes (z.h.x.lstmState._.ft, z.h.x.prevState.c) : [256 x *], [0] -> [256 x *]
+Validating --> z.h.x.lstmState._.itProj = Slice (z.h.x.lstmState._.proj4) : [1024 x *] -> [256 x *]
+Validating --> z.h.x.lstmState._.it = Sigmoid (z.h.x.lstmState._.itProj) : [256 x *] -> [256 x *]
+Validating --> z.h.x.lstmState._.bitProj = Slice (z.h.x.lstmState._.proj4) : [1024 x *] -> [256 x *]
+Validating --> z.h.x.lstmState._.bit.ElementTimesArgs[1] = Tanh (z.h.x.lstmState._.bitProj) : [256 x *] -> [256 x *]
+Validating --> z.h.x.lstmState._.bit = ElementTimes (z.h.x.lstmState._.it, z.h.x.lstmState._.bit.ElementTimesArgs[1]) : [256 x *], [256 x *] -> [256 x *]
+Validating --> z.h.x.lstmState._.ct = Plus (z.h.x.lstmState._.bft, z.h.x.lstmState._.bit) : [256 x *], [256 x *] -> [256 x *]
+Validating --> z.h.x.lstmState._.ht.ElementTimesArgs[1] = Tanh (z.h.x.lstmState._.ct) : [256 x *] -> [256 x *]
+Validating --> z.h.x.lstmState._.ht = ElementTimes (z.h.x.lstmState._.ot, z.h.x.lstmState._.ht.ElementTimesArgs[1]) : [256 x *], [256 x *] -> [256 x *]
+Node 'z.h.arrayOfFunctions[1].lstm.W' (LearnableParameter operation) operation: Tensor shape was inferred as [1024 x 256].
+Node 'z.h.arrayOfFunctions[1].lstm.W' (LearnableParameter operation): Initializing Parameter[1024 x 256] <- glorotUniform(seed=2, init dims=[1024 x 256], range=0.068465*1.000000, onCPU=true.
+)Validating --> z.h.lstmState._.proj4.PlusArgs[0].PlusArgs[1] = Times (z.h.arrayOfFunctions[1].lstm.W, z.h.x.lstmState._.ht) : [1024 x 256], [256 x *] -> [1024 x *]
+Validating --> z.h.lstmState._.proj4.PlusArgs[0] = Plus (z.h.arrayOfFunctions[1].lstm.B, z.h.lstmState._.proj4.PlusArgs[0].PlusArgs[1]) : [1024], [1024 x *] -> [1024 x *]
+Validating --> z.h.arrayOfFunctions[1].lstm.H = LearnableParameter() :  -> [1024 x 256]
+Validating --> z.h.lstmState._.proj4.PlusArgs[1] = Times (z.h.arrayOfFunctions[1].lstm.H, z.h.prevState.h) : [1024 x 256], [0] -> [1024]
+Validating --> z.h.lstmState._.proj4 = Plus (z.h.lstmState._.proj4.PlusArgs[0], z.h.lstmState._.proj4.PlusArgs[1]) : [1024 x *], [1024] -> [1024 x *]
+Validating --> z.h.lstmState._.otProj = Slice (z.h.lstmState._.proj4) : [1024 x *] -> [256 x *]
+Validating --> z.h.lstmState._.ot = Sigmoid (z.h.lstmState._.otProj) : [256 x *] -> [256 x *]
+Validating --> z.h.lstmState._.ftProj = Slice (z.h.lstmState._.proj4) : [1024 x *] -> [256 x *]
+Validating --> z.h.lstmState._.ft = Sigmoid (z.h.lstmState._.ftProj) : [256 x *] -> [256 x *]
+Validating --> z.h.lstmState._.bft = ElementTimes (z.h.lstmState._.ft, z.h.prevState.c) : [256 x *], [0] -> [256 x *]
+Validating --> z.h.lstmState._.itProj = Slice (z.h.lstmState._.proj4) : [1024 x *] -> [256 x *]
+Validating --> z.h.lstmState._.it = Sigmoid (z.h.lstmState._.itProj) : [256 x *] -> [256 x *]
+Validating --> z.h.lstmState._.bitProj = Slice (z.h.lstmState._.proj4) : [1024 x *] -> [256 x *]
+Validating --> z.h.lstmState._.bit.ElementTimesArgs[1] = Tanh (z.h.lstmState._.bitProj) : [256 x *] -> [256 x *]
+Validating --> z.h.lstmState._.bit = ElementTimes (z.h.lstmState._.it, z.h.lstmState._.bit.ElementTimesArgs[1]) : [256 x *], [256 x *] -> [256 x *]
+Validating --> z.h.lstmState._.ct = Plus (z.h.lstmState._.bft, z.h.lstmState._.bit) : [256 x *], [256 x *] -> [256 x *]
+Validating --> z.h.lstmState._.ht.ElementTimesArgs[1] = Tanh (z.h.lstmState._.ct) : [256 x *] -> [256 x *]
+Validating --> z.h.lstmState._.ht = ElementTimes (z.h.lstmState._.ot, z.h.lstmState._.ht.ElementTimesArgs[1]) : [256 x *], [256 x *] -> [256 x *]
+Validating --> z.z.PlusArgs[0] = Times (z.W, z.h.lstmState._.ht) : [10000 x 256], [256 x *] -> [10000 x *]
+Validating --> z.b = LearnableParameter() :  -> [10000]
+Validating --> z = Plus (z.z.PlusArgs[0], z.b) : [10000 x *], [10000] -> [10000 x *]
+Validating --> crossEntropy = CrossEntropyWithSoftmax (labels, z) : [10000 x *], [10000 x *] -> [1]
+
+Validating network. 42 nodes to process in pass 2.
+
+Validating --> z.h.x.prevState.h = PastValue (z.h.x.lstmState._.ht) : [256 x *] -> [256 x *]
+Validating --> z.h.x.lstmState._.proj4.PlusArgs[1] = Times (z.h.arrayOfFunctions[0].lstm.H, z.h.x.prevState.h) : [1024 x 256], [256 x *] -> [1024 x *]
+Validating --> z.h.x.prevState.c = PastValue (z.h.x.lstmState._.ct) : [256 x *] -> [256 x *]
+Validating --> z.h.prevState.h = PastValue (z.h.lstmState._.ht) : [256 x *] -> [256 x *]
+Validating --> z.h.lstmState._.proj4.PlusArgs[1] = Times (z.h.arrayOfFunctions[1].lstm.H, z.h.prevState.h) : [1024 x 256], [256 x *] -> [1024 x *]
+Validating --> z.h.prevState.c = PastValue (z.h.lstmState._.ct) : [256 x *] -> [256 x *]
+
+Validating network. 6 nodes to process in pass 3.
+
+
+Validating network, final pass.
+
+
+
+
+Post-processing network complete.
+
+
+Model has 53 nodes. Using GPU 0.
+
+Training criterion:   crossEntropy = CrossEntropyWithSoftmax
+
+
+Allocating matrices for forward and/or backward propagation.
+
+Memory Sharing: Out of 104 matrices, 58 are shared as 26, and 46 are not shared.
+
+	{ z.h.x.lstmState._.proj4.PlusArgs[0].PlusArgs[1] : [1024 x *]
+	  z.h.x.lstmState._.proj4.PlusArgs[1] : [1024 x *] }
+	{ z.h.lstmState._.proj4.PlusArgs[0].PlusArgs[1] : [1024 x *]
+	  z.h.lstmState._.proj4.PlusArgs[1] : [1024 x *]
+	  z.h.x.lstmState._.proj4.PlusArgs[0] : [1024 x *] }
+	{ z.h.lstmState._.proj4.PlusArgs[0] : [1024 x *]
+	  z.z.PlusArgs[0] : [10000 x *] }
+	{ z.h.lstmState._.ot : [256 x *]
+	  z.h.x.lstmState._.bft : [256 x *] (gradient) }
+	{ z.h.lstmState._.ft : [256 x *]
+	  z.h.x.lstmState._.bit.ElementTimesArgs[1] : [256 x *] (gradient) }
+	{ z.h.lstmState._.it : [256 x *]
+	  z.h.x.lstmState._.ftProj : [256 x *] (gradient) }
+	{ z.e : [256 x *] (gradient)
+	  z.h.lstmState._.bit.ElementTimesArgs[1] : [256 x *]
+	  z.h.x.lstmState._.proj4.PlusArgs[1] : [1024 x *] (gradient) }
+	{ z : [10000 x *] (gradient)
+	  z.W : [10000 x 256] (gradient) }
+	{ z.h.lstmState._.ot : [256 x *] (gradient)
+	  z.h.x.lstmState._.bit : [256 x *] (gradient)
+	  z.z.PlusArgs[0] : [10000 x *] (gradient) }
+	{ z.h.lstmState._.bft : [256 x *] (gradient)
+	  z.h.x.lstmState._.ft : [256 x *] (gradient) }
+	{ z.h.lstmState._.bit : [256 x *] (gradient)
+	  z.h.x.lstmState._.proj4.PlusArgs[0].PlusArgs[1] : [1024 x *] (gradient)
+	  z.h.x.prevState.h : [256 x *] (gradient) }
+	{ z.h.lstmState._.it : [256 x *] (gradient)
+	  z.h.x.lstmState._.otProj : [256 x *] (gradient) }
+	{ z.h.arrayOfFunctions[0].lstm.H : [1024 x 256] (gradient)
+	  z.h.lstmState._.bit.ElementTimesArgs[1] : [256 x *] (gradient) }
+	{ z.h.arrayOfFunctions[0].lstm.W : [1024 x 256] (gradient)
+	  z.h.lstmState._.bitProj : [256 x *] (gradient)
+	  z.h.x.lstmState._.proj4.PlusArgs[0] : [1024 x *] (gradient) }
+	{ z.h.lstmState._.proj4 : [1024 x *] (gradient)
+	  z.h.x.lstmState._.ht.ElementTimesArgs[1] : [256 x *] (gradient) }
+	{ z.h.lstmState._.itProj : [256 x *] (gradient)
+	  z.h.x.prevState.c : [256 x *] (gradient) }
+	{ z.h.lstmState._.ft : [256 x *] (gradient)
+	  z.h.x.lstmState._.bitProj : [256 x *] (gradient) }
+	{ z.h.prevState.c : [256 x *] (gradient)
+	  z.h.x.lstmState._.itProj : [256 x *] (gradient) }
+	{ z.h.lstmState._.ftProj : [256 x *] (gradient)
+	  z.h.x.lstmState._.it : [256 x *] (gradient) }
+	{ z.h.lstmState._.otProj : [256 x *] (gradient)
+	  z.h.x.lstmState._.ct : [256 x *] (gradient) }
+	{ z.h.arrayOfFunctions[1].lstm.W : [1024 x 256] (gradient)
+	  z.h.lstmState._.proj4.PlusArgs[0] : [1024 x *] (gradient) }
+	{ z.h.lstmState._.proj4.PlusArgs[1] : [1024 x *] (gradient)
+	  z.h.x.lstmState._.ht : [256 x *] (gradient) }
+	{ z.h.lstmState._.proj4.PlusArgs[0].PlusArgs[1] : [1024 x *] (gradient)
+	  z.h.prevState.h : [256 x *] (gradient)
+	  z.h.x.lstmState._.ot : [256 x *] (gradient) }
+	{ z.h.arrayOfFunctions[1].lstm.B : [1024] (gradient)
+	  z.h.prevState.h : [256 x *] }
+	{ z.h.arrayOfFunctions[0].lstm.B : [1024] (gradient)
+	  z.h.x.prevState.h : [256 x *] }
+	{ z.h.prevState.c : [256 x *]
+	  z.h.x.lstmState._.proj4 : [1024 x *] (gradient) }
+
+
+Training 6180624 parameters in 9 out of 9 parameter tensors and 51 nodes with gradient:
+
+	Node '_z.E' (LearnableParameter operation) : [256 x 10000]
+	Node 'z.W' (LearnableParameter operation) : [10000 x 256]
+	Node 'z.b' (LearnableParameter operation) : [10000]
+	Node 'z.h.arrayOfFunctions[0].lstm.B' (LearnableParameter operation) : [1024]
+	Node 'z.h.arrayOfFunctions[0].lstm.H' (LearnableParameter operation) : [1024 x 256]
+	Node 'z.h.arrayOfFunctions[0].lstm.W' (LearnableParameter operation) : [1024 x 256]
+	Node 'z.h.arrayOfFunctions[1].lstm.B' (LearnableParameter operation) : [1024]
+	Node 'z.h.arrayOfFunctions[1].lstm.H' (LearnableParameter operation) : [1024 x 256]
+	Node 'z.h.arrayOfFunctions[1].lstm.W' (LearnableParameter operation) : [1024 x 256]
+
+No PreCompute nodes found, or all already computed. Skipping pre-computation step.
+Setting max temp memory size for Convolution operations to 1 samples.
+WARNING: No Convolution operation found.
+
+Starting Epoch 1: learning rate per sample = 0.000100  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+
+Starting minibatch loop.
+ Epoch[ 1 of 3]-Minibatch[   1-   1, 2.50%]: crossEntropy = 9.21040904 * 4095; time = 0.7598s; samplesPerSecond = 5389.2
+ Epoch[ 1 of 3]-Minibatch[   2-   2, 5.00%]: crossEntropy = 9.20507050 * 4096; time = 0.1077s; samplesPerSecond = 38043.6
+ Epoch[ 1 of 3]-Minibatch[   3-   3, 7.50%]: crossEntropy = 9.19876671 * 4096; time = 0.1061s; samplesPerSecond = 38598.5
+ Epoch[ 1 of 3]-Minibatch[   4-   4, 10.00%]: crossEntropy = 9.19415474 * 4096; time = 0.1072s; samplesPerSecond = 38202.5
+ Epoch[ 1 of 3]-Minibatch[   5-   5, 12.50%]: crossEntropy = 9.18914795 * 4096; time = 0.1064s; samplesPerSecond = 38513.6
+ Epoch[ 1 of 3]-Minibatch[   6-   6, 15.00%]: crossEntropy = 9.18371964 * 4096; time = 0.1079s; samplesPerSecond = 37975.2
+ Epoch[ 1 of 3]-Minibatch[   7-   7, 17.50%]: crossEntropy = 9.17631149 * 4096; time = 0.1064s; samplesPerSecond = 38486.5
+ Epoch[ 1 of 3]-Minibatch[   8-   8, 20.00%]: crossEntropy = 9.17559814 * 4096; time = 0.1065s; samplesPerSecond = 38466.6
+ Epoch[ 1 of 3]-Minibatch[   9-   9, 22.50%]: crossEntropy = 9.16548157 * 4096; time = 0.1063s; samplesPerSecond = 38533.5
+ Epoch[ 1 of 3]-Minibatch[  10-  10, 25.00%]: crossEntropy = 9.16256714 * 4096; time = 0.1063s; samplesPerSecond = 38518.3
+ Epoch[ 1 of 3]-Minibatch[  11-  11, 27.50%]: crossEntropy = 9.15698242 * 4096; time = 0.1060s; samplesPerSecond = 38634.9
+ Epoch[ 1 of 3]-Minibatch[  12-  12, 30.00%]: crossEntropy = 9.15124512 * 4096; time = 0.1065s; samplesPerSecond = 38465.5
+ Epoch[ 1 of 3]-Minibatch[  13-  13, 32.50%]: crossEntropy = 9.14279175 * 4096; time = 0.1062s; samplesPerSecond = 38576.7
+ Epoch[ 1 of 3]-Minibatch[  14-  14, 35.00%]: crossEntropy = 9.14605713 * 4096; time = 0.1056s; samplesPerSecond = 38788.6
+ Epoch[ 1 of 3]-Minibatch[  15-  15, 37.50%]: crossEntropy = 9.13900757 * 4096; time = 0.1057s; samplesPerSecond = 38768.1
+ Epoch[ 1 of 3]-Minibatch[  16-  16, 40.00%]: crossEntropy = 9.13311768 * 4096; time = 0.1059s; samplesPerSecond = 38664.9
+ Epoch[ 1 of 3]-Minibatch[  17-  17, 42.50%]: crossEntropy = 9.12469482 * 4096; time = 0.1057s; samplesPerSecond = 38769.2
+ Epoch[ 1 of 3]-Minibatch[  18-  18, 45.00%]: crossEntropy = 9.12364197 * 4096; time = 0.1058s; samplesPerSecond = 38720.4
+ Epoch[ 1 of 3]-Minibatch[  19-  19, 47.50%]: crossEntropy = 9.11428833 * 4096; time = 0.1059s; samplesPerSecond = 38681.7
+ Epoch[ 1 of 3]-Minibatch[  20-  20, 50.00%]: crossEntropy = 9.11247253 * 4096; time = 0.1074s; samplesPerSecond = 38121.1
+ Epoch[ 1 of 3]-Minibatch[  21-  21, 52.50%]: crossEntropy = 9.10328674 * 4096; time = 0.1061s; samplesPerSecond = 38615.3
+ Epoch[ 1 of 3]-Minibatch[  22-  22, 55.00%]: crossEntropy = 9.08888245 * 4096; time = 0.1061s; samplesPerSecond = 38592.0
+ Epoch[ 1 of 3]-Minibatch[  23-  23, 57.50%]: crossEntropy = 9.07904053 * 4096; time = 0.1060s; samplesPerSecond = 38626.6
+ Epoch[ 1 of 3]-Minibatch[  24-  24, 60.00%]: crossEntropy = 9.07992554 * 4096; time = 0.1060s; samplesPerSecond = 38629.1
+ Epoch[ 1 of 3]-Minibatch[  25-  25, 62.50%]: crossEntropy = 9.07948303 * 4096; time = 0.1063s; samplesPerSecond = 38524.8
+ Epoch[ 1 of 3]-Minibatch[  26-  26, 65.00%]: crossEntropy = 9.06584167 * 4096; time = 0.1065s; samplesPerSecond = 38448.5
+ Epoch[ 1 of 3]-Minibatch[  27-  27, 67.50%]: crossEntropy = 9.05821228 * 4096; time = 0.1062s; samplesPerSecond = 38582.2
+ Epoch[ 1 of 3]-Minibatch[  28-  28, 70.00%]: crossEntropy = 9.07843018 * 4096; time = 0.1060s; samplesPerSecond = 38629.5
+ Epoch[ 1 of 3]-Minibatch[  29-  29, 72.50%]: crossEntropy = 9.04423523 * 4096; time = 0.1059s; samplesPerSecond = 38691.5
+ Epoch[ 1 of 3]-Minibatch[  30-  30, 75.00%]: crossEntropy = 9.05270386 * 4096; time = 0.1067s; samplesPerSecond = 38400.2
+ Epoch[ 1 of 3]-Minibatch[  31-  31, 77.50%]: crossEntropy = 9.04238892 * 4096; time = 0.1061s; samplesPerSecond = 38591.3
+ Epoch[ 1 of 3]-Minibatch[  32-  32, 80.00%]: crossEntropy = 9.04104614 * 4096; time = 0.1060s; samplesPerSecond = 38629.8
+ Epoch[ 1 of 3]-Minibatch[  33-  33, 82.50%]: crossEntropy = 9.03884888 * 4096; time = 0.1067s; samplesPerSecond = 38386.6
+ Epoch[ 1 of 3]-Minibatch[  34-  34, 85.00%]: crossEntropy = 9.03335571 * 4096; time = 0.1063s; samplesPerSecond = 38536.8
+ Epoch[ 1 of 3]-Minibatch[  35-  35, 87.50%]: crossEntropy = 9.01794434 * 4096; time = 0.1058s; samplesPerSecond = 38720.0
+ Epoch[ 1 of 3]-Minibatch[  36-  36, 90.00%]: crossEntropy = 9.02392578 * 4096; time = 0.1063s; samplesPerSecond = 38527.0
+ Epoch[ 1 of 3]-Minibatch[  37-  37, 92.50%]: crossEntropy = 9.01687622 * 4096; time = 0.1080s; samplesPerSecond = 37925.9
+ Epoch[ 1 of 3]-Minibatch[  38-  38, 95.00%]: crossEntropy = 9.01608276 * 4096; time = 0.1065s; samplesPerSecond = 38461.2
+ Epoch[ 1 of 3]-Minibatch[  39-  39, 97.50%]: crossEntropy = 9.00802612 * 4096; time = 0.1062s; samplesPerSecond = 38558.9
+ Epoch[ 1 of 3]-Minibatch[  40-  40, 100.00%]: crossEntropy = 9.00073242 * 4096; time = 0.1065s; samplesPerSecond = 38470.2
+ Epoch[ 1 of 3]-Minibatch[  41-  41, 102.50%]: crossEntropy = 8.98184204 * 4096; time = 0.1048s; samplesPerSecond = 39074.3
+Finished Epoch[ 1 of 3]: [Training] crossEntropy = 9.10138074 * 167935; totalSamplesSeen = 167935; learningRatePerSample = 9.9999997e-05; epochTime=5.01466s
+SGD: Saving checkpoint model './Output/lstm32/lstm32.dnn.1'
+
+Starting Epoch 2: learning rate per sample = 0.000100  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+
+Starting minibatch loop.
+ Epoch[ 2 of 3]-Minibatch[   1-   1, 2.50%]: crossEntropy = 8.97450256 * 4096; time = 0.1083s; samplesPerSecond = 37806.2
+ Epoch[ 2 of 3]-Minibatch[   2-   2, 5.00%]: crossEntropy = 8.95966339 * 4096; time = 0.1059s; samplesPerSecond = 38670.7
+ Epoch[ 2 of 3]-Minibatch[   3-   3, 7.50%]: crossEntropy = 8.95359421 * 4096; time = 0.1068s; samplesPerSecond = 38356.7
+ Epoch[ 2 of 3]-Minibatch[   4-   4, 10.00%]: crossEntropy = 8.97163010 * 4096; time = 0.1061s; samplesPerSecond = 38586.9
+ Epoch[ 2 of 3]-Minibatch[   5-   5, 12.50%]: crossEntropy = 8.95848846 * 4096; time = 0.1060s; samplesPerSecond = 38628.8
+ Epoch[ 2 of 3]-Minibatch[   6-   6, 15.00%]: crossEntropy = 8.97025681 * 4096; time = 0.1059s; samplesPerSecond = 38679.5
+ Epoch[ 2 of 3]-Minibatch[   7-   7, 17.50%]: crossEntropy = 8.96164703 * 4096; time = 0.1059s; samplesPerSecond = 38691.5
+ Epoch[ 2 of 3]-Minibatch[   8-   8, 20.00%]: crossEntropy = 8.90607834 * 4096; time = 0.1057s; samplesPerSecond = 38736.2
+ Epoch[ 2 of 3]-Minibatch[   9-   9, 22.50%]: crossEntropy = 8.91722107 * 4096; time = 0.1060s; samplesPerSecond = 38628.4
+ Epoch[ 2 of 3]-Minibatch[  10-  10, 25.00%]: crossEntropy = 8.92214203 * 4096; time = 0.1056s; samplesPerSecond = 38800.4
+ Epoch[ 2 of 3]-Minibatch[  11-  11, 27.50%]: crossEntropy = 8.92823792 * 4096; time = 0.1056s; samplesPerSecond = 38774.3
+ Epoch[ 2 of 3]-Minibatch[  12-  12, 30.00%]: crossEntropy = 8.91790771 * 4096; time = 0.1058s; samplesPerSecond = 38721.1
+ Epoch[ 2 of 3]-Minibatch[  13-  13, 32.50%]: crossEntropy = 8.89726257 * 4096; time = 0.1058s; samplesPerSecond = 38718.9
+ Epoch[ 2 of 3]-Minibatch[  14-  14, 35.00%]: crossEntropy = 8.86624908 * 4096; time = 0.1056s; samplesPerSecond = 38776.9
+ Epoch[ 2 of 3]-Minibatch[  15-  15, 37.50%]: crossEntropy = 8.86814117 * 4096; time = 0.1059s; samplesPerSecond = 38667.8
+ Epoch[ 2 of 3]-Minibatch[  16-  16, 40.00%]: crossEntropy = 8.88578796 * 4096; time = 0.1067s; samplesPerSecond = 38384.8
+ Epoch[ 2 of 3]-Minibatch[  17-  17, 42.50%]: crossEntropy = 8.83753967 * 4096; time = 0.1060s; samplesPerSecond = 38650.3
+ Epoch[ 2 of 3]-Minibatch[  18-  18, 45.00%]: crossEntropy = 8.86097717 * 4096; time = 0.1066s; samplesPerSecond = 38426.5
+ Epoch[ 2 of 3]-Minibatch[  19-  19, 47.50%]: crossEntropy = 8.82344055 * 4096; time = 0.1059s; samplesPerSecond = 38662.7
+ Epoch[ 2 of 3]-Minibatch[  20-  20, 50.00%]: crossEntropy = 8.83575439 * 4096; time = 0.1060s; samplesPerSecond = 38653.2
+ Epoch[ 2 of 3]-Minibatch[  21-  21, 52.50%]: crossEntropy = 8.83486938 * 4096; time = 0.1067s; samplesPerSecond = 38383.3
+ Epoch[ 2 of 3]-Minibatch[  22-  22, 55.00%]: crossEntropy = 8.82278442 * 4096; time = 0.1061s; samplesPerSecond = 38590.9
+ Epoch[ 2 of 3]-Minibatch[  23-  23, 57.50%]: crossEntropy = 8.78088379 * 4096; time = 0.1073s; samplesPerSecond = 38158.4
+ Epoch[ 2 of 3]-Minibatch[  24-  24, 60.00%]: crossEntropy = 8.77104187 * 4096; time = 0.1054s; samplesPerSecond = 38876.6
+ Epoch[ 2 of 3]-Minibatch[  25-  25, 62.50%]: crossEntropy = 8.74583435 * 4096; time = 0.1060s; samplesPerSecond = 38628.0
+ Epoch[ 2 of 3]-Minibatch[  26-  26, 65.00%]: crossEntropy = 8.76812744 * 4096; time = 0.1066s; samplesPerSecond = 38422.2
+ Epoch[ 2 of 3]-Minibatch[  27-  27, 67.50%]: crossEntropy = 8.73161316 * 4096; time = 0.1060s; samplesPerSecond = 38635.3
+ Epoch[ 2 of 3]-Minibatch[  28-  28, 70.00%]: crossEntropy = 8.69549561 * 4096; time = 0.1058s; samplesPerSecond = 38726.6
+ Epoch[ 2 of 3]-Minibatch[  29-  29, 72.50%]: crossEntropy = 8.65422058 * 4096; time = 0.1061s; samplesPerSecond = 38597.8
+ Epoch[ 2 of 3]-Minibatch[  30-  30, 75.00%]: crossEntropy = 8.64331055 * 4096; time = 0.1056s; samplesPerSecond = 38777.2
+ Epoch[ 2 of 3]-Minibatch[  31-  31, 77.50%]: crossEntropy = 8.62673950 * 4096; time = 0.1059s; samplesPerSecond = 38680.9
+ Epoch[ 2 of 3]-Minibatch[  32-  32, 80.00%]: crossEntropy = 8.56961060 * 4096; time = 0.1060s; samplesPerSecond = 38641.9
+ Epoch[ 2 of 3]-Minibatch[  33-  33, 82.50%]: crossEntropy = 8.45123291 * 4096; time = 0.1061s; samplesPerSecond = 38620.0
+ Epoch[ 2 of 3]-Minibatch[  34-  34, 85.00%]: crossEntropy = 8.43527222 * 4096; time = 0.1059s; samplesPerSecond = 38674.7
+ Epoch[ 2 of 3]-Minibatch[  35-  35, 87.50%]: crossEntropy = 8.28945923 * 4096; time = 0.1059s; samplesPerSecond = 38682.4
+ Epoch[ 2 of 3]-Minibatch[  36-  36, 90.00%]: crossEntropy = 8.22460938 * 4096; time = 0.1066s; samplesPerSecond = 38430.9
+ Epoch[ 2 of 3]-Minibatch[  37-  37, 92.50%]: crossEntropy = 8.14108276 * 4096; time = 0.1060s; samplesPerSecond = 38633.9
+ Epoch[ 2 of 3]-Minibatch[  38-  38, 95.00%]: crossEntropy = 8.05859375 * 4096; time = 0.1065s; samplesPerSecond = 38455.8
+ Epoch[ 2 of 3]-Minibatch[  39-  39, 97.50%]: crossEntropy = 7.92758179 * 4096; time = 0.1070s; samplesPerSecond = 38268.2
+ Epoch[ 2 of 3]-Minibatch[  40-  40, 100.00%]: crossEntropy = 7.75485229 * 4096; time = 0.1042s; samplesPerSecond = 39290.9
+Finished Epoch[ 2 of 3]: [Training] crossEntropy = 8.70359344 * 163840; totalSamplesSeen = 331775; learningRatePerSample = 9.9999997e-05; epochTime=4.24688s
+SGD: Saving checkpoint model './Output/lstm32/lstm32.dnn.2'
+
+Starting Epoch 3: learning rate per sample = 0.000100  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+
+Starting minibatch loop.
+ Epoch[ 3 of 3]-Minibatch[   1-   1, 2.50%]: crossEntropy = 7.88168955 * 4096; time = 0.1088s; samplesPerSecond = 37655.0
+ Epoch[ 3 of 3]-Minibatch[   2-   2, 5.00%]: crossEntropy = 7.85893965 * 4096; time = 0.1060s; samplesPerSecond = 38648.8
+ Epoch[ 3 of 3]-Minibatch[   3-   3, 7.50%]: crossEntropy = 7.77312279 * 4096; time = 0.1058s; samplesPerSecond = 38716.0
+ Epoch[ 3 of 3]-Minibatch[   4-   4, 10.00%]: crossEntropy = 7.75146866 * 4096; time = 0.1056s; samplesPerSecond = 38787.9
+ Epoch[ 3 of 3]-Minibatch[   5-   5, 12.50%]: crossEntropy = 7.54140472 * 4096; time = 0.1057s; samplesPerSecond = 38733.6
+ Epoch[ 3 of 3]-Minibatch[   6-   6, 15.00%]: crossEntropy = 7.59604263 * 4096; time = 0.1059s; samplesPerSecond = 38692.6
+ Epoch[ 3 of 3]-Minibatch[   7-   7, 17.50%]: crossEntropy = 7.58155441 * 4096; time = 0.1059s; samplesPerSecond = 38686.4
+ Epoch[ 3 of 3]-Minibatch[   8-   8, 20.00%]: crossEntropy = 7.51690292 * 4096; time = 0.1059s; samplesPerSecond = 38686.4
+ Epoch[ 3 of 3]-Minibatch[   9-   9, 22.50%]: crossEntropy = 7.41714859 * 4096; time = 0.1060s; samplesPerSecond = 38653.2
+ Epoch[ 3 of 3]-Minibatch[  10-  10, 25.00%]: crossEntropy = 7.39065552 * 4096; time = 0.1056s; samplesPerSecond = 38785.7
+ Epoch[ 3 of 3]-Minibatch[  11-  11, 27.50%]: crossEntropy = 7.58930969 * 4096; time = 0.1059s; samplesPerSecond = 38689.3
+ Epoch[ 3 of 3]-Minibatch[  12-  12, 30.00%]: crossEntropy = 7.55934906 * 4096; time = 0.1068s; samplesPerSecond = 38339.5
+ Epoch[ 3 of 3]-Minibatch[  13-  13, 32.50%]: crossEntropy = 7.32628632 * 4096; time = 0.1060s; samplesPerSecond = 38628.4
+ Epoch[ 3 of 3]-Minibatch[  14-  14, 35.00%]: crossEntropy = 7.43788147 * 4096; time = 0.1060s; samplesPerSecond = 38624.0
+ Epoch[ 3 of 3]-Minibatch[  15-  15, 37.50%]: crossEntropy = 7.40728760 * 4096; time = 0.1061s; samplesPerSecond = 38609.5
+ Epoch[ 3 of 3]-Minibatch[  16-  16, 40.00%]: crossEntropy = 7.33100891 * 4096; time = 0.1067s; samplesPerSecond = 38395.2
+ Epoch[ 3 of 3]-Minibatch[  17-  17, 42.50%]: crossEntropy = 7.40368652 * 4096; time = 0.1061s; samplesPerSecond = 38597.1
+ Epoch[ 3 of 3]-Minibatch[  18-  18, 45.00%]: crossEntropy = 7.40026855 * 4096; time = 0.1059s; samplesPerSecond = 38688.2
+ Epoch[ 3 of 3]-Minibatch[  19-  19, 47.50%]: crossEntropy = 7.27182007 * 4096; time = 0.1060s; samplesPerSecond = 38634.2
+ Epoch[ 3 of 3]-Minibatch[  20-  20, 50.00%]: crossEntropy = 7.36120605 * 4096; time = 0.1061s; samplesPerSecond = 38616.7
+ Epoch[ 3 of 3]-Minibatch[  21-  21, 52.50%]: crossEntropy = 7.47160339 * 4096; time = 0.1054s; samplesPerSecond = 38878.1
+ Epoch[ 3 of 3]-Minibatch[  22-  22, 55.00%]: crossEntropy = 7.37861633 * 4096; time = 0.1058s; samplesPerSecond = 38717.1
+ Epoch[ 3 of 3]-Minibatch[  23-  23, 57.50%]: crossEntropy = 7.39666748 * 4096; time = 0.1058s; samplesPerSecond = 38709.1
+ Epoch[ 3 of 3]-Minibatch[  24-  24, 60.00%]: crossEntropy = 7.34248352 * 4096; time = 0.1063s; samplesPerSecond = 38526.3
+ Epoch[ 3 of 3]-Minibatch[  25-  25, 62.50%]: crossEntropy = 7.29202271 * 4096; time = 0.1057s; samplesPerSecond = 38751.2
+ Epoch[ 3 of 3]-Minibatch[  26-  26, 65.00%]: crossEntropy = 7.32495117 * 4096; time = 0.1067s; samplesPerSecond = 38379.7
+ Epoch[ 3 of 3]-Minibatch[  27-  27, 67.50%]: crossEntropy = 7.25199890 * 4096; time = 0.1059s; samplesPerSecond = 38695.9
+ Epoch[ 3 of 3]-Minibatch[  28-  28, 70.00%]: crossEntropy = 7.37591553 * 4096; time = 0.1057s; samplesPerSecond = 38760.7
+ Epoch[ 3 of 3]-Minibatch[  29-  29, 72.50%]: crossEntropy = 7.17854309 * 4096; time = 0.1061s; samplesPerSecond = 38612.7
+ Epoch[ 3 of 3]-Minibatch[  30-  30, 75.00%]: crossEntropy = 7.29025269 * 4096; time = 0.1059s; samplesPerSecond = 38673.6
+ Epoch[ 3 of 3]-Minibatch[  31-  31, 77.50%]: crossEntropy = 7.25753784 * 4096; time = 0.1062s; samplesPerSecond = 38567.6
+ Epoch[ 3 of 3]-Minibatch[  32-  32, 80.00%]: crossEntropy = 7.09161377 * 4096; time = 0.1058s; samplesPerSecond = 38728.8
+ Epoch[ 3 of 3]-Minibatch[  33-  33, 82.50%]: crossEntropy = 7.18626404 * 4096; time = 0.1061s; samplesPerSecond = 38596.0
+ Epoch[ 3 of 3]-Minibatch[  34-  34, 85.00%]: crossEntropy = 7.31677246 * 4096; time = 0.1068s; samplesPerSecond = 38354.2
+ Epoch[ 3 of 3]-Minibatch[  35-  35, 87.50%]: crossEntropy = 7.13153076 * 4096; time = 0.1060s; samplesPerSecond = 38634.6
+ Epoch[ 3 of 3]-Minibatch[  36-  36, 90.00%]: crossEntropy = 7.07144165 * 4096; time = 0.1060s; samplesPerSecond = 38653.5
+ Epoch[ 3 of 3]-Minibatch[  37-  37, 92.50%]: crossEntropy = 7.05160522 * 4096; time = 0.1061s; samplesPerSecond = 38621.5
+ Epoch[ 3 of 3]-Minibatch[  38-  38, 95.00%]: crossEntropy = 7.03247070 * 4096; time = 0.1058s; samplesPerSecond = 38711.6
+ Epoch[ 3 of 3]-Minibatch[  39-  39, 97.50%]: crossEntropy = 6.95031738 * 4096; time = 0.1057s; samplesPerSecond = 38748.2
+ Epoch[ 3 of 3]-Minibatch[  40-  40, 100.00%]: crossEntropy = 6.99575806 * 4096; time = 0.1040s; samplesPerSecond = 39386.5
+Finished Epoch[ 3 of 3]: [Training] crossEntropy = 7.36963501 * 163840; totalSamplesSeen = 495615; learningRatePerSample = 9.9999997e-05; epochTime=4.24254s
+SGD: Saving checkpoint model './Output/lstm32/lstm32.dnn'
+
+Action "train" complete.
+
+COMPLETED.

@@ -1,0 +1,33 @@
+[global]
+device = gpu
+floatX = float32
+optimizer_including = unsafe
+
+[cuda]
+root = /usr/local/cuda-7.5/
+
+[lib]
+cnmem = 0.45
+
+[dnn.conv]
+algo_fwd = time_once
+algo_bwd_filter = time_once
+algo_bwd_data = time_once
+Using gpu device 0: Tesla K40m (CNMeM is enabled with initial size: 45.0% of memory, cuDNN 5103)
+/usr/local/lib/python2.7/dist-packages/theano/sandbox/cuda/__init__.py:600: UserWarning: Your cuDNN version is more recent than the one Theano officially supports. If you see any problems, try updating Theano or downgrading cuDNN to version 5.
+  warnings.warn(warn)
+Building model...
+number of parameters in model: 11492328
+Compiling theano functions...
+Functions are compiled
+('input_size:', (8192, 512))
+2016-10-26 01:03:07.238745: step 10, duration = 0.234
+2016-10-26 01:03:09.578821: step 20, duration = 0.235
+2016-10-26 01:03:11.917092: step 30, duration = 0.235
+2016-10-26 01:03:14.251454: step 40, duration = 0.233
+2016-10-26 01:03:16.592722: step 50, duration = 0.233
+2016-10-26 01:03:18.934330: step 60, duration = 0.233
+2016-10-26 01:03:21.274369: step 70, duration = 0.235
+2016-10-26 01:03:23.611376: step 80, duration = 0.235
+2016-10-26 01:03:25.945699: step 90, duration = 0.233
+2016-10-26 01:03:28.050852: Forward-Backward across 100 steps, 0.234 +/- 0.001 sec / batch

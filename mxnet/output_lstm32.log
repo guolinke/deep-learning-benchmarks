@@ -1,0 +1,27 @@
+************** Config Message **************
+model: LSTM-32
+gpu: 0
+Mini_batch_size: 128
+Num_hidden: 256
+Num_embed: 256
+Num_lstm_layer: 2
+********************************************
+Summary of dataset ==================
+bucket of len  32 : 51283 samples
+[00:48:08] src/operator/./reshape-inl.h:270: Using target_shape will be deprecated.
+2016-10-26 00:48:08,448 Start training with [gpu(0)]
+[00:48:08] src/operator/./reshape-inl.h:270: Using target_shape will be deprecated.
+[00:48:09] src/operator/./reshape-inl.h:270: Using target_shape will be deprecated.
+[00:48:09] src/operator/./reshape-inl.h:270: Using target_shape will be deprecated.
+2016-10-26 00:48:11,713 Epoch[0] Batch [10]	Speed: 24972.17 samples/sec	Train-Perplexity=4029.089096
+2016-10-26 00:48:13,495 Epoch[0] Batch [20]	Speed: 23000.65 samples/sec	Train-Perplexity=83.599251
+2016-10-26 00:48:15,298 Epoch[0] Batch [30]	Speed: 22722.03 samples/sec	Train-Perplexity=82.665482
+2016-10-26 00:48:17,093 Epoch[0] Batch [40]	Speed: 22820.01 samples/sec	Train-Perplexity=57.656644
+2016-10-26 00:48:18,887 Epoch[0] Batch [50]	Speed: 22827.12 samples/sec	Train-Perplexity=51.074588
+2016-10-26 00:48:20,680 Epoch[0] Batch [60]	Speed: 22849.57 samples/sec	Train-Perplexity=48.893525
+2016-10-26 00:48:22,474 Epoch[0] Batch [70]	Speed: 22840.24 samples/sec	Train-Perplexity=46.803077
+2016-10-26 00:48:24,267 Epoch[0] Batch [80]	Speed: 22844.32 samples/sec	Train-Perplexity=45.705394
+2016-10-26 00:48:26,061 Epoch[0] Batch [90]	Speed: 22830.27 samples/sec	Train-Perplexity=37.349807
+2016-10-26 00:48:27,852 Epoch[0] Batch [100]	Speed: 22870.25 samples/sec	Train-Perplexity=35.394549
+2016-10-26 00:48:28,032 Epoch[0] Resetting Data Iterator
+2016-10-26 00:48:28,032 Epoch[0] Time cost=18.113

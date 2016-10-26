@@ -1,0 +1,315 @@
+-------------------------------------------------------------------
+Build info: 
+
+		Built time: Sep 27 2016 14:05:01
+		Last modified date: Tue Sep 27 07:19:56 2016
+		Build type: release
+		Build target: GPU
+		With 1bit-SGD: yes
+		Math lib: mkl
+		CUDA_PATH: /usr/local/cuda-7.5
+		CUB_PATH: /usr/local/cub-1.4.1
+		CUDNN_PATH: /usr/local/cudnn-5.1
+		Build Branch: HEAD
+		Build SHA1: 2e4a773398b5ee84e1695abe73eb831c3cca1e36
+		Built by philly on 9ab719fcc26d
+		Build Path: /home/philly/jenkins/workspace/CNTK-Build-Linux
+-------------------------------------------------------------------
+-------------------------------------------------------------------
+GPU info:
+
+		Device[0]: cores = 2880; computeCapability = 3.5; type = "Tesla K40m"; memory = 11439 MB
+		Device[1]: cores = 2880; computeCapability = 3.5; type = "Tesla K40m"; memory = 11439 MB
+		Device[2]: cores = 2880; computeCapability = 3.5; type = "Tesla K40m"; memory = 11439 MB
+		Device[3]: cores = 2880; computeCapability = 3.5; type = "Tesla K40m"; memory = 11439 MB
+		Device[4]: cores = 2880; computeCapability = 3.5; type = "Tesla K40m"; memory = 11439 MB
+		Device[5]: cores = 2880; computeCapability = 3.5; type = "Tesla K40m"; memory = 11439 MB
+		Device[6]: cores = 2880; computeCapability = 3.5; type = "Tesla K40m"; memory = 11439 MB
+		Device[7]: cores = 2880; computeCapability = 3.5; type = "Tesla K40m"; memory = 11439 MB
+-------------------------------------------------------------------
+
+Configuration After Processing and Variable Resolution:
+
+configparameters: alexnet.cntk:command=Train
+configparameters: alexnet.cntk:ConfigDir=cnn/alexnet
+configparameters: alexnet.cntk:configName=alexnet
+configparameters: alexnet.cntk:DataDir=cnn
+configparameters: alexnet.cntk:deviceId=0
+configparameters: alexnet.cntk:epochSize=640
+configparameters: alexnet.cntk:imageLayout=cudnn
+configparameters: alexnet.cntk:initOnCPUOnly=true
+configparameters: alexnet.cntk:makeMode=false
+configparameters: alexnet.cntk:maxEpochs=2
+configparameters: alexnet.cntk:minibatchSize=16
+configparameters: alexnet.cntk:ModelDir=./Output/alexnet
+configparameters: alexnet.cntk:ndlMacros=cnn/alexnet/Macros.ndl
+configparameters: alexnet.cntk:parallelTrain=false
+configparameters: alexnet.cntk:precision=float
+configparameters: alexnet.cntk:prefetch=true
+configparameters: alexnet.cntk:stderr=./output_alexnet_Train.log
+configparameters: alexnet.cntk:traceLevel=1
+configparameters: alexnet.cntk:Train=[
+    action=train
+    modelPath=./Output/alexnet/AlexNet
+    deviceId=Auto
+    NDLNetworkBuilder=[
+        networkDescription=cnn/alexnet/AlexNet.ndl
+    ]
+    SGD=[
+        epochSize=640
+        minibatchSize=16
+        maxEpochs=2
+        learningRatesPerMB=0.01
+        momentumPerMB=0
+        dropoutRate=0
+	    numMBsToShowResult=1
+        ParallelTrain=[
+            parallelizationMethod="DataParallelSGD"
+            distributedMBReading="true"
+            parallelizationStartEpoch=1
+            DataParallelSGD=[
+                gradientBits=1
+            ]
+        ]
+    ]
+    reader=[
+        readerType=UCIFastReader
+        file=cnn/imagenet_data.txt
+        randomize=None
+        features=[
+            dim=150528
+            start=1
+        ]
+        labels=[
+            dim=1
+            start=0
+            labelDim=1000
+            labelMappingFile=cnn/labelmap.1K.txt
+        ]
+    ]
+]
+
+configparameters: alexnet.cntk:WorkDir=.
+Commands: Train
+precision = "float"
+
+##############################################################################
+#                                                                            #
+# Train command (train action)                                               #
+#                                                                            #
+##############################################################################
+
+parallelTrain option is not enabled. ParallelTrain config will be ignored.
+
+Creating virgin network.
+NDLBuilder Using GPU 0
+
+h1.t Times operation: For legacy compatibility, the sample layout of left input (h1.W LearnableParameter operation) was patched to [4096 x 6 x 6 x 256] (from [4096 x 9216])
+conv1_act.conv: using cuDNN convolution engine for geometry: Input: 224 x 224 x 3, Output: 56 x 56 x 96, Kernel: 11 x 11 x 3, Map: 1 x 1 x 96, Stride: 4 x 4 x 3, Sharing: (1), AutoPad: (1), LowerPad: 0, UpperPad: 0.
+pool1: using cuDNN convolution engine for geometry: Input: 56 x 56 x 96, Output: 27 x 27 x 96, Kernel: 3 x 3 x 1, Map: 1, Stride: 2 x 2 x 1, Sharing: (1), AutoPad: (0), LowerPad: 0, UpperPad: 0.
+conv2_act.conv: using cuDNN convolution engine for geometry: Input: 27 x 27 x 96, Output: 27 x 27 x 256, Kernel: 5 x 5 x 96, Map: 1 x 1 x 256, Stride: 1 x 1 x 96, Sharing: (1), AutoPad: (1), LowerPad: 0, UpperPad: 0.
+pool2: using cuDNN convolution engine for geometry: Input: 27 x 27 x 256, Output: 13 x 13 x 256, Kernel: 3 x 3 x 1, Map: 1, Stride: 2 x 2 x 1, Sharing: (1), AutoPad: (0), LowerPad: 0, UpperPad: 0.
+conv3_act.conv: using cuDNN convolution engine for geometry: Input: 13 x 13 x 256, Output: 13 x 13 x 384, Kernel: 3 x 3 x 256, Map: 1 x 1 x 384, Stride: 1 x 1 x 256, Sharing: (1), AutoPad: (1), LowerPad: 0, UpperPad: 0.
+conv4_act.conv: using cuDNN convolution engine for geometry: Input: 13 x 13 x 384, Output: 13 x 13 x 384, Kernel: 3 x 3 x 384, Map: 1 x 1 x 384, Stride: 1 x 1 x 384, Sharing: (1), AutoPad: (1), LowerPad: 0, UpperPad: 0.
+conv5_act.conv: using cuDNN convolution engine for geometry: Input: 13 x 13 x 384, Output: 13 x 13 x 256, Kernel: 3 x 3 x 384, Map: 1 x 1 x 256, Stride: 1 x 1 x 384, Sharing: (1), AutoPad: (1), LowerPad: 0, UpperPad: 0.
+pool3: using cuDNN convolution engine for geometry: Input: 13 x 13 x 256, Output: 6 x 6 x 256, Kernel: 3 x 3 x 1, Map: 1, Stride: 2 x 2 x 1, Sharing: (1), AutoPad: (0), LowerPad: 0, UpperPad: 0.
+********** DEPRECATED **********
+UCIFastReader is no longer actively maintained.
+It is known to have defects, proceed with caution (better yet, switch to CNTKTextFormatReader)!
+For more details please see https://github.com/Microsoft/CNTK/wiki 
+Reading UCI file cnn/imagenet_data.txt
+
+Model has 46 nodes. Using GPU 0.
+
+Training criterion:   CE = CrossEntropyWithSoftmax
+Evaluation criterion: Err = ClassificationError
+
+
+Allocating matrices for forward and/or backward propagation.
+
+Memory Sharing: Out of 89 matrices, 60 are shared as 26, and 29 are not shared.
+
+	{ conv3_act.act : [13 x 13 x 384 x *] (gradient)
+	  conv3_act.convB : [1 x 1 x 384] (gradient)
+	  conv4_act.convPlusB : [13 x 13 x 384 x *] (gradient) }
+	{ conv5_act.convPlusB : [13 x 13 x 256 x *]
+	  conv5_act.convW : [256 x 3456] (gradient) }
+	{ conv5_act.act : [13 x 13 x 256 x *]
+	  conv5_act.conv : [13 x 13 x 256 x *] (gradient) }
+	{ conv4_act.act : [13 x 13 x 384 x *] (gradient)
+	  conv4_act.convB : [1 x 1 x 384] (gradient)
+	  conv5_act.convPlusB : [13 x 13 x 256 x *] (gradient)
+	  pool3 : [6 x 6 x 256 x *] }
+	{ conv5_act.act : [13 x 13 x 256 x *] (gradient)
+	  conv5_act.convB : [1 x 1 x 256] (gradient)
+	  h1.t : [4096 x *] }
+	{ h1.W : [4096 x 6 x 6 x 256] (gradient)
+	  h1.z : [4096 x *] }
+	{ h1.t : [4096 x *] (gradient)
+	  h1.y : [4096 x *] }
+	{ h1.z : [4096 x *] (gradient)
+	  h2.t : [4096 x *]
+	  pool3 : [6 x 6 x 256 x *] (gradient) }
+	{ h2.W : [4096 x 4096] (gradient)
+	  h2.z : [4096 x *] }
+	{ h2.t : [4096 x *] (gradient)
+	  h2.y : [4096 x *] }
+	{ OutputNodes.t : [1000 x *]
+	  h1.b : [4096] (gradient)
+	  h1.y : [4096 x *] (gradient)
+	  h2.z : [4096 x *] (gradient) }
+	{ OutputNodes.W : [1000 x 4096] (gradient)
+	  OutputNodes.z : [1000 x *] (gradient) }
+	{ h2.b : [4096] (gradient)
+	  h2.y : [4096 x *] (gradient) }
+	{ conv1_act.convPlusB : [56 x 56 x 96 x *]
+	  conv1_act.convW : [96 x 363] (gradient) }
+	{ conv1_act.act : [56 x 56 x 96 x *]
+	  conv1_act.conv : [56 x 56 x 96 x *] (gradient) }
+	{ conv1_act.convPlusB : [56 x 56 x 96 x *] (gradient)
+	  pool1 : [27 x 27 x 96 x *] }
+	{ conv1_act.act : [56 x 56 x 96 x *] (gradient)
+	  conv1_act.convB : [1 x 1 x 96] (gradient) }
+	{ conv2_act.convPlusB : [27 x 27 x 256 x *]
+	  conv2_act.convW : [256 x 2400] (gradient) }
+	{ conv2_act.act : [27 x 27 x 256 x *]
+	  conv2_act.conv : [27 x 27 x 256 x *] (gradient) }
+	{ conv2_act.convPlusB : [27 x 27 x 256 x *] (gradient)
+	  pool1 : [27 x 27 x 96 x *] (gradient)
+	  pool2 : [13 x 13 x 256 x *] }
+	{ conv2_act.act : [27 x 27 x 256 x *] (gradient)
+	  conv2_act.convB : [1 x 1 x 256] (gradient) }
+	{ conv3_act.convPlusB : [13 x 13 x 384 x *]
+	  conv3_act.convW : [384 x 2304] (gradient) }
+	{ conv3_act.act : [13 x 13 x 384 x *]
+	  conv3_act.conv : [13 x 13 x 384 x *] (gradient) }
+	{ conv3_act.convPlusB : [13 x 13 x 384 x *] (gradient)
+	  pool2 : [13 x 13 x 256 x *] (gradient) }
+	{ conv4_act.convPlusB : [13 x 13 x 384 x *]
+	  conv4_act.convW : [384 x 3456] (gradient) }
+	{ conv4_act.act : [13 x 13 x 384 x *]
+	  conv4_act.conv : [13 x 13 x 384 x *] (gradient) }
+
+
+Training 62378344 parameters in 16 out of 16 parameter tensors and 43 nodes with gradient:
+
+	Node 'OutputNodes.W' (LearnableParameter operation) : [1000 x 4096]
+	Node 'OutputNodes.b' (LearnableParameter operation) : [1000]
+	Node 'conv1_act.convB' (LearnableParameter operation) : [1 x 1 x 96]
+	Node 'conv1_act.convW' (LearnableParameter operation) : [96 x 363]
+	Node 'conv2_act.convB' (LearnableParameter operation) : [1 x 1 x 256]
+	Node 'conv2_act.convW' (LearnableParameter operation) : [256 x 2400]
+	Node 'conv3_act.convB' (LearnableParameter operation) : [1 x 1 x 384]
+	Node 'conv3_act.convW' (LearnableParameter operation) : [384 x 2304]
+	Node 'conv4_act.convB' (LearnableParameter operation) : [1 x 1 x 384]
+	Node 'conv4_act.convW' (LearnableParameter operation) : [384 x 3456]
+	Node 'conv5_act.convB' (LearnableParameter operation) : [1 x 1 x 256]
+	Node 'conv5_act.convW' (LearnableParameter operation) : [256 x 3456]
+	Node 'h1.W' (LearnableParameter operation) : [4096 x 6 x 6 x 256]
+	Node 'h1.b' (LearnableParameter operation) : [4096]
+	Node 'h2.W' (LearnableParameter operation) : [4096 x 4096]
+	Node 'h2.b' (LearnableParameter operation) : [4096]
+
+No PreCompute nodes found, or all already computed. Skipping pre-computation step.
+
+Starting Epoch 1: learning rate per sample = 0.000625  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+UCIFastReader: Starting at epoch 0, counting lines to determine record count...
+ 640 records found.
+starting epoch 1 at record count 0, and file position 0
+already there from last epoch
+
+Starting minibatch loop.
+ Epoch[ 1 of 2]-Minibatch[   1-   1, 2.50%]: CE = 7.22683048 * 16; Err = 1.00000000 * 16; time = 0.9142s; samplesPerSecond = 17.5
+ Epoch[ 1 of 2]-Minibatch[   2-   2, 5.00%]: CE = 12.02040386 * 16; Err = 1.00000000 * 16; time = 0.0665s; samplesPerSecond = 240.5
+ Epoch[ 1 of 2]-Minibatch[   3-   3, 7.50%]: CE = 9.60013199 * 16; Err = 1.00000000 * 16; time = 0.1592s; samplesPerSecond = 100.5
+ Epoch[ 1 of 2]-Minibatch[   4-   4, 10.00%]: CE = 8.59492874 * 16; Err = 1.00000000 * 16; time = 0.1598s; samplesPerSecond = 100.1
+ Epoch[ 1 of 2]-Minibatch[   5-   5, 12.50%]: CE = 8.01401901 * 16; Err = 1.00000000 * 16; time = 0.1616s; samplesPerSecond = 99.0
+ Epoch[ 1 of 2]-Minibatch[   6-   6, 15.00%]: CE = 7.63853836 * 16; Err = 0.93750000 * 16; time = 0.1611s; samplesPerSecond = 99.3
+ Epoch[ 1 of 2]-Minibatch[   7-   7, 17.50%]: CE = 7.46272278 * 16; Err = 1.00000000 * 16; time = 0.1580s; samplesPerSecond = 101.3
+ Epoch[ 1 of 2]-Minibatch[   8-   8, 20.00%]: CE = 7.93523788 * 16; Err = 1.00000000 * 16; time = 0.1614s; samplesPerSecond = 99.1
+ Epoch[ 1 of 2]-Minibatch[   9-   9, 22.50%]: CE = 7.25614929 * 16; Err = 0.93750000 * 16; time = 0.1610s; samplesPerSecond = 99.4
+ Epoch[ 1 of 2]-Minibatch[  10-  10, 25.00%]: CE = 7.90940857 * 16; Err = 1.00000000 * 16; time = 0.1609s; samplesPerSecond = 99.5
+ Epoch[ 1 of 2]-Minibatch[  11-  11, 27.50%]: CE = 7.57122803 * 16; Err = 1.00000000 * 16; time = 0.1618s; samplesPerSecond = 98.9
+ Epoch[ 1 of 2]-Minibatch[  12-  12, 30.00%]: CE = 7.32488251 * 16; Err = 1.00000000 * 16; time = 0.1616s; samplesPerSecond = 99.0
+ Epoch[ 1 of 2]-Minibatch[  13-  13, 32.50%]: CE = 7.84492493 * 16; Err = 1.00000000 * 16; time = 0.1610s; samplesPerSecond = 99.4
+ Epoch[ 1 of 2]-Minibatch[  14-  14, 35.00%]: CE = 7.45040894 * 16; Err = 1.00000000 * 16; time = 0.1601s; samplesPerSecond = 99.9
+ Epoch[ 1 of 2]-Minibatch[  15-  15, 37.50%]: CE = 7.26148224 * 16; Err = 1.00000000 * 16; time = 0.1607s; samplesPerSecond = 99.6
+ Epoch[ 1 of 2]-Minibatch[  16-  16, 40.00%]: CE = 8.05009460 * 16; Err = 1.00000000 * 16; time = 0.1602s; samplesPerSecond = 99.9
+ Epoch[ 1 of 2]-Minibatch[  17-  17, 42.50%]: CE = 7.42617798 * 16; Err = 1.00000000 * 16; time = 0.1594s; samplesPerSecond = 100.4
+ Epoch[ 1 of 2]-Minibatch[  18-  18, 45.00%]: CE = 7.36483765 * 16; Err = 1.00000000 * 16; time = 0.1621s; samplesPerSecond = 98.7
+ Epoch[ 1 of 2]-Minibatch[  19-  19, 47.50%]: CE = 7.76313782 * 16; Err = 1.00000000 * 16; time = 0.1601s; samplesPerSecond = 100.0
+ Epoch[ 1 of 2]-Minibatch[  20-  20, 50.00%]: CE = 7.37538147 * 16; Err = 1.00000000 * 16; time = 0.1607s; samplesPerSecond = 99.6
+ Epoch[ 1 of 2]-Minibatch[  21-  21, 52.50%]: CE = 7.36830139 * 16; Err = 1.00000000 * 16; time = 0.1612s; samplesPerSecond = 99.2
+ Epoch[ 1 of 2]-Minibatch[  22-  22, 55.00%]: CE = 7.35838318 * 16; Err = 1.00000000 * 16; time = 0.1609s; samplesPerSecond = 99.4
+ Epoch[ 1 of 2]-Minibatch[  23-  23, 57.50%]: CE = 7.73908997 * 16; Err = 1.00000000 * 16; time = 0.1604s; samplesPerSecond = 99.8
+ Epoch[ 1 of 2]-Minibatch[  24-  24, 60.00%]: CE = 7.40483093 * 16; Err = 1.00000000 * 16; time = 0.1611s; samplesPerSecond = 99.3
+ Epoch[ 1 of 2]-Minibatch[  25-  25, 62.50%]: CE = 7.66610718 * 16; Err = 1.00000000 * 16; time = 0.1609s; samplesPerSecond = 99.5
+ Epoch[ 1 of 2]-Minibatch[  26-  26, 65.00%]: CE = 7.48855591 * 16; Err = 1.00000000 * 16; time = 0.1592s; samplesPerSecond = 100.5
+ Epoch[ 1 of 2]-Minibatch[  27-  27, 67.50%]: CE = 7.23515320 * 16; Err = 1.00000000 * 16; time = 0.1598s; samplesPerSecond = 100.1
+ Epoch[ 1 of 2]-Minibatch[  28-  28, 70.00%]: CE = 7.54519653 * 16; Err = 1.00000000 * 16; time = 0.1618s; samplesPerSecond = 98.9
+ Epoch[ 1 of 2]-Minibatch[  29-  29, 72.50%]: CE = 7.07797241 * 16; Err = 1.00000000 * 16; time = 0.1578s; samplesPerSecond = 101.4
+ Epoch[ 1 of 2]-Minibatch[  30-  30, 75.00%]: CE = 7.30137634 * 16; Err = 1.00000000 * 16; time = 0.1598s; samplesPerSecond = 100.1
+ Epoch[ 1 of 2]-Minibatch[  31-  31, 77.50%]: CE = 7.21885681 * 16; Err = 1.00000000 * 16; time = 0.1605s; samplesPerSecond = 99.7
+ Epoch[ 1 of 2]-Minibatch[  32-  32, 80.00%]: CE = 7.25517273 * 16; Err = 1.00000000 * 16; time = 0.1612s; samplesPerSecond = 99.2
+ Epoch[ 1 of 2]-Minibatch[  33-  33, 82.50%]: CE = 7.19911194 * 16; Err = 1.00000000 * 16; time = 0.1601s; samplesPerSecond = 99.9
+ Epoch[ 1 of 2]-Minibatch[  34-  34, 85.00%]: CE = 7.41784668 * 16; Err = 1.00000000 * 16; time = 0.1605s; samplesPerSecond = 99.7
+ Epoch[ 1 of 2]-Minibatch[  35-  35, 87.50%]: CE = 7.58007812 * 16; Err = 1.00000000 * 16; time = 0.1599s; samplesPerSecond = 100.1
+ Epoch[ 1 of 2]-Minibatch[  36-  36, 90.00%]: CE = 6.90213013 * 16; Err = 1.00000000 * 16; time = 0.1609s; samplesPerSecond = 99.5
+ Epoch[ 1 of 2]-Minibatch[  37-  37, 92.50%]: CE = 7.22534180 * 16; Err = 1.00000000 * 16; time = 0.1605s; samplesPerSecond = 99.7
+ Epoch[ 1 of 2]-Minibatch[  38-  38, 95.00%]: CE = 7.47494507 * 16; Err = 1.00000000 * 16; time = 0.1604s; samplesPerSecond = 99.8
+ Epoch[ 1 of 2]-Minibatch[  39-  39, 97.50%]: CE = 7.37609863 * 16; Err = 1.00000000 * 16; time = 0.1613s; samplesPerSecond = 99.2
+ Epoch[ 1 of 2]-Minibatch[  40-  40, 100.00%]: CE = 7.40646362 * 16; Err = 1.00000000 * 16; time = 0.1608s; samplesPerSecond = 99.5
+Finished Epoch[ 1 of 2]: [Training] CE = 7.65829849 * 640; Err = 0.99687500 * 640; totalSamplesSeen = 640; learningRatePerSample = 0.00062499999; epochTime=10.9955s
+SGD: Saving checkpoint model './Output/alexnet/AlexNet.1'
+
+Starting Epoch 2: learning rate per sample = 0.000625  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+starting epoch 2 at record count 640, and file position 0
+already there from last epoch
+
+Starting minibatch loop.
+ Epoch[ 2 of 2]-Minibatch[   1-   1, 2.50%]: CE = 7.33344126 * 16; Err = 1.00000000 * 16; time = 0.0702s; samplesPerSecond = 227.9
+ Epoch[ 2 of 2]-Minibatch[   2-   2, 5.00%]: CE = 7.29745817 * 16; Err = 1.00000000 * 16; time = 0.0674s; samplesPerSecond = 237.6
+ Epoch[ 2 of 2]-Minibatch[   3-   3, 7.50%]: CE = 6.73289299 * 16; Err = 1.00000000 * 16; time = 0.0667s; samplesPerSecond = 239.8
+ Epoch[ 2 of 2]-Minibatch[   4-   4, 10.00%]: CE = 6.93198013 * 16; Err = 1.00000000 * 16; time = 0.0673s; samplesPerSecond = 237.6
+ Epoch[ 2 of 2]-Minibatch[   5-   5, 12.50%]: CE = 7.27962112 * 16; Err = 1.00000000 * 16; time = 0.0668s; samplesPerSecond = 239.4
+ Epoch[ 2 of 2]-Minibatch[   6-   6, 15.00%]: CE = 7.15516663 * 16; Err = 1.00000000 * 16; time = 0.0672s; samplesPerSecond = 238.0
+ Epoch[ 2 of 2]-Minibatch[   7-   7, 17.50%]: CE = 7.04136658 * 16; Err = 1.00000000 * 16; time = 0.0669s; samplesPerSecond = 239.3
+ Epoch[ 2 of 2]-Minibatch[   8-   8, 20.00%]: CE = 7.05879974 * 16; Err = 1.00000000 * 16; time = 0.0672s; samplesPerSecond = 238.2
+ Epoch[ 2 of 2]-Minibatch[   9-   9, 22.50%]: CE = 6.98927689 * 16; Err = 0.93750000 * 16; time = 0.0668s; samplesPerSecond = 239.4
+ Epoch[ 2 of 2]-Minibatch[  10-  10, 25.00%]: CE = 6.96759415 * 16; Err = 1.00000000 * 16; time = 0.0673s; samplesPerSecond = 237.7
+ Epoch[ 2 of 2]-Minibatch[  11-  11, 27.50%]: CE = 7.15113831 * 16; Err = 1.00000000 * 16; time = 0.0669s; samplesPerSecond = 239.0
+ Epoch[ 2 of 2]-Minibatch[  12-  12, 30.00%]: CE = 7.00879669 * 16; Err = 1.00000000 * 16; time = 0.0676s; samplesPerSecond = 236.6
+ Epoch[ 2 of 2]-Minibatch[  13-  13, 32.50%]: CE = 7.06185913 * 16; Err = 1.00000000 * 16; time = 0.0674s; samplesPerSecond = 237.3
+ Epoch[ 2 of 2]-Minibatch[  14-  14, 35.00%]: CE = 7.01728821 * 16; Err = 1.00000000 * 16; time = 0.0673s; samplesPerSecond = 237.8
+ Epoch[ 2 of 2]-Minibatch[  15-  15, 37.50%]: CE = 6.87042999 * 16; Err = 1.00000000 * 16; time = 0.0668s; samplesPerSecond = 239.6
+ Epoch[ 2 of 2]-Minibatch[  16-  16, 40.00%]: CE = 7.07015228 * 16; Err = 1.00000000 * 16; time = 0.0668s; samplesPerSecond = 239.5
+ Epoch[ 2 of 2]-Minibatch[  17-  17, 42.50%]: CE = 6.95940399 * 16; Err = 1.00000000 * 16; time = 0.0668s; samplesPerSecond = 239.5
+ Epoch[ 2 of 2]-Minibatch[  18-  18, 45.00%]: CE = 6.99127197 * 16; Err = 1.00000000 * 16; time = 0.0669s; samplesPerSecond = 239.1
+ Epoch[ 2 of 2]-Minibatch[  19-  19, 47.50%]: CE = 6.97134399 * 16; Err = 1.00000000 * 16; time = 0.0669s; samplesPerSecond = 239.3
+ Epoch[ 2 of 2]-Minibatch[  20-  20, 50.00%]: CE = 6.76385498 * 16; Err = 1.00000000 * 16; time = 0.0668s; samplesPerSecond = 239.6
+ Epoch[ 2 of 2]-Minibatch[  21-  21, 52.50%]: CE = 6.84231567 * 16; Err = 1.00000000 * 16; time = 0.0671s; samplesPerSecond = 238.4
+ Epoch[ 2 of 2]-Minibatch[  22-  22, 55.00%]: CE = 6.87368774 * 16; Err = 1.00000000 * 16; time = 0.0673s; samplesPerSecond = 237.9
+ Epoch[ 2 of 2]-Minibatch[  23-  23, 57.50%]: CE = 6.82150269 * 16; Err = 1.00000000 * 16; time = 0.0668s; samplesPerSecond = 239.5
+ Epoch[ 2 of 2]-Minibatch[  24-  24, 60.00%]: CE = 6.92147827 * 16; Err = 1.00000000 * 16; time = 0.0672s; samplesPerSecond = 238.3
+ Epoch[ 2 of 2]-Minibatch[  25-  25, 62.50%]: CE = 7.08589172 * 16; Err = 1.00000000 * 16; time = 0.0671s; samplesPerSecond = 238.5
+ Epoch[ 2 of 2]-Minibatch[  26-  26, 65.00%]: CE = 6.93675232 * 16; Err = 1.00000000 * 16; time = 0.0673s; samplesPerSecond = 237.9
+ Epoch[ 2 of 2]-Minibatch[  27-  27, 67.50%]: CE = 6.80323792 * 16; Err = 1.00000000 * 16; time = 0.0666s; samplesPerSecond = 240.2
+ Epoch[ 2 of 2]-Minibatch[  28-  28, 70.00%]: CE = 6.91720581 * 16; Err = 1.00000000 * 16; time = 0.0670s; samplesPerSecond = 238.8
+ Epoch[ 2 of 2]-Minibatch[  29-  29, 72.50%]: CE = 6.78173828 * 16; Err = 1.00000000 * 16; time = 0.0675s; samplesPerSecond = 236.9
+ Epoch[ 2 of 2]-Minibatch[  30-  30, 75.00%]: CE = 6.82293701 * 16; Err = 1.00000000 * 16; time = 0.0669s; samplesPerSecond = 239.3
+ Epoch[ 2 of 2]-Minibatch[  31-  31, 77.50%]: CE = 6.80718994 * 16; Err = 1.00000000 * 16; time = 0.0672s; samplesPerSecond = 238.2
+ Epoch[ 2 of 2]-Minibatch[  32-  32, 80.00%]: CE = 6.72045898 * 16; Err = 1.00000000 * 16; time = 0.0670s; samplesPerSecond = 238.7
+ Epoch[ 2 of 2]-Minibatch[  33-  33, 82.50%]: CE = 6.78997803 * 16; Err = 1.00000000 * 16; time = 0.0670s; samplesPerSecond = 239.0
+ Epoch[ 2 of 2]-Minibatch[  34-  34, 85.00%]: CE = 6.93600464 * 16; Err = 1.00000000 * 16; time = 0.0669s; samplesPerSecond = 239.0
+ Epoch[ 2 of 2]-Minibatch[  35-  35, 87.50%]: CE = 6.99273682 * 16; Err = 1.00000000 * 16; time = 0.0671s; samplesPerSecond = 238.6
+ Epoch[ 2 of 2]-Minibatch[  36-  36, 90.00%]: CE = 6.57270813 * 16; Err = 1.00000000 * 16; time = 0.0671s; samplesPerSecond = 238.4
+ Epoch[ 2 of 2]-Minibatch[  37-  37, 92.50%]: CE = 6.75665283 * 16; Err = 1.00000000 * 16; time = 0.0671s; samplesPerSecond = 238.5
+ Epoch[ 2 of 2]-Minibatch[  38-  38, 95.00%]: CE = 6.85314941 * 16; Err = 1.00000000 * 16; time = 0.0672s; samplesPerSecond = 238.1
+ Epoch[ 2 of 2]-Minibatch[  39-  39, 97.50%]: CE = 6.96414185 * 16; Err = 1.00000000 * 16; time = 0.0675s; samplesPerSecond = 236.9
+ Epoch[ 2 of 2]-Minibatch[  40-  40, 100.00%]: CE = 6.90377808 * 16; Err = 1.00000000 * 16; time = 0.0664s; samplesPerSecond = 240.9
+Finished Epoch[ 2 of 2]: [Training] CE = 6.94391708 * 640; Err = 0.99843750 * 640; totalSamplesSeen = 1280; learningRatePerSample = 0.00062499999; epochTime=2.68723s
+SGD: Saving checkpoint model './Output/alexnet/AlexNet'
+
+Action "train" complete.
+
+COMPLETED.
