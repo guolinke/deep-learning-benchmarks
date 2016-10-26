@@ -1,0 +1,364 @@
+-------------------------------------------------------------------
+Build info: 
+
+		Built time: Sep 27 2016 14:05:01
+		Last modified date: Tue Sep 27 07:19:56 2016
+		Build type: release
+		Build target: GPU
+		With 1bit-SGD: yes
+		Math lib: mkl
+		CUDA_PATH: /usr/local/cuda-7.5
+		CUB_PATH: /usr/local/cub-1.4.1
+		CUDNN_PATH: /usr/local/cudnn-5.1
+		Build Branch: HEAD
+		Build SHA1: 2e4a773398b5ee84e1695abe73eb831c3cca1e36
+		Built by philly on 9ab719fcc26d
+		Build Path: /home/philly/jenkins/workspace/CNTK-Build-Linux
+-------------------------------------------------------------------
+-------------------------------------------------------------------
+GPU info:
+
+		Device[0]: cores = 2880; computeCapability = 3.5; type = "Tesla K40m"; memory = 11439 MB
+		Device[1]: cores = 2880; computeCapability = 3.5; type = "Tesla K40m"; memory = 11439 MB
+		Device[2]: cores = 2880; computeCapability = 3.5; type = "Tesla K40m"; memory = 11439 MB
+		Device[3]: cores = 2880; computeCapability = 3.5; type = "Tesla K40m"; memory = 11439 MB
+		Device[4]: cores = 2880; computeCapability = 3.5; type = "Tesla K40m"; memory = 11439 MB
+		Device[5]: cores = 2880; computeCapability = 3.5; type = "Tesla K40m"; memory = 11439 MB
+		Device[6]: cores = 2880; computeCapability = 3.5; type = "Tesla K40m"; memory = 11439 MB
+		Device[7]: cores = 2880; computeCapability = 3.5; type = "Tesla K40m"; memory = 11439 MB
+-------------------------------------------------------------------
+
+Configuration After Processing and Variable Resolution:
+
+configparameters: fcn5.cntk:command=Train
+configparameters: fcn5.cntk:configName=fcn5_4gpu_2node
+configparameters: fcn5.cntk:DataDir=fcn
+configparameters: fcn5.cntk:deviceId=Auto
+configparameters: fcn5.cntk:epochSize=327680
+configparameters: fcn5.cntk:featureDim=512
+configparameters: fcn5.cntk:hiddenDim=2048
+configparameters: fcn5.cntk:initOnCPUOnly=true
+configparameters: fcn5.cntk:labelDim=1000
+configparameters: fcn5.cntk:makeMode=false
+configparameters: fcn5.cntk:maxEpochs=2
+configparameters: fcn5.cntk:minibatchSize=8192
+configparameters: fcn5.cntk:ModelDir=./Output/fcn5_4gpu_2node
+configparameters: fcn5.cntk:parallelTrain=true
+configparameters: fcn5.cntk:precision=float
+configparameters: fcn5.cntk:prefetch=true
+configparameters: fcn5.cntk:reader=[
+    readerType=UCIFastReader
+    file=fcn/data26752.txt
+    features=[
+        dim=512
+        start=1
+    ]
+    labels=[
+        dim=1
+        start=0
+        labelDim=1000
+        labelMappingFile=fcn/labelmap26752.txt
+    ]
+]
+
+configparameters: fcn5.cntk:stderr=./output_fcn5_4gpu_2node_Train.log
+configparameters: fcn5.cntk:traceLevel=1
+configparameters: fcn5.cntk:Train=[
+    action=train
+    modelPath=./Output/fcn5_4gpu_2node/fc26752
+    deviceId=Auto
+    traceLevel=1
+    SimpleNetworkBuilder=[
+        layerSizes=512:2048:2048:2048:1000
+        initOnCPUOnly=true
+        trainingCriterion=CrossEntropyWithSoftmax
+        evalCriterion=ErrorPrediction
+        layerTypes=Sigmoid
+        applyMeanVarNorm=false
+        initValueScale=1.0
+        uniformInit=true
+        needPrior=false
+    ]
+    SGD=[
+        epochSize=327680
+        minibatchSize=8192
+        maxEpochs=2
+        learningRatesPerMB=0.01
+        numMBsToShowResult=1
+        momentumPerSample=0
+        dropoutRate=0.0
+        perfTraceLevel = 1
+        ParallelTrain=[
+            parallelizationMethod=DataParallelSGD
+            distributedMBReading=true
+            parallelizationStartEpoch=1
+            DataParallelSGD=[
+                gradientBits=1
+            ]
+        ]
+        gradUpdateType=None
+        normWithAveMultiplier=true
+        clippingThresholdPerSample=1#INF
+    ]
+]
+
+configparameters: fcn5.cntk:WorkDir=.
+Commands: Train
+precision = "float"
+
+##############################################################################
+#                                                                            #
+# Train command (train action)                                               #
+#                                                                            #
+##############################################################################
+
+
+Creating virgin network.
+SimpleNetworkBuilder Using GPU 0
+SetUniformRandomValue (GPU): creating curand object with seed 1, sizeof(ElemType)==4
+********** DEPRECATED **********
+UCIFastReader is no longer actively maintained.
+It is known to have defects, proceed with caution (better yet, switch to CNTKTextFormatReader)!
+For more details please see https://github.com/Microsoft/CNTK/wiki 
+Reading UCI file fcn/data26752.txt
+
+Model has 24 nodes. Using GPU 0.
+
+Training criterion:   CrossEntropyWithSoftmax = CrossEntropyWithSoftmax
+Evaluation criterion: EvalClassificationError = ClassificationError
+
+
+Allocating matrices for forward and/or backward propagation.
+
+Memory Sharing: Out of 44 matrices, 26 are shared as 11, and 18 are not shared.
+
+	{ H1 : [2048 x 1 x *]
+	  W0*features : [2048 x *] (gradient) }
+	{ W0 : [2048 x 512] (gradient)
+	  W0*features+B0 : [2048 x 1 x *] }
+	{ W0*features+B0 : [2048 x 1 x *] (gradient)
+	  W1*H1 : [2048 x 1 x *] }
+	{ W1 : [2048 x 2048] (gradient)
+	  W1*H1+B1 : [2048 x 1 x *] }
+	{ H2 : [2048 x 1 x *]
+	  W1*H1 : [2048 x 1 x *] (gradient) }
+	{ B0 : [2048 x 1] (gradient)
+	  H1 : [2048 x 1 x *] (gradient)
+	  W1*H1+B1 : [2048 x 1 x *] (gradient)
+	  W2*H2 : [2048 x 1 x *] }
+	{ W2 : [2048 x 2048] (gradient)
+	  W2*H2+B2 : [2048 x 1 x *] }
+	{ H3 : [2048 x 1 x *]
+	  W2*H2 : [2048 x 1 x *] (gradient) }
+	{ B1 : [2048 x 1] (gradient)
+	  H2 : [2048 x 1 x *] (gradient)
+	  W2*H2+B2 : [2048 x 1 x *] (gradient)
+	  W3*H2 : [1000 x 1 x *] }
+	{ HLast : [1000 x 1 x *] (gradient)
+	  W3 : [1000 x 2048] (gradient) }
+	{ B2 : [2048 x 1] (gradient)
+	  H3 : [2048 x 1 x *] (gradient) }
+
+
+Training 11492328 parameters in 8 out of 8 parameter tensors and 20 nodes with gradient:
+
+	Node 'B0' (LearnableParameter operation) : [2048 x 1]
+	Node 'B1' (LearnableParameter operation) : [2048 x 1]
+	Node 'B2' (LearnableParameter operation) : [2048 x 1]
+	Node 'B3' (LearnableParameter operation) : [1000 x 1]
+	Node 'W0' (LearnableParameter operation) : [2048 x 512]
+	Node 'W1' (LearnableParameter operation) : [2048 x 2048]
+	Node 'W2' (LearnableParameter operation) : [2048 x 2048]
+	Node 'W3' (LearnableParameter operation) : [1000 x 2048]
+
+Initializing dataParallelSGD for 1-bit quantization.
+No PreCompute nodes found, or all already computed. Skipping pre-computation step.
+
+Starting Epoch 1: learning rate per sample = 0.000001  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+UCIFastReader: Starting at epoch 0, counting lines to determine record count...
+ 327680 records found.
+starting epoch 1 at record count 0, and file position 0
+already there from last epoch
+
+Starting minibatch loop, DataParallelSGD training (myRank = 1, numNodes = 8, numGradientBits = 1), distributed reading is ENABLED.
+RandomOrdering: 64298 retries for 327680 elements (19.6%) to ensure window condition
+RandomOrdering: recached sequence for seed 0: 155231, 44603, ...
+Perf trace: Worker MB size = 1024, Read = 21.187s; Compute = 0.21926s; Parameter update = 0.06722s, Aggregate MB size = 8192
+ Epoch[ 1 of 2]-Minibatch[   1-   1, 2.50%]: CrossEntropyWithSoftmax = 7.16018313 * 8192; EvalClassificationError = 0.99914551 * 8192; time = 21.4738s; samplesPerSecond = 381.5
+Perf trace: Worker MB size = 1024, Read = 9.5e-05s; Compute = 0.034221s; Parameter update = 0.007254s, Aggregate MB size = 8192
+ Epoch[ 1 of 2]-Minibatch[   2-   2, 5.00%]: CrossEntropyWithSoftmax = 7.15184093 * 8192; EvalClassificationError = 0.99902344 * 8192; time = 0.0417s; samplesPerSecond = 196507.4
+Perf trace: Worker MB size = 1024, Read = 7.4e-05s; Compute = 0.033461s; Parameter update = 0.009009s, Aggregate MB size = 8192
+ Epoch[ 1 of 2]-Minibatch[   3-   3, 7.50%]: CrossEntropyWithSoftmax = 7.15061271 * 8192; EvalClassificationError = 0.99902344 * 8192; time = 0.0427s; samplesPerSecond = 191998.5
+Perf trace: Worker MB size = 1024, Read = 7.2e-05s; Compute = 0.033241s; Parameter update = 0.0099s, Aggregate MB size = 8192
+ Epoch[ 1 of 2]-Minibatch[   4-   4, 10.00%]: CrossEntropyWithSoftmax = 7.14000833 * 8192; EvalClassificationError = 0.99877930 * 8192; time = 0.0433s; samplesPerSecond = 189038.9
+Perf trace: Worker MB size = 1024, Read = 6.8e-05s; Compute = 0.033697s; Parameter update = 0.009008s, Aggregate MB size = 8192
+ Epoch[ 1 of 2]-Minibatch[   5-   5, 12.50%]: CrossEntropyWithSoftmax = 7.16342539 * 8192; EvalClassificationError = 0.99902344 * 8192; time = 0.0429s; samplesPerSecond = 190889.0
+Perf trace: Worker MB size = 1024, Read = 7.3e-05s; Compute = 0.03346s; Parameter update = 0.008839s, Aggregate MB size = 8192
+ Epoch[ 1 of 2]-Minibatch[   6-   6, 15.00%]: CrossEntropyWithSoftmax = 7.14046204 * 8192; EvalClassificationError = 0.99926758 * 8192; time = 0.0425s; samplesPerSecond = 192798.3
+Perf trace: Worker MB size = 1024, Read = 5.9e-05s; Compute = 0.034018s; Parameter update = 0.009716s, Aggregate MB size = 8192
+ Epoch[ 1 of 2]-Minibatch[   7-   7, 17.50%]: CrossEntropyWithSoftmax = 7.13843864 * 8192; EvalClassificationError = 0.99914551 * 8192; time = 0.0439s; samplesPerSecond = 186708.0
+Perf trace: Worker MB size = 1024, Read = 7.2e-05s; Compute = 0.033768s; Parameter update = 0.009622s, Aggregate MB size = 8192
+ Epoch[ 1 of 2]-Minibatch[   8-   8, 20.00%]: CrossEntropyWithSoftmax = 7.13265735 * 8192; EvalClassificationError = 0.99926758 * 8192; time = 0.0436s; samplesPerSecond = 187889.9
+Perf trace: Worker MB size = 1024, Read = 7.2e-05s; Compute = 0.033728s; Parameter update = 0.009241s, Aggregate MB size = 8192
+ Epoch[ 1 of 2]-Minibatch[   9-   9, 22.50%]: CrossEntropyWithSoftmax = 7.13449687 * 8192; EvalClassificationError = 0.99951172 * 8192; time = 0.0432s; samplesPerSecond = 189823.0
+Perf trace: Worker MB size = 1024, Read = 4.6e-05s; Compute = 0.033505s; Parameter update = 0.008842s, Aggregate MB size = 8192
+ Epoch[ 1 of 2]-Minibatch[  10-  10, 25.00%]: CrossEntropyWithSoftmax = 7.13770950 * 8192; EvalClassificationError = 0.99853516 * 8192; time = 0.0425s; samplesPerSecond = 192821.0
+Perf trace: Worker MB size = 1024, Read = 6.6e-05s; Compute = 0.033628s; Parameter update = 0.009266s, Aggregate MB size = 8192
+ Epoch[ 1 of 2]-Minibatch[  11-  11, 27.50%]: CrossEntropyWithSoftmax = 7.13296670 * 8192; EvalClassificationError = 0.99914551 * 8192; time = 0.0431s; samplesPerSecond = 190100.5
+Perf trace: Worker MB size = 1024, Read = 7.8e-05s; Compute = 0.033791s; Parameter update = 0.010862s, Aggregate MB size = 8192
+ Epoch[ 1 of 2]-Minibatch[  12-  12, 30.00%]: CrossEntropyWithSoftmax = 7.12337941 * 8192; EvalClassificationError = 0.99890137 * 8192; time = 0.0449s; samplesPerSecond = 182616.6
+Perf trace: Worker MB size = 1024, Read = 6.9e-05s; Compute = 0.034147s; Parameter update = 0.008232s, Aggregate MB size = 8192
+ Epoch[ 1 of 2]-Minibatch[  13-  13, 32.50%]: CrossEntropyWithSoftmax = 7.12943763 * 8192; EvalClassificationError = 0.99877930 * 8192; time = 0.0426s; samplesPerSecond = 192467.6
+Perf trace: Worker MB size = 1024, Read = 6.7e-05s; Compute = 0.034025s; Parameter update = 0.008727s, Aggregate MB size = 8192
+ Epoch[ 1 of 2]-Minibatch[  14-  14, 35.00%]: CrossEntropyWithSoftmax = 7.11658281 * 8192; EvalClassificationError = 0.99926758 * 8192; time = 0.0429s; samplesPerSecond = 190795.6
+Perf trace: Worker MB size = 1024, Read = 6.8e-05s; Compute = 0.033776s; Parameter update = 0.008986s, Aggregate MB size = 8192
+ Epoch[ 1 of 2]-Minibatch[  15-  15, 37.50%]: CrossEntropyWithSoftmax = 7.11766464 * 8192; EvalClassificationError = 0.99963379 * 8192; time = 0.0430s; samplesPerSecond = 190715.6
+Perf trace: Worker MB size = 1024, Read = 6.8e-05s; Compute = 0.034006s; Parameter update = 0.008402s, Aggregate MB size = 8192
+ Epoch[ 1 of 2]-Minibatch[  16-  16, 40.00%]: CrossEntropyWithSoftmax = 7.11726081 * 8192; EvalClassificationError = 0.99902344 * 8192; time = 0.0426s; samplesPerSecond = 192341.1
+Perf trace: Worker MB size = 1024, Read = 7.2e-05s; Compute = 0.033739s; Parameter update = 0.009147s, Aggregate MB size = 8192
+ Epoch[ 1 of 2]-Minibatch[  17-  17, 42.50%]: CrossEntropyWithSoftmax = 7.11680454 * 8192; EvalClassificationError = 0.99865723 * 8192; time = 0.0431s; samplesPerSecond = 190149.0
+Perf trace: Worker MB size = 1024, Read = 5e-05s; Compute = 0.034039s; Parameter update = 0.008499s, Aggregate MB size = 8192
+ Epoch[ 1 of 2]-Minibatch[  18-  18, 45.00%]: CrossEntropyWithSoftmax = 7.10675943 * 8192; EvalClassificationError = 0.99890137 * 8192; time = 0.0427s; samplesPerSecond = 191796.2
+Perf trace: Worker MB size = 1024, Read = 4.9e-05s; Compute = 0.033881s; Parameter update = 0.009387s, Aggregate MB size = 8192
+ Epoch[ 1 of 2]-Minibatch[  19-  19, 47.50%]: CrossEntropyWithSoftmax = 7.10718125 * 8192; EvalClassificationError = 0.99951172 * 8192; time = 0.0434s; samplesPerSecond = 188634.1
+Perf trace: Worker MB size = 1024, Read = 6e-05s; Compute = 0.033679s; Parameter update = 0.009673s, Aggregate MB size = 8192
+ Epoch[ 1 of 2]-Minibatch[  20-  20, 50.00%]: CrossEntropyWithSoftmax = 7.10878968 * 8192; EvalClassificationError = 0.99865723 * 8192; time = 0.0435s; samplesPerSecond = 188157.5
+Perf trace: Worker MB size = 1024, Read = 5.9e-05s; Compute = 0.033722s; Parameter update = 0.009022s, Aggregate MB size = 8192
+ Epoch[ 1 of 2]-Minibatch[  21-  21, 52.50%]: CrossEntropyWithSoftmax = 7.09442180 * 8192; EvalClassificationError = 0.99902344 * 8192; time = 0.0429s; samplesPerSecond = 190906.8
+Perf trace: Worker MB size = 1024, Read = 6.1e-05s; Compute = 0.033983s; Parameter update = 0.008966s, Aggregate MB size = 8192
+ Epoch[ 1 of 2]-Minibatch[  22-  22, 55.00%]: CrossEntropyWithSoftmax = 7.10679573 * 8192; EvalClassificationError = 0.99865723 * 8192; time = 0.0431s; samplesPerSecond = 189963.8
+Perf trace: Worker MB size = 1024, Read = 5.1e-05s; Compute = 0.033675s; Parameter update = 0.008297s, Aggregate MB size = 8192
+ Epoch[ 1 of 2]-Minibatch[  23-  23, 57.50%]: CrossEntropyWithSoftmax = 7.08458996 * 8192; EvalClassificationError = 0.99902344 * 8192; time = 0.0421s; samplesPerSecond = 194445.8
+Perf trace: Worker MB size = 1024, Read = 6.1e-05s; Compute = 0.033659s; Parameter update = 0.010572s, Aggregate MB size = 8192
+ Epoch[ 1 of 2]-Minibatch[  24-  24, 60.00%]: CrossEntropyWithSoftmax = 7.10348737 * 8192; EvalClassificationError = 0.99963379 * 8192; time = 0.0444s; samplesPerSecond = 184512.8
+Perf trace: Worker MB size = 1024, Read = 5.8e-05s; Compute = 0.033444s; Parameter update = 0.009704s, Aggregate MB size = 8192
+ Epoch[ 1 of 2]-Minibatch[  25-  25, 62.50%]: CrossEntropyWithSoftmax = 7.09591472 * 8192; EvalClassificationError = 0.99902344 * 8192; time = 0.0433s; samplesPerSecond = 189209.2
+Perf trace: Worker MB size = 1024, Read = 6.5e-05s; Compute = 0.033912s; Parameter update = 0.008527s, Aggregate MB size = 8192
+ Epoch[ 1 of 2]-Minibatch[  26-  26, 65.00%]: CrossEntropyWithSoftmax = 7.09421700 * 8192; EvalClassificationError = 0.99841309 * 8192; time = 0.0426s; samplesPerSecond = 192273.4
+Perf trace: Worker MB size = 1024, Read = 3.9e-05s; Compute = 0.033443s; Parameter update = 0.010259s, Aggregate MB size = 8192
+ Epoch[ 1 of 2]-Minibatch[  27-  27, 67.50%]: CrossEntropyWithSoftmax = 7.08866286 * 8192; EvalClassificationError = 0.99926758 * 8192; time = 0.0439s; samplesPerSecond = 186793.1
+Perf trace: Worker MB size = 1024, Read = 5e-05s; Compute = 0.033374s; Parameter update = 0.009296s, Aggregate MB size = 8192
+ Epoch[ 1 of 2]-Minibatch[  28-  28, 70.00%]: CrossEntropyWithSoftmax = 7.08618444 * 8192; EvalClassificationError = 0.99877930 * 8192; time = 0.0428s; samplesPerSecond = 191281.2
+Perf trace: Worker MB size = 1024, Read = 7.3e-05s; Compute = 0.033368s; Parameter update = 0.00947s, Aggregate MB size = 8192
+ Epoch[ 1 of 2]-Minibatch[  29-  29, 72.50%]: CrossEntropyWithSoftmax = 7.08892387 * 8192; EvalClassificationError = 0.99914551 * 8192; time = 0.0430s; samplesPerSecond = 190396.5
+Perf trace: Worker MB size = 1024, Read = 7e-05s; Compute = 0.033932s; Parameter update = 0.009059s, Aggregate MB size = 8192
+ Epoch[ 1 of 2]-Minibatch[  30-  30, 75.00%]: CrossEntropyWithSoftmax = 7.08592939 * 8192; EvalClassificationError = 0.99829102 * 8192; time = 0.0432s; samplesPerSecond = 189805.4
+Perf trace: Worker MB size = 1024, Read = 7e-05s; Compute = 0.03419s; Parameter update = 0.008117s, Aggregate MB size = 8192
+ Epoch[ 1 of 2]-Minibatch[  31-  31, 77.50%]: CrossEntropyWithSoftmax = 7.07493967 * 8192; EvalClassificationError = 0.99853516 * 8192; time = 0.0425s; samplesPerSecond = 192771.1
+Perf trace: Worker MB size = 1024, Read = 4.9e-05s; Compute = 0.033773s; Parameter update = 0.010337s, Aggregate MB size = 8192
+ Epoch[ 1 of 2]-Minibatch[  32-  32, 80.00%]: CrossEntropyWithSoftmax = 7.07612216 * 8192; EvalClassificationError = 0.99877930 * 8192; time = 0.0443s; samplesPerSecond = 185033.8
+Perf trace: Worker MB size = 1024, Read = 6.4e-05s; Compute = 0.033997s; Parameter update = 0.010031s, Aggregate MB size = 8192
+ Epoch[ 1 of 2]-Minibatch[  33-  33, 82.50%]: CrossEntropyWithSoftmax = 7.07771057 * 8192; EvalClassificationError = 0.99914551 * 8192; time = 0.0442s; samplesPerSecond = 185238.8
+Perf trace: Worker MB size = 1024, Read = 6.2e-05s; Compute = 0.033636s; Parameter update = 0.008482s, Aggregate MB size = 8192
+ Epoch[ 1 of 2]-Minibatch[  34-  34, 85.00%]: CrossEntropyWithSoftmax = 7.07920116 * 8192; EvalClassificationError = 0.99890137 * 8192; time = 0.0423s; samplesPerSecond = 193641.4
+Perf trace: Worker MB size = 1024, Read = 4.9e-05s; Compute = 0.033681s; Parameter update = 0.009085s, Aggregate MB size = 8192
+ Epoch[ 1 of 2]-Minibatch[  35-  35, 87.50%]: CrossEntropyWithSoftmax = 7.08069330 * 8192; EvalClassificationError = 0.99804688 * 8192; time = 0.0429s; samplesPerSecond = 190800.0
+Perf trace: Worker MB size = 1024, Read = 7.1e-05s; Compute = 0.03334s; Parameter update = 0.009622s, Aggregate MB size = 8192
+ Epoch[ 1 of 2]-Minibatch[  36-  36, 90.00%]: CrossEntropyWithSoftmax = 7.07072902 * 8192; EvalClassificationError = 0.99963379 * 8192; time = 0.0432s; samplesPerSecond = 189757.0
+Perf trace: Worker MB size = 1024, Read = 7.1e-05s; Compute = 0.033087s; Parameter update = 0.009238s, Aggregate MB size = 8192
+ Epoch[ 1 of 2]-Minibatch[  37-  37, 92.50%]: CrossEntropyWithSoftmax = 7.06426811 * 8192; EvalClassificationError = 0.99902344 * 8192; time = 0.0425s; samplesPerSecond = 192621.5
+Perf trace: Worker MB size = 1024, Read = 4.9e-05s; Compute = 0.033977s; Parameter update = 0.008333s, Aggregate MB size = 8192
+ Epoch[ 1 of 2]-Minibatch[  38-  38, 95.00%]: CrossEntropyWithSoftmax = 7.06313449 * 8192; EvalClassificationError = 0.99926758 * 8192; time = 0.0425s; samplesPerSecond = 192907.3
+Perf trace: Worker MB size = 1024, Read = 5.1e-05s; Compute = 0.033286s; Parameter update = 0.010512s, Aggregate MB size = 8192
+ Epoch[ 1 of 2]-Minibatch[  39-  39, 97.50%]: CrossEntropyWithSoftmax = 7.06176817 * 8192; EvalClassificationError = 0.99902344 * 8192; time = 0.0439s; samplesPerSecond = 186419.1
+Perf trace: Worker MB size = 1024, Read = 6.4e-05s; Compute = 0.033858s; Parameter update = 0.006659s, Aggregate MB size = 8192
+ Epoch[ 1 of 2]-Minibatch[  40-  40, 100.00%]: CrossEntropyWithSoftmax = 7.06026173 * 8192; EvalClassificationError = 0.99914551 * 8192; time = 0.0407s; samplesPerSecond = 201470.7
+Perf trace: Worker MB size = 0, Read = 2.6e-05s; Compute = 1.1e-05s; Parameter update = 0.005573s, Aggregate MB size = 0
+ Epoch[ 1 of 2]-Minibatch[  41-  41, 102.50%]: CrossEntropyWithSoftmax = 0.00000000 * 0; EvalClassificationError = 0.00000000 * 0; time = 0.0057s; samplesPerSecond = 0.0
+Finished Epoch[ 1 of 2]: [Training] CrossEntropyWithSoftmax = 7.10661543 * 327680; EvalClassificationError = 0.99899902 * 327680; totalSamplesSeen = 327680; learningRatePerSample = 1.2207031e-06; epochTime=30.5503s
+
+Starting Epoch 2: learning rate per sample = 0.000001  effective momentum = 0.000000  momentum as time constant = 0.0 samples
+starting epoch 2 at record count 327680, and file position 0
+already there from last epoch
+
+Starting minibatch loop, DataParallelSGD training (myRank = 1, numNodes = 8, numGradientBits = 1), distributed reading is ENABLED.
+RandomOrdering: 64298 retries for 327680 elements (19.6%) to ensure window condition
+RandomOrdering: recached sequence for seed 1: 155231, 44603, ...
+Perf trace: Worker MB size = 1024, Read = 0.028568s; Compute = 0.033359s; Parameter update = 0.009947s, Aggregate MB size = 8192
+ Epoch[ 2 of 2]-Minibatch[   1-   1, 2.50%]: CrossEntropyWithSoftmax = 7.06573528 * 8192; EvalClassificationError = 0.99914551 * 8192; time = 0.0720s; samplesPerSecond = 113795.2
+Perf trace: Worker MB size = 1024, Read = 7.1e-05s; Compute = 0.03368s; Parameter update = 0.010385s, Aggregate MB size = 8192
+ Epoch[ 2 of 2]-Minibatch[   2-   2, 5.00%]: CrossEntropyWithSoftmax = 7.05863804 * 8192; EvalClassificationError = 0.99902344 * 8192; time = 0.0443s; samplesPerSecond = 185054.7
+Perf trace: Worker MB size = 1024, Read = 7.4e-05s; Compute = 0.033872s; Parameter update = 0.00914s, Aggregate MB size = 8192
+ Epoch[ 2 of 2]-Minibatch[   3-   3, 7.50%]: CrossEntropyWithSoftmax = 7.05883849 * 8192; EvalClassificationError = 0.99902344 * 8192; time = 0.0432s; samplesPerSecond = 189493.7
+Perf trace: Worker MB size = 1024, Read = 4.7e-05s; Compute = 0.033352s; Parameter update = 0.008965s, Aggregate MB size = 8192
+ Epoch[ 2 of 2]-Minibatch[   4-   4, 10.00%]: CrossEntropyWithSoftmax = 7.05093437 * 8192; EvalClassificationError = 0.99877930 * 8192; time = 0.0425s; samplesPerSecond = 192821.0
+Perf trace: Worker MB size = 1024, Read = 6.8e-05s; Compute = 0.033649s; Parameter update = 0.012371s, Aggregate MB size = 8192
+ Epoch[ 2 of 2]-Minibatch[   5-   5, 12.50%]: CrossEntropyWithSoftmax = 7.06975836 * 8192; EvalClassificationError = 0.99902344 * 8192; time = 0.0462s; samplesPerSecond = 177243.1
+Perf trace: Worker MB size = 1024, Read = 6.1e-05s; Compute = 0.033669s; Parameter update = 0.009237s, Aggregate MB size = 8192
+ Epoch[ 2 of 2]-Minibatch[   6-   6, 15.00%]: CrossEntropyWithSoftmax = 7.05229968 * 8192; EvalClassificationError = 0.99926758 * 8192; time = 0.0431s; samplesPerSecond = 190171.1
+Perf trace: Worker MB size = 1024, Read = 5.9e-05s; Compute = 0.033971s; Parameter update = 0.008659s, Aggregate MB size = 8192
+ Epoch[ 2 of 2]-Minibatch[   7-   7, 17.50%]: CrossEntropyWithSoftmax = 7.05152988 * 8192; EvalClassificationError = 0.99914551 * 8192; time = 0.0428s; samplesPerSecond = 191392.9
+Perf trace: Worker MB size = 1024, Read = 4.8e-05s; Compute = 0.034023s; Parameter update = 0.010175s, Aggregate MB size = 8192
+ Epoch[ 2 of 2]-Minibatch[   8-   8, 20.00%]: CrossEntropyWithSoftmax = 7.04841489 * 8192; EvalClassificationError = 0.99926758 * 8192; time = 0.0443s; samplesPerSecond = 184770.8
+Perf trace: Worker MB size = 1024, Read = 5e-05s; Compute = 0.033653s; Parameter update = 0.010041s, Aggregate MB size = 8192
+ Epoch[ 2 of 2]-Minibatch[   9-   9, 22.50%]: CrossEntropyWithSoftmax = 7.04891360 * 8192; EvalClassificationError = 0.99951172 * 8192; time = 0.0439s; samplesPerSecond = 186805.9
+Perf trace: Worker MB size = 1024, Read = 8.2e-05s; Compute = 0.033379s; Parameter update = 0.009557s, Aggregate MB size = 8192
+ Epoch[ 2 of 2]-Minibatch[  10-  10, 25.00%]: CrossEntropyWithSoftmax = 7.05262524 * 8192; EvalClassificationError = 0.99853516 * 8192; time = 0.0431s; samplesPerSecond = 189933.0
+Perf trace: Worker MB size = 1024, Read = 6e-05s; Compute = 0.033488s; Parameter update = 0.008925s, Aggregate MB size = 8192
+ Epoch[ 2 of 2]-Minibatch[  11-  11, 27.50%]: CrossEntropyWithSoftmax = 7.04994416 * 8192; EvalClassificationError = 0.99914551 * 8192; time = 0.0426s; samplesPerSecond = 192458.6
+Perf trace: Worker MB size = 1024, Read = 7.1e-05s; Compute = 0.033884s; Parameter update = 0.008578s, Aggregate MB size = 8192
+ Epoch[ 2 of 2]-Minibatch[  12-  12, 30.00%]: CrossEntropyWithSoftmax = 7.04283798 * 8192; EvalClassificationError = 0.99890137 * 8192; time = 0.0427s; samplesPerSecond = 191949.0
+Perf trace: Worker MB size = 1024, Read = 8.2e-05s; Compute = 0.034011s; Parameter update = 0.009259s, Aggregate MB size = 8192
+ Epoch[ 2 of 2]-Minibatch[  13-  13, 32.50%]: CrossEntropyWithSoftmax = 7.04729635 * 8192; EvalClassificationError = 0.99877930 * 8192; time = 0.0435s; samplesPerSecond = 188373.8
+Perf trace: Worker MB size = 1024, Read = 7.2e-05s; Compute = 0.033853s; Parameter update = 0.009132s, Aggregate MB size = 8192
+ Epoch[ 2 of 2]-Minibatch[  14-  14, 35.00%]: CrossEntropyWithSoftmax = 7.03760505 * 8192; EvalClassificationError = 0.99926758 * 8192; time = 0.0432s; samplesPerSecond = 189708.7
+Perf trace: Worker MB size = 1024, Read = 6.2e-05s; Compute = 0.033631s; Parameter update = 0.009141s, Aggregate MB size = 8192
+ Epoch[ 2 of 2]-Minibatch[  15-  15, 37.50%]: CrossEntropyWithSoftmax = 7.03917450 * 8192; EvalClassificationError = 0.99963379 * 8192; time = 0.0430s; samplesPerSecond = 190689.0
+Perf trace: Worker MB size = 1024, Read = 7.7e-05s; Compute = 0.033926s; Parameter update = 0.009112s, Aggregate MB size = 8192
+ Epoch[ 2 of 2]-Minibatch[  16-  16, 40.00%]: CrossEntropyWithSoftmax = 7.04046172 * 8192; EvalClassificationError = 0.99902344 * 8192; time = 0.0433s; samplesPerSecond = 189371.0
+Perf trace: Worker MB size = 1024, Read = 7.1e-05s; Compute = 0.033783s; Parameter update = 0.008549s, Aggregate MB size = 8192
+ Epoch[ 2 of 2]-Minibatch[  17-  17, 42.50%]: CrossEntropyWithSoftmax = 7.04026407 * 8192; EvalClassificationError = 0.99865723 * 8192; time = 0.0425s; samplesPerSecond = 192612.4
+Perf trace: Worker MB size = 1024, Read = 6.8e-05s; Compute = 0.033776s; Parameter update = 0.010034s, Aggregate MB size = 8192
+ Epoch[ 2 of 2]-Minibatch[  18-  18, 45.00%]: CrossEntropyWithSoftmax = 7.03305966 * 8192; EvalClassificationError = 0.99890137 * 8192; time = 0.0440s; samplesPerSecond = 186101.5
+Perf trace: Worker MB size = 1024, Read = 6.2e-05s; Compute = 0.033332s; Parameter update = 0.00923s, Aggregate MB size = 8192
+ Epoch[ 2 of 2]-Minibatch[  19-  19, 47.50%]: CrossEntropyWithSoftmax = 7.03340566 * 8192; EvalClassificationError = 0.99951172 * 8192; time = 0.0427s; samplesPerSecond = 191684.0
+Perf trace: Worker MB size = 1024, Read = 5.4e-05s; Compute = 0.033915s; Parameter update = 0.009019s, Aggregate MB size = 8192
+ Epoch[ 2 of 2]-Minibatch[  20-  20, 50.00%]: CrossEntropyWithSoftmax = 7.03599787 * 8192; EvalClassificationError = 0.99865723 * 8192; time = 0.0431s; samplesPerSecond = 190175.5
+Perf trace: Worker MB size = 1024, Read = 6.4e-05s; Compute = 0.033717s; Parameter update = 0.008599s, Aggregate MB size = 8192
+ Epoch[ 2 of 2]-Minibatch[  21-  21, 52.50%]: CrossEntropyWithSoftmax = 7.02517587 * 8192; EvalClassificationError = 0.99902344 * 8192; time = 0.0428s; samplesPerSecond = 191451.1
+Perf trace: Worker MB size = 1024, Read = 3.6e-05s; Compute = 0.033472s; Parameter update = 0.008604s, Aggregate MB size = 8192
+ Epoch[ 2 of 2]-Minibatch[  22-  22, 55.00%]: CrossEntropyWithSoftmax = 7.03498930 * 8192; EvalClassificationError = 0.99865723 * 8192; time = 0.0422s; samplesPerSecond = 194146.2
+Perf trace: Worker MB size = 1024, Read = 3.6e-05s; Compute = 0.03412s; Parameter update = 0.008878s, Aggregate MB size = 8192
+ Epoch[ 2 of 2]-Minibatch[  23-  23, 57.50%]: CrossEntropyWithSoftmax = 7.01841241 * 8192; EvalClassificationError = 0.99902344 * 8192; time = 0.0431s; samplesPerSecond = 189963.8
+Perf trace: Worker MB size = 1024, Read = 4.9e-05s; Compute = 0.033985s; Parameter update = 0.009305s, Aggregate MB size = 8192
+ Epoch[ 2 of 2]-Minibatch[  24-  24, 60.00%]: CrossEntropyWithSoftmax = 7.03421420 * 8192; EvalClassificationError = 0.99963379 * 8192; time = 0.0446s; samplesPerSecond = 183751.3
+Perf trace: Worker MB size = 1024, Read = 3.7e-05s; Compute = 0.033941s; Parameter update = 0.00897s, Aggregate MB size = 8192
+ Epoch[ 2 of 2]-Minibatch[  25-  25, 62.50%]: CrossEntropyWithSoftmax = 7.02837896 * 8192; EvalClassificationError = 0.99902344 * 8192; time = 0.0430s; samplesPerSecond = 190423.1
+Perf trace: Worker MB size = 1024, Read = 6.3e-05s; Compute = 0.0337s; Parameter update = 0.0095s, Aggregate MB size = 8192
+ Epoch[ 2 of 2]-Minibatch[  26-  26, 65.00%]: CrossEntropyWithSoftmax = 7.02819186 * 8192; EvalClassificationError = 0.99841309 * 8192; time = 0.0434s; samplesPerSecond = 188799.3
+Perf trace: Worker MB size = 1024, Read = 7e-05s; Compute = 0.033707s; Parameter update = 0.008511s, Aggregate MB size = 8192
+ Epoch[ 2 of 2]-Minibatch[  27-  27, 67.50%]: CrossEntropyWithSoftmax = 7.02329785 * 8192; EvalClassificationError = 0.99926758 * 8192; time = 0.0424s; samplesPerSecond = 193207.5
+Perf trace: Worker MB size = 1024, Read = 3.3e-05s; Compute = 0.03375s; Parameter update = 0.01083s, Aggregate MB size = 8192
+ Epoch[ 2 of 2]-Minibatch[  28-  28, 70.00%]: CrossEntropyWithSoftmax = 7.02234340 * 8192; EvalClassificationError = 0.99877930 * 8192; time = 0.0447s; samplesPerSecond = 183241.6
+Perf trace: Worker MB size = 1024, Read = 6.9e-05s; Compute = 0.033739s; Parameter update = 0.009215s, Aggregate MB size = 8192
+ Epoch[ 2 of 2]-Minibatch[  29-  29, 72.50%]: CrossEntropyWithSoftmax = 7.02516043 * 8192; EvalClassificationError = 0.99914551 * 8192; time = 0.0432s; samplesPerSecond = 189818.6
+Perf trace: Worker MB size = 1024, Read = 6.9e-05s; Compute = 0.034046s; Parameter update = 0.008594s, Aggregate MB size = 8192
+ Epoch[ 2 of 2]-Minibatch[  30-  30, 75.00%]: CrossEntropyWithSoftmax = 7.02284795 * 8192; EvalClassificationError = 0.99829102 * 8192; time = 0.0428s; samplesPerSecond = 191241.0
+Perf trace: Worker MB size = 1024, Read = 5e-05s; Compute = 0.033739s; Parameter update = 0.00915s, Aggregate MB size = 8192
+ Epoch[ 2 of 2]-Minibatch[  31-  31, 77.50%]: CrossEntropyWithSoftmax = 7.01415813 * 8192; EvalClassificationError = 0.99853516 * 8192; time = 0.0430s; samplesPerSecond = 190303.6
+Perf trace: Worker MB size = 1024, Read = 7.3e-05s; Compute = 0.033473s; Parameter update = 0.008894s, Aggregate MB size = 8192
+ Epoch[ 2 of 2]-Minibatch[  32-  32, 80.00%]: CrossEntropyWithSoftmax = 7.01621503 * 8192; EvalClassificationError = 0.99877930 * 8192; time = 0.0426s; samplesPerSecond = 192417.9
+Perf trace: Worker MB size = 1024, Read = 6.4e-05s; Compute = 0.033427s; Parameter update = 0.009888s, Aggregate MB size = 8192
+ Epoch[ 2 of 2]-Minibatch[  33-  33, 82.50%]: CrossEntropyWithSoftmax = 7.01789838 * 8192; EvalClassificationError = 0.99914551 * 8192; time = 0.0435s; samplesPerSecond = 188343.5
+Perf trace: Worker MB size = 1024, Read = 7.6e-05s; Compute = 0.033613s; Parameter update = 0.010096s, Aggregate MB size = 8192
+ Epoch[ 2 of 2]-Minibatch[  34-  34, 85.00%]: CrossEntropyWithSoftmax = 7.01900119 * 8192; EvalClassificationError = 0.99890137 * 8192; time = 0.0439s; samplesPerSecond = 186504.0
+Perf trace: Worker MB size = 1024, Read = 6.4e-05s; Compute = 0.033352s; Parameter update = 0.009332s, Aggregate MB size = 8192
+ Epoch[ 2 of 2]-Minibatch[  35-  35, 87.50%]: CrossEntropyWithSoftmax = 7.02077764 * 8192; EvalClassificationError = 0.99804688 * 8192; time = 0.0429s; samplesPerSecond = 191120.5
+Perf trace: Worker MB size = 1024, Read = 5.8e-05s; Compute = 0.033861s; Parameter update = 0.009117s, Aggregate MB size = 8192
+ Epoch[ 2 of 2]-Minibatch[  36-  36, 90.00%]: CrossEntropyWithSoftmax = 7.01383823 * 8192; EvalClassificationError = 0.99963379 * 8192; time = 0.0431s; samplesPerSecond = 189999.1
+Perf trace: Worker MB size = 1024, Read = 6.4e-05s; Compute = 0.033899s; Parameter update = 0.009323s, Aggregate MB size = 8192
+ Epoch[ 2 of 2]-Minibatch[  37-  37, 92.50%]: CrossEntropyWithSoftmax = 7.00843447 * 8192; EvalClassificationError = 0.99902344 * 8192; time = 0.0434s; samplesPerSecond = 188642.7
+Perf trace: Worker MB size = 1024, Read = 6.4e-05s; Compute = 0.033854s; Parameter update = 0.008354s, Aggregate MB size = 8192
+ Epoch[ 2 of 2]-Minibatch[  38-  38, 95.00%]: CrossEntropyWithSoftmax = 7.00829273 * 8192; EvalClassificationError = 0.99926758 * 8192; time = 0.0424s; samplesPerSecond = 193171.1
+Perf trace: Worker MB size = 1024, Read = 7.4e-05s; Compute = 0.033981s; Parameter update = 0.009593s, Aggregate MB size = 8192
+ Epoch[ 2 of 2]-Minibatch[  39-  39, 97.50%]: CrossEntropyWithSoftmax = 7.00755149 * 8192; EvalClassificationError = 0.99902344 * 8192; time = 0.0438s; samplesPerSecond = 187032.0
+Perf trace: Worker MB size = 1024, Read = 6e-05s; Compute = 0.033631s; Parameter update = 0.007288s, Aggregate MB size = 8192
+ Epoch[ 2 of 2]-Minibatch[  40-  40, 100.00%]: CrossEntropyWithSoftmax = 7.00686640 * 8192; EvalClassificationError = 0.99914551 * 8192; time = 0.0411s; samplesPerSecond = 199376.9
+Perf trace: Worker MB size = 0, Read = 5e-06s; Compute = 1.1e-05s; Parameter update = 0.005639s, Aggregate MB size = 0
+ Epoch[ 2 of 2]-Minibatch[  41-  41, 102.50%]: CrossEntropyWithSoftmax = 0.00000000 * 0; EvalClassificationError = 0.00000000 * 0; time = 0.0057s; samplesPerSecond = 0.0
+Finished Epoch[ 2 of 2]: [Training] CrossEntropyWithSoftmax = 7.03384452 * 327680; EvalClassificationError = 0.99899902 * 327680; totalSamplesSeen = 655360; learningRatePerSample = 1.2207031e-06; epochTime=1.76585s
+
+Action "train" complete.
+
+COMPLETED.
+~MPIWrapper

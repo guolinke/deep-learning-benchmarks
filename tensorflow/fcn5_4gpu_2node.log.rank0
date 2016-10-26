@@ -1,0 +1,1537 @@
+I tensorflow/stream_executor/dso_loader.cc:116] successfully opened CUDA library libcublas.so.7.5 locally
+I tensorflow/stream_executor/dso_loader.cc:116] successfully opened CUDA library libcudnn.so locally
+I tensorflow/stream_executor/dso_loader.cc:116] successfully opened CUDA library libcufft.so.7.5 locally
+I tensorflow/stream_executor/dso_loader.cc:116] successfully opened CUDA library libcuda.so.1 locally
+I tensorflow/stream_executor/dso_loader.cc:116] successfully opened CUDA library libcurand.so.7.5 locally
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:951] Found device 0 with properties: 
+name: Tesla K40m
+major: 3 minor: 5 memoryClockRate (GHz) 0.745
+pciBusID 0000:0d:00.0
+Total memory: 11.17GiB
+Free memory: 11.10GiB
+W tensorflow/stream_executor/cuda/cuda_driver.cc:577] creating context when one is currently active; existing: 0x3ac3a30
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:951] Found device 1 with properties: 
+name: Tesla K40m
+major: 3 minor: 5 memoryClockRate (GHz) 0.745
+pciBusID 0000:0e:00.0
+Total memory: 11.17GiB
+Free memory: 11.10GiB
+W tensorflow/stream_executor/cuda/cuda_driver.cc:577] creating context when one is currently active; existing: 0x3f1c690
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:951] Found device 2 with properties: 
+name: Tesla K40m
+major: 3 minor: 5 memoryClockRate (GHz) 0.745
+pciBusID 0000:09:00.0
+Total memory: 11.17GiB
+Free memory: 11.10GiB
+W tensorflow/stream_executor/cuda/cuda_driver.cc:577] creating context when one is currently active; existing: 0x4373f40
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:951] Found device 3 with properties: 
+name: Tesla K40m
+major: 3 minor: 5 memoryClockRate (GHz) 0.745
+pciBusID 0000:0a:00.0
+Total memory: 11.17GiB
+Free memory: 11.10GiB
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:972] DMA: 0 1 2 3 
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] 0:   Y Y Y Y 
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] 1:   Y Y Y Y 
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] 2:   Y Y Y Y 
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] 3:   Y Y Y Y 
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Creating TensorFlow device (/gpu:0) -> (device: 0, name: Tesla K40m, pci bus id: 0000:0d:00.0)
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Creating TensorFlow device (/gpu:1) -> (device: 1, name: Tesla K40m, pci bus id: 0000:0e:00.0)
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Creating TensorFlow device (/gpu:2) -> (device: 2, name: Tesla K40m, pci bus id: 0000:09:00.0)
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Creating TensorFlow device (/gpu:3) -> (device: 3, name: Tesla K40m, pci bus id: 0000:0a:00.0)
+I tensorflow/core/distributed_runtime/rpc/grpc_channel.cc:197] Initialize GrpcChannelCache for job worker -> {0 -> localhost:12001, 1 -> 10.10.10.102:12001}
+I tensorflow/core/distributed_runtime/rpc/grpc_server_lib.cc:211] Started server with target: grpc://localhost:12001
+I tensorflow/core/distributed_runtime/master_session.cc:869] Start master session a4fbb5e919382f94 with config: 
+allow_soft_placement: true
+log_device_placement: true
+
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/Const: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/RestoreV2_9: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/RestoreV2_8: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/RestoreV2_7: /job:worker/replica:0/task:1/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/RestoreV2_6: /job:worker/replica:0/task:1/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/RestoreV2_5: /job:worker/replica:0/task:1/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/RestoreV2_4: /job:worker/replica:0/task:1/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/RestoreV2_3: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/RestoreV2_2: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/RestoreV2_1: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/RestoreV2: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] init_all_tables: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] init_1: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] group_deps: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] report_uninitialized_variables/boolean_mask/strided_slice: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] report_uninitialized_variables/boolean_mask/concat: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] report_uninitialized_variables/boolean_mask/Reshape: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/Abort: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] fifo_queue_1: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] fifo_queue_1_Close_1: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] fifo_queue_1_Close: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] fifo_queue: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] GradientDescent/learning_rate: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_7: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_7_DequeueMany: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/Sum_7: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_6: /job:worker/replica:0/task:1/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_6_DequeueMany: /job:worker/replica:0/task:1/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/Sum_6: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_5: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_5_DequeueMany: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/Sum_5: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_4: /job:worker/replica:0/task:1/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_4_DequeueMany: /job:worker/replica:0/task:1/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/Sum_4: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_3: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_3_DequeueMany: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/Sum_3: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_2: /job:worker/replica:0/task:1/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_2_DequeueMany: /job:worker/replica:0/task:1/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/Sum_2: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_1: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_1_DequeueMany: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/Sum_1: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue: /job:worker/replica:0/task:1/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_DequeueMany: /job:worker/replica:0/task:1/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/Sum: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] Reshape: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] local_steps: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/Assign_9: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] report_uninitialized_variables/IsVariableInitialized_9: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] get_local_step: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] Reshape_1: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] local_steps/read: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] local_steps/Assign: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/Mean_grad/Prod_1: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/Mean_grad/Maximum: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/Mean_grad/Prod: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/Mean_grad/floordiv: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/Mean_grad/Cast: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/Fill: /job:worker/replica:0/task:0/gpu:3
+(512, 2048)
+(2048,)
+(2048, 2048)
+(2048,)
+(2048, 2048)
+(2048,)
+(2048, 1000)
+(1000,)
+Parameter Number:11492328
+Worker 0: Initializing session...
+save/Const: /job:worker/replica:0/task:0/cpu:0
+save/RestoreV2_9: /job:worker/replica:0/task:0/cpu:0
+save/RestoreV2_8: /job:worker/replica:0/task:0/cpu:0
+save/RestoreV2_7: /job:worker/replica:0/task:1/cpu:0
+save/RestoreV2_6: /job:worker/replica:0/task:1/cpu:0
+save/RestoreV2_5: /job:worker/replica:0/task:1/cpu:0
+save/RestoreV2_4: /job:worker/replica:0/task:1/cpu:0
+save/RestoreV2_3: /job:worker/replica:0/task:0/cpu:0
+save/RestoreV2_2: /job:worker/replica:0/task:0/cpu:0
+save/RestoreV2_1: /job:worker/replica:0/task:0/cpu:0
+save/RestoreV2: /job:worker/replica:0/task:0/cpu:0
+init_all_tables: /job:worker/replica:0/task:0/gpu:0
+init_1: /job:worker/replica:0/task:0/gpu:0
+group_deps: /job:worker/replica:0/task:0/gpu:0
+report_uninitialized_variables/boolean_mask/strided_slice: /job:worker/replica:0/task:0/gpu:0
+report_uninitialized_variables/boolean_mask/concat: /job:worker/replica:0/task:0/gpu:0
+report_uninitialized_variables/boolean_mask/Reshape: /job:worker/replica:0/task:0/cpu:0
+mnist_sync_replicas/Abort: /job:worker/replica:0/task:0/cpu:0
+fifo_queue_1: /job:worker/replica:0/task:0/cpu:0
+fifo_queue_1_Close_1: /job:worker/replica:0/task:0/cpu:0
+fifo_queue_1_Close: /job:worker/replica:0/task:0/cpu:0
+fifo_queue: /job:worker/replica:0/task:0/cpu:0
+GradientDescent/learning_rate: /job:worker/replica:0/task:0/cpu:0
+mnist_sync_replicas/fifo_queue_7: /job:worker/replica:0/task:0/cpu:0
+mnist_sync_replicas/fifo_queue_7_DequeueMany: /job:worker/replica:0/task:0/cpu:0
+mnist_sync_replicas/Sum_7: /job:worker/replica:0/task:0/gpu:0
+mnist_sync_replicas/fifo_queue_6: /job:worker/replica:0/task:1/cpu:0
+mnist_sync_replicas/fifo_queue_6_DequeueMany: /job:worker/replica:0/task:1/cpu:0
+mnist_sync_replicas/Sum_6: /job:worker/replica:0/task:1/gpu:0
+mnist_sync_replicas/fifo_queue_5: /job:worker/replica:0/task:0/cpu:0
+mnist_sync_replicas/fifo_queue_5_DequeueMany: /job:worker/replica:0/task:0/cpu:0
+mnist_sync_replicas/Sum_5: /job:worker/replica:0/task:0/gpu:0
+mnist_sync_replicas/fifo_queue_4: /job:worker/replica:0/task:1/cpu:0
+mnist_sync_replicas/fifo_queue_4_DequeueMany: /job:worker/replica:0/task:1/cpu:0
+mnist_sync_replicas/Sum_4: /job:worker/replica:0/task:1/gpu:0
+mnist_sync_replicas/fifo_queue_3: /job:worker/replica:0/task:0/cpu:0
+mnist_sync_replicas/fifo_queue_3_DequeueMany: /job:worker/replica:0/task:0/cpu:0
+mnist_sync_replicas/Sum_3: /job:worker/replica:0/task:0/gpu:0
+mnist_sync_replicas/fifo_queue_2: /job:worker/replica:0/task:1/cpu:0
+mnist_sync_replicas/fifo_queue_2_DequeueMany: /job:worker/replica:0/task:1/cpu:0
+mnist_sync_replicas/Sum_2: /job:worker/replica:0/task:1/gpu:0
+mnist_sync_replicas/fifo_queue_1: /job:worker/replica:0/task:0/cpu:0
+mnist_sync_replicas/fifo_queue_1_DequeueMany: /job:worker/replica:0/task:0/cpu:0
+mnist_sync_replicas/Sum_1: /job:worker/replica:0/task:0/gpu:0
+mnist_sync_replicas/fifo_queue: /job:worker/replica:0/task:1/cpu:0
+mnist_sync_replicas/fifo_queue_DequeueMany: /job:worker/replica:0/task:1/cpu:0
+mnist_sync_replicas/Sum: /job:worker/replica:0/task:1/gpu:0
+Reshape: /job:worker/replica:0/task:0/gpu:0
+local_steps: /job:worker/replica:0/task:0/cpu:0
+save/Assign_9: /job:worker/replica:0/task:0/cpu:0
+report_uninitialized_variables/IsVariableInitialized_9: /job:worker/replica:0/task:0/cpu:0
+get_local_step: /job:worker/replica:0/task:0/gpu:0
+Reshape_1: /job:worker/replica:0/task:0/gpu:0
+local_steps/read: /job:worker/replica:0/task:0/cpu:0
+local_steps/Assign: /job:worker/replica:0/task:0/cpu:0
+replica_3/gradients/replica_3/Mean_grad/Prod_1: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/Mean_grad/Maximum: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/Mean_grad/Prod: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/Mean_grad/floordiv: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/Mean_grad/Cast: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/Fill: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/Mean_grad/Reshape: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/Mean_grad/Tile: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/Mean_grad/truediv: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/SparseSoftmaxCrossEntropyWithLogits/SparseSoftmaxCrossEntropyWithLogits_grad/ExpandDims: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/Mean_grad/Prod_1: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/Mean_grad/Maximum: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/Mean_grad/Prod: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/Mean_grad/floordiv: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/Mean_grad/Cast: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/Fill: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/Mean_grad/Reshape: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/Mean_grad/Tile: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/Mean_grad/truediv: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/SparseSoftmaxCrossEntropyWithLogits/SparseSoftmaxCrossEntropyWithLogits_grad/ExpandDims: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/Mean_grad/Prod_1: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/Mean_grad/Maximum: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/Mean_grad/Prod: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/Mean_grad/floordiv: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/Mean_grad/Cast: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/Fill: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/Mean_grad/Reshape: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/Mean_grad/Tile: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/Mean_grad/truediv: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/SparseSoftmaxCrossEntropyWithLogits/SparseSoftmaxCrossEntropyWithLogits_grad/ExpandDims: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/Mean_grad/Prod_1: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/Mean_grad/Maximum: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/Mean_grad/Prod: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/Mean_grad/floordiv: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/Mean_grad/Cast: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/Fill: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/Mean_grad/Reshape: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/Mean_grad/Tile: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/Mean_grad/truediv: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/SparseSoftmaxCrossEntropyWithLogits/SparseSoftmaxCrossEntropyWithLogits_grad/ExpandDims: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] B5/Initializer/random_uniform/min: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] B5/Initializer/random_uniform/sub: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] B5/Initializer/random_uniform/RandomUniform: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] B5/Initializer/random_uniform/mul: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] B5/Initializer/random_uniform: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] B5: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/Assign_3: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] report_uninitialized_variables/IsVariableInitialized_8: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] GradientDescent/update_B5/ApplyGradientDescent: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] B5/read: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] B5/Assign: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] W5/Initializer/random_uniform/min: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] W5/Initializer/random_uniform/sub: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] W5/Initializer/random_uniform/RandomUniform: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] W5/Initializer/random_uniform/mul: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] W5/Initializer/random_uniform: /job:worker/replica:0/task:1/gpu:0
+3/Mean_grad/Reshape: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/Mean_grad/Tile: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/Mean_grad/truediv: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/SparseSoftmaxCrossEntropyWithLogits/SparseSoftmaxCrossEntropyWithLogits_grad/ExpandDims: /job:worker/replica:0/task:0/gpu:3
+replica_2/gradients/replica_2/Mean_grad/Prod_1: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/Mean_grad/Maximum: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/Mean_grad/Prod: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/Mean_grad/floordiv: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/Mean_grad/Cast: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/Fill: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/Mean_grad/Reshape: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/Mean_grad/Tile: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/Mean_grad/truediv: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/SparseSoftmaxCrossEntropyWithLogits/SparseSoftmaxCrossEntropyWithLogits_grad/ExpandDims: /job:worker/replica:0/task:0/gpu:2
+replica_1/gradients/replica_1/Mean_grad/Prod_1: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/Mean_grad/Maximum: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/Mean_grad/Prod: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/Mean_grad/floordiv: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/Mean_grad/Cast: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/Fill: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/Mean_grad/Reshape: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/Mean_grad/Tile: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/Mean_grad/truediv: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/SparseSoftmaxCrossEntropyWithLogits/SparseSoftmaxCrossEntropyWithLogits_grad/ExpandDims: /job:worker/replica:0/task:0/gpu:1
+replica_0/gradients/replica_0/Mean_grad/Prod_1: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/Mean_grad/Maximum: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/Mean_grad/Prod: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/Mean_grad/floordiv: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/Mean_grad/Cast: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/Fill: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/Mean_grad/Reshape: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/Mean_grad/Tile: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/Mean_grad/truediv: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/SparseSoftmaxCrossEntropyWithLogits/SparseSoftmaxCrossEntropyWithLogits_grad/ExpandDims: /job:worker/replica:0/task:0/gpu:0
+B5/Initializer/random_uniform/min: /job:worker/replica:0/task:0/gpu:0
+B5/Initializer/random_uniform/sub: /job:worker/replica:0/task:0/gpu:0
+B5/Initializer/random_uniform/RandomUniform: /job:worker/replica:0/task:0/gpu:0
+B5/Initializer/random_uniform/mul: /job:worker/replica:0/task:0/gpu:0
+B5/Initializer/random_uniform: /job:worker/replica:0/task:0/gpu:0
+B5: /job:worker/replica:0/task:0/gpu:0
+save/Assign_3: /job:worker/replica:0/task:0/gpu:0
+report_uninitialized_variables/IsVariableInitialized_8: /job:worker/replica:0/task:0/gpu:0
+GradientDescent/update_B5/ApplyGradientDescent: /job:worker/replica:0/task:0/gpu:0
+B5/read: /job:worker/replica:0/task:0/gpu:0
+B5/Assign: /job:worker/replica:0/task:0/gpu:0
+W5/Initializer/random_uniform/min: /job:worker/replica:0/task:1/gpu:0
+W5/Initializer/random_uniform/sub: /job:worker/replica:0/task:1/gpu:0
+W5/Initializer/random_uniform/RandomUniform: /job:worker/replica:0/task:1/gpu:0
+W5/Initializer/random_uniform/mul: /job:worker/replica:0/task:1/gpu:0
+W5/Initializer/random_uniform: /job:worker/replica:0/task:1/gpu:0
+W5: /job:worker/replicI tensorflow/core/common_runtime/simple_placer.cc:819] W5: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/Assign_7: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] report_uninitialized_variables/IsVariableInitialized_7: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] GradientDescent/update_W5/ApplyGradientDescent: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] W5/read: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] W5/Assign: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] B2/Initializer/random_uniform/min: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] B2/Initializer/random_uniform/sub: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] B2/Initializer/random_uniform/RandomUniform: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] B2/Initializer/random_uniform/mul: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] B2/Initializer/random_uniform: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] B2: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/Assign_2: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] report_uninitialized_variables/IsVariableInitialized_6: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] GradientDescent/update_B2/ApplyGradientDescent: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] B2/read: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] B2/Assign: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] W2/Initializer/random_uniform/min: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] W2/Initializer/random_uniform/sub: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] W2/Initializer/random_uniform/RandomUniform: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] W2/Initializer/random_uniform/mul: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] W2/Initializer/random_uniform: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] W2: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/Assign_6: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] report_uninitialized_variables/IsVariableInitialized_5: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] GradientDescent/update_W2/ApplyGradientDescent: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] W2/read: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] W2/Assign: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] B1/Initializer/random_uniform/min: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] B1/Initializer/random_uniform/sub: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] B1/Initializer/random_uniform/RandomUniform: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] B1/Initializer/random_uniform/mul: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] B1/Initializer/random_uniform: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] B1: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/Assign_1: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] report_uninitialized_variables/IsVariableInitialized_4: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] GradientDescent/update_B1/ApplyGradientDescent: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] B1/read: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] B1/Assign: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] W1/Initializer/random_uniform/min: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] W1/Initializer/random_uniform/sub: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] W1/Initializer/random_uniform/RandomUniform: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] W1/Initializer/random_uniform/mul: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] W1/Initializer/random_uniform: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] W1: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/Assign_5: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] report_uninitialized_variables/IsVariableInitialized_3: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] GradientDescent/update_W1/ApplyGradientDescent: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] W1/read: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] W1/Assign: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] B0/Initializer/random_uniform/min: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] B0/Initializer/random_uniform/sub: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] B0/Initializer/random_uniform/RandomUniform: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] B0/Initializer/random_uniform/mul: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] B0/Initializer/random_uniform: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] B0: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/Assign: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/restore_all/NoOp_1: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] report_uninitialized_variables/IsVariableInitialized_2: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] GradientDescent/update_B0/ApplyGradientDescent: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] GradientDescent/update/NoOp: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] B0/read: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] B0/Assign: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] init/NoOp_1: /job:worker/replica:0/task:0/gpu:0
+a:0/task:1/gpu:0
+save/Assign_7: /job:worker/replica:0/task:1/gpu:0
+report_uninitialized_variables/IsVariableInitialized_7: /job:worker/replica:0/task:1/gpu:0
+GradientDescent/update_W5/ApplyGradientDescent: /job:worker/replica:0/task:1/gpu:0
+W5/read: /job:worker/replica:0/task:1/gpu:0
+W5/Assign: /job:worker/replica:0/task:1/gpu:0
+B2/Initializer/random_uniform/min: /job:worker/replica:0/task:0/gpu:0
+B2/Initializer/random_uniform/sub: /job:worker/replica:0/task:0/gpu:0
+B2/Initializer/random_uniform/RandomUniform: /job:worker/replica:0/task:0/gpu:0
+B2/Initializer/random_uniform/mul: /job:worker/replica:0/task:0/gpu:0
+B2/Initializer/random_uniform: /job:worker/replica:0/task:0/gpu:0
+B2: /job:worker/replica:0/task:0/gpu:0
+save/Assign_2: /job:worker/replica:0/task:0/gpu:0
+report_uninitialized_variables/IsVariableInitialized_6: /job:worker/replica:0/task:0/gpu:0
+GradientDescent/update_B2/ApplyGradientDescent: /job:worker/replica:0/task:0/gpu:0
+B2/read: /job:worker/replica:0/task:0/gpu:0
+B2/Assign: /job:worker/replica:0/task:0/gpu:0
+W2/Initializer/random_uniform/min: /job:worker/replica:0/task:1/gpu:0
+W2/Initializer/random_uniform/sub: /job:worker/replica:0/task:1/gpu:0
+W2/Initializer/random_uniform/RandomUniform: /job:worker/replica:0/task:1/gpu:0
+W2/Initializer/random_uniform/mul: /job:worker/replica:0/task:1/gpu:0
+W2/Initializer/random_uniform: /job:worker/replica:0/task:1/gpu:0
+W2: /job:worker/replica:0/task:1/gpu:0
+save/Assign_6: /job:worker/replica:0/task:1/gpu:0
+report_uninitialized_variables/IsVariableInitialized_5: /job:worker/replica:0/task:1/gpu:0
+GradientDescent/update_W2/ApplyGradientDescent: /job:worker/replica:0/task:1/gpu:0
+W2/read: /job:worker/replica:0/task:1/gpu:0
+W2/Assign: /job:worker/replica:0/task:1/gpu:0
+B1/Initializer/random_uniform/min: /job:worker/replica:0/task:0/gpu:0
+B1/Initializer/random_uniform/sub: /job:worker/replica:0/task:0/gpu:0
+B1/Initializer/random_uniform/RandomUniform: /job:worker/replica:0/task:0/gpu:0
+B1/Initializer/random_uniform/mul: /job:worker/replica:0/task:0/gpu:0
+B1/Initializer/random_uniform: /job:worker/replica:0/task:0/gpu:0
+B1: /job:worker/replica:0/task:0/gpu:0
+save/Assign_1: /job:worker/replica:0/task:0/gpu:0
+report_uninitialized_variables/IsVariableInitialized_4: /job:worker/replica:0/task:0/gpu:0
+GradientDescent/update_B1/ApplyGradientDescent: /job:worker/replica:0/task:0/gpu:0
+B1/read: /job:worker/replica:0/task:0/gpu:0
+B1/Assign: /job:worker/replica:0/task:0/gpu:0
+W1/Initializer/random_uniform/min: /job:worker/replica:0/task:1/gpu:0
+W1/Initializer/random_uniform/sub: /job:worker/replica:0/task:1/gpu:0
+W1/Initializer/random_uniform/RandomUniform: /job:worker/replica:0/task:1/gpu:0
+W1/Initializer/random_uniform/mul: /job:worker/replica:0/task:1/gpu:0
+W1/Initializer/random_uniform: /job:worker/replica:0/task:1/gpu:0
+W1: /job:worker/replica:0/task:1/gpu:0
+save/Assign_5: /job:worker/replica:0/task:1/gpu:0
+report_uninitialized_variables/IsVariableInitialized_3: /job:worker/replica:0/task:1/gpu:0
+GradientDescent/update_W1/ApplyGradientDescent: /job:worker/replica:0/task:1/gpu:0
+W1/read: /job:worker/replica:0/task:1/gpu:0
+W1/Assign: /job:worker/replica:0/task:1/gpu:0
+B0/Initializer/random_uniform/min: /job:worker/replica:0/task:0/gpu:0
+B0/Initializer/random_uniform/sub: /job:worker/replica:0/task:0/gpu:0
+B0/Initializer/random_uniform/RandomUniform: /job:worker/replica:0/task:0/gpu:0
+B0/Initializer/random_uniform/mul: /job:worker/replica:0/task:0/gpu:0
+B0/Initializer/random_uniform: /job:worker/replica:0/task:0/gpu:0
+B0: /job:worker/replica:0/task:0/gpu:0
+save/Assign: /job:worker/replica:0/task:0/gpu:0
+save/restore_all/NoOp_1: /job:worker/replica:0/task:0/gpu:0
+report_uninitialized_variables/IsVariableInitialized_2: /job:worker/replica:0/task:0/gpu:0
+GradientDescent/update_B0/ApplyGradientDescent: /job:worker/replica:0/task:0/gpu:0
+GradientDescent/update/NoOp: /job:worker/replica:0/task:0/gpu:0
+B0/read: /job:worker/replica:0/task:0/gpu:0
+B0/Assign: /job:worker/replica:0/task:0/gpu:0
+init/NoOp_1: /job:worker/replica:0/task:0/gpu:0
+W0/Initializer/random_uniform/min: /job:worker/repI tensorflow/core/common_runtime/simple_placer.cc:819] W0/Initializer/random_uniform/min: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] W0/Initializer/random_uniform/sub: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] W0/Initializer/random_uniform/RandomUniform: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] W0/Initializer/random_uniform/mul: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] W0/Initializer/random_uniform: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] W0: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/Assign_4: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/restore_all/NoOp_2: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] report_uninitialized_variables/IsVariableInitialized_1: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] GradientDescent/update_W0/ApplyGradientDescent: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] GradientDescent/update/NoOp_1: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] GradientDescent/update: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] W0/read: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] W0/Assign: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] init/NoOp_2: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] global_step: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/Assign_8: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/restore_all/NoOp: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/restore_all: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/save: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/control_dependency: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] report_uninitialized_variables/IsVariableInitialized: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] report_uninitialized_variables/pack: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] report_uninitialized_variables/LogicalNot: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] report_uninitialized_variables/boolean_mask/Reshape_1: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] report_uninitialized_variables/boolean_mask/Where: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] report_uninitialized_variables/boolean_mask/Squeeze: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] report_uninitialized_variables/boolean_mask/Gather: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] Fill_1: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] fifo_queue_EnqueueMany_1: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] GradientDescent: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_7_Size: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_7_DequeueMany_1: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_6_Size: /job:worker/replica:0/task:1/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_6_DequeueMany_1: /job:worker/replica:0/task:1/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_5_Size: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_5_DequeueMany_1: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_4_Size: /job:worker/replica:0/task:1/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_4_DequeueMany_1: /job:worker/replica:0/task:1/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_3_Size: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_3_DequeueMany_1: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_2_Size: /job:worker/replica:0/task:1/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_2_DequeueMany_1: /job:worker/replica:0/task:1/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_1_Size: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_1_DequeueMany_1: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_Size: /job:worker/replica:0/task:1/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_DequeueMany_1: /job:worker/replica:0/task:1/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] Fill: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] fifo_queue_EnqueueMany: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] global_step/read: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] Less: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/cond/pred_id: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/cond/Switch: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/cond/switch_f: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/cond/switch_t: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/cond/no_grad_enqueue: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/cond/control_dependency: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/cond/Merge: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] fifo_queue_Dequeue: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] global_step/Assign: /job:worker/replica:0/task:0/cpu:0
+lica:0/task:1/gpu:0
+W0/Initializer/random_uniform/sub: /job:worker/replica:0/task:1/gpu:0
+W0/Initializer/random_uniform/RandomUniform: /job:worker/replica:0/task:1/gpu:0
+W0/Initializer/random_uniform/mul: /job:worker/replica:0/task:1/gpu:0
+W0/Initializer/random_uniform: /job:worker/replica:0/task:1/gpu:0
+W0: /job:worker/replica:0/task:1/gpu:0
+save/Assign_4: /job:worker/replica:0/task:1/gpu:0
+save/restore_all/NoOp_2: /job:worker/replica:0/task:1/gpu:0
+report_uninitialized_variables/IsVariableInitialized_1: /job:worker/replica:0/task:1/gpu:0
+GradientDescent/update_W0/ApplyGradientDescent: /job:worker/replica:0/task:1/gpu:0
+GradientDescent/update/NoOp_1: /job:worker/replica:0/task:1/gpu:0
+GradientDescent/update: /job:worker/replica:0/task:0/cpu:0
+W0/read: /job:worker/replica:0/task:1/gpu:0
+W0/Assign: /job:worker/replica:0/task:1/gpu:0
+init/NoOp_2: /job:worker/replica:0/task:1/gpu:0
+global_step: /job:worker/replica:0/task:0/cpu:0
+save/Assign_8: /job:worker/replica:0/task:0/cpu:0
+save/restore_all/NoOp: /job:worker/replica:0/task:0/cpu:0
+save/restore_all: /job:worker/replica:0/task:0/gpu:0
+save/save: /job:worker/replica:0/task:0/cpu:0
+save/control_dependency: /job:worker/replica:0/task:0/cpu:0
+report_uninitialized_variables/IsVariableInitialized: /job:worker/replica:0/task:0/cpu:0
+report_uninitialized_variables/pack: /job:worker/replica:0/task:0/cpu:0
+report_uninitialized_variables/LogicalNot: /job:worker/replica:0/task:0/gpu:0
+report_uninitialized_variables/boolean_mask/Reshape_1: /job:worker/replica:0/task:0/cpu:0
+report_uninitialized_variables/boolean_mask/Where: /job:worker/replica:0/task:0/cpu:0
+report_uninitialized_variables/boolean_mask/Squeeze: /job:worker/replica:0/task:0/gpu:0
+report_uninitialized_variables/boolean_mask/Gather: /job:worker/replica:0/task:0/cpu:0
+Fill_1: /job:worker/replica:0/task:0/cpu:0
+fifo_queue_EnqueueMany_1: /job:worker/replica:0/task:0/cpu:0
+GradientDescent: /job:worker/replica:0/task:0/cpu:0
+mnist_sync_replicas/fifo_queue_7_Size: /job:worker/replica:0/task:0/cpu:0
+mnist_sync_replicas/fifo_queue_7_DequeueMany_1: /job:worker/replica:0/task:0/cpu:0
+mnist_sync_replicas/fifo_queue_6_Size: /job:worker/replica:0/task:1/cpu:0
+mnist_sync_replicas/fifo_queue_6_DequeueMany_1: /job:worker/replica:0/task:1/cpu:0
+mnist_sync_replicas/fifo_queue_5_Size: /job:worker/replica:0/task:0/cpu:0
+mnist_sync_replicas/fifo_queue_5_DequeueMany_1: /job:worker/replica:0/task:0/cpu:0
+mnist_sync_replicas/fifo_queue_4_Size: /job:worker/replica:0/task:1/cpu:0
+mnist_sync_replicas/fifo_queue_4_DequeueMany_1: /job:worker/replica:0/task:1/cpu:0
+mnist_sync_replicas/fifo_queue_3_Size: /job:worker/replica:0/task:0/cpu:0
+mnist_sync_replicas/fifo_queue_3_DequeueMany_1: /job:worker/replica:0/task:0/cpu:0
+mnist_sync_replicas/fifo_queue_2_Size: /job:worker/replica:0/task:1/cpu:0
+mnist_sync_replicas/fifo_queue_2_DequeueMany_1: /job:worker/replica:0/task:1/cpu:0
+mnist_sync_replicas/fifo_queue_1_Size: /job:worker/replica:0/task:0/cpu:0
+mnist_sync_replicas/fifo_queue_1_DequeueMany_1: /job:worker/replica:0/task:0/cpu:0
+mnist_sync_replicas/fifo_queue_Size: /job:worker/replica:0/task:1/cpu:0
+mnist_sync_replicas/fifo_queue_DequeueMany_1: /job:worker/replica:0/task:1/cpu:0
+Fill: /job:worker/replica:0/task:0/cpu:0
+fifo_queue_EnqueueMany: /job:worker/replica:0/task:0/cpu:0
+global_step/read: /job:worker/replica:0/task:0/cpu:0
+Less: /job:worker/replica:0/task:0/gpu:0
+mnist_sync_replicas/cond/pred_id: /job:worker/replica:0/task:0/gpu:0
+mnist_sync_replicas/cond/Switch: /job:worker/replica:0/task:0/gpu:0
+mnist_sync_replicas/cond/switch_f: /job:worker/replica:0/task:0/gpu:0
+mnist_sync_replicas/cond/switch_t: /job:worker/replica:0/task:0/gpu:0
+mnist_sync_replicas/cond/no_grad_enqueue: /job:worker/replica:0/task:0/gpu:0
+mnist_sync_replicas/cond/control_dependency: /job:worker/replica:0/task:0/gpu:0
+mnist_sync_replicas/cond/Merge: /job:worker/replica:0/task:0/gpu:0
+fifo_queue_Dequeue: /job:worker/replica:0/task:0/cpu:0
+mnist_sync_replicas: /job:worker/replica:0/task:0/cpu:0
+global_step/Assign: /job:worker/replica:0/task:0/cpu:0
+init/NoOp: /job:worker/replicaI tensorflow/core/common_runtime/simple_placer.cc:819] init/NoOp: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] init: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] Placeholder_1: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] Placeholder: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/xw_plus_b/MatMul: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/xw_plus_b: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/Sigmoid: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/xw_plus_b_1/MatMul: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/xw_plus_b_1: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/Sigmoid_1: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/xw_plus_b_2/MatMul: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/xw_plus_b_2: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/Sigmoid_2: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/xw_plus_b_3/MatMul: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/xw_plus_b_3: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/SparseSoftmaxCrossEntropyWithLogits/SparseSoftmaxCrossEntropyWithLogits: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/SparseSoftmaxCrossEntropyWithLogits/SparseSoftmaxCrossEntropyWithLogits_grad/mul: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/xw_plus_b_3_grad/BiasAddGrad: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/xw_plus_b_3_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/xw_plus_b_3_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_31: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/xw_plus_b_3_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/xw_plus_b_3/MatMul_grad/MatMul_1: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/xw_plus_b_3/MatMul_grad/MatMul: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/xw_plus_b_3/MatMul_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/xw_plus_b_3/MatMul_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_27: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/xw_plus_b_3/MatMul_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/Sigmoid_2_grad/SigmoidGrad: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/xw_plus_b_2_grad/BiasAddGrad: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/xw_plus_b_2_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/xw_plus_b_2_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_23: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/xw_plus_b_2_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/xw_plus_b_2/MatMul_grad/MatMul_1: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/xw_plus_b_2/MatMul_grad/MatMul: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/xw_plus_b_2/MatMul_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/xw_plus_b_2/MatMul_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_19: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/xw_plus_b_2/MatMul_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/Sigmoid_1_grad/SigmoidGrad: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/xw_plus_b_1_grad/BiasAddGrad: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/xw_plus_b_1_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/xw_plus_b_1_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_15: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/xw_plus_b_1_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/xw_plus_b_1/MatMul_grad/MatMul_1: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/xw_plus_b_1/MatMul_grad/MatMul: /job:worker/replica:0/task:0/gpu:3
+:0/task:0/cpu:0
+init: /job:worker/replica:0/task:0/gpu:0
+Placeholder_1: /job:worker/replica:0/task:0/gpu:0
+Placeholder: /job:worker/replica:0/task:0/gpu:0
+replica_3/xw_plus_b/MatMul: /job:worker/replica:0/task:0/gpu:3
+replica_3/xw_plus_b: /job:worker/replica:0/task:0/gpu:3
+replica_3/Sigmoid: /job:worker/replica:0/task:0/gpu:3
+replica_3/xw_plus_b_1/MatMul: /job:worker/replica:0/task:0/gpu:3
+replica_3/xw_plus_b_1: /job:worker/replica:0/task:0/gpu:3
+replica_3/Sigmoid_1: /job:worker/replica:0/task:0/gpu:3
+replica_3/xw_plus_b_2/MatMul: /job:worker/replica:0/task:0/gpu:3
+replica_3/xw_plus_b_2: /job:worker/replica:0/task:0/gpu:3
+replica_3/Sigmoid_2: /job:worker/replica:0/task:0/gpu:3
+replica_3/xw_plus_b_3/MatMul: /job:worker/replica:0/task:0/gpu:3
+replica_3/xw_plus_b_3: /job:worker/replica:0/task:0/gpu:3
+replica_3/SparseSoftmaxCrossEntropyWithLogits/SparseSoftmaxCrossEntropyWithLogits: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/SparseSoftmaxCrossEntropyWithLogits/SparseSoftmaxCrossEntropyWithLogits_grad/mul: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/xw_plus_b_3_grad/BiasAddGrad: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/xw_plus_b_3_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/xw_plus_b_3_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:3
+ExpandDims_31: /job:worker/replica:0/task:0/gpu:0
+replica_3/gradients/replica_3/xw_plus_b_3_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/xw_plus_b_3/MatMul_grad/MatMul_1: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/xw_plus_b_3/MatMul_grad/MatMul: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/xw_plus_b_3/MatMul_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/xw_plus_b_3/MatMul_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:3
+ExpandDims_27: /job:worker/replica:0/task:0/gpu:0
+replica_3/gradients/replica_3/xw_plus_b_3/MatMul_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/Sigmoid_2_grad/SigmoidGrad: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/xw_plus_b_2_grad/BiasAddGrad: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/xw_plus_b_2_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/xw_plus_b_2_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:3
+ExpandDims_23: /job:worker/replica:0/task:0/gpu:0
+replica_3/gradients/replica_3/xw_plus_b_2_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/xw_plus_b_2/MatMul_grad/MatMul_1: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/xw_plus_b_2/MatMul_grad/MatMul: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/xw_plus_b_2/MatMul_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/xw_plus_b_2/MatMul_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:3
+ExpandDims_19: /job:worker/replica:0/task:0/gpu:0
+replica_3/gradients/replica_3/xw_plus_b_2/MatMul_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/Sigmoid_1_grad/SigmoidGrad: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/xw_plus_b_1_grad/BiasAddGrad: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/xw_plus_b_1_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/xw_plus_b_1_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:3
+ExpandDims_15: /job:worker/replica:0/task:0/gpu:0
+replica_3/gradients/replica_3/xw_plus_b_1_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/xw_plus_b_1/MatMul_grad/MatMul_1: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/xw_plus_b_1/MatMul_grad/MatMul: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/xw_plus_b_1/MatMul_grad/tuple/group_deps: /job:workI tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/xw_plus_b_1/MatMul_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/xw_plus_b_1/MatMul_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_11: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/xw_plus_b_1/MatMul_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/Sigmoid_grad/SigmoidGrad: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/xw_plus_b_grad/BiasAddGrad: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/xw_plus_b_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/xw_plus_b_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_7: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/xw_plus_b_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/xw_plus_b/MatMul_grad/MatMul_1: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/xw_plus_b/MatMul_grad/MatMul: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/xw_plus_b/MatMul_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/xw_plus_b/MatMul_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_3: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/xw_plus_b/MatMul_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/zeros_like: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/Mean: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/xw_plus_b/MatMul: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/xw_plus_b: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/Sigmoid: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/xw_plus_b_1/MatMul: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/xw_plus_b_1: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/Sigmoid_1: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/xw_plus_b_2/MatMul: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/xw_plus_b_2: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/Sigmoid_2: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/xw_plus_b_3/MatMul: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/xw_plus_b_3: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/SparseSoftmaxCrossEntropyWithLogits/SparseSoftmaxCrossEntropyWithLogits: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/SparseSoftmaxCrossEntropyWithLogits/SparseSoftmaxCrossEntropyWithLogits_grad/mul: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/xw_plus_b_3_grad/BiasAddGrad: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/xw_plus_b_3_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/xw_plus_b_3_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_30: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/xw_plus_b_3_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/xw_plus_b_3/MatMul_grad/MatMul_1: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/xw_plus_b_3/MatMul_grad/MatMul: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/xw_plus_b_3/MatMul_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/xw_plus_b_3/MatMul_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_26: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/xw_plus_b_3/MatMul_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/Sigmoid_2_grad/SigmoidGrad: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/xw_plus_b_2_grad/BiasAddGrad: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/xw_plus_b_2_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/xw_plus_b_2_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_22: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/xw_plus_b_2_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:2
+er/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/xw_plus_b_1/MatMul_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:3
+ExpandDims_11: /job:worker/replica:0/task:0/gpu:0
+replica_3/gradients/replica_3/xw_plus_b_1/MatMul_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/Sigmoid_grad/SigmoidGrad: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/xw_plus_b_grad/BiasAddGrad: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/xw_plus_b_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/xw_plus_b_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:3
+ExpandDims_7: /job:worker/replica:0/task:0/gpu:0
+replica_3/gradients/replica_3/xw_plus_b_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/xw_plus_b/MatMul_grad/MatMul_1: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/xw_plus_b/MatMul_grad/MatMul: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/xw_plus_b/MatMul_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/xw_plus_b/MatMul_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:3
+ExpandDims_3: /job:worker/replica:0/task:0/gpu:0
+replica_3/gradients/replica_3/xw_plus_b/MatMul_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/zeros_like: /job:worker/replica:0/task:0/gpu:3
+replica_3/Mean: /job:worker/replica:0/task:0/gpu:3
+replica_2/xw_plus_b/MatMul: /job:worker/replica:0/task:0/gpu:2
+replica_2/xw_plus_b: /job:worker/replica:0/task:0/gpu:2
+replica_2/Sigmoid: /job:worker/replica:0/task:0/gpu:2
+replica_2/xw_plus_b_1/MatMul: /job:worker/replica:0/task:0/gpu:2
+replica_2/xw_plus_b_1: /job:worker/replica:0/task:0/gpu:2
+replica_2/Sigmoid_1: /job:worker/replica:0/task:0/gpu:2
+replica_2/xw_plus_b_2/MatMul: /job:worker/replica:0/task:0/gpu:2
+replica_2/xw_plus_b_2: /job:worker/replica:0/task:0/gpu:2
+replica_2/Sigmoid_2: /job:worker/replica:0/task:0/gpu:2
+replica_2/xw_plus_b_3/MatMul: /job:worker/replica:0/task:0/gpu:2
+replica_2/xw_plus_b_3: /job:worker/replica:0/task:0/gpu:2
+replica_2/SparseSoftmaxCrossEntropyWithLogits/SparseSoftmaxCrossEntropyWithLogits: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/SparseSoftmaxCrossEntropyWithLogits/SparseSoftmaxCrossEntropyWithLogits_grad/mul: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/xw_plus_b_3_grad/BiasAddGrad: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/xw_plus_b_3_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/xw_plus_b_3_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:2
+ExpandDims_30: /job:worker/replica:0/task:0/gpu:0
+replica_2/gradients/replica_2/xw_plus_b_3_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/xw_plus_b_3/MatMul_grad/MatMul_1: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/xw_plus_b_3/MatMul_grad/MatMul: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/xw_plus_b_3/MatMul_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/xw_plus_b_3/MatMul_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:2
+ExpandDims_26: /job:worker/replica:0/task:0/gpu:0
+replica_2/gradients/replica_2/xw_plus_b_3/MatMul_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/Sigmoid_2_grad/SigmoidGrad: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/xw_plus_b_2_grad/BiasAddGrad: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/xw_plus_b_2_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/xw_plus_b_2_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:2
+ExpandDims_22: /job:worker/replica:0/task:0/gpu:0
+replica_2/gradients/replica_2/xw_plus_b_2_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/xw_plus_b_2/MatMul_grad/MatMul_1: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/xw_plus_b_2/MatMul_grad/MatMul: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/xw_plus_b_2/MatMul_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/xw_plus_b_2/MatMul_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_18: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/xw_plus_b_2/MatMul_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/Sigmoid_1_grad/SigmoidGrad: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/xw_plus_b_1_grad/BiasAddGrad: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/xw_plus_b_1_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/xw_plus_b_1_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_14: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/xw_plus_b_1_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/xw_plus_b_1/MatMul_grad/MatMul_1: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/xw_plus_b_1/MatMul_grad/MatMul: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/xw_plus_b_1/MatMul_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/xw_plus_b_1/MatMul_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_10: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/xw_plus_b_1/MatMul_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/Sigmoid_grad/SigmoidGrad: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/xw_plus_b_grad/BiasAddGrad: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/xw_plus_b_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/xw_plus_b_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_6: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/xw_plus_b_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/xw_plus_b/MatMul_grad/MatMul_1: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/xw_plus_b/MatMul_grad/MatMul: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/xw_plus_b/MatMul_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/xw_plus_b/MatMul_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_2: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/xw_plus_b/MatMul_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/zeros_like: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/Mean: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/xw_plus_b/MatMul: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/xw_plus_b: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/Sigmoid: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/xw_plus_b_1/MatMul: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/xw_plus_b_1: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/Sigmoid_1: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/xw_plus_b_2/MatMul: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/xw_plus_b_2: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/Sigmoid_2: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/xw_plus_b_3/MatMul: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/xw_plus_b_3: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/SparseSoftmaxCrossEntropyWithLogits/SparseSoftmaxCrossEntropyWithLogits: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/SparseSoftmaxCrossEntropyWithLogits/SparseSoftmaxCrossEntropyWithLogits_grad/mul: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/xw_plus_b_3_grad/BiasAddGrad: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/xw_plus_b_3_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:1
+2/xw_plus_b_2/MatMul_grad/MatMul_1: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/xw_plus_b_2/MatMul_grad/MatMul: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/xw_plus_b_2/MatMul_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/xw_plus_b_2/MatMul_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:2
+ExpandDims_18: /job:worker/replica:0/task:0/gpu:0
+replica_2/gradients/replica_2/xw_plus_b_2/MatMul_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/Sigmoid_1_grad/SigmoidGrad: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/xw_plus_b_1_grad/BiasAddGrad: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/xw_plus_b_1_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/xw_plus_b_1_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:2
+ExpandDims_14: /job:worker/replica:0/task:0/gpu:0
+replica_2/gradients/replica_2/xw_plus_b_1_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/xw_plus_b_1/MatMul_grad/MatMul_1: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/xw_plus_b_1/MatMul_grad/MatMul: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/xw_plus_b_1/MatMul_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/xw_plus_b_1/MatMul_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:2
+ExpandDims_10: /job:worker/replica:0/task:0/gpu:0
+replica_2/gradients/replica_2/xw_plus_b_1/MatMul_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/Sigmoid_grad/SigmoidGrad: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/xw_plus_b_grad/BiasAddGrad: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/xw_plus_b_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/xw_plus_b_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:2
+ExpandDims_6: /job:worker/replica:0/task:0/gpu:0
+replica_2/gradients/replica_2/xw_plus_b_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/xw_plus_b/MatMul_grad/MatMul_1: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/xw_plus_b/MatMul_grad/MatMul: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/xw_plus_b/MatMul_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/xw_plus_b/MatMul_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:2
+ExpandDims_2: /job:worker/replica:0/task:0/gpu:0
+replica_2/gradients/replica_2/xw_plus_b/MatMul_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/zeros_like: /job:worker/replica:0/task:0/gpu:2
+replica_2/Mean: /job:worker/replica:0/task:0/gpu:2
+replica_1/xw_plus_b/MatMul: /job:worker/replica:0/task:0/gpu:1
+replica_1/xw_plus_b: /job:worker/replica:0/task:0/gpu:1
+replica_1/Sigmoid: /job:worker/replica:0/task:0/gpu:1
+replica_1/xw_plus_b_1/MatMul: /job:worker/replica:0/task:0/gpu:1
+replica_1/xw_plus_b_1: /job:worker/replica:0/task:0/gpu:1
+replica_1/Sigmoid_1: /job:worker/replica:0/task:0/gpu:1
+replica_1/xw_plus_b_2/MatMul: /job:worker/replica:0/task:0/gpu:1
+replica_1/xw_plus_b_2: /job:worker/replica:0/task:0/gpu:1
+replica_1/Sigmoid_2: /job:worker/replica:0/task:0/gpu:1
+replica_1/xw_plus_b_3/MatMul: /job:worker/replica:0/task:0/gpu:1
+replica_1/xw_plus_b_3: /job:worker/replica:0/task:0/gpu:1
+replica_1/SparseSoftmaxCrossEntropyWithLogits/SparseSoftmaxCrossEntropyWithLogits: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/SparseSoftmaxCrossEntropyWithLogits/SparseSoftmaxCrossEntropyWithLogits_grad/mul: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/xw_plus_b_3_grad/BiasAddGrad: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/xw_plus_b_3_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/xw_plus_b_3_grad/I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/xw_plus_b_3_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_29: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/xw_plus_b_3_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/xw_plus_b_3/MatMul_grad/MatMul_1: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/xw_plus_b_3/MatMul_grad/MatMul: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/xw_plus_b_3/MatMul_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/xw_plus_b_3/MatMul_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_25: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/xw_plus_b_3/MatMul_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/Sigmoid_2_grad/SigmoidGrad: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/xw_plus_b_2_grad/BiasAddGrad: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/xw_plus_b_2_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/xw_plus_b_2_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_21: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/xw_plus_b_2_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/xw_plus_b_2/MatMul_grad/MatMul_1: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/xw_plus_b_2/MatMul_grad/MatMul: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/xw_plus_b_2/MatMul_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/xw_plus_b_2/MatMul_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_17: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/xw_plus_b_2/MatMul_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/Sigmoid_1_grad/SigmoidGrad: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/xw_plus_b_1_grad/BiasAddGrad: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/xw_plus_b_1_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/xw_plus_b_1_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_13: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/xw_plus_b_1_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/xw_plus_b_1/MatMul_grad/MatMul_1: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/xw_plus_b_1/MatMul_grad/MatMul: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/xw_plus_b_1/MatMul_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/xw_plus_b_1/MatMul_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_9: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/xw_plus_b_1/MatMul_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/Sigmoid_grad/SigmoidGrad: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/xw_plus_b_grad/BiasAddGrad: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/xw_plus_b_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/xw_plus_b_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_5: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/xw_plus_b_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/xw_plus_b/MatMul_grad/MatMul_1: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/xw_plus_b/MatMul_grad/MatMul: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/xw_plus_b/MatMul_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/xw_plus_b/MatMul_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_1: /job:worker/replica:0/task:0/gpu:0
+tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:1
+ExpandDims_29: /job:worker/replica:0/task:0/gpu:0
+replica_1/gradients/replica_1/xw_plus_b_3_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/xw_plus_b_3/MatMul_grad/MatMul_1: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/xw_plus_b_3/MatMul_grad/MatMul: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/xw_plus_b_3/MatMul_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/xw_plus_b_3/MatMul_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:1
+ExpandDims_25: /job:worker/replica:0/task:0/gpu:0
+replica_1/gradients/replica_1/xw_plus_b_3/MatMul_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/Sigmoid_2_grad/SigmoidGrad: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/xw_plus_b_2_grad/BiasAddGrad: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/xw_plus_b_2_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/xw_plus_b_2_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:1
+ExpandDims_21: /job:worker/replica:0/task:0/gpu:0
+replica_1/gradients/replica_1/xw_plus_b_2_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/xw_plus_b_2/MatMul_grad/MatMul_1: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/xw_plus_b_2/MatMul_grad/MatMul: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/xw_plus_b_2/MatMul_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/xw_plus_b_2/MatMul_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:1
+ExpandDims_17: /job:worker/replica:0/task:0/gpu:0
+replica_1/gradients/replica_1/xw_plus_b_2/MatMul_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/Sigmoid_1_grad/SigmoidGrad: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/xw_plus_b_1_grad/BiasAddGrad: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/xw_plus_b_1_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/xw_plus_b_1_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:1
+ExpandDims_13: /job:worker/replica:0/task:0/gpu:0
+replica_1/gradients/replica_1/xw_plus_b_1_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/xw_plus_b_1/MatMul_grad/MatMul_1: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/xw_plus_b_1/MatMul_grad/MatMul: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/xw_plus_b_1/MatMul_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/xw_plus_b_1/MatMul_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:1
+ExpandDims_9: /job:worker/replica:0/task:0/gpu:0
+replica_1/gradients/replica_1/xw_plus_b_1/MatMul_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/Sigmoid_grad/SigmoidGrad: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/xw_plus_b_grad/BiasAddGrad: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/xw_plus_b_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/xw_plus_b_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:1
+ExpandDims_5: /job:worker/replica:0/task:0/gpu:0
+replica_1/gradients/replica_1/xw_plus_b_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/xw_plus_b/MatMul_grad/MatMul_1: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/xw_plus_b/MatMul_grad/MatMul: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/xw_plus_b/MatMul_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/xw_plus_b/MatMul_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:1
+ExpandDims_1: /job:worker/replica:0/task:0/gpu:0
+repI tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/xw_plus_b/MatMul_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/zeros_like: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/Mean: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/xw_plus_b/MatMul: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/xw_plus_b: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/Sigmoid: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/xw_plus_b_1/MatMul: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/xw_plus_b_1: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/Sigmoid_1: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/xw_plus_b_2/MatMul: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/xw_plus_b_2: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/Sigmoid_2: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/xw_plus_b_3/MatMul: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/xw_plus_b_3: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/SparseSoftmaxCrossEntropyWithLogits/SparseSoftmaxCrossEntropyWithLogits: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/SparseSoftmaxCrossEntropyWithLogits/SparseSoftmaxCrossEntropyWithLogits_grad/mul: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/xw_plus_b_3_grad/BiasAddGrad: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/xw_plus_b_3_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/xw_plus_b_3_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_28: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] concat_7: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] Sum_7: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_7_enqueue: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/xw_plus_b_3_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/xw_plus_b_3/MatMul_grad/MatMul_1: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/xw_plus_b_3/MatMul_grad/MatMul: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/xw_plus_b_3/MatMul_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/xw_plus_b_3/MatMul_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_24: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] concat_6: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] Sum_6: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_6_enqueue: /job:worker/replica:0/task:1/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/xw_plus_b_3/MatMul_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/Sigmoid_2_grad/SigmoidGrad: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/xw_plus_b_2_grad/BiasAddGrad: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/xw_plus_b_2_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/xw_plus_b_2_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_20: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] concat_5: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] Sum_5: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_5_enqueue: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/xw_plus_b_2_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/xw_plus_b_2/MatMul_grad/MatMul_1: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/xw_plus_b_2/MatMul_grad/MatMul: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/xw_plus_b_2/MatMul_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/xw_plus_b_2/MatMul_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_16: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] concat_4: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] Sum_4: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_4_enqueue: /job:worker/replica:0/task:1/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/xw_plus_b_2/MatMul_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/Sigmoid_1_grad/SigmoidGrad: /job:worker/replica:0/task:0/gpu:0
+lica_1/gradients/replica_1/xw_plus_b/MatMul_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/zeros_like: /job:worker/replica:0/task:0/gpu:1
+replica_1/Mean: /job:worker/replica:0/task:0/gpu:1
+replica_0/xw_plus_b/MatMul: /job:worker/replica:0/task:0/gpu:0
+replica_0/xw_plus_b: /job:worker/replica:0/task:0/gpu:0
+replica_0/Sigmoid: /job:worker/replica:0/task:0/gpu:0
+replica_0/xw_plus_b_1/MatMul: /job:worker/replica:0/task:0/gpu:0
+replica_0/xw_plus_b_1: /job:worker/replica:0/task:0/gpu:0
+replica_0/Sigmoid_1: /job:worker/replica:0/task:0/gpu:0
+replica_0/xw_plus_b_2/MatMul: /job:worker/replica:0/task:0/gpu:0
+replica_0/xw_plus_b_2: /job:worker/replica:0/task:0/gpu:0
+replica_0/Sigmoid_2: /job:worker/replica:0/task:0/gpu:0
+replica_0/xw_plus_b_3/MatMul: /job:worker/replica:0/task:0/gpu:0
+replica_0/xw_plus_b_3: /job:worker/replica:0/task:0/gpu:0
+replica_0/SparseSoftmaxCrossEntropyWithLogits/SparseSoftmaxCrossEntropyWithLogits: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/SparseSoftmaxCrossEntropyWithLogits/SparseSoftmaxCrossEntropyWithLogits_grad/mul: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/xw_plus_b_3_grad/BiasAddGrad: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/xw_plus_b_3_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/xw_plus_b_3_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:0
+ExpandDims_28: /job:worker/replica:0/task:0/gpu:0
+concat_7: /job:worker/replica:0/task:0/gpu:0
+Sum_7: /job:worker/replica:0/task:0/gpu:0
+mnist_sync_replicas/fifo_queue_7_enqueue: /job:worker/replica:0/task:0/cpu:0
+replica_0/gradients/replica_0/xw_plus_b_3_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/xw_plus_b_3/MatMul_grad/MatMul_1: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/xw_plus_b_3/MatMul_grad/MatMul: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/xw_plus_b_3/MatMul_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/xw_plus_b_3/MatMul_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:0
+ExpandDims_24: /job:worker/replica:0/task:0/gpu:0
+concat_6: /job:worker/replica:0/task:0/gpu:0
+Sum_6: /job:worker/replica:0/task:0/gpu:0
+mnist_sync_replicas/fifo_queue_6_enqueue: /job:worker/replica:0/task:1/cpu:0
+replica_0/gradients/replica_0/xw_plus_b_3/MatMul_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/Sigmoid_2_grad/SigmoidGrad: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/xw_plus_b_2_grad/BiasAddGrad: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/xw_plus_b_2_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/xw_plus_b_2_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:0
+ExpandDims_20: /job:worker/replica:0/task:0/gpu:0
+concat_5: /job:worker/replica:0/task:0/gpu:0
+Sum_5: /job:worker/replica:0/task:0/gpu:0
+mnist_sync_replicas/fifo_queue_5_enqueue: /job:worker/replica:0/task:0/cpu:0
+replica_0/gradients/replica_0/xw_plus_b_2_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/xw_plus_b_2/MatMul_grad/MatMul_1: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/xw_plus_b_2/MatMul_grad/MatMul: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/xw_plus_b_2/MatMul_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/xw_plus_b_2/MatMul_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:0
+ExpandDims_16: /job:worker/replica:0/task:0/gpu:0
+concat_4: /job:worker/replica:0/task:0/gpu:0
+Sum_4: /job:worker/replica:0/task:0/gpu:0
+mnist_sync_replicas/fifo_queue_4_enqueue: /job:worker/replica:0/task:1/cpu:0
+replica_0/gradients/replica_0/xw_plus_b_2/MatMul_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/Sigmoid_1_grad/SigmoidGrad: /job:worker/replica:0/task:0/gpu:0
+replica_0/gI tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/xw_plus_b_1_grad/BiasAddGrad: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/xw_plus_b_1_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/xw_plus_b_1_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_12: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] concat_3: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] Sum_3: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_3_enqueue: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/xw_plus_b_1_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/xw_plus_b_1/MatMul_grad/MatMul_1: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/xw_plus_b_1/MatMul_grad/MatMul: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/xw_plus_b_1/MatMul_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/xw_plus_b_1/MatMul_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_8: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] concat_2: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] Sum_2: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_2_enqueue: /job:worker/replica:0/task:1/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/xw_plus_b_1/MatMul_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/Sigmoid_grad/SigmoidGrad: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/xw_plus_b_grad/BiasAddGrad: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/xw_plus_b_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/xw_plus_b_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_4: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] concat_1: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] Sum_1: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_1_enqueue: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/cond/group_deps/NoOp: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/xw_plus_b_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/xw_plus_b/MatMul_grad/MatMul_1: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/xw_plus_b/MatMul_grad/MatMul: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/xw_plus_b/MatMul_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/xw_plus_b/MatMul_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] concat: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] Sum: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_enqueue: /job:worker/replica:0/task:1/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/cond/group_deps/NoOp_1: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/cond/group_deps: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/cond/control_dependency_1: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/xw_plus_b/MatMul_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/zeros_like: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/Mean: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/RestoreV2_9/shape_and_slices: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/RestoreV2_9/tensor_names: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/RestoreV2_8/shape_and_slices: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/RestoreV2_8/tensor_names: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/RestoreV2_7/shape_and_slices: /job:worker/replica:0/task:1/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/RestoreV2_7/tensor_names: /job:worker/replica:0/task:1/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/RestoreV2_6/shape_and_slices: /job:worker/replica:0/task:1/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/RestoreV2_6/tensor_names: /job:worker/replica:0/task:1/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/RestoreV2_5/shape_and_slices: /job:worker/replica:0/task:1/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/RestoreV2_5/tensor_names: /job:worker/replica:0/task:1/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/RestoreV2_4/shape_and_slices: /job:worker/replica:0/task:1/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/RestoreV2_4/tensor_names: /job:worker/replica:0/task:1/cpu:0
+radients/replica_0/xw_plus_b_1_grad/BiasAddGrad: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/xw_plus_b_1_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/xw_plus_b_1_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:0
+ExpandDims_12: /job:worker/replica:0/task:0/gpu:0
+concat_3: /job:worker/replica:0/task:0/gpu:0
+Sum_3: /job:worker/replica:0/task:0/gpu:0
+mnist_sync_replicas/fifo_queue_3_enqueue: /job:worker/replica:0/task:0/cpu:0
+replica_0/gradients/replica_0/xw_plus_b_1_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/xw_plus_b_1/MatMul_grad/MatMul_1: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/xw_plus_b_1/MatMul_grad/MatMul: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/xw_plus_b_1/MatMul_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/xw_plus_b_1/MatMul_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:0
+ExpandDims_8: /job:worker/replica:0/task:0/gpu:0
+concat_2: /job:worker/replica:0/task:0/gpu:0
+Sum_2: /job:worker/replica:0/task:0/gpu:0
+mnist_sync_replicas/fifo_queue_2_enqueue: /job:worker/replica:0/task:1/cpu:0
+replica_0/gradients/replica_0/xw_plus_b_1/MatMul_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/Sigmoid_grad/SigmoidGrad: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/xw_plus_b_grad/BiasAddGrad: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/xw_plus_b_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/xw_plus_b_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:0
+ExpandDims_4: /job:worker/replica:0/task:0/gpu:0
+concat_1: /job:worker/replica:0/task:0/gpu:0
+Sum_1: /job:worker/replica:0/task:0/gpu:0
+mnist_sync_replicas/fifo_queue_1_enqueue: /job:worker/replica:0/task:0/cpu:0
+mnist_sync_replicas/cond/group_deps/NoOp: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/xw_plus_b_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/xw_plus_b/MatMul_grad/MatMul_1: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/xw_plus_b/MatMul_grad/MatMul: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/xw_plus_b/MatMul_grad/tuple/group_deps: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/xw_plus_b/MatMul_grad/tuple/control_dependency_1: /job:worker/replica:0/task:0/gpu:0
+ExpandDims: /job:worker/replica:0/task:0/gpu:0
+concat: /job:worker/replica:0/task:0/gpu:0
+Sum: /job:worker/replica:0/task:0/gpu:0
+mnist_sync_replicas/fifo_queue_enqueue: /job:worker/replica:0/task:1/cpu:0
+mnist_sync_replicas/cond/group_deps/NoOp_1: /job:worker/replica:0/task:1/gpu:0
+mnist_sync_replicas/cond/group_deps: /job:worker/replica:0/task:0/gpu:0
+mnist_sync_replicas/cond/control_dependency_1: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/xw_plus_b/MatMul_grad/tuple/control_dependency: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/zeros_like: /job:worker/replica:0/task:0/gpu:0
+replica_0/Mean: /job:worker/replica:0/task:0/gpu:0
+save/RestoreV2_9/shape_and_slices: /job:worker/replica:0/task:0/cpu:0
+save/RestoreV2_9/tensor_names: /job:worker/replica:0/task:0/cpu:0
+save/RestoreV2_8/shape_and_slices: /job:worker/replica:0/task:0/cpu:0
+save/RestoreV2_8/tensor_names: /job:worker/replica:0/task:0/cpu:0
+save/RestoreV2_7/shape_and_slices: /job:worker/replica:0/task:1/cpu:0
+save/RestoreV2_7/tensor_names: /job:worker/replica:0/task:1/cpu:0
+save/RestoreV2_6/shape_and_slices: /job:worker/replica:0/task:1/cpu:0
+save/RestoreV2_6/tensor_names: /job:worker/replica:0/task:1/cpu:0
+save/RestoreV2_5/shape_and_slices: /job:worker/replica:0/task:1/cpu:0
+save/RestoreV2_5/tensor_names: /job:worker/replica:0/task:1/cpu:0
+save/RestoreV2_4/shape_and_slices: /job:worker/replica:0/task:1/cpu:0
+save/RestoreV2_4/tensor_names: /job:worker/replica:0/task:1/cpu:0
+save/RestoreV2_3/shape_and_slices: /job:worker/reI tensorflow/core/common_runtime/simple_placer.cc:819] save/RestoreV2_3/shape_and_slices: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/RestoreV2_3/tensor_names: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/RestoreV2_2/shape_and_slices: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/RestoreV2_2/tensor_names: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/RestoreV2_1/shape_and_slices: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/RestoreV2_1/tensor_names: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/RestoreV2/shape_and_slices: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/RestoreV2/tensor_names: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/save/shapes_and_slices: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] save/save/tensor_names: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] report_uninitialized_variables/boolean_mask/Reshape_1/shape: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] report_uninitialized_variables/boolean_mask/concat/values_0: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] report_uninitialized_variables/boolean_mask/concat/concat_dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] report_uninitialized_variables/boolean_mask/strided_slice/pack_2: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] report_uninitialized_variables/boolean_mask/strided_slice/pack_1: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] report_uninitialized_variables/boolean_mask/strided_slice/pack: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] report_uninitialized_variables/boolean_mask/Shape: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] report_uninitialized_variables/Const: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] Fill_1/dims: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/Sum_7/reduction_indices: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_7_DequeueMany/n: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/Sum_6/reduction_indices: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_6_DequeueMany/n: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/Sum_5/reduction_indices: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_5_DequeueMany/n: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/Sum_4/reduction_indices: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_4_DequeueMany/n: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/Sum_3/reduction_indices: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_3_DequeueMany/n: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/Sum_2/reduction_indices: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_2_DequeueMany/n: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/Sum_1/reduction_indices: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_1_DequeueMany/n: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/Sum/reduction_indices: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/fifo_queue_DequeueMany/n: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] Reshape_1/shape: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] get_local_step/size: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] Reshape/shape: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] Reshape/tensor: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] zeros: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] Sum_7/reduction_indices: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] concat_7/concat_dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_31/dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_30/dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_29/dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_28/dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] Sum_6/reduction_indices: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] concat_6/concat_dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_27/dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_26/dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_25/dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_24/dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] Sum_5/reduction_indices: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] concat_5/concat_dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_23/dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_22/dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_21/dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_20/dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] Sum_4/reduction_indices: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] concat_4/concat_dim: /job:worker/replica:0/task:0/gpu:0
+plica:0/task:0/cpu:0
+save/RestoreV2_3/tensor_names: /job:worker/replica:0/task:0/cpu:0
+save/RestoreV2_2/shape_and_slices: /job:worker/replica:0/task:0/cpu:0
+save/RestoreV2_2/tensor_names: /job:worker/replica:0/task:0/cpu:0
+save/RestoreV2_1/shape_and_slices: /job:worker/replica:0/task:0/cpu:0
+save/RestoreV2_1/tensor_names: /job:worker/replica:0/task:0/cpu:0
+save/RestoreV2/shape_and_slices: /job:worker/replica:0/task:0/cpu:0
+save/RestoreV2/tensor_names: /job:worker/replica:0/task:0/cpu:0
+save/save/shapes_and_slices: /job:worker/replica:0/task:0/cpu:0
+save/save/tensor_names: /job:worker/replica:0/task:0/cpu:0
+report_uninitialized_variables/boolean_mask/Reshape_1/shape: /job:worker/replica:0/task:0/cpu:0
+report_uninitialized_variables/boolean_mask/concat/values_0: /job:worker/replica:0/task:0/gpu:0
+report_uninitialized_variables/boolean_mask/concat/concat_dim: /job:worker/replica:0/task:0/gpu:0
+report_uninitialized_variables/boolean_mask/strided_slice/pack_2: /job:worker/replica:0/task:0/gpu:0
+report_uninitialized_variables/boolean_mask/strided_slice/pack_1: /job:worker/replica:0/task:0/gpu:0
+report_uninitialized_variables/boolean_mask/strided_slice/pack: /job:worker/replica:0/task:0/gpu:0
+report_uninitialized_variables/boolean_mask/Shape: /job:worker/replica:0/task:0/gpu:0
+report_uninitialized_variables/Const: /job:worker/replica:0/task:0/cpu:0
+Fill_1/dims: /job:worker/replica:0/task:0/cpu:0
+mnist_sync_replicas/Sum_7/reduction_indices: /job:worker/replica:0/task:0/gpu:0
+mnist_sync_replicas/fifo_queue_7_DequeueMany/n: /job:worker/replica:0/task:0/gpu:0
+mnist_sync_replicas/Sum_6/reduction_indices: /job:worker/replica:0/task:1/gpu:0
+mnist_sync_replicas/fifo_queue_6_DequeueMany/n: /job:worker/replica:0/task:1/gpu:0
+mnist_sync_replicas/Sum_5/reduction_indices: /job:worker/replica:0/task:0/gpu:0
+mnist_sync_replicas/fifo_queue_5_DequeueMany/n: /job:worker/replica:0/task:0/gpu:0
+mnist_sync_replicas/Sum_4/reduction_indices: /job:worker/replica:0/task:1/gpu:0
+mnist_sync_replicas/fifo_queue_4_DequeueMany/n: /job:worker/replica:0/task:1/gpu:0
+mnist_sync_replicas/Sum_3/reduction_indices: /job:worker/replica:0/task:0/gpu:0
+mnist_sync_replicas/fifo_queue_3_DequeueMany/n: /job:worker/replica:0/task:0/gpu:0
+mnist_sync_replicas/Sum_2/reduction_indices: /job:worker/replica:0/task:1/gpu:0
+mnist_sync_replicas/fifo_queue_2_DequeueMany/n: /job:worker/replica:0/task:1/gpu:0
+mnist_sync_replicas/Sum_1/reduction_indices: /job:worker/replica:0/task:0/gpu:0
+mnist_sync_replicas/fifo_queue_1_DequeueMany/n: /job:worker/replica:0/task:0/gpu:0
+mnist_sync_replicas/Sum/reduction_indices: /job:worker/replica:0/task:1/gpu:0
+mnist_sync_replicas/fifo_queue_DequeueMany/n: /job:worker/replica:0/task:1/gpu:0
+Reshape_1/shape: /job:worker/replica:0/task:0/gpu:0
+get_local_step/size: /job:worker/replica:0/task:0/gpu:0
+Reshape/shape: /job:worker/replica:0/task:0/gpu:0
+Reshape/tensor: /job:worker/replica:0/task:0/gpu:0
+zeros: /job:worker/replica:0/task:0/cpu:0
+Sum_7/reduction_indices: /job:worker/replica:0/task:0/gpu:0
+concat_7/concat_dim: /job:worker/replica:0/task:0/gpu:0
+ExpandDims_31/dim: /job:worker/replica:0/task:0/gpu:0
+ExpandDims_30/dim: /job:worker/replica:0/task:0/gpu:0
+ExpandDims_29/dim: /job:worker/replica:0/task:0/gpu:0
+ExpandDims_28/dim: /job:worker/replica:0/task:0/gpu:0
+Sum_6/reduction_indices: /job:worker/replica:0/task:0/gpu:0
+concat_6/concat_dim: /job:worker/replica:0/task:0/gpu:0
+ExpandDims_27/dim: /job:worker/replica:0/task:0/gpu:0
+ExpandDims_26/dim: /job:worker/replica:0/task:0/gpu:0
+ExpandDims_25/dim: /job:worker/replica:0/task:0/gpu:0
+ExpandDims_24/dim: /job:worker/replica:0/task:0/gpu:0
+Sum_5/reduction_indices: /job:worker/replica:0/task:0/gpu:0
+concat_5/concat_dim: /job:worker/replica:0/task:0/gpu:0
+ExpandDims_23/dim: /job:worker/replica:0/task:0/gpu:0
+ExpandDims_22/dim: /job:worker/replica:0/task:0/gpu:0
+ExpandDims_21/dim: /job:worker/replica:0/task:0/gpu:0
+ExpandDims_20/dim: /job:worker/replica:0/task:0/gpu:0
+Sum_4/reduction_indices: /job:worker/replica:0/task:0/gpu:0
+concat_4/concat_dim: /job:worker/replica:0/task:0/gpu:0
+ExpandDims_19/dim: /jI tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_19/dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_18/dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_17/dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_16/dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] Sum_3/reduction_indices: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] concat_3/concat_dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_15/dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_14/dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_13/dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_12/dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] Sum_2/reduction_indices: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] concat_2/concat_dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_11/dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_10/dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_9/dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_8/dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] Sum_1/reduction_indices: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] concat_1/concat_dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_7/dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_6/dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_5/dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_4/dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] Sum/reduction_indices: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] concat/concat_dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_3/dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_2/dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims_1/dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] ExpandDims/dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/SparseSoftmaxCrossEntropyWithLogits/SparseSoftmaxCrossEntropyWithLogits_grad/ExpandDims/dim: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/Mean_grad/Maximum/y: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/Mean_grad/Const_1: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/Mean_grad/Const: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/Mean_grad/Shape_1: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/Mean_grad/Shape: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/Mean_grad/Tile/multiples: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/replica_3/Mean_grad/Reshape/shape: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/Const: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/gradients/Shape: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/Const: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_3/SparseSoftmaxCrossEntropyWithLogits/Shape: /job:worker/replica:0/task:0/gpu:3
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/SparseSoftmaxCrossEntropyWithLogits/SparseSoftmaxCrossEntropyWithLogits_grad/ExpandDims/dim: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/Mean_grad/Maximum/y: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/Mean_grad/Const_1: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/Mean_grad/Const: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/Mean_grad/Shape_1: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/Mean_grad/Shape: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/Mean_grad/Tile/multiples: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/replica_2/Mean_grad/Reshape/shape: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/Const: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/gradients/Shape: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/Const: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_2/SparseSoftmaxCrossEntropyWithLogits/Shape: /job:worker/replica:0/task:0/gpu:2
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/SparseSoftmaxCrossEntropyWithLogits/SparseSoftmaxCrossEntropyWithLogits_grad/ExpandDims/dim: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/Mean_grad/Maximum/y: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/Mean_grad/Const_1: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/Mean_grad/Const: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/Mean_grad/Shape_1: /job:worker/replica:0/task:0/gpu:1
+ob:worker/replica:0/task:0/gpu:0
+ExpandDims_18/dim: /job:worker/replica:0/task:0/gpu:0
+ExpandDims_17/dim: /job:worker/replica:0/task:0/gpu:0
+ExpandDims_16/dim: /job:worker/replica:0/task:0/gpu:0
+Sum_3/reduction_indices: /job:worker/replica:0/task:0/gpu:0
+concat_3/concat_dim: /job:worker/replica:0/task:0/gpu:0
+ExpandDims_15/dim: /job:worker/replica:0/task:0/gpu:0
+ExpandDims_14/dim: /job:worker/replica:0/task:0/gpu:0
+ExpandDims_13/dim: /job:worker/replica:0/task:0/gpu:0
+ExpandDims_12/dim: /job:worker/replica:0/task:0/gpu:0
+Sum_2/reduction_indices: /job:worker/replica:0/task:0/gpu:0
+concat_2/concat_dim: /job:worker/replica:0/task:0/gpu:0
+ExpandDims_11/dim: /job:worker/replica:0/task:0/gpu:0
+ExpandDims_10/dim: /job:worker/replica:0/task:0/gpu:0
+ExpandDims_9/dim: /job:worker/replica:0/task:0/gpu:0
+ExpandDims_8/dim: /job:worker/replica:0/task:0/gpu:0
+Sum_1/reduction_indices: /job:worker/replica:0/task:0/gpu:0
+concat_1/concat_dim: /job:worker/replica:0/task:0/gpu:0
+ExpandDims_7/dim: /job:worker/replica:0/task:0/gpu:0
+ExpandDims_6/dim: /job:worker/replica:0/task:0/gpu:0
+ExpandDims_5/dim: /job:worker/replica:0/task:0/gpu:0
+ExpandDims_4/dim: /job:worker/replica:0/task:0/gpu:0
+Sum/reduction_indices: /job:worker/replica:0/task:0/gpu:0
+concat/concat_dim: /job:worker/replica:0/task:0/gpu:0
+ExpandDims_3/dim: /job:worker/replica:0/task:0/gpu:0
+ExpandDims_2/dim: /job:worker/replica:0/task:0/gpu:0
+ExpandDims_1/dim: /job:worker/replica:0/task:0/gpu:0
+ExpandDims/dim: /job:worker/replica:0/task:0/gpu:0
+replica_3/gradients/replica_3/SparseSoftmaxCrossEntropyWithLogits/SparseSoftmaxCrossEntropyWithLogits_grad/ExpandDims/dim: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/Mean_grad/Maximum/y: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/Mean_grad/Const_1: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/Mean_grad/Const: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/Mean_grad/Shape_1: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/Mean_grad/Shape: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/Mean_grad/Tile/multiples: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/replica_3/Mean_grad/Reshape/shape: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/Const: /job:worker/replica:0/task:0/gpu:3
+replica_3/gradients/Shape: /job:worker/replica:0/task:0/gpu:3
+replica_3/Const: /job:worker/replica:0/task:0/gpu:3
+replica_3/SparseSoftmaxCrossEntropyWithLogits/Shape: /job:worker/replica:0/task:0/gpu:3
+replica_2/gradients/replica_2/SparseSoftmaxCrossEntropyWithLogits/SparseSoftmaxCrossEntropyWithLogits_grad/ExpandDims/dim: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/Mean_grad/Maximum/y: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/Mean_grad/Const_1: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/Mean_grad/Const: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/Mean_grad/Shape_1: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/Mean_grad/Shape: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/Mean_grad/Tile/multiples: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/replica_2/Mean_grad/Reshape/shape: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/Const: /job:worker/replica:0/task:0/gpu:2
+replica_2/gradients/Shape: /job:worker/replica:0/task:0/gpu:2
+replica_2/Const: /job:worker/replica:0/task:0/gpu:2
+replica_2/SparseSoftmaxCrossEntropyWithLogits/Shape: /job:worker/replica:0/task:0/gpu:2
+replica_1/gradients/replica_1/SparseSoftmaxCrossEntropyWithLogits/SparseSoftmaxCrossEntropyWithLogits_grad/ExpandDims/dim: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/Mean_grad/Maximum/y: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/Mean_grad/Const_1: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/Mean_grad/Const: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/Mean_grad/Shape_1: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/Mean_grad/Shape: /job:wI tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/Mean_grad/Shape: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/Mean_grad/Tile/multiples: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/replica_1/Mean_grad/Reshape/shape: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/Const: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/gradients/Shape: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/Const: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_1/SparseSoftmaxCrossEntropyWithLogits/Shape: /job:worker/replica:0/task:0/gpu:1
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/SparseSoftmaxCrossEntropyWithLogits/SparseSoftmaxCrossEntropyWithLogits_grad/ExpandDims/dim: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/Mean_grad/Maximum/y: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/Mean_grad/Const_1: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/Mean_grad/Const: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/Mean_grad/Shape_1: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/Mean_grad/Shape: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/Mean_grad/Tile/multiples: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/replica_0/Mean_grad/Reshape/shape: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/Const: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/gradients/Shape: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/Const: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] replica_0/SparseSoftmaxCrossEntropyWithLogits/Shape: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] B5/Initializer/random_uniform/max: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] B5/Initializer/random_uniform/shape: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] W5/Initializer/random_uniform/max: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] W5/Initializer/random_uniform/shape: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] B2/Initializer/random_uniform/max: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] B2/Initializer/random_uniform/shape: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] W2/Initializer/random_uniform/max: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] W2/Initializer/random_uniform/shape: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] B1/Initializer/random_uniform/max: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] B1/Initializer/random_uniform/shape: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] W1/Initializer/random_uniform/max: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] W1/Initializer/random_uniform/shape: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] B0/Initializer/random_uniform/max: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] B0/Initializer/random_uniform/shape: /job:worker/replica:0/task:0/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] W0/Initializer/random_uniform/max: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] W0/Initializer/random_uniform/shape: /job:worker/replica:0/task:1/gpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] GradientDescent/value: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] Fill/dims: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] mnist_sync_replicas/indices: /job:worker/replica:0/task:0/cpu:0
+I tensorflow/core/common_runtime/simple_placer.cc:819] global_step/initial_value: /job:worker/replica:0/task:0/cpu:0
+WARNING:tensorflow:*******************************************************
+WARNING:tensorflow:TensorFlow's V1 checkpoint format is deprecated; V2 will become the default shortly after 10/31/2016.
+WARNING:tensorflow:Consider switching to the more efficient V2 format now:
+WARNING:tensorflow:   `tf.train.Saver(write_version=tf.train.SaverDef.V2)`
+WARNING:tensorflow:to prevent breakage.
+WARNING:tensorflow:*******************************************************
+orker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/Mean_grad/Tile/multiples: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/replica_1/Mean_grad/Reshape/shape: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/Const: /job:worker/replica:0/task:0/gpu:1
+replica_1/gradients/Shape: /job:worker/replica:0/task:0/gpu:1
+replica_1/Const: /job:worker/replica:0/task:0/gpu:1
+replica_1/SparseSoftmaxCrossEntropyWithLogits/Shape: /job:worker/replica:0/task:0/gpu:1
+replica_0/gradients/replica_0/SparseSoftmaxCrossEntropyWithLogits/SparseSoftmaxCrossEntropyWithLogits_grad/ExpandDims/dim: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/Mean_grad/Maximum/y: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/Mean_grad/Const_1: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/Mean_grad/Const: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/Mean_grad/Shape_1: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/Mean_grad/Shape: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/Mean_grad/Tile/multiples: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/replica_0/Mean_grad/Reshape/shape: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/Const: /job:worker/replica:0/task:0/gpu:0
+replica_0/gradients/Shape: /job:worker/replica:0/task:0/gpu:0
+replica_0/Const: /job:worker/replica:0/task:0/gpu:0
+replica_0/SparseSoftmaxCrossEntropyWithLogits/Shape: /job:worker/replica:0/task:0/gpu:0
+B5/Initializer/random_uniform/max: /job:worker/replica:0/task:0/gpu:0
+B5/Initializer/random_uniform/shape: /job:worker/replica:0/task:0/gpu:0
+W5/Initializer/random_uniform/max: /job:worker/replica:0/task:1/gpu:0
+W5/Initializer/random_uniform/shape: /job:worker/replica:0/task:1/gpu:0
+B2/Initializer/random_uniform/max: /job:worker/replica:0/task:0/gpu:0
+B2/Initializer/random_uniform/shape: /job:worker/replica:0/task:0/gpu:0
+W2/Initializer/random_uniform/max: /job:worker/replica:0/task:1/gpu:0
+W2/Initializer/random_uniform/shape: /job:worker/replica:0/task:1/gpu:0
+B1/Initializer/random_uniform/max: /job:worker/replica:0/task:0/gpu:0
+B1/Initializer/random_uniform/shape: /job:worker/replica:0/task:0/gpu:0
+W1/Initializer/random_uniform/max: /job:worker/replica:0/task:1/gpu:0
+W1/Initializer/random_uniform/shape: /job:worker/replica:0/task:1/gpu:0
+B0/Initializer/random_uniform/max: /job:worker/replica:0/task:0/gpu:0
+B0/Initializer/random_uniform/shape: /job:worker/replica:0/task:0/gpu:0
+W0/Initializer/random_uniform/max: /job:worker/replica:0/task:1/gpu:0
+W0/Initializer/random_uniform/shape: /job:worker/replica:0/task:1/gpu:0
+GradientDescent/value: /job:worker/replica:0/task:0/cpu:0
+Fill/dims: /job:worker/replica:0/task:0/cpu:0
+mnist_sync_replicas/indices: /job:worker/replica:0/task:0/cpu:0
+global_step/initial_value: /job:worker/replica:0/task:0/cpu:0
+Worker 0: Session initialization complete.
+Starting chief queue runner and running init_tokens_op
+Worker 0: training step 0 done (global step: 10)
+Worker 0: training step 1 done (global step: 11)
+Worker 0: training step 2 done (global step: 12)
+Worker 0: training step 3 done (global step: 13)
+Worker 0: training step 4 done (global step: 14)
+Worker 0: training step 5 done (global step: 15)
+Worker 0: training step 6 done (global step: 16)
+Worker 0: training step 7 done (global step: 17)
+Worker 0: training step 8 done (global step: 18)
+Worker 0: training step 9 done (global step: 19)
+Worker 0: training step 10 done (global step: 20)
+Worker 0: training step 11 done (global step: 21)
+Worker 0: training step 12 done (global step: 22)
+Worker 0: training step 13 done (global step: 23)
+Worker 0: training step 14 done (global step: 24)
+Worker 0: training step 15 done (global step: 25)
+Worker 0: training step 16 done (global step: 26)
+Worker 0: training step 17 done (global step: 27)
+Worker 0: training step 18 done (global step: 28)
+Worker 0: training step 19 done (global step: 29)
+Worker 0: training step 20 done (global step: 30)
+Worker 0: training step 21 done (global step: 31)
+Worker 0: training step 22 done (global step: 32)
+Worker 0: training step 23 done (global step: 33)
+Worker 0: training step 24 done (global step: 34)
+Worker 0: training step 25 done (global step: 35)
+Worker 0: training step 26 done (global step: 36)
+Worker 0: training step 27 done (global step: 37)
+Worker 0: training step 28 done (global step: 38)
+Worker 0: training step 29 done (global step: 39)
+Worker 0: training step 30 done (global step: 40)
+Worker 0: training step 31 done (global step: 41)
+Worker 0: training step 32 done (global step: 42)
+Worker 0: training step 33 done (global step: 43)
+Worker 0: training step 34 done (global step: 44)
+Worker 0: training step 35 done (global step: 45)
+Worker 0: training step 36 done (global step: 46)
+Worker 0: training step 37 done (global step: 47)
+Worker 0: training step 38 done (global step: 48)
+Worker 0: training step 39 done (global step: 49)
+Worker 0: training step 40 done (global step: 50)
+Worker 0: training step 41 done (global step: 51)
+Worker 0: training step 42 done (global step: 52)
+Worker 0: training step 43 done (global step: 53)
+Worker 0: training step 44 done (global step: 54)
+Worker 0: training step 45 done (global step: 55)
+Worker 0: training step 46 done (global step: 56)
+Worker 0: training step 47 done (global step: 57)
+Worker 0: training step 48 done (global step: 58)
+Worker 0: training step 49 done (global step: 59)
+Worker 0: training step 50 done (global step: 60)
+Worker 0: training step 51 done (global step: 61)
+Worker 0: training step 52 done (global step: 62)
+Worker 0: training step 53 done (global step: 63)
+Worker 0: training step 54 done (global step: 64)
+Worker 0: training step 55 done (global step: 65)
+Worker 0: training step 56 done (global step: 66)
+Worker 0: training step 57 done (global step: 67)
+Worker 0: training step 58 done (global step: 68)
+Worker 0: training step 59 done (global step: 69)
+Worker 0: training step 60 done (global step: 70)
+Worker 0: training step 61 done (global step: 71)
+Worker 0: training step 62 done (global step: 72)
+Worker 0: training step 63 done (global step: 73)
+Worker 0: training step 64 done (global step: 74)
+Worker 0: training step 65 done (global step: 75)
+Worker 0: training step 66 done (global step: 76)
+Worker 0: training step 67 done (global step: 77)
+Worker 0: training step 68 done (global step: 78)
+Worker 0: training step 69 done (global step: 79)
+Worker 0: training step 70 done (global step: 80)
+Worker 0: training step 71 done (global step: 81)
+Worker 0: training step 72 done (global step: 82)
+Worker 0: training step 73 done (global step: 83)
+Worker 0: training step 74 done (global step: 84)
+Worker 0: training step 75 done (global step: 85)
+Worker 0: training step 76 done (global step: 86)
+Worker 0: training step 77 done (global step: 87)
+Worker 0: training step 78 done (global step: 88)
+Worker 0: training step 79 done (global step: 89)
+Worker 0: training step 80 done (global step: 90)
+Worker 0: training step 81 done (global step: 91)
+Worker 0: training step 82 done (global step: 92)
+Worker 0: training step 83 done (global step: 93)
+Worker 0: training step 84 done (global step: 94)
+Worker 0: training step 85 done (global step: 95)
+Worker 0: training step 86 done (global step: 96)
+Worker 0: training step 87 done (global step: 97)
+Worker 0: training step 88 done (global step: 98)
+Worker 0: training step 89 done (global step: 99)
+Worker 0: training step 90 done (global step: 100)
+Worker 0: training step 91 done (global step: 101)
+Worker 0: training step 92 done (global step: 102)
+Worker 0: training step 93 done (global step: 103)
+Worker 0: training step 94 done (global step: 104)
+Worker 0: training step 95 done (global step: 105)
+Worker 0: training step 96 done (global step: 106)
+Worker 0: training step 97 done (global step: 107)
+Worker 0: training step 98 done (global step: 108)
+Worker 0: training step 99 done (global step: 109)
+Used time for [copy + forward + backward + update] : 0.255130
+********************** Training on GPU(0,1,2,3) **********************
+Avg elasped time per mini-batch (sec/mini-batch): 0.25513
+Avg samples per second (samples/sec): 32109

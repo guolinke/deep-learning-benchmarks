@@ -114,8 +114,11 @@ is_chief = (args.task_index == 0)
 
 worker_device = "/job:worker/task:%d" % (args.task_index)
 
-feature = tf.placeholder(tf.float32, data_shape)
-label = tf.placeholder(tf.int32, label_shape)
+batch_size = args.batch_size / (len(worker_hosts) * len(used_gpus))
+data_shape = (batch_size, ) + featureDim
+label_shape = (batch_size, )
+
+
 
 
 feature_in = np.random.uniform(0, 1, data_shape).astype(np.float32)
@@ -127,9 +130,9 @@ with tf.device(
         ps_device="/job:worker/task:0/cpu:0",
         cluster=cluster)):
 
-    batch_size = args.batch_size / (len(worker_hosts) * len(used_gpus))
-    data_shape = (batch_size, ) + featureDim
-    label_shape = (batch_size, )
+    feature = tf.placeholder(tf.float32, data_shape)
+    label = tf.placeholder(tf.int32, label_shape)
+
     global_step = tf.Variable(0, name="global_step", trainable=False)
     
     optimizer = tf.train.GradientDescentOptimizer(args.lr)
