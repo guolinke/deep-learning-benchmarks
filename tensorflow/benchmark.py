@@ -52,18 +52,17 @@ def PrintParameterCount():
     print "Parameter Number:" + str(total_parameters)
 
 
-def time_tensorflow_run(session, target, num_steps, info=None):
+def time_tensorflow_run(session, target, num_steps, feed_dict = None, info=None):
     num_burn_in = 10
     for i in xrange(num_burn_in):
-        session.run(target)
+        session.run(target, feed_dict = feed_dict)
     start_time = time.time()
     for i in xrange(num_steps):
-        session.run(target)
+        session.run(target, feed_dict = feed_dict)
     duration = time.time() - start_time
     if info:
         print ('Used time for %s : %f' %(info, duration / num_steps))
     return duration
-
 
 
 
@@ -90,11 +89,17 @@ with tf.Graph().as_default(), tf.device(device_str):
 
 tf.reset_default_graph()
 
-with tf.Graph().as_default(), tf.device(device_str):
-    with tf.device('/cpu:0'):
-        feature = tf.Variable(np.random.uniform(0, 1, data_shape).astype(np.float32), trainable=False)
-        label = tf.Variable(np.random.randint(0, numClasses, label_shape, dtype=np.int32), trainable=False)
 
+
+
+feature_in = np.random.uniform(0, 1, data_shape).astype(np.float32)
+label_in = np.random.randint(0, numClasses, label_shape, dtype=np.int32)
+
+with tf.Graph().as_default(), tf.device(device_str):
+
+    feature = tf.placeholder(tf.float32, data_shape)
+    label = tf.placeholder(tf.int32, label_shape)
+    
     last_layer = build_model(feature)
 
     cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(last_layer, label)
@@ -116,13 +121,13 @@ with tf.Graph().as_default(), tf.device(device_str):
     sess = tf.Session(config=config)
     sess.run(init)
 
-    forward_time_data_in_cpu = time_tensorflow_run(sess, tf.group(last_layer) , args.num_batches, '[copy + forward]')
+    forward_time_data_in_cpu = time_tensorflow_run(sess, tf.group(last_layer) , args.num_batches , {feature: feature_in, label: label_in}, '[copy + forward]')
 
     print ('Used time for %s : %f' %('[copy]', (forward_time_data_in_cpu - forward_time_data_in_gpu) / args.num_batches))
 
-    time_tensorflow_run(sess, tf.group(*grad), args.num_batches, '[copy + forward + backward]')
+    time_tensorflow_run(sess, tf.group(*grad), args.num_batches, {feature: feature_in, label: label_in}, '[copy + forward + backward]')
 
-    duration = time_tensorflow_run(sess, [train_step], args.num_batches, '[copy + forward + backward + update]')
+    duration = time_tensorflow_run(sess, [train_step], args.num_batches, {feature: feature_in, label: label_in}, '[copy + forward + backward + update]')
 
     print('********************** Training on GPU('+str(args.gpu)+') **********************')
     print('Avg elasped time per mini-batch (sec/mini-batch): '+str(round(duration / args.num_batches, 6)) )

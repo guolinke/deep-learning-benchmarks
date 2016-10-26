@@ -52,18 +52,17 @@ def PrintParameterCount():
     print "Parameter Number:" + str(total_parameters)
 
 
-def time_tensorflow_run(session, target, num_steps, info=None):
+def time_tensorflow_run(session, target, num_steps, feed_dict = None, info=None):
     num_burn_in = 10
     for i in xrange(num_burn_in):
-        session.run(target)
+        session.run(target, feed_dict = feed_dict)
     start_time = time.time()
     for i in xrange(num_steps):
-        session.run(target)
+        session.run(target, feed_dict = feed_dict)
     duration = time.time() - start_time
     if info:
         print ('Used time for %s : %f' %(info, duration / num_steps))
     return duration
-
 
 
 
@@ -72,12 +71,14 @@ data_shape = (batch_size, ) + featureDim
 label_shape = (batch_size, )
 
 
+feature_in = np.random.uniform(0, 1, data_shape).astype(np.float32)
+label_in = np.random.randint(0, numClasses, label_shape, dtype=np.int32)
 
 with tf.Graph().as_default(), tf.device(device_str):
-    with tf.device('/cpu:0'):
-        feature = tf.Variable(np.random.uniform(0, 1, data_shape).astype(np.float32), trainable=False)
-        label = tf.Variable(np.random.randint(0, numClasses, label_shape, dtype=np.int32), trainable=False)
 
+    feature = tf.placeholder(tf.float32, data_shape)
+    label = tf.placeholder(tf.int32, label_shape)
+    
     last_layer = build_model(feature)
 
     cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(last_layer, label)
@@ -88,7 +89,6 @@ with tf.Graph().as_default(), tf.device(device_str):
 
     grads_vars = optimizer.compute_gradients(loss)
 
-    grad = [ x[0] for x in grads_vars ]
     train_step = optimizer.apply_gradients(grads_vars)
 
     init = tf.initialize_all_variables()
@@ -99,7 +99,7 @@ with tf.Graph().as_default(), tf.device(device_str):
     sess = tf.Session(config=config)
     sess.run(init)
 
-    duration = time_tensorflow_run(sess, [train_step], args.num_batches, '[copy + forward + backward + update]')
+    duration = time_tensorflow_run(sess, [train_step], args.num_batches, {feature: feature_in, label: label_in}, '[copy + forward + backward + update]')
 
     print('********************** Training on GPU('+str(args.gpu)+') **********************')
     print('Avg elasped time per mini-batch (sec/mini-batch): '+str(round(duration / args.num_batches, 6)) )

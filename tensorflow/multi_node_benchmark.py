@@ -28,8 +28,6 @@ parser.add_argument('--gpu',  default="0")
 
 parser.add_argument('--worker_hosts',  default="")
 
-parser.add_argument('--ps_hosts',  default="")
-
 parser.add_argument('--job_name',  default="worker")
 
 parser.add_argument('--task_index', type=int, default=0)
@@ -88,13 +86,13 @@ def aggregateGradients(subMinibatchGradients):
     return aggGrads
 
 
-def time_tensorflow_run(session, target, num_steps, info=None):
+def time_tensorflow_run(session, target, num_steps,feed_dict=None, info=None):
     num_burn_in = 10
     for i in xrange(num_burn_in):
-        session.run(target)
+        session.run(target, feed_dict=feed_dict)
     start_time = time.time()
     for i in xrange(num_steps):
-        _, step = session.run(target)
+        _, step = session.run(target, feed_dict=feed_dict)
         print("Worker %d: training step %d done (global step: %d)" %
             (args.task_index, i, step))
     duration = time.time() - start_time
@@ -112,91 +110,96 @@ server = tf.train.Server(cluster,
                        job_name=args.job_name,
                        task_index=args.task_index)
 
-with tf.device("/job:worker/task:0/cpu:0"):
-    global_step = tf.Variable(0, name="global_step", trainable=False)
-
 is_chief = (args.task_index == 0)
 
-batch_size = args.batch_size / (len(worker_hosts) * len(used_gpus))
-data_shape = (batch_size, ) + featureDim
-label_shape = (batch_size, )
+worker_device = "/job:worker/task:%d" % (args.task_index)
+
+feature = tf.placeholder(tf.float32, data_shape)
+label = tf.placeholder(tf.int32, label_shape)
 
 
-optimizer = tf.train.GradientDescentOptimizer(args.lr)
+feature_in = np.random.uniform(0, 1, data_shape).astype(np.float32)
+label_in = np.random.randint(0, numClasses, label_shape, dtype=np.int32)
 
-replicas_to_aggregate = len(worker_hosts)
-global_opt = tf.train.SyncReplicasOptimizer(
-    optimizer,
-    replicas_to_aggregate=replicas_to_aggregate,
-    replica_id=args.task_index,
-    total_num_replicas=len(worker_hosts))
+with tf.device(
+        tf.train.replica_device_setter(
+        worker_device=worker_device,
+        ps_device="/job:worker/task:0/cpu:0",
+        cluster=cluster)):
 
-train_steps = []
-
-for m in range(len(worker_hosts)):
-    with tf.device("/job:worker/task:%d" %(m)):
-        with tf.name_scope('%s_%d' % ("task", m)):
-            with tf.device('/job:worker/task:0/cpu:0'):
-                feature = tf.Variable(np.random.uniform(0, 1, data_shape).astype(np.float32), trainable=False)
-                label = tf.Variable(np.random.randint(0, numClasses, label_shape, dtype=np.int32), trainable=False)
-            subMinibatchGradients = []
-            for i in used_gpus:
-                with  tf.device('/gpu:%d' % i):
-                    with tf.name_scope('%s_%d' % ("replica", i)) as scope:
-                        last_layer = build_model(feature)
-                        cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(last_layer, label)
-                        loss = tf.reduce_mean(cross_entropy)
-                        tf.get_variable_scope().reuse_variables()
-                        grads = optimizer.compute_gradients(loss)
-                        subMinibatchGradients.append(grads)
-                        assert tf.get_variable_scope().reuse == True
-            assert tf.get_variable_scope().reuse == False
-            grads = aggregateGradients(subMinibatchGradients)
-
-            train_steps.append(global_opt.apply_gradients(grads, global_step=global_step))
-
-init = tf.initialize_all_variables()
-
-if is_chief:
-    # Initial token and chief queue runners required by the sync_replicas mode
-    chief_queue_runner = global_opt.get_chief_queue_runner()
-    init_tokens_op = global_opt.get_init_tokens_op()
-
-
-train_step = train_steps[args.task_index]
+    batch_size = args.batch_size / (len(worker_hosts) * len(used_gpus))
+    data_shape = (batch_size, ) + featureDim
+    label_shape = (batch_size, )
+    global_step = tf.Variable(0, name="global_step", trainable=False)
     
-PrintParameterCount()
+    optimizer = tf.train.GradientDescentOptimizer(args.lr)
+    replicas_to_aggregate = len(worker_hosts)
+    global_opt = tf.train.SyncReplicasOptimizer(
+        optimizer,
+        replicas_to_aggregate=replicas_to_aggregate,
+        total_num_replicas=len(worker_hosts),
+        replica_id=args.task_index,
+        name="mnist_sync_replicas")
 
-sv = None
+    subMinibatchGradients = []
+    for i in used_gpus:
+        with  tf.device('/gpu:%d' % i):
+            with tf.name_scope('%s_%d' % ("replica", i)) as scope:
+                last_layer = build_model(feature)
+                cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(last_layer, label)
+                loss = tf.reduce_mean(cross_entropy)
 
-train_dir = tempfile.mkdtemp()
+                tf.get_variable_scope().reuse_variables()
 
-sv = tf.train.Supervisor(
-    is_chief=is_chief,
-    logdir=train_dir,
-    init_op=init,
-    recovery_wait_secs=1)
+                grads = optimizer.compute_gradients(loss)
 
-sess_config = tf.ConfigProto(allow_soft_placement=True, log_device_placement=True)
+                subMinibatchGradients.append(grads)
 
-if is_chief:
-  print("Worker %d: Initializing session..." % args.task_index)
-else:
-  print("Worker %d: Waiting for session to be initialized..." %
-        args.task_index)
+    grads = aggregateGradients(subMinibatchGradients)
 
-sess = sv.prepare_or_wait_for_session(server.target, config=sess_config)
+    train_step = global_opt.apply_gradients(grads, global_step=global_step)
 
-print("Worker %d: Session initialization complete." % args.task_index)
+    if is_chief:
+        # Initial token and chief queue runners required by the sync_replicas mode
+        chief_queue_runner = global_opt.get_chief_queue_runner()
+        init_tokens_op = global_opt.get_init_tokens_op()
 
-if is_chief:
-    # Chief worker will start the chief queue runner and call the init op
-    print("Starting chief queue runner and running init_tokens_op")
-    sv.start_queue_runners(sess, [chief_queue_runner])
-    sess.run(init_tokens_op)
+    init = tf.initialize_all_variables()
 
-duration = time_tensorflow_run(sess, [train_step, global_step], args.num_batches, '[copy + forward + backward + update]')
+    PrintParameterCount()
 
-print('********************** Training on GPU('+str(args.gpu)+') **********************')
-print('Avg elasped time per mini-batch (sec/mini-batch): '+str(round(duration / args.num_batches, 6)) )
-print('Avg samples per second (samples/sec): '+str(int(round((args.batch_size * args.num_batches)/duration))))
+    sv = None
+
+    train_dir = tempfile.mkdtemp()
+
+    sv = tf.train.Supervisor(
+        is_chief=is_chief,
+        logdir=train_dir,
+        init_op=init, 
+        recovery_wait_secs=1,
+        global_step=global_step)
+
+    sess_config = tf.ConfigProto(allow_soft_placement=True, log_device_placement=True)
+
+    if is_chief:
+      print("Worker %d: Initializing session..." % args.task_index)
+    else:
+      print("Worker %d: Waiting for session to be initialized..." %
+            args.task_index)
+
+    sess = sv.prepare_or_wait_for_session(server.target, config=sess_config)
+
+    print("Worker %d: Session initialization complete." % args.task_index)
+
+    if is_chief:
+        # Chief worker will start the chief queue runner and call the init op
+        print("Starting chief queue runner and running init_tokens_op")
+        sv.start_queue_runners(sess, [chief_queue_runner])
+        sess.run(init_tokens_op)
+
+
+    duration = time_tensorflow_run(sess, [train_step, global_step], args.num_batches, {feature: feature_in, label: label_in}, '[copy + forward + backward + update]')
+
+    print('********************** Training on GPU('+str(args.gpu)+') **********************')
+    print('Avg elasped time per mini-batch (sec/mini-batch): '+str(round(duration / args.num_batches, 6)) )
+    print('Avg samples per second (samples/sec): '+str(int(round((args.batch_size * args.num_batches)/duration))))
