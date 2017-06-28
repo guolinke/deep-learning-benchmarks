@@ -1,5 +1,7 @@
 # deep-learning-benchmarks
 
+***Note: this benchmark is out of date. ***
+
 ### Hardware Config
 
 | Name | Value |
